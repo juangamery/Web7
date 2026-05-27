@@ -662,7 +662,6 @@
     @view-transition { navigation: auto; }
     ::view-transition-old(root) { animation: none; mix-blend-mode: normal; }
     ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
-    section { content-visibility: auto; contain-intrinsic-size: auto 800px; }
   </style>
 </head>
 <body>
@@ -997,6 +996,11 @@
   <script src="chat-widget.js"></script>
   <script>
     gsap.registerPlugin(ScrollTrigger);
+
+    // Refrescar ScrollTrigger al cargar la página para recalcular posiciones correctas
+    window.addEventListener('load', () => {
+      ScrollTrigger.refresh();
+    });
 
     // ═══════════════════════════════════════
     // CURSOR

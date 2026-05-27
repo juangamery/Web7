@@ -1,4 +1,4 @@
-const CACHE_NAME = 'web7-v2';
+const CACHE_NAME = 'web7-v3';
 const PRECACHE = [
   '/',
   '/index.html',

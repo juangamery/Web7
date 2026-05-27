@@ -11,7 +11,10 @@
 
   function formatMessage(text) {
     if (!text) return "";
-    let escaped = text
+    let cleanText = text.replace(/\[ACTION:[^\]]+\]/g, "").replace(/ +/g, " ").trim();
+    if (!cleanText) return "";
+
+    let escaped = cleanText
       .replace(/&/g, "&amp;")
       .replace(/</g, "&lt;")
       .replace(/>/g, "&gt;")

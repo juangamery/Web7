@@ -711,7 +711,7 @@
       stroke: rgba(255,255,255,0.06);
     }
     @media (max-width: 1024px) {
-      .pixel-deco { transform: scale(0.6) !important; }
+      .pixel-deco { scale: 0.6; }
     }
     @media (max-width: 768px) {
       .pixel-deco { display: none !important; }
@@ -750,7 +750,33 @@
   </nav>
 
   <!-- HERO -->
-  <section class="hero" id="hero">
+  <section class="hero" id="hero" style="position: relative;">
+    <!-- Pixel decorations -->
+    <div class="pixel-deco" style="top: 30%; right: 5%; width: 130px; opacity: 0;" data-pixel="hero-mosaic">
+      <img src="assets/Group 1321314662.svg" alt="" loading="lazy">
+    </div>
+    <div class="pixel-deco" style="bottom: 20%; right: 8%; width: 66px; opacity: 0;" data-pixel="hero-sm">
+      <img src="assets/Group 1321314648.svg" alt="" loading="lazy">
+    </div>
+    <div class="pixel-deco pixel-deco--grid" style="bottom: 5%; right: 2%; width: 304px;" data-pixel-grid>
+      <svg width="304" height="93" viewBox="0 0 304 93" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M303.021 61.6973L303.021 30.5215L273 30.5215L273 61.6973L303.021 61.6973Z" stroke="currentColor" stroke-miterlimit="10"/>
+        <path d="M273 30.5212L273 0.5L241.824 0.499999L241.824 30.5212L273 30.5212Z" stroke="currentColor" stroke-miterlimit="10"/>
+        <path d="M273 91.7185L273 61.6973L241.824 61.6973L241.824 91.7185L273 91.7185Z" stroke="currentColor" stroke-miterlimit="10"/>
+        <path d="M241.824 61.6973L241.824 30.5215L211.803 30.5215L211.803 61.6973L241.824 61.6973Z" stroke="currentColor" stroke-miterlimit="10"/>
+        <path d="M241.824 91.7185L241.824 61.6973L211.803 61.6973L211.803 91.7185L241.824 91.7185Z" stroke="currentColor" stroke-miterlimit="10"/>
+        <path d="M211.803 91.7185L211.803 61.6973L181.782 61.6973L181.782 91.7185L211.803 91.7185Z" stroke="currentColor" stroke-miterlimit="10"/>
+        <path d="M181.782 30.5212L181.782 0.5L151.761 0.499999L151.761 30.5212L181.782 30.5212Z" stroke="currentColor" stroke-miterlimit="10"/>
+        <path d="M181.782 91.7185L181.782 61.6973L151.761 61.6973L151.761 91.7185L181.782 91.7185Z" stroke="currentColor" stroke-miterlimit="10"/>
+        <path d="M151.761 61.6973L151.761 30.5215L121.74 30.5215L121.74 61.6973L151.761 61.6973Z" stroke="currentColor" stroke-miterlimit="10"/>
+        <path d="M151.761 91.7185L151.761 61.6973L121.74 61.6973L121.74 91.7185L151.761 91.7185Z" stroke="currentColor" stroke-miterlimit="10"/>
+        <path d="M91.7187 61.6973L91.7188 30.5215L61.6976 30.5215L61.6976 61.6973L91.7187 61.6973Z" stroke="currentColor" stroke-miterlimit="10"/>
+        <path d="M61.6973 61.6973L61.6973 30.5215L30.5214 30.5215L30.5214 61.6973L61.6973 61.6973Z" stroke="currentColor" stroke-miterlimit="10"/>
+        <path d="M61.6973 91.7185L61.6973 61.6973L30.5214 61.6973L30.5214 91.7185L61.6973 91.7185Z" stroke="currentColor" stroke-miterlimit="10"/>
+        <path d="M30.5215 91.7185L30.5215 61.6973L0.500301 61.6973L0.5003 91.7185L30.5215 91.7185Z" stroke="currentColor" stroke-miterlimit="10"/>
+      </svg>
+    </div>
+
     <span class="label">On7 &middot; Atención inteligente</span>
     <h1>Tu negocio responde solo.<br>Incluso a las 3 de la mañana.</h1>
     <p class="subtext">Un agente conectado a tus herramientas. Atiende consultas, guía clientes y captura reservas sin que tengas que estar presente.</p>
@@ -761,10 +787,24 @@
   </section>
 
   <!-- EL PROBLEMA -->
-  <section class="section">
+  <section class="section diferencial" id="problema" style="position: relative;">
+    <!-- Pixel decorations -->
+    <div class="pixel-deco" style="top: 8%; right: 6%; width: 131px; opacity: 0;" data-pixel="section">
+      <img src="assets/Group 1321314649.svg" alt="" loading="lazy">
+    </div>
+    <div class="pixel-deco" style="bottom: 12%; right: 4%; width: 100px; opacity: 0;" data-pixel="section">
+      <img src="assets/Group 1321314652.svg" alt="" loading="lazy">
+    </div>
+    <div class="pixel-deco" style="top: 50%; right: 15%; width: 33px; opacity: 0;" data-pixel="section-dot">
+      <img src="assets/pixel-dot.svg" alt="" loading="lazy">
+    </div>
+
     <span class="label">Por qué existe On7</span>
     <h2>Tener web no alcanza<br>si después no respondés.</h2>
-    <p class="body-text">La mayoría de los negocios pierde clientes no por falta de producto sino por falta de respuesta.<br><br>Un cliente que no recibe respuesta en los primeros minutos busca en otro lado. Así de simple.<br><br>El problema no es la intención — es que no podés estar disponible todo el tiempo. On7 sí puede.</p>
+    
+    <div class="reveal-text" data-reveal-text>La mayoría de los negocios pierde clientes no por falta de producto sino por falta de respuesta.</div>
+    <div class="reveal-text" data-reveal-text style="margin-top: 2rem;">Un cliente que no recibe respuesta en los primeros minutos busca en otro lado. Así de simple.</div>
+    <div class="reveal-text" data-reveal-text data-accent="On7 sí puede." style="margin-top: 2rem;">El problema no es la intención — es que no podés estar disponible todo el tiempo. On7 sí puede.</div>
   </section>
 
   <!-- EL COSTO REAL (PÉRDIDA / GANANCIA) -->
@@ -1030,9 +1070,27 @@
   </section>
 
   <!-- CIERRE -->
-  <section class="cierre" id="contacto">
+  <section class="cierre" id="contacto" style="position: relative;">
+    <div class="pixel-deco" style="top: 10%; left: 5%; width: 66px; opacity: 0;" data-pixel="section">
+      <img src="assets/Group 1321314648.svg" alt="" loading="lazy">
+    </div>
+    <div class="pixel-deco pixel-deco--grid" style="bottom: 15%; right: 2%; width: 240px;" data-pixel-grid>
+      <svg width="240" height="93" viewBox="0 0 240 93" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M239.021 61.6973L239.021 30.5215L209 30.5215L209 61.6973L239.021 61.6973Z" stroke="currentColor" stroke-miterlimit="10"/>
+        <path d="M209 30.5212L209 0.5L177.824 0.499999L177.824 30.5212L209 30.5212Z" stroke="currentColor" stroke-miterlimit="10"/>
+        <path d="M209 91.7185L209 61.6973L177.824 61.6973L177.824 91.7185L209 91.7185Z" stroke="currentColor" stroke-miterlimit="10"/>
+        <path d="M177.824 61.6973L177.824 30.5215L147.803 30.5215L147.803 61.6973L177.824 61.6973Z" stroke="currentColor" stroke-miterlimit="10"/>
+        <path d="M177.824 91.7185L177.824 61.6973L147.803 61.6973L147.803 91.7185L177.824 91.7185Z" stroke="currentColor" stroke-miterlimit="10"/>
+        <path d="M147.803 91.7185L147.803 61.6973L117.782 61.6973L117.782 91.7185L147.803 91.7185Z" stroke="currentColor" stroke-miterlimit="10"/>
+        <path d="M117.782 30.5212L117.782 0.5L87.761 0.499999L87.761 30.5212L117.782 30.5212Z" stroke="currentColor" stroke-miterlimit="10"/>
+        <path d="M117.782 91.7185L117.782 61.6973L87.761 61.6973L87.761 91.7185L117.782 91.7185Z" stroke="currentColor" stroke-miterlimit="10"/>
+        <path d="M87.761 61.6973L87.761 30.5215L57.74 30.5215L57.74 61.6973L87.761 61.6973Z" stroke="currentColor" stroke-miterlimit="10"/>
+        <path d="M87.761 91.7185L87.761 61.6973L57.74 61.6973L57.74 91.7185L87.761 91.7185Z" stroke="currentColor" stroke-miterlimit="10"/>
+        <path d="M27.7187 61.6973L27.7188 30.5215L0 30.5215L0 61.6973L27.7187 61.6973Z" stroke="currentColor" stroke-miterlimit="10"/>
+      </svg>
+    </div>
     <h2>Tu negocio no debería<br>depender de que estés disponible.</h2>
-    <p class="body-text">On7 es el primer producto de Lab7 — el laboratorio de WEB7 donde construimos herramientas que resuelven problemas reales de negocios reales. Contanos sobre tu negocio y te mostramos cómo quedaría On7 implementado para tu caso específico.</p>
+    <p class="body-text">On7 es the primer producto de Lab7 — el laboratorio de WEB7 donde construimos herramientas que resuelven problemas reales de negocios reales. Contanos sobre tu negocio y te mostramos cómo quedaría On7 implementado para tu caso específico.</p>
     <div class="cta-group">
       <a href="contacto.html?producto=on7" class="btn btn-primary">Quiero On7 &rarr;</a>
       <a href="https://wa.me/5493764000000" target="_blank" rel="noopener" class="btn btn-secondary">Hablar con WEB7 por WhatsApp &rarr;</a>

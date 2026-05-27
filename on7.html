@@ -662,6 +662,60 @@
     @view-transition { navigation: auto; }
     ::view-transition-old(root) { animation: none; mix-blend-mode: normal; }
     ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+
+    /* Scroll-reveal text block (sirnik style) */
+    .reveal-text {
+      font-family: var(--font-body);
+      font-size: clamp(1.4rem, 3.2vw, 2.5rem);
+      font-weight: 600;
+      line-height: 1.4;
+      max-width: 1000px;
+      margin-top: 2rem;
+    }
+    .reveal-text .r-word {
+      display: inline-block;
+      color: rgba(255,255,255,0.12);
+      transition: color 0.1s;
+    }
+    .reveal-text .r-word.active {
+      color: var(--text);
+    }
+    .reveal-text .r-word.accent {
+      color: rgba(52,211,153,0.15);
+    }
+    .reveal-text .r-word.accent.active {
+      color: var(--accent);
+    }
+
+    /* Pixel decorations */
+    .pixel-deco {
+      position: absolute;
+      pointer-events: none;
+      z-index: 2;
+      will-change: transform, opacity;
+    }
+    .pixel-deco img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .pixel-deco--grid {
+      opacity: 0;
+      z-index: 0;
+    }
+    .pixel-deco--grid svg {
+      width: 100%;
+      height: auto;
+    }
+    .pixel-deco--grid svg path {
+      stroke: rgba(255,255,255,0.06);
+    }
+    @media (max-width: 1024px) {
+      .pixel-deco { transform: scale(0.6) !important; }
+    }
+    @media (max-width: 768px) {
+      .pixel-deco { display: none !important; }
+    }
   </style>
 </head>
 <body>

@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proyectos — WEB7</title>
+  <link rel="icon" href="assets/Logoweb7-verde.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta name="description" content="+30 proyectos. +10 sectores. Negocios reales que ahora se comunican solos.">
+  <meta property="og:title" content="Proyectos — WEB7">
+  <meta property="og:description" content="+30 proyectos. +10 sectores. Negocios reales que ahora se comunican solos.">
+  <meta property="og:type" content="website">
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="assets/Logoweb7-verde.svg">
+  <meta name="view-transition" content="same-origin">
+  <script type="speculationrules">
+  {
+    "prerender": [
+      { "where": { "href_matches": ["index.html", "on7.html", "contacto.html"] } }
+    ],
+    "prefetch": [
+      { "where": { "href_matches": ["index.html", "on7.html", "contacto.html"] } }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Doto:wght@400;700;800&family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-alt: #111;
+      --bg-card: #141414;
+      --text: #f5f5f5;
+      --text-muted: #888;
+      --accent: #DFFE02;
+      --accent-dim: rgba(200,255,0,0.15);
+      --font-display: 'Doto', monospace;
+      --font-body: 'Manrope', sans-serif;
+      --font-alt: 'Space Grotesk', sans-serif;
+      --tag-landing: #a777ff;
+      --tag-institucional: #B5ED3D;
+      --tag-profesional: #64b4ff;
+      --tag-ecommerce: #ffa03c;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ─── CURSOR ─── */
+    .cursor {
+      position: fixed; top: 0; left: 0;
+      width: 20px; height: 20px;
+      border: 2px solid var(--accent);
+      border-radius: 0;
+      pointer-events: none; z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: width 0.3s, height 0.3s, background 0.3s;
+      mix-blend-mode: difference;
+    }
+    .cursor-dot {
+      position: fixed; top: 0; left: 0;
+      width: 6px; height: 6px;
+      background: var(--accent); border-radius: 0;
+      pointer-events: none; z-index: 10000;
+      transform: translate(-50%, -50%);
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.5rem 4rem;
+      background: rgba(10,10,10,0.85); backdrop-filter: blur(12px);
+    }
+    nav .logo-outer { perspective: 500px; display: inline-block; }
+    nav .logo { transform-style: preserve-3d; will-change: transform; display: inline-block; }
+    .nav-links {
+      display: flex; gap: 2rem; list-style: none;
+      font-family: var(--font-alt); font-size: 0.85rem;
+      text-transform: uppercase; letter-spacing: 0.1em;
+    }
+    .nav-links a { color: var(--text-muted); text-decoration: none; transition: color 0.3s; }
+    .nav-links a:hover { color: var(--text); }
+
+    /* ─── HERO ─── */
+    .projects-hero {
+      padding: 10rem 4rem 4rem;
+      max-width: 900px;
+    }
+    .projects-hero .label {
+      font-family: var(--font-alt);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 1.5rem;
+    }
+    .projects-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+    }
+    .projects-hero .subtext {
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 650px;
+    }
+
+    /* ─── FILTERS ─── */
+    .filters-bar {
+      padding: 0 4rem;
+      margin-bottom: 3rem;
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      font-family: var(--font-alt);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 0.6rem 1.4rem;
+      border: 1px solid #333;
+      border-radius: 100px;
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .filter-btn:hover {
+      border-color: var(--text);
+      color: var(--text);
+    }
+    .filter-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #0a0a0a;
+      font-weight: 600;
+    }
+
+    /* ─── PROJECTS GRID ─── */
+    .projects-grid {
+      padding: 0 4rem 6rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    /* ─── PROJECT CARD — folder style ─── */
+    .project-card {
+      position: relative;
+      background: var(--bg-card);
+      border: 1px solid #222;
+      border-radius: 0 8px 8px 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    /* Folder tab */
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: -1px; left: -1px;
+      width: 80px; height: 12px;
+      background: var(--bg-card);
+      border: 1px solid #222;
+      border-bottom: none;
+      border-radius: 6px 6px 0 0;
+      transform: translateY(-100%);
+      transition: border-color 0.3s ease;
+    }
+    .project-card { margin-top: 12px; }
+
+    .project-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+    }
+    .project-card[data-tag="landing"]:hover,
+    .project-card[data-tag="landing"]:hover::before { border-color: var(--tag-landing); }
+    .project-card[data-tag="institucional"]:hover,
+    .project-card[data-tag="institucional"]:hover::before { border-color: var(--tag-institucional); }
+    .project-card[data-tag="profesional"]:hover,
+    .project-card[data-tag="profesional"]:hover::before { border-color: var(--tag-profesional); }
+    .project-card[data-tag="ecommerce"]:hover,
+    .project-card[data-tag="ecommerce"]:hover::before { border-color: var(--tag-ecommerce); }
+
+    /* Card image slot (future) */
+    .project-card .card-img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Card body */
+    .project-card .card-body {
+      padding: 1.8rem 2rem 2rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card .type-tag {
+      font-family: var(--font-alt);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 0.3rem 0.7rem;
+      border-radius: 3px;
+      display: inline-block;
+      width: fit-content;
+      margin-bottom: 1rem;
+    }
+    .type-tag--landing { background: rgba(167,119,255,0.15); color: var(--tag-landing); }
+    .type-tag--institucional { background: rgba(181,237,61,0.15); color: var(--tag-institucional); }
+    .type-tag--profesional { background: rgba(100,180,255,0.15); color: var(--tag-profesional); }
+    .type-tag--ecommerce { background: rgba(255,160,60,0.15); color: var(--tag-ecommerce); }
+
+    .project-card h3 {
+      font-family: var(--font-alt);
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+    .project-card .rubro {
+      font-family: var(--font-alt);
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+      margin-bottom: 1.2rem;
+    }
+
+    .project-card .ver-sitio {
+      font-family: var(--font-alt);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      text-decoration: none;
+      border: 1px solid #333;
+      padding: 0.5rem 1.2rem;
+      border-radius: 4px;
+      display: inline-block;
+      width: fit-content;
+      margin-top: auto;
+      transition: all 0.3s ease;
+    }
+    .project-card .ver-sitio:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #0a0a0a;
+    }
+
+    /* filter animation */
+    .project-card.hidden {
+      display: none;
+    }
+    .project-card.fade-in {
+      animation: cardFadeIn 0.4s ease forwards;
+    }
+    @keyframes cardFadeIn {
+      from { opacity: 0; transform: translateY(10px) scale(0.97); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* ─── CIERRE ─── */
+    .cierre-proyectos {
+      text-align: center;
+      padding: 6rem 4rem 5rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .cierre-proyectos h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 800;
+      margin-bottom: 1.2rem;
+      line-height: 1.2;
+    }
+    .cierre-proyectos p {
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      color: var(--text-muted);
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+    }
+    .cta-group {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+    }
+    .btn {
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #0a0a0a;
+      border: 2px solid var(--accent);
+    }
+    .btn-primary:hover { background: #c8e600; border-color: #c8e600; }
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid #444;
+    }
+    .btn-secondary:hover { border-color: var(--text); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid #1a1a1a;
+      padding: 4rem;
+    }
+    .footer-top {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      margin-bottom: 3rem; flex-wrap: wrap; gap: 2rem;
+    }
+    .footer-brand .tagline { font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem; }
+    .footer-links { display: flex; gap: 2rem; flex-wrap: wrap; }
+    .footer-links a {
+      font-family: var(--font-alt); font-size: 0.8rem;
+      color: var(--text-muted); text-decoration: none; text-transform: uppercase;
+      letter-spacing: 0.08em; transition: color 0.3s;
+    }
+    .footer-links a:hover { color: var(--text); }
+    .footer-bottom {
+      display: flex; justify-content: space-between;
+      font-size: 0.75rem; color: #555;
+    }
+
+    /* ── PAGE TRANSITION OVERLAY ─────────────── */
+    #pageTransitionOverlay {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      pointer-events: none;
+      visibility: hidden;
+    }
+    #pageTransitionOverlay .grid-wipe-grid {
+      position: absolute;
+      inset: 0;
+      display: grid;
+    }
+    .grid-wipe-cell {
+      background: var(--accent);
+      opacity: 0;
+      will-change: opacity;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      .projects-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .projects-hero { padding: 7rem 1.5rem 3rem; }
+      .filters-bar {
+        padding: 0 1.5rem;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      .filters-bar::-webkit-scrollbar { display: none; }
+      .filter-btn { white-space: nowrap; flex-shrink: 0; }
+      .projects-grid { grid-template-columns: 1fr; padding: 0 1.5rem 4rem; }
+      .cierre-proyectos { padding: 4rem 1.5rem; }
+      footer { padding: 3rem 1.5rem; }
+      .footer-top { flex-direction: column; }
+      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .cursor, .cursor-dot { display: none; }
+    }
+    @view-transition { navigation: auto; }
+    ::view-transition-old(root) { animation: none; mix-blend-mode: normal; }
+    ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+    section { content-visibility: auto; contain-intrinsic-size: auto 800px; }
+  </style>
+</head>
+<body>
+
+
+  <!-- SCROLL PROGRESS BAR -->
+  <div id="scrollProgress" style="
+    position: fixed; top: 0; left: 0; height: 3px; z-index: 99998;
+    background: var(--accent); transform-origin: left;
+    transform: scaleX(0); will-change: transform;
+  "></div>
+
+  <!-- PAGE TRANSITION OVERLAY -->
+  <div id="pageTransitionOverlay"><div class="grid-wipe-grid"></div></div>
+
+  <!-- CURSOR -->
+  <div class="cursor"></div>
+  <div class="cursor-dot"></div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo-outer"><a href="index.html" class="logo" aria-label="WEB7"><img src="assets/Logoweb7-verde.svg" alt="WEB7" style="height: 52px;"></a></div>
+    <ul class="nav-links">
+      <li><a href="index.html#metodo">Método</a></li>
+      <li><a href="proyectos.html" style="color: var(--accent);">Proyectos</a></li>
+      <li><a href="index.html#lab7">Lab7</a></li>
+      <li><a href="index.html#herramientas">Herramientas</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="projects-hero">
+    <span class="label">Proyectos</span>
+    <h1>Cada proyecto es un negocio<br>que ahora se comunica solo.</h1>
+    <p class="subtext">Mas de 30 proyectos. Mas de 10 sectores. Vinotecas, hoteles, distribuidoras, productores, eventos y profesionales. Todos con algo en comun: necesitaban claridad digital y la tienen.</p>
+  </section>
+
+  <!-- FILTERS -->
+  <div class="filters-bar">
+    <button class="filter-btn active" data-filter="todos">Todos</button>
+    <button class="filter-btn" data-filter="landing">Landing</button>
+    <button class="filter-btn" data-filter="institucional">Institucional</button>
+    <button class="filter-btn" data-filter="profesional">Profesional</button>
+    <button class="filter-btn" data-filter="ecommerce">Ecommerce</button>
+  </div>
+
+  <!-- PROJECTS GRID -->
+  <div class="projects-grid">
+
+    <div class="project-card" data-tag="landing">
+      <div class="card-body">
+        <span class="type-tag type-tag--landing">Landing</span>
+        <h3>ODA Al Vino</h3>
+        <p class="rubro">Eventos &middot; Vinos</p>
+        <a href="https://www.odaalvino.com.br/" target="_blank" rel="noopener" class="ver-sitio">Ver sitio &rarr;</a>
+      </div>
+    </div>
+
+    <div class="project-card" data-tag="institucional">
+      <div class="card-body">
+        <span class="type-tag type-tag--institucional">Institucional</span>
+        <h3>ODA Vinoteca</h3>
+        <p class="rubro">Gastronomia &middot; Vinos</p>
+        <a href="https://odaalvino.com.ar/" target="_blank" rel="noopener" class="ver-sitio">Ver sitio &rarr;</a>
+      </div>
+    </div>
+
+    <div class="project-card" data-tag="institucional">
+      <div class="card-body">
+        <span class="type-tag type-tag--institucional">Institucional</span>
+        <h3>YVY Hotel</h3>
+        <p class="rubro">Hoteleria &middot; Turismo</p>
+        <a href="https://yvyhotel.com.ar/" target="_blank" rel="noopener" class="ver-sitio">Ver sitio &rarr;</a>
+      </div>
+    </div>
+
+    <div class="project-card" data-tag="institucional">
+      <div class="card-body">
+        <span class="type-tag type-tag--institucional">Institucional</span>
+        <h3>Total</h3>
+        <p class="rubro">Distribucion &middot; Alimentos</p>
+        <a href="https://somostotal.com.ar/" target="_blank" rel="noopener" class="ver-sitio">Ver sitio &rarr;</a>
+      </div>
+    </div>
+
+    <div class="project-card" data-tag="ecommerce">
+      <div class="card-body">
+        <span class="type-tag type-tag--ecommerce">Ecommerce</span>
+        <h3>Primicia</h3>
+        <p class="rubro">Producto &middot; Yerba mate</p>
+        <a href="https://yerbamateprimicia.com.ar/" target="_blank" rel="noopener" class="ver-sitio">Ver sitio &rarr;</a>
+      </div>
+    </div>
+
+    <div class="project-card" data-tag="profesional">
+      <div class="card-body">
+        <span class="type-tag type-tag--profesional">Profesional</span>
+        <h3>Vipwork</h3>
+        <p class="rubro">Servicios &middot; Profesional</p>
+        <a href="https://vipwork.com.ar/" target="_blank" rel="noopener" class="ver-sitio">Ver sitio &rarr;</a>
+      </div>
+    </div>
+
+    <div class="project-card" data-tag="institucional">
+      <div class="card-body">
+        <span class="type-tag type-tag--institucional">Institucional</span>
+        <h3>Finca Rumaroli</h3>
+        <p class="rubro">Agro &middot; Vinos</p>
+        <a href="https://fincarumaroli.com/" target="_blank" rel="noopener" class="ver-sitio">Ver sitio &rarr;</a>
+      </div>
+    </div>
+
+    <div class="project-card" data-tag="institucional">
+      <div class="card-body">
+        <span class="type-tag type-tag--institucional">Institucional</span>
+        <h3>Don Basilio</h3>
+        <p class="rubro">Gastronomia</p>
+        <a href="https://donbasilio.com/" target="_blank" rel="noopener" class="ver-sitio">Ver sitio &rarr;</a>
+      </div>
+    </div>
+
+    <div class="project-card" data-tag="institucional">
+      <div class="card-body">
+        <span class="type-tag type-tag--institucional">Institucional</span>
+        <h3>La Ruta del Te</h3>
+        <p class="rubro">Turismo &middot; Producto</p>
+        <a href="https://larutadelte.com.ar/" target="_blank" rel="noopener" class="ver-sitio">Ver sitio &rarr;</a>
+      </div>
+    </div>
+
+    <div class="project-card" data-tag="profesional">
+      <div class="card-body">
+        <span class="type-tag type-tag--profesional">Profesional</span>
+        <h3>Abelardo Cuffia</h3>
+        <p class="rubro">Profesional &middot; Personal</p>
+        <a href="https://abelardocuffia.com/" target="_blank" rel="noopener" class="ver-sitio">Ver sitio &rarr;</a>
+      </div>
+    </div>
+
+    <div class="project-card" data-tag="institucional">
+      <div class="card-body">
+        <span class="type-tag type-tag--institucional">Institucional</span>
+        <h3>Los Lapachos</h3>
+        <p class="rubro">Servicios</p>
+        <a href="https://loslapachos.com/" target="_blank" rel="noopener" class="ver-sitio">Ver sitio &rarr;</a>
+      </div>
+    </div>
+
+    <div class="project-card" data-tag="institucional">
+      <div class="card-body">
+        <span class="type-tag type-tag--institucional">Institucional</span>
+        <h3>Envasando</h3>
+        <p class="rubro">Industria &middot; Packaging</p>
+        <a href="https://envasando.com.ar/" target="_blank" rel="noopener" class="ver-sitio">Ver sitio &rarr;</a>
+      </div>
+    </div>
+
+    <div class="project-card" data-tag="profesional">
+      <div class="card-body">
+        <span class="type-tag type-tag--profesional">Profesional</span>
+        <h3>Adolfo Sartori</h3>
+        <p class="rubro">Profesional &middot; Servicios</p>
+        <a href="https://adolfosartorisa.com.ar/" target="_blank" rel="noopener" class="ver-sitio">Ver sitio &rarr;</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CIERRE -->
+  <section class="cierre-proyectos">
+    <h2>Tu negocio deberia<br>estar aca?</h2>
+    <p>Contanos que necesitas.<br>Te respondemos en 24 horas.</p>
+    <div class="cta-group">
+      <a href="contacto.html" class="btn btn-primary">Empezar ahora <span>&rarr;</span></a>
+      <a href="contacto.html" class="btn btn-secondary">Escribinos por WhatsApp <span>&rarr;</span></a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo"><img src="assets/Logoweb7-verde.svg" alt="WEB7" style="height: 24px;"></div>
+        <p class="tagline">Desarrollo web &middot; Automatizaciones &middot; Lab7</p>
+      </div>
+      <div class="footer-links">
+        <a href="index.html#metodo">Método 7</a>
+        <a href="index.html#lab7">Lab7</a>
+        <a href="on7.html">On7</a>
+        <a href="proyectos.html">Proyectos</a>
+        <a href="index.html#herramientas">Herramientas</a>
+        <a href="contacto.html">Contacto</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>Construimos sistemas digitales que funcionan solos.</span>
+      <span>&copy; 2025 WEB7</span>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="chat-widget.js"></script>
+  <script>
+    // ═══════════════════════════════════════
+    // CURSOR
+    // ═══════════════════════════════════════
+    const cursor = document.querySelector('.cursor');
+    const cursorDot = document.querySelector('.cursor-dot');
+    let mouseX = 0, mouseY = 0, cursorX = 0, cursorY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX; mouseY = e.clientY;
+      gsap.to(cursorDot, { x: mouseX, y: mouseY, duration: 0.1 });
+    });
+    gsap.ticker.add(() => {
+      cursorX += (mouseX - cursorX) * 0.15;
+      cursorY += (mouseY - cursorY) * 0.15;
+      gsap.set(cursor, { x: cursorX, y: cursorY });
+    });
+
+    // ═══════════════════════════════════════
+    // LOGO 3D TILT
+    // ═══════════════════════════════════════
+    const logoOuter = document.querySelector('.logo-outer');
+    if (logoOuter) {
+      const logoEl = logoOuter.querySelector('.logo');
+      const outerRX = gsap.quickTo(logoOuter, 'rotationX', { duration: 0.5, ease: 'power3' });
+      const outerRY = gsap.quickTo(logoOuter, 'rotationY', { duration: 0.5, ease: 'power3' });
+      const innerX = gsap.quickTo(logoEl, 'x', { duration: 0.5, ease: 'power3' });
+      const innerY = gsap.quickTo(logoEl, 'y', { duration: 0.5, ease: 'power3' });
+
+      document.addEventListener('pointermove', (e) => {
+        outerRX(gsap.utils.interpolate(18, -18, e.clientY / window.innerHeight));
+        outerRY(gsap.utils.interpolate(-18, 18, e.clientX / window.innerWidth));
+        innerX(gsap.utils.interpolate(-8, 8, e.clientX / window.innerWidth));
+        innerY(gsap.utils.interpolate(-8, 8, e.clientY / window.innerHeight));
+      });
+    }
+
+    // ═══════════════════════════════════════
+    // HERO ENTRANCE
+    // ═══════════════════════════════════════
+    gsap.from('.projects-hero .label', { opacity: 0, x: -20, duration: 0.5, delay: 0.3 });
+    gsap.from('.projects-hero h1', { opacity: 0, y: 30, duration: 0.7, delay: 0.5 });
+    gsap.from('.projects-hero .subtext', { opacity: 0, y: 20, duration: 0.6, delay: 0.7 });
+    gsap.from('.filters-bar', { opacity: 0, y: 15, duration: 0.5, delay: 0.9 });
+
+    // ═══════════════════════════════════════
+    // CARDS STAGGER ENTRANCE
+    // ═══════════════════════════════════════
+    gsap.from('.project-card', {
+      opacity: 0, y: 30, duration: 0.5,
+      stagger: 0.06, delay: 1.1, ease: 'power3.out',
+    });
+
+    // ═══════════════════════════════════════
+    // FILTER SYSTEM
+    // ═══════════════════════════════════════
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.project-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Update active state
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.dataset.filter;
+
+        cards.forEach(card => {
+          const tag = card.dataset.tag;
+          if (filter === 'todos' || tag === filter) {
+            card.classList.remove('hidden');
+            card.classList.add('fade-in');
+            // Remove animation class after it plays
+            card.addEventListener('animationend', () => {
+              card.classList.remove('fade-in');
+            }, { once: true });
+          } else {
+            card.classList.add('hidden');
+            card.classList.remove('fade-in');
+          }
+        });
+      });
+    });
+
+    // ═══════════════════════════════════════
+    // CIERRE ENTRANCE
+    // ═══════════════════════════════════════
+    const cierreObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          gsap.from('.cierre-proyectos h2', { opacity: 0, y: 30, duration: 0.7 });
+          gsap.from('.cierre-proyectos p', { opacity: 0, y: 20, duration: 0.6, delay: 0.2 });
+          gsap.from('.cierre-proyectos .cta-group', { opacity: 0, y: 20, duration: 0.5, delay: 0.4 });
+          cierreObs.disconnect();
+        }
+      });
+    }, { threshold: 0.3 });
+    cierreObs.observe(document.querySelector('.cierre-proyectos'));
+
+    // ═══════════════════════════════════════
+    // PAGE TRANSITION — GRID PIXELATE WIPE
+    // ═══════════════════════════════════════
+    (function initPageTransition() {
+      const COLS = 16, ROWS = 9;
+      const overlay = document.getElementById('pageTransitionOverlay');
+      if (!overlay) return;
+
+      const grid = overlay.querySelector('.grid-wipe-grid');
+      grid.style.gridTemplateColumns = `repeat(${COLS}, 1fr)`;
+      grid.style.gridTemplateRows = `repeat(${ROWS}, 1fr)`;
+
+      const cells = [];
+      const delays = [];
+      const cx = (COLS - 1) / 2, cy = (ROWS - 1) / 2;
+      const maxDist = Math.hypot(cx, cy);
+
+      for (let y = 0; y < ROWS; y++) {
+        for (let x = 0; x < COLS; x++) {
+          const cell = document.createElement('div');
+          cell.className = 'grid-wipe-cell';
+          grid.appendChild(cell);
+          cells.push(cell);
+          delays.push(Math.hypot(x - cx, y - cy) / maxDist);
+        }
+      }
+
+      cells.forEach((cell, i) => { cell._wipeDelay = delays[i]; });
+
+      if (sessionStorage.getItem('wipe-in')) {
+        sessionStorage.removeItem('wipe-in');
+        overlay.style.pointerEvents = 'all';
+        overlay.style.visibility = 'visible';
+        cells.forEach(c => { c.style.opacity = 1; });
+
+        requestAnimationFrame(() => {
+          gsap.to(cells, {
+            opacity: 0,
+            duration: 0.3,
+            ease: 'power2.out',
+            delay: (i) => delays[i] * 0.4,
+            onComplete: () => {
+              overlay.style.visibility = 'hidden';
+              overlay.style.pointerEvents = 'none';
+            }
+          });
+        });
+      }
+
+      function isInternalNav(href) {
+        if (!href) return false;
+        try {
+          const url = new URL(href, location.origin);
+          if (url.origin !== location.origin) return false;
+          if (url.pathname === location.pathname) return false;
+          return true;
+        } catch { return false; }
+      }
+
+      document.addEventListener('click', (e) => {
+        const link = e.target.closest('a[href]');
+        if (!link) return;
+        const href = link.getAttribute('href');
+        if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
+        if (link.target === '_blank') return;
+        if (!isInternalNav(link.href)) return;
+
+        e.preventDefault();
+        const dest = link.href;
+
+        overlay.style.visibility = 'visible';
+        overlay.style.pointerEvents = 'all';
+
+        gsap.to(cells, {
+          opacity: 1,
+          duration: 0.3,
+          ease: 'power2.in',
+          delay: (i) => delays[i] * 0.4,
+          onComplete: () => {
+            sessionStorage.setItem('wipe-in', '1');
+            window.location.href = dest;
+          }
+        });
+      });
+    })();
+
+
+    // SCROLL PROGRESS BAR
+    (function() {
+      var bar = document.getElementById('scrollProgress');
+      if (!bar) return;
+      if (CSS.supports('animation-timeline', 'scroll()')) {
+        bar.style.animation = 'progress-bar linear both';
+        bar.style.animationTimeline = 'scroll()';
+      } else {
+        window.addEventListener('scroll', function() {
+          var h = document.documentElement.scrollHeight - window.innerHeight;
+          bar.style.transform = 'scaleX(' + (h > 0 ? window.scrollY / h : 0) + ')';
+        }, { passive: true });
+      }
+    })();
+
+    // SERVICE WORKER
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js').catch(() => {});
+    }
+  </script>
+</body>
+</html>

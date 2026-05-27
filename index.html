@@ -4,6 +4,31 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WEB7 — Desarrollo web · Automatizaciones · Lab7</title>
+  <link rel="icon" href="assets/Logoweb7-verde.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta name="description" content="Estudio de desarrollo web, automatizaciones y herramientas digitales. Diseño, código y resultados en 7 sprints.">
+  <meta property="og:title" content="WEB7 — Desarrollo web · Automatizaciones · Lab7">
+  <meta property="og:description" content="Estudio de desarrollo web, automatizaciones y herramientas digitales.">
+  <meta property="og:type" content="website">
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="assets/Logoweb7-verde.svg">
+  <!-- View Transitions API -->
+  <meta name="view-transition" content="same-origin">
+  <!-- Speculation Rules — pre-render internal pages for instant navigation -->
+  <script type="speculationrules">
+  {
+    "prerender": [
+      { "where": { "href_matches": ["proyectos.html", "on7.html", "contacto.html"] } }
+    ],
+    "prefetch": [
+      { "where": { "href_matches": ["proyectos.html", "on7.html", "contacto.html"] } }
+    ]
+  }
+  </script>
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Doto:wght@400;700;800&family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -314,7 +339,7 @@
     .sprint-number {
       position: absolute; top: 3rem; right: 4rem;
       font-family: var(--font-display); font-size: clamp(6rem, 12vw, 12rem);
-      font-weight: 800; color: rgba(255,255,255,0.05); line-height: 1;
+      font-weight: 800; color: rgba(255,255,255,0.09); line-height: 1;
       z-index: 0;
     }
     .sprint-card .sprint-label {
@@ -389,6 +414,78 @@
     }
 
     /* ═══════════════════════════════════════ */
+    /* BLOCK 3b: QUÉ CONSTRUIMOS              */
+    /* ═══════════════════════════════════════ */
+    .que-construimos {
+      padding: 10rem 4rem; position: relative; overflow: hidden;
+      text-align: center;
+      display: flex; flex-direction: column; align-items: center;
+    }
+    .que-construimos h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4.5vw, 4rem);
+      font-weight: 800; line-height: 1.1; max-width: 900px;
+    }
+    .que-construimos .intro-text {
+      margin-top: 1.5rem; font-size: clamp(1rem, 1.8vw, 1.15rem);
+      color: var(--text-muted); max-width: 600px; line-height: 1.7; font-weight: 300;
+    }
+    .construimos-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem; margin-top: 4rem; width: 100%; max-width: 1100px;
+    }
+    .construimos-card {
+      background: var(--bg-card); border-radius: 12px;
+      padding: 2rem 1.8rem; text-align: left;
+      border: 1px solid rgba(255,255,255,0.04);
+      transition: border-color 0.4s;
+      position: relative;
+    }
+    .construimos-card:hover { border-color: rgba(200,255,0,0.15); }
+    .construimos-card .type-tag {
+      font-family: var(--font-alt); font-size: 0.65rem;
+      text-transform: uppercase; letter-spacing: 0.12em;
+      padding: 0.25rem 0.7rem; border-radius: 100px;
+      display: inline-block; margin-bottom: 1rem; font-weight: 600;
+    }
+    .type-tag--landing { background: rgba(167,119,255,0.15); color: #a777ff; }
+    .type-tag--profesional { background: rgba(100,180,255,0.15); color: #64b4ff; }
+    .type-tag--institucional { background: rgba(181,237,61,0.15); color: #B5ED3D; }
+    .type-tag--ecommerce { background: rgba(255,160,60,0.15); color: #ffa03c; }
+    .construimos-card h3 {
+      font-family: var(--font-display); font-size: 1.2rem;
+      font-weight: 700; margin-bottom: 0.6rem;
+    }
+    .construimos-card p {
+      font-size: 0.9rem; line-height: 1.6;
+      color: var(--text-muted); font-weight: 300;
+    }
+    .construimos-card .ideal {
+      margin-top: 1rem; font-size: 0.75rem;
+      color: rgba(255,255,255,0.35); font-weight: 400;
+    }
+    .construimos-card .ideal strong { color: rgba(255,255,255,0.5); }
+    .que-construimos .footer-phrase {
+      margin-top: 4rem; font-family: var(--font-display);
+      font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+      font-weight: 700; color: var(--accent); max-width: 700px;
+      line-height: 1.4;
+    }
+    .scramble-inline .s-char {
+      display: inline;
+    }
+    .scramble-inline .s-char.scrambling {
+      color: rgba(255,255,255,0.3);
+    }
+    @media (max-width: 1024px) {
+      .construimos-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .construimos-grid { grid-template-columns: 1fr; }
+      .que-construimos { padding: 6rem 1.5rem; }
+    }
+
+    /* ═══════════════════════════════════════ */
     /* BLOCK 04: PROYECTOS                    */
     /* ═══════════════════════════════════════ */
     .proyectos { padding: 10rem 4rem; position: relative; overflow: hidden; }
@@ -406,17 +503,43 @@
       display: grid; grid-template-columns: repeat(2, 1fr);
       gap: 2rem;
     }
+    a.proyecto-card {
+      text-decoration: none; color: inherit;
+    }
     .proyecto-card {
       background: var(--bg-card); border-radius: 12px;
-      padding: 2.5rem; position: relative; overflow: hidden;
+      position: relative; overflow: hidden;
       cursor: pointer; transform-style: preserve-3d;
       border: 1px solid rgba(255,255,255,0.04);
       transition: border-color 0.4s;
+      display: flex; flex-direction: column;
     }
     .proyecto-card:hover { border-color: rgba(200,255,0,0.2); }
     .proyecto-card .reveal-overlay {
       position: absolute; inset: 0; background: var(--bg);
       clip-path: inset(0 0 0 0); z-index: 2;
+    }
+    .proyecto-card .card-img {
+      width: 100%; aspect-ratio: 16/9;
+      object-fit: cover; display: block;
+    }
+    .proyecto-card .card-body {
+      padding: 2rem 2.5rem 2.5rem; flex: 1;
+      display: flex; flex-direction: column;
+    }
+    .proyecto-card .type-tag {
+      position: absolute; top: 1rem; left: 1rem; z-index: 1;
+      font-family: var(--font-alt); font-size: 0.55rem;
+      text-transform: uppercase; letter-spacing: 0.12em;
+      padding: 0.2rem 0.6rem; border-radius: 100px;
+      font-weight: 600;
+    }
+    .proyecto-card:not(:has(.card-img)) .type-tag {
+      position: relative; top: auto; left: auto;
+      margin-bottom: 1.2rem;
+    }
+    .proyecto-card:not(:has(.card-img)) .card-body {
+      padding-top: 2.5rem;
     }
     .proyecto-card h3 {
       font-family: var(--font-display);
@@ -431,6 +554,18 @@
     .proyecto-card p {
       font-size: 0.95rem; line-height: 1.6;
       color: var(--text-muted); font-weight: 300;
+    }
+    .proyecto-card.card-featured {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, var(--bg-card), rgba(223,254,2,0.03));
+      border-color: rgba(200,255,0,0.1);
+    }
+    .proyectos .also-list {
+      margin-top: 3rem; font-size: 0.9rem;
+      color: var(--text-muted); font-weight: 300;
+    }
+    .proyectos .also-list strong {
+      color: rgba(255,255,255,0.6); font-weight: 500;
     }
     .proyectos .cta-row {
       margin-top: 4rem; text-align: center;
@@ -530,6 +665,10 @@
       color: var(--accent); text-decoration: none; font-weight: 500;
     }
     .tool-card .tool-link:hover { text-decoration: underline; }
+    .tool-card .tool-link--soon {
+      color: rgba(255,255,255,0.25); pointer-events: none;
+      font-style: italic;
+    }
 
     /* ═══════════════════════════════════════ */
     /* BLOCK 07: CIERRE                       */
@@ -567,8 +706,8 @@
       max-width: 800px; margin-bottom: 1.5rem;
     }
     .cierre p {
-      font-size: 1.05rem; line-height: 1.7;
-      color: var(--text-muted); max-width: 550px; font-weight: 300;
+      font-size: clamp(1.2rem, 2.5vw, 1.6rem); line-height: 1.6;
+      color: var(--text); max-width: 600px; font-weight: 400;
       margin-bottom: 3rem;
     }
     .cierre .cta-group {
@@ -648,10 +787,101 @@
       .footer-top { flex-direction: column; }
       .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
       .sprint-nota { margin: 2rem 1.5rem; padding: 2rem; }
+      .hero .scroll-indicator { display: none; }
+    }
+
+    /* ── PAGE TRANSITION OVERLAY ─────────────── */
+    #pageTransitionOverlay {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      pointer-events: none;
+      visibility: hidden;
+    }
+    #pageTransitionOverlay .grid-wipe-grid {
+      position: absolute;
+      inset: 0;
+      display: grid;
+    }
+    .grid-wipe-cell {
+      background: var(--accent);
+      opacity: 0;
+      will-change: opacity;
+    }
+
+    /* ═══════════════════════════════════════ */
+    /* MODERN: Reduced motion                 */
+    /* ═══════════════════════════════════════ */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .cursor, .cursor-dot { display: none; }
+    }
+
+    /* ═══════════════════════════════════════ */
+    /* MODERN: View Transitions               */
+    /* ═══════════════════════════════════════ */
+    @view-transition {
+      navigation: auto;
+    }
+    ::view-transition-old(root) {
+      animation: none;
+      mix-blend-mode: normal;
+    }
+    ::view-transition-new(root) {
+      animation: none;
+      mix-blend-mode: normal;
+    }
+
+    /* ═══════════════════════════════════════ */
+    /* MODERN: Content visibility for perf    */
+    /* ═══════════════════════════════════════ */
+    section {
+      content-visibility: auto;
+      contain-intrinsic-size: auto 800px;
+    }
+
+    /* ═══════════════════════════════════════ */
+    /* MODERN: Scroll-driven animations       */
+    /* ═══════════════════════════════════════ */
+    @supports (animation-timeline: view()) {
+      @keyframes card-reveal {
+        from { opacity: 0; transform: translateY(40px) scale(0.96); }
+        to   { opacity: 1; transform: translateY(0) scale(1); }
+      }
+      .sprint-card, .tool-card, .portfolio-card {
+        animation: card-reveal linear both;
+        animation-timeline: view();
+        animation-range: entry 0% entry 40%;
+      }
+    }
+
+    /* ═══════════════════════════════════════ */
+    /* MODERN: Smooth scroll snap sections    */
+    /* ═══════════════════════════════════════ */
+    @supports (animation-timeline: scroll()) {
+      @keyframes progress-bar {
+        from { transform: scaleX(0); }
+        to   { transform: scaleX(1); }
+      }
     }
   </style>
 </head>
 <body>
+
+  <!-- SCROLL PROGRESS BAR -->
+  <div id="scrollProgress" style="
+    position: fixed; top: 0; left: 0; height: 3px; z-index: 99998;
+    background: var(--accent); transform-origin: left;
+    transform: scaleX(0); will-change: transform;
+  "></div>
+
+  <!-- PAGE TRANSITION OVERLAY -->
+  <div id="pageTransitionOverlay"><div class="grid-wipe-grid"></div></div>
 
   <!-- CURSOR -->
   <div class="cursor"></div>
@@ -660,13 +890,13 @@
 
   <!-- NAV -->
   <nav>
-    <div class="logo-outer"><a href="#" class="logo" aria-label="WEB7"><img src="assets/Logoweb7-verde.svg" alt="WEB7" style="height: 52px;"></a></div>
+    <div class="logo-outer"><a href="index.html" class="logo" aria-label="WEB7"><img src="assets/Logoweb7-verde.svg" alt="WEB7" style="height: 52px;"></a></div>
     <ul class="nav-links">
       <li><a href="#metodo" data-cursor-hover>Método</a></li>
-      <li><a href="#proyectos" data-cursor-hover>Proyectos</a></li>
+      <li><a href="proyectos.html" data-cursor-hover>Proyectos</a></li>
       <li><a href="#lab7" data-cursor-hover>Lab7</a></li>
       <li><a href="#herramientas" data-cursor-hover>Herramientas</a></li>
-      <li><a href="#contacto" data-cursor-hover>Contacto</a></li>
+      <li><a href="contacto.html" data-cursor-hover>Contacto</a></li>
     </ul>
   </nav>
 
@@ -709,7 +939,7 @@
     <p class="hero-sub" data-split-words>El problema es que nadie lo sabe, o tenés que explicarlo todo el tiempo.</p>
     <div class="hero-reveal reveal-text" data-reveal-text data-accent="web seven Web clara en 7 días. Atención automatizada desde el día uno.">web seven construye tu presencia digital, la ordena y la hace funcionar sola. Web clara en 7 días. Atención automatizada desde el día uno.</div>
     <div class="hero-ctas">
-      <a href="#contacto" class="btn btn-primary magnetic-btn" data-magnetic>Resolver esto <span>→</span></a>
+      <a href="contacto.html" class="btn btn-primary magnetic-btn" data-magnetic>Resolver esto <span>→</span></a>
       <a href="#metodo" class="btn btn-secondary">Ver cómo trabajamos <span>↓</span></a>
     </div>
     <div class="scroll-indicator">
@@ -823,15 +1053,47 @@
     </div>
   </section>
 
+  <!-- BLOCK 3b: QUÉ CONSTRUIMOS -->
+  <section class="que-construimos">
+    <span class="label">Qué construimos</span>
+    <h2 class="split-heading" data-split-chars>De landing pages a ecommerce. Lo que tu negocio necesita.</h2>
+    <p class="intro-text">Cada proyecto es distinto. Trabajamos con todo tipo de sitios y adaptamos el proceso según lo que necesitás construir.</p>
+
+    <div class="construimos-grid">
+      <div class="construimos-card">
+        <span class="type-tag type-tag--landing">Landing</span>
+        <h3>Landing page</h3>
+        <p>Presencia clara y directa para un producto, servicio o evento. El caso ideal del Método 7.</p>
+        <div class="ideal"><strong>Ideal para:</strong> lanzamientos, campañas, eventos, profesionales</div>
+      </div>
+      <div class="construimos-card">
+        <span class="type-tag type-tag--profesional">Profesional</span>
+        <h3>Web de profesional</h3>
+        <p>Portfolio, servicios y contacto para profesionales independientes. Clara, personal y que comunica autoridad.</p>
+        <div class="ideal"><strong>Ideal para:</strong> consultores, médicos, abogados, arquitectos</div>
+      </div>
+      <div class="construimos-card">
+        <span class="type-tag type-tag--institucional">Institucional</span>
+        <h3>Web institucional</h3>
+        <p>Presencia completa para empresas y negocios establecidos. Múltiples secciones, identidad trabajada, contenido ordenado.</p>
+        <div class="ideal"><strong>Ideal para:</strong> pymes, comercios, distribuidoras, hoteles</div>
+      </div>
+      <div class="construimos-card">
+        <span class="type-tag type-tag--ecommerce">Ecommerce</span>
+        <h3>Ecommerce</h3>
+        <p>Tienda online con catálogo, carrito y medios de pago. El proceso varía según volumen y complejidad.</p>
+        <div class="ideal"><strong>Ideal para:</strong> productos propios, marcas, distribución online</div>
+      </div>
+    </div>
+
+    <p class="footer-phrase scramble-inline" id="construimosScramble" data-phrases='["El Método 7 define cómo trabajamos. El tipo de proyecto define cuánto lleva.","Primero claridad. Después ejecución. Siempre resultados."]'>El Método 7 define cómo trabajamos. El tipo de proyecto define cuánto lleva.</p>
+  </section>
 
   <!-- BLOCK 04: PROYECTOS -->
   <section class="proyectos" id="proyectos">
     <!-- Pixel decorations -->
     <div class="pixel-deco" style="top: 3%; right: 3%; width: 98px; opacity: 0;" data-pixel="section">
       <img src="assets/Group 1321314650.svg" alt="" loading="lazy">
-    </div>
-    <div class="pixel-deco" style="bottom: 5%; left: 2%; width: 127px; opacity: 0;" data-pixel="section">
-      <img src="assets/›.svg" alt="" loading="lazy">
     </div>
     <div class="pixel-deco" style="top: 40%; right: 1%; width: 33px; opacity: 0;" data-pixel="section-dot">
       <img src="assets/Vector.svg" alt="" loading="lazy">
@@ -840,48 +1102,76 @@
     <div class="section-header">
       <span class="label">Proyectos</span>
       <h2 class="split-heading" data-split-chars>+30 negocios. +10 sectores. Acá te mostramos algunos.</h2>
-      <p class="subtext">Vinotecas, hoteles, distribuidoras, productores, profesionales. Negocios reales que necesitaban presencia clara y la tienen.</p>
+      <p class="subtext">Vinotecas, hoteles, distribuidoras, productores, profesionales y eventos. Negocios reales que necesitaban presencia clara y la tienen.</p>
     </div>
     <div class="proyecto-grid">
-      <div class="proyecto-card" data-cursor-portfolio data-tilt>
+      <a href="https://www.odaalvino.com.br/" target="_blank" rel="noopener" class="proyecto-card card-featured" data-cursor-portfolio data-tilt>
         <div class="reveal-overlay"></div>
-        <h3>ODA Vinoteca</h3>
-        <div class="tags">Gastronomía · Vinos</div>
-        <p>Una propuesta de alta gama que ahora se entiende antes de entrar al local.</p>
-      </div>
-      <div class="proyecto-card" data-cursor-portfolio data-tilt>
+        <span class="type-tag type-tag--landing">Landing</span>
+        <div class="card-body">
+          <h3>ODA Al Vino</h3>
+          <div class="tags">Eventos · Vinos</div>
+          <p>El festival de vinos más importante de la Triple Frontera. Landing para la 10ª edición en Iguazú — entradas, bodegas y experiencias.</p>
+        </div>
+      </a>
+      <a href="https://odaalvino.com.ar/" target="_blank" rel="noopener" class="proyecto-card" data-cursor-portfolio data-tilt>
         <div class="reveal-overlay"></div>
-        <h3>YVY Hotel</h3>
-        <div class="tags">Hotelería · Turismo</div>
-        <p>Un hotel de selva que se comunica como lo que es.</p>
-      </div>
-      <div class="proyecto-card" data-cursor-portfolio data-tilt>
+        <span class="type-tag type-tag--institucional">Institucional</span>
+        <div class="card-body">
+          <h3>ODA Vinoteca</h3>
+          <div class="tags">Gastronomía · Vinos</div>
+          <p>Una propuesta de alta gama que ahora se entiende antes de entrar al local.</p>
+        </div>
+      </a>
+      <a href="https://yvyhotel.com.ar/" target="_blank" rel="noopener" class="proyecto-card" data-cursor-portfolio data-tilt>
         <div class="reveal-overlay"></div>
-        <h3>Total</h3>
-        <div class="tags">Distribución · Alimentos</div>
-        <p>Una distribuidora de marcas líderes con presencia digital a su altura.</p>
-      </div>
-      <div class="proyecto-card" data-cursor-portfolio data-tilt>
+        <span class="type-tag type-tag--institucional">Institucional</span>
+        <div class="card-body">
+          <h3>YVY Hotel</h3>
+          <div class="tags">Hotelería · Turismo</div>
+          <p>Un hotel de selva que se comunica como lo que es.</p>
+        </div>
+      </a>
+      <a href="https://somostotal.com.ar/" target="_blank" rel="noopener" class="proyecto-card" data-cursor-portfolio data-tilt>
         <div class="reveal-overlay"></div>
-        <h3>Primicia</h3>
-        <div class="tags">Producto · Yerba mate</div>
-        <p>Identidad y venta online para una yerba con origen e historia propios.</p>
-      </div>
-      <div class="proyecto-card" data-cursor-portfolio data-tilt>
+        <span class="type-tag type-tag--institucional">Institucional</span>
+        <div class="card-body">
+          <h3>Total</h3>
+          <div class="tags">Distribución · Alimentos</div>
+          <p>Una distribuidora de marcas líderes con presencia digital a su altura.</p>
+        </div>
+      </a>
+      <a href="https://yerbamateprimicia.com.ar/" target="_blank" rel="noopener" class="proyecto-card" data-cursor-portfolio data-tilt>
         <div class="reveal-overlay"></div>
-        <h3>Vipwork</h3>
-        <div class="tags">Servicios · Profesional</div>
-        <p>Una propuesta de servicios que ahora cierra sola.</p>
-      </div>
-      <div class="proyecto-card" data-cursor-portfolio data-tilt>
+        <span class="type-tag type-tag--ecommerce">Ecommerce</span>
+        <div class="card-body">
+          <h3>Primicia</h3>
+          <div class="tags">Producto · Yerba mate</div>
+          <p>Identidad y venta online para una yerba con origen e historia propios.</p>
+        </div>
+      </a>
+      <a href="https://larutadelte.com.ar/" target="_blank" rel="noopener" class="proyecto-card" data-cursor-portfolio data-tilt>
         <div class="reveal-overlay"></div>
-        <h3>Finca Rumaroli</h3>
-        <div class="tags">Agro · Vinos</div>
-        <p>Una finca con producto propio que por fin tiene la web que se merece.</p>
-      </div>
+        <span class="type-tag type-tag--ecommerce">Ecommerce</span>
+        <div class="card-body">
+          <h3>La Ruta del Té</h3>
+          <div class="tags">Gastronomía · Turismo</div>
+          <p>Una experiencia gastronómica en la selva que ahora se descubre antes de llegar.</p>
+        </div>
+      </a>
+      <a href="https://fincarumaroli.com/" target="_blank" rel="noopener" class="proyecto-card" data-cursor-portfolio data-tilt>
+        <div class="reveal-overlay"></div>
+        <span class="type-tag type-tag--institucional">Institucional</span>
+        <div class="card-body">
+          <h3>Finca Rumaroli</h3>
+          <div class="tags">Agro · Vinos</div>
+          <p>Una finca con producto propio que por fin tiene la web que se merece.</p>
+        </div>
+      </a>
     </div>
+    <p class="also-list"><strong>También trabajamos con:</strong> Don Basilio · Vipwork · Abelardo Cuffia · Los Lapachos · Envasando · Adolfo Sartoris</p>
     <div class="cta-row">
-      <a href="#" class="btn btn-secondary">Ver todos los proyectos <span>→</span></a>
+      <a href="proyectos.html" class="btn btn-secondary">Ver todos los proyectos <span>→</span></a>
     </div>
   </section>
 
@@ -932,7 +1222,7 @@
         <span>RRSS</span>
       </div>
       <div class="on7-cta">
-        <a href="#" class="btn btn-secondary">Conocer On7 <span>→</span></a>
+        <a href="on7.html" class="btn btn-secondary">Conocer On7 <span>→</span></a>
       </div>
     </div>
     <p class="lab7-status">Lab7 está en construcción activa. On7 es el primer producto disponible.</p>
@@ -955,17 +1245,17 @@
       <div class="tool-card" data-tilt>
         <h3>Pixel Studio</h3>
         <p>Editor de imágenes con efectos visuales únicos. Dithering, pixelado, glitch y más. Directo desde el navegador.</p>
-        <a href="#" class="tool-link">Abrir herramienta →</a>
+        <a href="https://pixelator.cf-gunther.workers.dev/" target="_blank" rel="noopener" class="tool-link">Abrir herramienta →</a>
       </div>
       <div class="tool-card" data-tilt>
         <h3>QR Generator</h3>
         <p>Generá códigos QR para cualquier URL o texto en segundos. Descargá la imagen lista para usar.</p>
-        <a href="#" class="tool-link">Abrir herramienta →</a>
+        <a href="#" class="tool-link tool-link--soon">Próximamente</a>
       </div>
       <div class="tool-card" data-tilt>
         <h3>Sorteos</h3>
         <p>Cargá tu lista de participantes y sorteá al instante. Ideal para concursos y dinámicas en vivo.</p>
-        <a href="#" class="tool-link">Abrir herramienta →</a>
+        <a href="#" class="tool-link tool-link--soon">Próximamente</a>
       </div>
     </div>
   </section>
@@ -987,10 +1277,10 @@
     <div class="pixel-trail-container gooey" id="pixelTrail"></div>
 
     <h2>Cuando tu negocio se comunica solo, vos podés hacer otra cosa.</h2>
-    <p>El primer paso es una conversación. Sin formularios largos, sin procesos eternos. Contanos qué necesitás y en 24 horas te decimos cómo arrancamos.</p>
+    <p>El primer paso es simple: contanos tu proyecto. Nosotros nos encargamos del resto.</p>
     <div class="cta-group">
-      <a href="#" class="btn btn-primary magnetic-btn" data-magnetic>Empezar ahora <span>→</span></a>
-      <a href="#" class="btn btn-secondary">Escribinos por WhatsApp <span>→</span></a>
+      <a href="contacto.html" class="btn btn-primary magnetic-btn" data-magnetic>Empezar ahora <span>→</span></a>
+      <a href="contacto.html" class="btn btn-secondary">Escribinos por WhatsApp <span>→</span></a>
     </div>
   </section>
 
@@ -1024,10 +1314,10 @@
       <div class="footer-links">
         <a href="#metodo">Método 7</a>
         <a href="#lab7">Lab7</a>
-        <a href="#">On7</a>
-        <a href="#proyectos">Proyectos</a>
+        <a href="on7.html">On7</a>
+        <a href="proyectos.html">Proyectos</a>
         <a href="#herramientas">Herramientas</a>
-        <a href="#contacto">Contacto</a>
+        <a href="contacto.html">Contacto</a>
       </div>
     </div>
     <div class="footer-bottom">
@@ -1040,6 +1330,7 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
   <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="chat-widget.js"></script>
 
   <script>
     gsap.registerPlugin(ScrollTrigger);
@@ -1290,7 +1581,7 @@
     });
 
     // Section headers
-    document.querySelectorAll('.proyectos .split-heading, .lab7 .split-heading, .herramientas .split-heading').forEach(h => {
+    document.querySelectorAll('.que-construimos .split-heading, .proyectos .split-heading, .lab7 .split-heading, .herramientas .split-heading').forEach(h => {
       gsap.to(h.querySelectorAll('.char'), {
         opacity: 1, y: 0, rotateX: 0, duration: 0.5, stagger: 0.02, ease: 'power3.out',
         scrollTrigger: { trigger: h, start: 'top 80%', toggleActions: 'play none none reverse' },
@@ -1298,11 +1589,17 @@
     });
 
     // Fade-in for various elements
-    document.querySelectorAll('.section-header .subtext, .on7-card, .lab7 .body-text, .lab7-status, .sprint-nota, .cierre h2, .cierre p, .cierre .cta-group, .herramientas .subtext').forEach(el => {
+    document.querySelectorAll('.section-header .subtext, .on7-card, .lab7 .body-text, .lab7-status, .sprint-nota, .cierre h2, .cierre p, .cierre .cta-group, .herramientas .subtext, .que-construimos .intro-text, .que-construimos .footer-phrase, .proyectos .also-list').forEach(el => {
       gsap.from(el, {
         opacity: 0, y: 30, duration: 0.7, ease: 'power3.out',
         scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none reverse' },
       });
+    });
+
+    // Construimos cards stagger
+    gsap.from('.construimos-card', {
+      y: 50, opacity: 0, duration: 0.7, stagger: 0.1, ease: 'power3.out',
+      scrollTrigger: { trigger: '.construimos-grid', start: 'top 80%', toggleActions: 'play none none reverse' },
     });
 
     // Tools stagger
@@ -1330,6 +1627,158 @@
     gsap.to('.marquee-track', { xPercent: -50, duration: 20, repeat: -1, ease: 'none' });
 
     // ═══════════════════════════════════════
+    // 7b. SCRAMBLE TEXT (construimos footer phrase)
+    // ═══════════════════════════════════════
+    (function() {
+      const el = document.getElementById('construimosScramble');
+      if (!el) return;
+      const phrases = JSON.parse(el.dataset.phrases);
+      const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%&*';
+      const SCRAMBLE_DURATION = 1400;
+      const HOLD_DURATION = 4000;
+      const STEPS = 22;
+      let curIdx = 0;
+      let started = false;
+
+      function setResolved(text) {
+        el.textContent = text;
+      }
+
+      function scrambleTo(newText) {
+        const oldText = el.textContent;
+        const maxLen = Math.max(oldText.length, newText.length);
+        const stepTime = SCRAMBLE_DURATION / STEPS;
+        let step = 0;
+        const interval = setInterval(() => {
+          step++;
+          const progress = step / STEPS;
+          let html = '';
+          for (let i = 0; i < maxLen; i++) {
+            const targetChar = newText[i] || '';
+            if (targetChar === ' ') { html += ' '; continue; }
+            const revealThreshold = (i / maxLen) * 0.7 + 0.3;
+            if (progress >= revealThreshold) {
+              html += targetChar;
+            } else {
+              html += `<span class="s-char scrambling">${CHARS[Math.floor(Math.random() * CHARS.length)]}</span>`;
+            }
+          }
+          el.innerHTML = html;
+          if (step >= STEPS) {
+            clearInterval(interval);
+            setResolved(newText);
+            setTimeout(next, HOLD_DURATION);
+          }
+        }, stepTime);
+      }
+
+      function next() {
+        curIdx = (curIdx + 1) % phrases.length;
+        scrambleTo(phrases[curIdx]);
+      }
+
+      // Start scramble when element enters viewport
+      ScrollTrigger.create({
+        trigger: el,
+        start: 'top 85%',
+        onEnter: () => {
+          if (!started) { started = true; setTimeout(next, HOLD_DURATION); }
+        },
+        once: true,
+      });
+    })();
+
+    // ═══════════════════════════════════════
+    // 7c. PAGE TRANSITION — GRID PIXELATE WIPE
+    // ═══════════════════════════════════════
+    (function initPageTransition() {
+      const COLS = 16, ROWS = 9;
+      const overlay = document.getElementById('pageTransitionOverlay');
+      if (!overlay) return;
+
+      const grid = overlay.querySelector('.grid-wipe-grid');
+      grid.style.gridTemplateColumns = `repeat(${COLS}, 1fr)`;
+      grid.style.gridTemplateRows = `repeat(${ROWS}, 1fr)`;
+
+      // Build cells
+      const cells = [];
+      const delays = [];
+      const cx = (COLS - 1) / 2, cy = (ROWS - 1) / 2;
+      const maxDist = Math.hypot(cx, cy);
+
+      for (let y = 0; y < ROWS; y++) {
+        for (let x = 0; x < COLS; x++) {
+          const cell = document.createElement('div');
+          cell.className = 'grid-wipe-cell';
+          grid.appendChild(cell);
+          cells.push(cell);
+          delays.push(Math.hypot(x - cx, y - cy) / maxDist);
+        }
+      }
+
+      // Store delay as data attribute for gsap function-based values
+      cells.forEach((cell, i) => { cell._wipeDelay = delays[i]; });
+
+      // ON PAGE LOAD: if transition flag set, reveal (cells out)
+      if (sessionStorage.getItem('wipe-in')) {
+        sessionStorage.removeItem('wipe-in');
+        overlay.style.pointerEvents = 'all';
+        overlay.style.visibility = 'visible';
+        cells.forEach(c => { c.style.opacity = 1; });
+
+        requestAnimationFrame(() => {
+          gsap.to(cells, {
+            opacity: 0,
+            duration: 0.3,
+            ease: 'power2.out',
+            delay: (i) => delays[i] * 0.4,
+            onComplete: () => {
+              overlay.style.visibility = 'hidden';
+              overlay.style.pointerEvents = 'none';
+            }
+          });
+        });
+      }
+
+      // INTERCEPT internal links
+      function isInternalNav(href) {
+        if (!href) return false;
+        try {
+          const url = new URL(href, location.origin);
+          if (url.origin !== location.origin) return false;
+          if (url.pathname === location.pathname) return false;
+          return true;
+        } catch { return false; }
+      }
+
+      document.addEventListener('click', (e) => {
+        const link = e.target.closest('a[href]');
+        if (!link) return;
+        const href = link.getAttribute('href');
+        if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
+        if (link.target === '_blank') return;
+        if (!isInternalNav(link.href)) return;
+
+        e.preventDefault();
+        const dest = link.href;
+
+        overlay.style.visibility = 'visible';
+        overlay.style.pointerEvents = 'all';
+
+        gsap.to(cells, {
+          opacity: 1,
+          duration: 0.3,
+          ease: 'power2.in',
+          delay: (i) => delays[i] * 0.4,
+          onComplete: () => {
+            sessionStorage.setItem('wipe-in', '1');
+            window.location.href = dest;
+          }
+        });
+      });
+    })();
+
+    // ═══════════════════════════════════════
     // 8. MAGNETIC BUTTONS
     // ═══════════════════════════════════════
     document.querySelectorAll('[data-magnetic]').forEach(btn => {
@@ -1347,7 +1796,7 @@
     });
 
     // Labels animate in
-    document.querySelectorAll('.proyectos .label, .lab7 .label, .herramientas .label').forEach(l => {
+    document.querySelectorAll('.que-construimos .label, .proyectos .label, .lab7 .label, .herramientas .label').forEach(l => {
       gsap.from(l, {
         opacity: 0, x: -20, duration: 0.5,
         scrollTrigger: { trigger: l, start: 'top 85%', toggleActions: 'play none none reverse' },
@@ -1428,10 +1877,11 @@
               w.classList.toggle('active', segProgress > wi / data.rWords.length);
             });
           });
-          // Highlight phrase fades in during last segment
+          // Highlight phrase fades in — starts earlier, reaches full faster
           if (difHighlight) {
-            const hlStart = difBlockData.length / totalSegments;
-            const hlProgress = Math.max(0, Math.min(1, (p - hlStart) / (1 - hlStart)));
+            const hlStart = 0.55; // start before block 2 fully finishes
+            const hlEnd = 0.8;    // fully visible by 80%
+            const hlProgress = Math.max(0, Math.min(1, (p - hlStart) / (hlEnd - hlStart)));
             difHighlight.style.opacity = hlProgress;
           }
         },
@@ -1655,6 +2105,32 @@
       initPixelTrail(document.getElementById('heroPixelTrail'));
       initPixelTrail(document.getElementById('pixelTrail'));
     })();
+
+    // ═══════════════════════════════════════
+    // SCROLL PROGRESS BAR
+    // ═══════════════════════════════════════
+    (function() {
+      const bar = document.getElementById('scrollProgress');
+      if (!bar) return;
+      // Use scroll-driven animation if supported
+      if (CSS.supports('animation-timeline', 'scroll()')) {
+        bar.style.animation = 'progress-bar linear both';
+        bar.style.animationTimeline = 'scroll()';
+      } else {
+        // Fallback: JS scroll listener
+        window.addEventListener('scroll', () => {
+          const h = document.documentElement.scrollHeight - window.innerHeight;
+          bar.style.transform = `scaleX(${h > 0 ? window.scrollY / h : 0})`;
+        }, { passive: true });
+      }
+    })();
+
+    // ═══════════════════════════════════════
+    // SERVICE WORKER REGISTRATION
+    // ═══════════════════════════════════════
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js').catch(() => {});
+    }
   </script>
 </body>
 </html>

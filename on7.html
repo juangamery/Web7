@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>On7 — Tu negocio, siempre encendido</title>
+  <link rel="icon" href="assets/Logoweb7-verde.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta name="description" content="On7 atiende a tus clientes por WhatsApp, web y email cuando vos no podés. Responde, califica y agenda. Sin intervención manual.">
+  <meta property="og:title" content="On7 — Tu negocio, siempre encendido">
+  <meta property="og:description" content="Agente IA que atiende a tus clientes por WhatsApp cuando vos no podés.">
+  <meta property="og:type" content="website">
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="assets/Logoweb7-verde.svg">
+  <meta name="view-transition" content="same-origin">
+  <script type="speculationrules">
+  {
+    "prerender": [
+      { "where": { "href_matches": ["index.html", "proyectos.html", "contacto.html"] } }
+    ],
+    "prefetch": [
+      { "where": { "href_matches": ["index.html", "proyectos.html", "contacto.html"] } }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Doto:wght@400;700;800&family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-alt: #111;
+      --bg-card: #141414;
+      --text: #f5f5f5;
+      --text-muted: #888;
+      --accent: #34D399;
+      --teal: #34D399;
+      --teal-dim: rgba(52,211,153,0.12);
+      --teal-glow: rgba(52,211,153,0.25);
+      --font-display: 'Doto', monospace;
+      --font-body: 'Manrope', sans-serif;
+      --font-alt: 'Space Grotesk', sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ─── CURSOR ─── */
+    .cursor {
+      position: fixed; top: 0; left: 0;
+      width: 20px; height: 20px;
+      border: 2px solid var(--teal);
+      border-radius: 0;
+      pointer-events: none; z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: width 0.3s, height 0.3s, background 0.3s;
+      mix-blend-mode: difference;
+    }
+    .cursor-dot {
+      position: fixed; top: 0; left: 0;
+      width: 6px; height: 6px;
+      background: var(--teal); border-radius: 0;
+      pointer-events: none; z-index: 10000;
+      transform: translate(-50%, -50%);
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.5rem 4rem;
+      background: rgba(10,10,10,0.85); backdrop-filter: blur(12px);
+    }
+    .nav-brand {
+      display: flex; align-items: baseline; gap: 0.5rem;
+    }
+    .nav-brand .brand-on7 {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--teal);
+      text-decoration: none;
+    }
+    .nav-brand .brand-by {
+      font-family: var(--font-alt);
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .nav-links {
+      display: flex; gap: 2rem; list-style: none; align-items: center;
+      font-family: var(--font-alt); font-size: 0.8rem;
+      text-transform: uppercase; letter-spacing: 0.1em;
+    }
+    .nav-links a { color: var(--text-muted); text-decoration: none; transition: color 0.3s; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta {
+      background: var(--teal) !important;
+      color: #fff !important;
+      padding: 0.5rem 1.2rem;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+    .nav-cta:hover { background: #2bc48a !important; }
+
+    /* ─── LABELS ─── */
+    .label {
+      font-family: var(--font-alt);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--teal);
+      display: block;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ─── SECTION BASE ─── */
+    .section {
+      padding: 8rem 4rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .section h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 2rem;
+    }
+    .section .body-text {
+      font-size: clamp(1rem, 1.8vw, 1.1rem);
+      color: var(--text-muted);
+      line-height: 1.8;
+      max-width: 700px;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      padding: 12rem 4rem 6rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5.5vw, 4rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 2rem;
+    }
+    .hero .subtext {
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      color: var(--text-muted);
+      line-height: 1.8;
+      max-width: 650px;
+      margin-bottom: 3rem;
+    }
+    .cta-group {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.8rem;
+      padding: 1rem 2.5rem;
+      border-radius: 100px;
+      font-family: var(--font-alt);
+      font-size: 0.9rem; font-weight: 600;
+      text-decoration: none; text-transform: uppercase;
+      letter-spacing: 0.04em;
+      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--accent); color: var(--bg); border: none;
+    }
+    .btn-primary:hover { background: #2bc48a; transform: scale(1.03); }
+    .btn-secondary {
+      background: transparent; color: var(--text);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ─── PROBLEMA — 3 LINES ─── */
+    .problem-lines {
+      margin-top: 2.5rem;
+      display: flex; flex-direction: column; gap: 1rem;
+    }
+    .problem-line {
+      font-family: var(--font-alt);
+      font-size: 0.95rem;
+      color: var(--text);
+      padding-left: 1.5rem;
+      position: relative;
+    }
+    .problem-line::before {
+      content: '\2192';
+      position: absolute; left: 0;
+      color: var(--teal);
+    }
+
+    /* ─── CAPACIDADES ─── */
+    .capabilities {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .cap-card {
+      background: var(--bg-card);
+      border: 1px solid #222;
+      border-radius: 8px;
+      padding: 2rem;
+      transition: border-color 0.3s;
+    }
+    .cap-card:hover { border-color: var(--teal); }
+    .cap-card h4 {
+      font-family: var(--font-alt);
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      color: var(--teal);
+    }
+    .cap-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ─── INTEGRACIONES ─── */
+    .integrations {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .int-card {
+      background: var(--bg-card);
+      border: 1px solid #222;
+      border-radius: 8px;
+      padding: 1.8rem;
+      transition: border-color 0.3s;
+    }
+    .int-card:hover { border-color: var(--teal); }
+    .int-card h4 {
+      font-family: var(--font-alt);
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .int-card p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ─── PANEL CONTROL ─── */
+    .panel-features {
+      margin-top: 2.5rem;
+      display: flex; flex-direction: column; gap: 0.8rem;
+    }
+    .panel-feature {
+      font-family: var(--font-alt);
+      font-size: 0.95rem;
+      color: var(--text);
+      padding-left: 1.5rem;
+      position: relative;
+    }
+    .panel-feature::before {
+      content: '\2192';
+      position: absolute; left: 0;
+      color: var(--teal);
+    }
+    .panel-resumen {
+      margin-top: 2.5rem;
+      background: var(--teal-dim);
+      border: 1px solid var(--teal);
+      border-radius: 8px;
+      padding: 2rem;
+    }
+    .panel-resumen h4 {
+      font-family: var(--font-alt);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--teal);
+      margin-bottom: 0.6rem;
+    }
+    .panel-resumen p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    .highlight-phrase {
+      margin-top: 2.5rem;
+      font-family: var(--font-display);
+      font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+      color: var(--teal);
+      font-weight: 700;
+    }
+
+    /* ─── PARA QUIEN ─── */
+    .for-you-list {
+      margin-top: 2rem;
+      display: flex; flex-direction: column; gap: 0.8rem;
+    }
+    .for-you-item {
+      font-family: var(--font-alt);
+      font-size: 0.95rem;
+      color: var(--text);
+      padding-left: 1.5rem;
+      position: relative;
+    }
+    .for-you-item::before {
+      content: '\2192';
+      position: absolute; left: 0;
+      color: var(--teal);
+    }
+    .sectors {
+      margin-top: 2.5rem;
+    }
+    .sectors h4 {
+      font-family: var(--font-alt);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+    .sector-tags {
+      display: flex; gap: 0.6rem; flex-wrap: wrap;
+    }
+    .sector-tag {
+      font-family: var(--font-alt);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 0.4rem 1rem;
+      border: 1px solid #333;
+      border-radius: 100px;
+      color: var(--text-muted);
+    }
+
+    /* ─── PROCESO ─── */
+    .steps {
+      margin-top: 3rem;
+      display: flex; flex-direction: column; gap: 0;
+    }
+    .step {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 2rem;
+      padding: 2rem 0;
+      border-bottom: 1px solid #1a1a1a;
+      align-items: start;
+    }
+    .step:last-child { border-bottom: none; }
+    .step-number {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      color: rgba(52,211,153,0.2);
+      line-height: 1;
+    }
+    .step-content h4 {
+      font-family: var(--font-alt);
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .step-content p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ─── CIERRE ─── */
+    .cierre {
+      text-align: center;
+      padding: 8rem 4rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .cierre h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+    .cierre .body-text {
+      font-size: clamp(1rem, 1.8vw, 1.1rem);
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin-bottom: 3rem;
+      max-width: 600px;
+      margin-left: auto; margin-right: auto;
+    }
+    .cierre .cta-group {
+      justify-content: center;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid #1a1a1a;
+      padding: 3rem 4rem;
+      text-align: center;
+    }
+    .footer-brand-on7 {
+      font-family: var(--font-alt);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+    .footer-back {
+      font-family: var(--font-alt);
+      font-size: 0.8rem;
+      color: var(--teal);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: color 0.3s;
+    }
+    .footer-back:hover { color: #2aad8a; }
+
+    /* ── PAGE TRANSITION OVERLAY ─────────────── */
+    #pageTransitionOverlay {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      pointer-events: none;
+      visibility: hidden;
+    }
+    #pageTransitionOverlay .grid-wipe-grid {
+      position: absolute;
+      inset: 0;
+      display: grid;
+    }
+    .grid-wipe-cell {
+      background: var(--teal);
+      opacity: 0;
+      will-change: opacity;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      .capabilities { grid-template-columns: 1fr; }
+      .integrations { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .hero { padding: 8rem 1.5rem 4rem; }
+      .section { padding: 5rem 1.5rem; }
+      .cierre { padding: 5rem 1.5rem; }
+      .cta-group { flex-direction: column; }
+      .btn { text-align: center; justify-content: center; }
+      .integrations { grid-template-columns: 1fr; }
+      .step { grid-template-columns: 50px 1fr; gap: 1rem; }
+      footer { padding: 2rem 1.5rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .cursor, .cursor-dot { display: none; }
+    }
+    @view-transition { navigation: auto; }
+    ::view-transition-old(root) { animation: none; mix-blend-mode: normal; }
+    ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+    section { content-visibility: auto; contain-intrinsic-size: auto 800px; }
+  </style>
+</head>
+<body>
+
+
+  <!-- SCROLL PROGRESS BAR -->
+  <div id="scrollProgress" style="
+    position: fixed; top: 0; left: 0; height: 3px; z-index: 99998;
+    background: var(--accent); transform-origin: left;
+    transform: scaleX(0); will-change: transform;
+  "></div>
+
+  <!-- PAGE TRANSITION OVERLAY -->
+  <div id="pageTransitionOverlay"><div class="grid-wipe-grid"></div></div>
+
+  <!-- CURSOR -->
+  <div class="cursor"></div>
+  <div class="cursor-dot"></div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-brand">
+      <a href="on7.html" class="brand-on7">ON7</a>
+      <span class="brand-by">by WEB7</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#como-funciona">Como funciona</a></li>
+      <li><a href="#que-incluye">Que incluye</a></li>
+      <li><a href="#proceso">Proceso</a></li>
+      <li><a href="contacto.html?producto=on7" class="nav-cta">Quiero On7 &rarr;</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <span class="label">On7 &middot; Atencion inteligente</span>
+    <h1>Tus clientes escriben<br>a las 11 de la noche.<br>On7 responde.</h1>
+    <p class="subtext">Cada mensaje sin respuesta es un cliente que se va. On7 atiende por WhatsApp las 24 horas, entiende lo que necesita tu cliente y responde con la informacion de tu negocio. Vos revisas el resumen a la manana.</p>
+    <div class="cta-group">
+      <a href="contacto.html?producto=on7" class="btn btn-primary">Quiero On7 para mi negocio <span>&rarr;</span></a>
+      <a href="#como-funciona" class="btn btn-secondary">Ver como funciona <span>&darr;</span></a>
+    </div>
+  </section>
+
+  <!-- BLOQUE 02 — EL PROBLEMA -->
+  <section class="section">
+    <span class="label">Por que existe On7</span>
+    <h2>Tener web no alcanza<br>si despues no respondes.</h2>
+    <p class="body-text">La mayoria de los negocios pierde clientes no por falta de producto sino por falta de respuesta. Un cliente que no recibe respuesta en los primeros minutos busca en otro lado. Asi de simple.<br><br>El problema no es la intencion — es que no podes estar disponible todo el tiempo. On7 si puede.</p>
+    <div class="problem-lines">
+      <div class="problem-line">Mensajes sin respuesta fuera del horario comercial</div>
+      <div class="problem-line">Preguntas repetidas que consumen tiempo del equipo</div>
+      <div class="problem-line">Reservas y consultas que se pierden por no tener un sistema</div>
+    </div>
+  </section>
+
+  <!-- BLOQUE 03 — QUE HACE ON7 -->
+  <section class="section" id="como-funciona">
+    <span class="label">Como funciona</span>
+    <h2>On7 no es un bot generico.<br>Conoce tu negocio.</h2>
+    <p class="body-text">Antes de salir al aire, cargamos toda la informacion de tu negocio: productos, servicios, precios, horarios, preguntas frecuentes, condiciones. Eso es lo que On7 usa para responder. No respuestas automaticas genericas — respuestas con la informacion real de tu negocio.</p>
+
+    <div class="capabilities" id="que-incluye">
+      <div class="cap-card">
+        <h4>Responde consultas</h4>
+        <p>Preguntas sobre productos, servicios, precios, horarios y condiciones. Con la informacion exacta de tu negocio, no respuestas genericas.</p>
+      </div>
+      <div class="cap-card">
+        <h4>Recomienda y sugiere</h4>
+        <p>Si el cliente no sabe que necesita, On7 lo guia. Sugiere experiencias, productos o servicios segun el contexto de la conversacion.</p>
+      </div>
+      <div class="cap-card">
+        <h4>Toma datos para reservas</h4>
+        <p>Registra nombre, fecha, horario y lo que necesites. Lo vuelca en Google Calendar o Google Sheets automaticamente.</p>
+      </div>
+      <div class="cap-card">
+        <h4>Agenda llamadas</h4>
+        <p>Si el cliente quiere hablar con alguien, On7 agenda la llamada dentro del horario comercial que vos definis.</p>
+      </div>
+      <div class="cap-card">
+        <h4>Deriva a un humano</h4>
+        <p>Cuando la consulta excede sus capacidades o el cliente lo pide, On7 transfiere la conversacion a tu equipo sin perder el historial.</p>
+      </div>
+      <div class="cap-card">
+        <h4>Registra todo</h4>
+        <p>Cada conversacion queda guardada. Datos de contacto, resumen de la charla, resultado de la interaccion.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOQUE 04 — INTEGRACIONES -->
+  <section class="section">
+    <span class="label">Se conecta con lo que ya usas</span>
+    <h2>No reemplaza tus herramientas.<br>Se integra con ellas.</h2>
+    <div class="integrations">
+      <div class="int-card">
+        <h4>Google Calendar</h4>
+        <p>Reservas, turnos y llamadas directamente en tu calendario.</p>
+      </div>
+      <div class="int-card">
+        <h4>Google Sheets</h4>
+        <p>Datos de clientes y consultas en tu planilla, al instante.</p>
+      </div>
+      <div class="int-card">
+        <h4>Gmail</h4>
+        <p>Resumenes, alertas y notificaciones en tu correo.</p>
+      </div>
+      <div class="int-card">
+        <h4>Google Docs</h4>
+        <p>Consulta documentos internos para responder con precision.</p>
+      </div>
+      <div class="int-card">
+        <h4>Otros sistemas</h4>
+        <p>Conexion con sistemas externos mediante APIs si tu negocio lo requiere.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOQUE 05 — PANEL DE CONTROL -->
+  <section class="section">
+    <span class="label">Vos siempre en control</span>
+    <h2>Automatizado no significa<br>que perdes el control.</h2>
+    <p class="body-text">On7 incluye un panel de administracion desde donde podes:</p>
+    <div class="panel-features">
+      <div class="panel-feature">Ver todas las conversaciones en tiempo real</div>
+      <div class="panel-feature">Tomar el control manual de cualquier chat cuando queras</div>
+      <div class="panel-feature">Revisar el historial completo de cada cliente</div>
+      <div class="panel-feature">Ver que clientes estan pendientes de seguimiento</div>
+      <div class="panel-feature">Consultar reservas, pedidos y consultas generadas</div>
+    </div>
+    <div class="panel-resumen">
+      <h4>Resumen diario por email</h4>
+      <p>Cada manana recibis un resumen con: conversaciones del dia anterior, reservas generadas, clientes que requieren seguimiento e incidencias detectadas.</p>
+    </div>
+    <p class="highlight-phrase">On7 trabaja solo. Vos decidis cuando intervenir.</p>
+  </section>
+
+  <!-- BLOQUE 07 — PARA QUIEN ES -->
+  <section class="section">
+    <span class="label">On7 es para vos si...</span>
+    <div class="for-you-list">
+      <div class="for-you-item">Recibis consultas por WhatsApp y no siempre podes responder rapido</div>
+      <div class="for-you-item">Tu equipo pierde tiempo respondiendo siempre las mismas preguntas</div>
+      <div class="for-you-item">Perdes reservas o pedidos por no tener atencion fuera del horario comercial</div>
+      <div class="for-you-item">Queres saber que consultan tus clientes sin revisar chat por chat</div>
+      <div class="for-you-item">Necesitas escalar la atencion sin contratar mas personal</div>
+    </div>
+    <div class="sectors">
+      <h4>Sectores donde ya funciona</h4>
+      <div class="sector-tags">
+        <span class="sector-tag">Gastronomia</span>
+        <span class="sector-tag">Hoteleria</span>
+        <span class="sector-tag">Comercios</span>
+        <span class="sector-tag">Servicios profesionales</span>
+        <span class="sector-tag">Salud</span>
+        <span class="sector-tag">Turismo</span>
+        <span class="sector-tag">Retail</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOQUE 08 — PROCESO -->
+  <section class="section" id="proceso">
+    <span class="label">Como arrancamos</span>
+    <h2>De cero a operativo<br>en menos de 7 dias.</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">01</div>
+        <div class="step-content">
+          <h4>Reunion inicial</h4>
+          <p>Entendemos tu negocio, tu flujo de atencion y lo que necesitas resolver.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-number">02</div>
+        <div class="step-content">
+          <h4>Carga de informacion</h4>
+          <p>Subimos toda la informacion de tu negocio al sistema. Productos, servicios, precios, horarios, FAQs.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-number">03</div>
+        <div class="step-content">
+          <h4>Configuracion y conexion</h4>
+          <p>Conectamos On7 con tu WhatsApp y tus herramientas.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-number">04</div>
+        <div class="step-content">
+          <h4>Pruebas</h4>
+          <p>Testeamos todos los flujos antes de salir al aire.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-number">05</div>
+        <div class="step-content">
+          <h4>Online</h4>
+          <p>On7 empieza a atender. Vos empezas a revisar el panel.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CIERRE -->
+  <section class="cierre">
+    <h2>Tu negocio no deberia<br>depender de que estes disponible.</h2>
+    <p class="body-text">On7 es el primer producto de Lab7 — el laboratorio de WEB7 donde construimos herramientas que resuelven problemas reales de negocios reales. Contanos sobre tu negocio y en 24 horas te mostramos como quedaria On7 implementado para tu caso especifico.</p>
+    <div class="cta-group">
+      <a href="contacto.html?producto=on7" class="btn btn-primary">Quiero On7 <span>&rarr;</span></a>
+      <a href="contacto.html" class="btn btn-secondary">Hablar con WEB7 por WhatsApp <span>&rarr;</span></a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p class="footer-brand-on7">On7 es un producto de Lab7 &middot; WEB7</p>
+    <a href="index.html" class="footer-back">&rarr; Volver a WEB7</a>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="chat-widget.js"></script>
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // ═══════════════════════════════════════
+    // CURSOR
+    // ═══════════════════════════════════════
+    const cursor = document.querySelector('.cursor');
+    const cursorDot = document.querySelector('.cursor-dot');
+    let mouseX = 0, mouseY = 0, cursorX = 0, cursorY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX; mouseY = e.clientY;
+      gsap.to(cursorDot, { x: mouseX, y: mouseY, duration: 0.1 });
+    });
+    gsap.ticker.add(() => {
+      cursorX += (mouseX - cursorX) * 0.15;
+      cursorY += (mouseY - cursorY) * 0.15;
+      gsap.set(cursor, { x: cursorX, y: cursorY });
+    });
+
+    // ═══════════════════════════════════════
+    // HERO ENTRANCE
+    // ═══════════════════════════════════════
+    gsap.from('.hero .label', { opacity: 0, x: -20, duration: 0.5, delay: 0.3 });
+    gsap.from('.hero h1', { opacity: 0, y: 30, duration: 0.7, delay: 0.5 });
+    gsap.from('.hero .subtext', { opacity: 0, y: 20, duration: 0.6, delay: 0.7 });
+    gsap.from('.hero .cta-group', { opacity: 0, y: 20, duration: 0.5, delay: 0.9 });
+
+    // ═══════════════════════════════════════
+    // SCROLL ANIMATIONS
+    // ═══════════════════════════════════════
+    document.querySelectorAll('.section').forEach(section => {
+      const label = section.querySelector('.label');
+      const h2 = section.querySelector('h2');
+      const body = section.querySelector('.body-text');
+
+      if (label) gsap.from(label, { opacity: 0, x: -20, duration: 0.5, scrollTrigger: { trigger: section, start: 'top 80%' } });
+      if (h2) gsap.from(h2, { opacity: 0, y: 25, duration: 0.6, scrollTrigger: { trigger: section, start: 'top 75%' } });
+      if (body) gsap.from(body, { opacity: 0, y: 20, duration: 0.5, scrollTrigger: { trigger: section, start: 'top 70%' } });
+    });
+
+    // Cards stagger
+    document.querySelectorAll('.capabilities, .integrations').forEach(grid => {
+      gsap.from(grid.children, {
+        opacity: 0, y: 20, duration: 0.4, stagger: 0.08,
+        scrollTrigger: { trigger: grid, start: 'top 80%' },
+      });
+    });
+
+    // Steps stagger
+    gsap.from('.step', {
+      opacity: 0, x: -20, duration: 0.4, stagger: 0.1,
+      scrollTrigger: { trigger: '.steps', start: 'top 80%' },
+    });
+
+    // Problem lines + panel features + for-you items
+    ['.problem-line', '.panel-feature', '.for-you-item'].forEach(sel => {
+      const els = document.querySelectorAll(sel);
+      if (els.length) {
+        gsap.from(els, {
+          opacity: 0, x: -15, duration: 0.4, stagger: 0.08,
+          scrollTrigger: { trigger: els[0].parentElement, start: 'top 80%' },
+        });
+      }
+    });
+
+    // Cierre
+    const cierreObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          gsap.from('.cierre h2', { opacity: 0, y: 30, duration: 0.7 });
+          gsap.from('.cierre .body-text', { opacity: 0, y: 20, duration: 0.6, delay: 0.2 });
+          gsap.from('.cierre .cta-group', { opacity: 0, y: 20, duration: 0.5, delay: 0.4 });
+          cierreObs.disconnect();
+        }
+      });
+    }, { threshold: 0.3 });
+    cierreObs.observe(document.querySelector('.cierre'));
+
+    // ═══════════════════════════════════════
+    // PAGE TRANSITION — GRID PIXELATE WIPE
+    // ═══════════════════════════════════════
+    (function initPageTransition() {
+      const COLS = 16, ROWS = 9;
+      const overlay = document.getElementById('pageTransitionOverlay');
+      if (!overlay) return;
+
+      const grid = overlay.querySelector('.grid-wipe-grid');
+      grid.style.gridTemplateColumns = `repeat(${COLS}, 1fr)`;
+      grid.style.gridTemplateRows = `repeat(${ROWS}, 1fr)`;
+
+      const cells = [];
+      const delays = [];
+      const cx = (COLS - 1) / 2, cy = (ROWS - 1) / 2;
+      const maxDist = Math.hypot(cx, cy);
+
+      for (let y = 0; y < ROWS; y++) {
+        for (let x = 0; x < COLS; x++) {
+          const cell = document.createElement('div');
+          cell.className = 'grid-wipe-cell';
+          grid.appendChild(cell);
+          cells.push(cell);
+          delays.push(Math.hypot(x - cx, y - cy) / maxDist);
+        }
+      }
+
+      if (sessionStorage.getItem('wipe-in')) {
+        sessionStorage.removeItem('wipe-in');
+        overlay.style.pointerEvents = 'all';
+        overlay.style.visibility = 'visible';
+        cells.forEach(c => { c.style.opacity = 1; });
+
+        requestAnimationFrame(() => {
+          gsap.to(cells, {
+            opacity: 0,
+            duration: 0.3,
+            ease: 'power2.out',
+            delay: (i) => delays[i] * 0.4,
+            onComplete: () => {
+              overlay.style.visibility = 'hidden';
+              overlay.style.pointerEvents = 'none';
+            }
+          });
+        });
+      }
+
+      function isInternalNav(href) {
+        if (!href) return false;
+        try {
+          const url = new URL(href, location.origin);
+          if (url.origin !== location.origin) return false;
+          if (url.pathname === location.pathname) return false;
+          return true;
+        } catch { return false; }
+      }
+
+      document.addEventListener('click', (e) => {
+        const link = e.target.closest('a[href]');
+        if (!link) return;
+        const href = link.getAttribute('href');
+        if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
+        if (link.target === '_blank') return;
+        if (!isInternalNav(link.href)) return;
+
+        e.preventDefault();
+        const dest = link.href;
+
+        overlay.style.visibility = 'visible';
+        overlay.style.pointerEvents = 'all';
+
+        gsap.to(cells, {
+          opacity: 1,
+          duration: 0.3,
+          ease: 'power2.in',
+          delay: (i) => delays[i] * 0.4,
+          onComplete: () => {
+            sessionStorage.setItem('wipe-in', '1');
+            window.location.href = dest;
+          }
+        });
+      });
+    })();
+
+
+    // SCROLL PROGRESS BAR
+    (function() {
+      var bar = document.getElementById('scrollProgress');
+      if (!bar) return;
+      if (CSS.supports('animation-timeline', 'scroll()')) {
+        bar.style.animation = 'progress-bar linear both';
+        bar.style.animationTimeline = 'scroll()';
+      } else {
+        window.addEventListener('scroll', function() {
+          var h = document.documentElement.scrollHeight - window.innerHeight;
+          bar.style.transform = 'scaleX(' + (h > 0 ? window.scrollY / h : 0) + ')';
+        }, { passive: true });
+      }
+    })();
+
+    // SERVICE WORKER
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js').catch(() => {});
+    }
+  </script>
+</body>
+</html>

@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Rediseñar la página `on7.html` para incorporar el nuevo copywriting, secciones estructurales (pérdida/ganancia, flujo de cliente, métricas) y la estética retro-digital con acentos teales y naranja de WEB7.
+**Goal:** Rediseñar la página `on7.html` para incorporar el nuevo copywriting, secciones estructurales (pérdida/ganancia, flujo de cliente, métricas) y la estética retro-digital con acentos teales.
 
 **Architecture:** Modificación de `on7.html` actualizando el marcado semántico HTML5, redefiniendo las clases CSS en la sección de estilos (`<style>`), y asegurando que las animaciones GSAP sigan enlazadas a los elementos correctos de forma interactiva y fluida.
 
@@ -16,7 +16,7 @@
 - Modify: `on7.html:31-144`
 
 - [ ] **Step 1: Modificar variables CSS y reglas globales**
-Definir la variable `--orange` para los CTAs y ajustar las fuentes. Actualizar la sección de estilos de `on7.html` para agregar los siguientes tokens y selectores base:
+Ajustar las fuentes y mantener las variables teales como acento. Actualizar la sección de estilos de `on7.html` para agregar los siguientes tokens y selectores base:
 
 ```css
     :root {
@@ -29,8 +29,6 @@ Definir la variable `--orange` para los CTAs y ajustar las fuentes. Actualizar l
       --teal: #34D399;
       --teal-dim: rgba(52,211,153,0.08);
       --teal-glow: rgba(52,211,153,0.15);
-      --orange: #FF6B00;
-      --orange-hover: #E05E00;
       --red: #ef4444;
       --red-dim: rgba(239,68,68,0.08);
       --font-display: 'Doto', monospace;
@@ -40,17 +38,17 @@ Definir la variable `--orange` para los CTAs y ajustar las fuentes. Actualizar l
 ```
 
 - [ ] **Step 2: Ajustar estilos de botones y CTAs**
-Modificar la clase `.btn-primary` para usar la variable de color `--orange` (reservado para CTAs principales) y `.btn-secondary` para mantener bordes teales o grises sutiles.
+Modificar la clase `.btn-primary` para usar la variable de color `--accent` (teal) y `.btn-secondary` para mantener bordes teales o grises sutiles.
 
 ```css
     .btn-primary {
-      background: var(--orange);
+      background: var(--accent);
       color: #0a0a0a;
       border: none;
       font-weight: 800;
     }
     .btn-primary:hover {
-      background: var(--orange-hover);
+      background: #2bc48a;
       transform: scale(1.03);
     }
     .btn-secondary {

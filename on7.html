@@ -37,8 +37,10 @@
       --text-muted: #888;
       --accent: #34D399;
       --teal: #34D399;
-      --teal-dim: rgba(52,211,153,0.12);
-      --teal-glow: rgba(52,211,153,0.25);
+      --teal-dim: rgba(52,211,153,0.08);
+      --teal-glow: rgba(52,211,153,0.15);
+      --red: #ef4444;
+      --red-dim: rgba(239,68,68,0.08);
       --font-display: 'Doto', monospace;
       --font-body: 'Manrope', sans-serif;
       --font-alt: 'Space Grotesk', sans-serif;
@@ -104,10 +106,10 @@
     .nav-links a:hover { color: var(--text); }
     .nav-cta {
       background: var(--teal) !important;
-      color: #fff !important;
+      color: #0a0a0a !important;
       padding: 0.5rem 1.2rem;
       border-radius: 4px;
-      font-weight: 600;
+      font-weight: 800;
     }
     .nav-cta:hover { background: #2bc48a !important; }
 
@@ -177,14 +179,24 @@
       cursor: pointer;
     }
     .btn-primary {
-      background: var(--accent); color: var(--bg); border: none;
+      background: var(--accent);
+      color: #0a0a0a;
+      border: none;
+      font-weight: 800;
     }
-    .btn-primary:hover { background: #2bc48a; transform: scale(1.03); }
+    .btn-primary:hover {
+      background: #2bc48a;
+      transform: scale(1.03);
+    }
     .btn-secondary {
-      background: transparent; color: var(--text);
-      border: 1px solid rgba(255,255,255,0.2);
+      background: transparent;
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,0.15);
     }
-    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+    .btn-secondary:hover {
+      border-color: var(--teal);
+      color: var(--teal);
+    }
 
     /* ─── PROBLEMA — 3 LINES ─── */
     .problem-lines {
@@ -202,6 +214,86 @@
       content: '\2192';
       position: absolute; left: 0;
       color: var(--teal);
+    }
+
+    /* ─── COMPARISON GRID (SIN ON7 vs CON ON7) ─── */
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .comp-card {
+      background: var(--bg-card);
+      border-radius: 12px;
+      padding: 2.5rem;
+      border: 1px solid #222;
+      transition: border-color 0.3s;
+    }
+    .comp-card h3 {
+      font-family: var(--font-alt);
+      font-size: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .comp-card.loss {
+      border-color: rgba(239, 68, 68, 0.25);
+      background: linear-gradient(180deg, var(--bg-card) 0%, var(--red-dim) 100%);
+    }
+    .comp-card.loss:hover {
+      border-color: var(--red);
+    }
+    .comp-card.loss h3 {
+      color: var(--red);
+    }
+    .comp-card.loss ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .comp-card.loss li {
+      position: relative;
+      padding-left: 1.5rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .comp-card.loss li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: var(--red);
+      font-weight: bold;
+    }
+    .comp-card.gain {
+      border-color: rgba(52, 211, 153, 0.25);
+      background: linear-gradient(180deg, var(--bg-card) 0%, var(--teal-dim) 100%);
+    }
+    .comp-card.gain:hover {
+      border-color: var(--teal);
+    }
+    .comp-card.gain h3 {
+      color: var(--teal);
+    }
+    .comp-card.gain ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .comp-card.gain li {
+      position: relative;
+      padding-left: 1.5rem;
+      font-size: 0.95rem;
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .comp-card.gain li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: var(--teal);
+      font-weight: bold;
     }
 
     /* ─── CAPACIDADES ─── */
@@ -228,6 +320,62 @@
     }
     .cap-card p {
       font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ─── FLOW STEPS (PASO A PASO CLIENTE) ─── */
+    .flow-steps {
+      position: relative;
+      margin-top: 3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+    .flow-line {
+      position: absolute;
+      left: 28px;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(180deg, var(--teal) 0%, rgba(255,255,255,0.05) 100%);
+      z-index: 1;
+    }
+    .flow-step {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 2rem;
+      align-items: flex-start;
+      position: relative;
+      z-index: 2;
+    }
+    .flow-number {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--bg-alt);
+      border: 1px solid var(--teal);
+      color: var(--teal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 800;
+      box-shadow: 0 0 15px rgba(52,211,153,0.15);
+    }
+    .flow-content {
+      padding-top: 0.75rem;
+    }
+    .flow-content h4 {
+      font-family: var(--font-alt);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+    .flow-content p {
+      font-size: 0.95rem;
       color: var(--text-muted);
       line-height: 1.6;
     }
@@ -301,6 +449,40 @@
       font-size: clamp(1.2rem, 2.5vw, 1.6rem);
       color: var(--teal);
       font-weight: 700;
+    }
+
+    /* ─── METRICS GRID ─── */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+      text-align: center;
+    }
+    .metric-card {
+      background: var(--bg-card);
+      border: 1px solid #222;
+      border-radius: 12px;
+      padding: 2.5rem 1.5rem;
+      transition: border-color 0.3s;
+    }
+    .metric-card:hover {
+      border-color: var(--teal);
+    }
+    .metric-val {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 800;
+      color: var(--teal);
+      margin-bottom: 0.75rem;
+    }
+    .metric-desc {
+      font-family: var(--font-alt);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      line-height: 1.4;
     }
 
     /* ─── PARA QUIEN ─── */
@@ -450,6 +632,8 @@
     @media (max-width: 1024px) {
       .capabilities { grid-template-columns: 1fr; }
       .integrations { grid-template-columns: repeat(2, 1fr); }
+      .comparison-grid { grid-template-columns: 1fr; }
+      .metrics-grid { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 768px) {
       nav { padding: 1rem 1.5rem; }
@@ -462,6 +646,9 @@
       .integrations { grid-template-columns: 1fr; }
       .step { grid-template-columns: 50px 1fr; gap: 1rem; }
       footer { padding: 2rem 1.5rem; }
+    }
+    @media (max-width: 480px) {
+      .metrics-grid { grid-template-columns: 1fr; }
     }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
@@ -502,74 +689,166 @@
       <span class="brand-by">by WEB7</span>
     </div>
     <ul class="nav-links">
-      <li><a href="#como-funciona">Como funciona</a></li>
-      <li><a href="#que-incluye">Que incluye</a></li>
-      <li><a href="#proceso">Proceso</a></li>
+      <li><a href="#como-funciona">Cómo funciona</a></li>
+      <li><a href="#que-incluye">Qué incluye</a></li>
+      <li><a href="#contacto">Contacto</a></li>
       <li><a href="contacto.html?producto=on7" class="nav-cta">Quiero On7 &rarr;</a></li>
     </ul>
   </nav>
 
   <!-- HERO -->
   <section class="hero" id="hero">
-    <span class="label">On7 &middot; Atencion inteligente</span>
-    <h1>Tus clientes escriben<br>a las 11 de la noche.<br>On7 responde.</h1>
-    <p class="subtext">Cada mensaje sin respuesta es un cliente que se va. On7 atiende por WhatsApp las 24 horas, entiende lo que necesita tu cliente y responde con la informacion de tu negocio. Vos revisas el resumen a la manana.</p>
+    <span class="label">On7 &middot; Atención inteligente</span>
+    <h1>Tu negocio responde solo.<br>Incluso a las 3 de la mañana.</h1>
+    <p class="subtext">Un agente conectado a tus herramientas. Atiende consultas, guía clientes y captura reservas sin que tengas que estar presente.</p>
     <div class="cta-group">
-      <a href="contacto.html?producto=on7" class="btn btn-primary">Quiero On7 para mi negocio <span>&rarr;</span></a>
-      <a href="#como-funciona" class="btn btn-secondary">Ver como funciona <span>&darr;</span></a>
+      <a href="contacto.html?producto=on7" class="btn btn-primary">Quiero On7 para mi negocio &rarr;</a>
+      <a href="#como-funciona" class="btn btn-secondary">Ver cómo funciona &darr;</a>
     </div>
   </section>
 
-  <!-- BLOQUE 02 — EL PROBLEMA -->
+  <!-- EL PROBLEMA -->
   <section class="section">
-    <span class="label">Por que existe On7</span>
-    <h2>Tener web no alcanza<br>si despues no respondes.</h2>
-    <p class="body-text">La mayoria de los negocios pierde clientes no por falta de producto sino por falta de respuesta. Un cliente que no recibe respuesta en los primeros minutos busca en otro lado. Asi de simple.<br><br>El problema no es la intencion — es que no podes estar disponible todo el tiempo. On7 si puede.</p>
-    <div class="problem-lines">
-      <div class="problem-line">Mensajes sin respuesta fuera del horario comercial</div>
-      <div class="problem-line">Preguntas repetidas que consumen tiempo del equipo</div>
-      <div class="problem-line">Reservas y consultas que se pierden por no tener un sistema</div>
+    <span class="label">Por qué existe On7</span>
+    <h2>Tener web no alcanza<br>si después no respondés.</h2>
+    <p class="body-text">La mayoría de los negocios pierde clientes no por falta de producto sino por falta de respuesta.<br><br>Un cliente que no recibe respuesta en los primeros minutos busca en otro lado. Así de simple.<br><br>El problema no es la intención — es que no podés estar disponible todo el tiempo. On7 sí puede.</p>
+  </section>
+
+  <!-- EL COSTO REAL (PÉRDIDA / GANANCIA) -->
+  <section class="section" id="costo-real">
+    <span class="label">El costo real de no tenerlo</span>
+    <h2>Cada día sin un agente<br>tiene un costo real.</h2>
+    
+    <div class="comparison-grid">
+      <div class="comp-card loss">
+        <h3>Sin On7 — lo que se pierde hoy</h3>
+        <ul>
+          <li><strong>Consultas perdidas de noche y los fines de semana:</strong> El cliente pregunta, no recibe respuesta y reserva en otro lugar.</li>
+          <li><strong>Tiempo operativo drenado:</strong> Responder siempre las mismas preguntas consume horas que podrían dedicarse a atender mejor.</li>
+          <li><strong>Reservas sin seguimiento:</strong> Un interesado que no confirmó hoy probablemente no va a confirmar mañana sin un empujón.</li>
+          <li><strong>Agenda desorganizada:</strong> Sin validación automática de horarios, los solapamientos y errores son inevitables.</li>
+          <li><strong>Dependencia de una sola persona:</strong> Si quien responde está ocupado o no está, el negocio queda mudo.</li>
+        </ul>
+      </div>
+      
+      <div class="comp-card gain">
+        <h3>Con On7 activo</h3>
+        <ul>
+          <li>Ninguna consulta queda sin respuesta, a cualquier hora.</li>
+          <li>El equipo se libera de tareas repetitivas y puede enfocarse en la atención de calidad.</li>
+          <li>Las reservas se capturan, registran y confirman con datos completos y sin errores.</li>
+          <li>Los clientes interesados reciben seguimiento automático hasta convertir.</li>
+          <li>La agenda se gestiona sola, con reglas de disponibilidad y tiempos entre actividades.</li>
+        </ul>
+      </div>
     </div>
   </section>
 
-  <!-- BLOQUE 03 — QUE HACE ON7 -->
+  <!-- QUE HACE ON7 -->
   <section class="section" id="como-funciona">
-    <span class="label">Como funciona</span>
-    <h2>On7 no es un bot generico.<br>Conoce tu negocio.</h2>
-    <p class="body-text">Antes de salir al aire, cargamos toda la informacion de tu negocio: productos, servicios, precios, horarios, preguntas frecuentes, condiciones. Eso es lo que On7 usa para responder. No respuestas automaticas genericas — respuestas con la informacion real de tu negocio.</p>
+    <span class="label">Cómo funciona</span>
+    <h2>On7 no es un bot genérico.<br>Conoce tu negocio.</h2>
+    <p class="body-text" style="margin-bottom: 3rem;">Antes de salir al aire, cargamos toda la información de tu negocio: productos, servicios, precios, horarios, preguntas frecuentes, condiciones. Eso es lo que On7 usa para responder. No respuestas automáticas genéricas — respuestas con la información real de tu negocio.</p>
 
     <div class="capabilities" id="que-incluye">
       <div class="cap-card">
-        <h4>Responde consultas</h4>
-        <p>Preguntas sobre productos, servicios, precios, horarios y condiciones. Con la informacion exacta de tu negocio, no respuestas genericas.</p>
+        <h4>Responde 24/7</h4>
+        <p>Atiende consultas frecuentes en WhatsApp e Instagram en cualquier horario, sin demoras.</p>
+      </div>
+      <div class="cap-card">
+        <h4>Captura reservas</h4>
+        <p>Recolecta datos del cliente, verifica disponibilidad y registra la pre-reserva automáticamente.</p>
+      </div>
+      <div class="cap-card">
+        <h4>Envía recordatorios</h4>
+        <p>Confirma reservas y envía recordatorios el día de la actividad. Sin intervención manual.</p>
+      </div>
+      <div class="cap-card">
+        <h4>Deriva correctamente</h4>
+        <p>Identifica consultas complejas y las pasa a un humano con todo el contexto de la conversación.</p>
       </div>
       <div class="cap-card">
         <h4>Recomienda y sugiere</h4>
-        <p>Si el cliente no sabe que necesita, On7 lo guia. Sugiere experiencias, productos o servicios segun el contexto de la conversacion.</p>
-      </div>
-      <div class="cap-card">
-        <h4>Toma datos para reservas</h4>
-        <p>Registra nombre, fecha, horario y lo que necesites. Lo vuelca en Google Calendar o Google Sheets automaticamente.</p>
-      </div>
-      <div class="cap-card">
-        <h4>Agenda llamadas</h4>
-        <p>Si el cliente quiere hablar con alguien, On7 agenda la llamada dentro del horario comercial que vos definis.</p>
-      </div>
-      <div class="cap-card">
-        <h4>Deriva a un humano</h4>
-        <p>Cuando la consulta excede sus capacidades o el cliente lo pide, On7 transfiere la conversacion a tu equipo sin perder el historial.</p>
+        <p>Si el cliente no sabe qué necesita, On7 lo guía según el contexto de la conversación.</p>
       </div>
       <div class="cap-card">
         <h4>Registra todo</h4>
-        <p>Cada conversacion queda guardada. Datos de contacto, resumen de la charla, resultado de la interaccion.</p>
+        <p>Cada conversación queda guardada. Datos de contacto, resumen, resultado de la interacción.</p>
       </div>
     </div>
   </section>
 
-  <!-- BLOQUE 04 — INTEGRACIONES -->
+  <!-- FLUJO DEL CLIENTE -->
+  <section class="section" id="flujo-cliente">
+    <span class="label">Paso a paso</span>
+    <h2>Así vive la experiencia<br>tu cliente.</h2>
+    
+    <div class="flow-steps">
+      <div class="flow-line"></div>
+      
+      <div class="flow-step">
+        <div class="flow-number">01</div>
+        <div class="flow-content">
+          <h4>El cliente escribe por WhatsApp o Instagram</h4>
+          <p>On7 responde de inmediato con un saludo y un menú de opciones claro.</p>
+        </div>
+      </div>
+      
+      <div class="flow-step">
+        <div class="flow-number">02</div>
+        <div class="flow-content">
+          <h4>On7 identifica qué busca</h4>
+          <p>Entiende el tipo de consulta y orienta según el perfil del cliente: individual, grupo o empresa.</p>
+        </div>
+      </div>
+      
+      <div class="flow-step">
+        <div class="flow-number">03</div>
+        <div class="flow-content">
+          <h4>Brinda información precisa</h4>
+          <p>Precios, disponibilidad, qué incluye, cómo llegar — siempre con datos actualizados de tu negocio.</p>
+        </div>
+      </div>
+      
+      <div class="flow-step">
+        <div class="flow-number">04</div>
+        <div class="flow-content">
+          <h4>Guía hacia la reserva o la acción</h4>
+          <p>Recolecta los datos necesarios y valida disponibilidad en tiempo real.</p>
+        </div>
+      </div>
+      
+      <div class="flow-step">
+        <div class="flow-number">05</div>
+        <div class="flow-content">
+          <h4>Confirma y notifica</h4>
+          <p>Envía confirmación, información de ingreso y registra todo automáticamente.</p>
+        </div>
+      </div>
+      
+      <div class="flow-step">
+        <div class="flow-number">06</div>
+        <div class="flow-content">
+          <h4>Seguimiento automático</h4>
+          <p>Recordatorio el día de la actividad. Re-contacto a quienes consultaron pero no convirtieron.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTEGRACIONES -->
   <section class="section">
-    <span class="label">Se conecta con lo que ya usas</span>
+    <span class="label">Se conecta con lo que ya usás</span>
     <h2>No reemplaza tus herramientas.<br>Se integra con ellas.</h2>
+    
+    <div class="sectors" style="margin-top: 2rem; margin-bottom: 2rem;">
+      <h4 style="font-family: var(--font-alt); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--text-muted); margin-bottom: 1rem;">Canales Activos</h4>
+      <div class="sector-tags">
+        <span class="sector-tag" style="color: var(--teal); border-color: var(--teal);">WhatsApp</span>
+        <span class="sector-tag" style="color: var(--teal); border-color: var(--teal);">Instagram</span>
+      </div>
+    </div>
+
     <div class="integrations">
       <div class="int-card">
         <h4>Google Calendar</h4>
@@ -581,53 +860,82 @@
       </div>
       <div class="int-card">
         <h4>Gmail</h4>
-        <p>Resumenes, alertas y notificaciones en tu correo.</p>
+        <p>Resúmenes, alertas y notificaciones en tu correo.</p>
       </div>
       <div class="int-card">
         <h4>Google Docs</h4>
-        <p>Consulta documentos internos para responder con precision.</p>
+        <p>Consulta de documentos internos para responder con precisión.</p>
+      </div>
+      <div class="int-card">
+        <h4>Chatwoot</h4>
+        <p>Panel de conversaciones centralizado para tu equipo.</p>
       </div>
       <div class="int-card">
         <h4>Otros sistemas</h4>
-        <p>Conexion con sistemas externos mediante APIs si tu negocio lo requiere.</p>
+        <p>Conexión con sistemas externos mediante APIs si tu negocio lo requiere.</p>
       </div>
     </div>
   </section>
 
-  <!-- BLOQUE 05 — PANEL DE CONTROL -->
+  <!-- PANEL DE CONTROL -->
   <section class="section">
     <span class="label">Vos siempre en control</span>
-    <h2>Automatizado no significa<br>que perdes el control.</h2>
-    <p class="body-text">On7 incluye un panel de administracion desde donde podes:</p>
+    <h2>Automatizado no significa<br>que perdés el control.</h2>
+    <p class="body-text">On7 incluye un panel de administración desde donde podés:</p>
     <div class="panel-features">
       <div class="panel-feature">Ver todas las conversaciones en tiempo real</div>
-      <div class="panel-feature">Tomar el control manual de cualquier chat cuando queras</div>
+      <div class="panel-feature">Tomar el control manual de cualquier chat cuando querés</div>
       <div class="panel-feature">Revisar el historial completo de cada cliente</div>
-      <div class="panel-feature">Ver que clientes estan pendientes de seguimiento</div>
+      <div class="panel-feature">Ver qué clientes están pendientes de seguimiento</div>
       <div class="panel-feature">Consultar reservas, pedidos y consultas generadas</div>
     </div>
     <div class="panel-resumen">
       <h4>Resumen diario por email</h4>
-      <p>Cada manana recibis un resumen con: conversaciones del dia anterior, reservas generadas, clientes que requieren seguimiento e incidencias detectadas.</p>
+      <p>Cada mañana recibís un resumen con: conversaciones del día anterior, reservas generadas, clientes que requieren seguimiento e incidencias detectadas.</p>
     </div>
-    <p class="highlight-phrase">On7 trabaja solo. Vos decidis cuando intervenir.</p>
+    <p class="highlight-phrase">On7 trabaja solo. Vos decidís cuándo intervenir.</p>
   </section>
 
-  <!-- BLOQUE 07 — PARA QUIEN ES -->
+  <!-- MÉTRICAS DE IMPACTO -->
+  <section class="section" id="impacto">
+    <span class="label">Impacto esperado</span>
+    <h2>Resultados para tu negocio.</h2>
+    
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-val">24/7</div>
+        <div class="metric-desc">Atención sin interrupciones</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-val">-80%</div>
+        <div class="metric-desc">Tiempo en consultas repetitivas</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-val">0</div>
+        <div class="metric-desc">Consultas sin respuesta</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-val">+Reservas</div>
+        <div class="metric-desc">Mayor conversión con seguimiento automático</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARA QUIÉN ES -->
   <section class="section">
     <span class="label">On7 es para vos si...</span>
     <div class="for-you-list">
-      <div class="for-you-item">Recibis consultas por WhatsApp y no siempre podes responder rapido</div>
+      <div class="for-you-item">Recibís consultas por WhatsApp o Instagram y no siempre podés responder rápido</div>
       <div class="for-you-item">Tu equipo pierde tiempo respondiendo siempre las mismas preguntas</div>
-      <div class="for-you-item">Perdes reservas o pedidos por no tener atencion fuera del horario comercial</div>
-      <div class="for-you-item">Queres saber que consultan tus clientes sin revisar chat por chat</div>
-      <div class="for-you-item">Necesitas escalar la atencion sin contratar mas personal</div>
+      <div class="for-you-item">Perdés reservas o pedidos por no tener atención fuera del horario comercial</div>
+      <div class="for-you-item">Querés saber qué consultan tus clientes sin revisar chat por chat</div>
+      <div class="for-you-item">Necesitás escalar la atención sin contratar más personal</div>
     </div>
     <div class="sectors">
       <h4>Sectores donde ya funciona</h4>
       <div class="sector-tags">
-        <span class="sector-tag">Gastronomia</span>
-        <span class="sector-tag">Hoteleria</span>
+        <span class="sector-tag">Gastronomía</span>
+        <span class="sector-tag">Hotelería</span>
         <span class="sector-tag">Comercios</span>
         <span class="sector-tag">Servicios profesionales</span>
         <span class="sector-tag">Salud</span>
@@ -637,56 +945,44 @@
     </div>
   </section>
 
-  <!-- BLOQUE 08 — PROCESO -->
+  <!-- PROCESO DE IMPLEMENTACIÓN -->
   <section class="section" id="proceso">
-    <span class="label">Como arrancamos</span>
-    <h2>De cero a operativo<br>en menos de 7 dias.</h2>
+    <span class="label">Cómo arrancamos</span>
+    <h2>Paso a paso para tener IA<br>en tu negocio — en 4 semanas.</h2>
+    <p class="body-text" style="margin-bottom: 3rem;">Un proceso claro y ordenado para que tu negocio empiece a atender mejor sin complicaciones.</p>
+    
     <div class="steps">
       <div class="step">
         <div class="step-number">01</div>
         <div class="step-content">
-          <h4>Reunion inicial</h4>
-          <p>Entendemos tu negocio, tu flujo de atencion y lo que necesitas resolver.</p>
+          <h4>Estudio del proceso comercial (5 días)</h4>
+          <p>Analizamos tu proceso comercial actual para entender exactamente qué debe hacer On7 y cómo replicar el trabajo de un humano de forma más rápida y eficiente.</p>
         </div>
       </div>
       <div class="step">
         <div class="step-number">02</div>
         <div class="step-content">
-          <h4>Carga de informacion</h4>
-          <p>Subimos toda la informacion de tu negocio al sistema. Productos, servicios, precios, horarios, FAQs.</p>
+          <h4>Desarrollo del MVP (10 días)</h4>
+          <p>Construimos la primera versión funcional del agente, las automatizaciones necesarias y el panel de gestión adaptado a tu negocio. Todo integrado con WhatsApp, Instagram o Facebook.</p>
         </div>
       </div>
       <div class="step">
         <div class="step-number">03</div>
         <div class="step-content">
-          <h4>Configuracion y conexion</h4>
-          <p>Conectamos On7 con tu WhatsApp y tus herramientas.</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-number">04</div>
-        <div class="step-content">
-          <h4>Pruebas</h4>
-          <p>Testeamos todos los flujos antes de salir al aire.</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-number">05</div>
-        <div class="step-content">
-          <h4>Online</h4>
-          <p>On7 empieza a atender. Vos empezas a revisar el panel.</p>
+          <h4>Puesta a punto (15 días)</h4>
+          <p>Testeamos y ajustamos el comportamiento del agente para que brinde una atención impecable. On7 sale al aire cuando está listo.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- CIERRE -->
-  <section class="cierre">
-    <h2>Tu negocio no deberia<br>depender de que estes disponible.</h2>
-    <p class="body-text">On7 es el primer producto de Lab7 — el laboratorio de WEB7 donde construimos herramientas que resuelven problemas reales de negocios reales. Contanos sobre tu negocio y en 24 horas te mostramos como quedaria On7 implementado para tu caso especifico.</p>
+  <section class="cierre" id="contacto">
+    <h2>Tu negocio no debería<br>depender de que estés disponible.</h2>
+    <p class="body-text">On7 es el primer producto de Lab7 — el laboratorio de WEB7 donde construimos herramientas que resuelven problemas reales de negocios reales. Contanos sobre tu negocio y te mostramos cómo quedaría On7 implementado para tu caso específico.</p>
     <div class="cta-group">
-      <a href="contacto.html?producto=on7" class="btn btn-primary">Quiero On7 <span>&rarr;</span></a>
-      <a href="contacto.html" class="btn btn-secondary">Hablar con WEB7 por WhatsApp <span>&rarr;</span></a>
+      <a href="contacto.html?producto=on7" class="btn btn-primary">Quiero On7 &rarr;</a>
+      <a href="https://wa.me/5493764000000" target="_blank" rel="noopener" class="btn btn-secondary">Hablar con WEB7 por WhatsApp &rarr;</a>
     </div>
   </section>
 
@@ -740,8 +1036,8 @@
       if (body) gsap.from(body, { opacity: 0, y: 20, duration: 0.5, scrollTrigger: { trigger: section, start: 'top 70%' } });
     });
 
-    // Cards stagger
-    document.querySelectorAll('.capabilities, .integrations').forEach(grid => {
+    // Grids stagger
+    document.querySelectorAll('.capabilities, .integrations, .comparison-grid, .metrics-grid').forEach(grid => {
       gsap.from(grid.children, {
         opacity: 0, y: 20, duration: 0.4, stagger: 0.08,
         scrollTrigger: { trigger: grid, start: 'top 80%' },
@@ -753,6 +1049,14 @@
       opacity: 0, x: -20, duration: 0.4, stagger: 0.1,
       scrollTrigger: { trigger: '.steps', start: 'top 80%' },
     });
+
+    // Flow steps stagger
+    if (document.querySelector('.flow-steps')) {
+      gsap.from('.flow-step', {
+        opacity: 0, x: -20, duration: 0.4, stagger: 0.1,
+        scrollTrigger: { trigger: '.flow-steps', start: 'top 80%' },
+      });
+    }
 
     // Problem lines + panel features + for-you items
     ['.problem-line', '.panel-feature', '.for-you-item'].forEach(sel => {

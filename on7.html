@@ -941,7 +941,7 @@
   <!-- QUE HACE ON7 -->
   <section id="como-funciona" style="position: relative; width: 100%; padding: 8rem 0; overflow: hidden;">
     <!-- WebGL Dither Background -->
-    <canvas id="dither-bg" style="position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: 0.45;"></canvas>
+    <canvas id="dither-bg" style="position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: 0.22;"></canvas>
     
     <div style="position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 0 4rem;">
       <span class="label">Cómo funciona</span>
@@ -1483,7 +1483,7 @@
             vec2 fineGridUv = fract(fineSt) - 0.5;
             float fineDist = length(fineGridUv);
             float fineDotMask = smoothstep(0.06, 0.03, fineDist);
-            float fineDotVal = fineDotMask * 0.16;
+            float fineDotVal = fineDotMask * 0.08;
             
             // 2. Coarse dithered square pixel blocks (seamlessly touching/merging)
             vec2 st = aspectUV * 50.0 - mouseOffset;
@@ -1514,7 +1514,7 @@
             
             // Slow breathing pulse for block opacity
             float breathing = 0.5 + 0.5 * sin(uTime * 0.8 + n * 6.28);
-            float blockOpacity = 0.26 + 0.14 * breathing;
+            float blockOpacity = 0.16 + 0.08 * breathing;
             
             // Premium Technical Grays Color Palette
             vec3 grayColor = vec3(0.42); // Gray pixels

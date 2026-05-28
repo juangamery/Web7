@@ -759,7 +759,7 @@
       <img src="assets/Group 1321314648.svg" alt="" loading="lazy">
     </div>
     <div class="pixel-deco pixel-deco--grid" style="bottom: 5%; right: 2%; width: 304px;" data-pixel-grid>
-      <svg width="304" height="93" viewBox="0 0 304 93" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg width="304" height="93" viewBox="0 0 304 93" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
         <path d="M303.021 61.6973L303.021 30.5215L273 30.5215L273 61.6973L303.021 61.6973Z" stroke="currentColor" stroke-miterlimit="10"/>
         <path d="M273 30.5212L273 0.5L241.824 0.499999L241.824 30.5212L273 30.5212Z" stroke="currentColor" stroke-miterlimit="10"/>
         <path d="M273 91.7185L273 61.6973L241.824 61.6973L241.824 91.7185L273 91.7185Z" stroke="currentColor" stroke-miterlimit="10"/>
@@ -793,18 +793,18 @@
       <img src="assets/Group 1321314649.svg" alt="" loading="lazy">
     </div>
     <div class="pixel-deco" style="bottom: 12%; right: 4%; width: 100px; opacity: 0;" data-pixel="section">
-      <img src="assets/Group 1321314652.svg" alt="" loading="lazy">
+      <img src="assets/Group 1321314654.svg" alt="" loading="lazy">
     </div>
     <div class="pixel-deco" style="top: 50%; right: 15%; width: 33px; opacity: 0;" data-pixel="section-dot">
-      <img src="assets/pixel-dot.svg" alt="" loading="lazy">
+      <img src="assets/Vector.svg" alt="" loading="lazy">
     </div>
 
     <span class="label">Por qué existe On7</span>
     <h2>Tener web no alcanza<br>si después no respondés.</h2>
     
-    <div class="reveal-text" data-reveal-text>La mayoría de los negocios pierde clientes no por falta de producto sino por falta de respuesta.</div>
-    <div class="reveal-text" data-reveal-text style="margin-top: 2rem;">Un cliente que no recibe respuesta en los primeros minutos busca en otro lado. Así de simple.</div>
-    <div class="reveal-text" data-reveal-text data-accent="On7 sí puede." style="margin-top: 2rem;">El problema no es la intención — es que no podés estar disponible todo el tiempo. On7 sí puede.</div>
+    <p class="reveal-text" data-reveal-text>La mayoría de los negocios pierde clientes no por falta de producto sino por falta de respuesta.</p>
+    <p class="reveal-text" data-reveal-text style="margin-top: 2rem;">Un cliente que no recibe respuesta en los primeros minutos busca en otro lado. Así de simple.</p>
+    <p class="reveal-text" data-reveal-text data-accent="On7 sí puede." style="margin-top: 2rem;">El problema no es la intención — es que no podés estar disponible todo el tiempo. On7 sí puede.</p>
   </section>
 
   <!-- EL COSTO REAL (PÉRDIDA / GANANCIA) -->
@@ -1075,7 +1075,7 @@
       <img src="assets/Group 1321314648.svg" alt="" loading="lazy">
     </div>
     <div class="pixel-deco pixel-deco--grid" style="bottom: 15%; right: 2%; width: 240px;" data-pixel-grid>
-      <svg width="240" height="93" viewBox="0 0 240 93" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg width="240" height="93" viewBox="0 0 240 93" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
         <path d="M239.021 61.6973L239.021 30.5215L209 30.5215L209 61.6973L239.021 61.6973Z" stroke="currentColor" stroke-miterlimit="10"/>
         <path d="M209 30.5212L209 0.5L177.824 0.499999L177.824 30.5212L209 30.5212Z" stroke="currentColor" stroke-miterlimit="10"/>
         <path d="M209 91.7185L209 61.6973L177.824 61.6973L177.824 91.7185L209 91.7185Z" stroke="currentColor" stroke-miterlimit="10"/>
@@ -1197,6 +1197,200 @@
       });
     }, { threshold: 0.3 });
     cierreObs.observe(document.querySelector('.cierre'));
+
+    // ═══════════════════════════════════════
+    // VISUAL EFFECTS: SCROLL REVEAL & PIXEL DECORATIONS
+    // ═══════════════════════════════════════
+    (function initVisualEffects() {
+      // Helper function to split text block (Sirnik style)
+      function prepareRevealBlock(block) {
+        const accentPhrase = block.dataset.accent || '';
+        const accentWords = accentPhrase.split(/\s+/).filter(w => w.length > 0);
+        const text = block.textContent;
+        block.innerHTML = '';
+        const words = text.split(/\s+/).filter(w => w.length > 0);
+        let accentIdx = 0;
+        words.forEach((word, i) => {
+          const span = document.createElement('span');
+          span.classList.add('r-word');
+          span.setAttribute('aria-hidden', 'true');
+          // Match words ignoring basic punctuation
+          if (accentIdx < accentWords.length && word.replace(/[.,!?]/g, '') === accentWords[accentIdx].replace(/[.,!?]/g, '')) {
+            span.classList.add('accent');
+            accentIdx++;
+          }
+          span.textContent = word;
+          block.appendChild(span);
+          if (i < words.length - 1) block.appendChild(document.createTextNode(' '));
+        });
+        return block.querySelectorAll('.r-word');
+      }
+
+      // Accessibility improvement: Set aria-label with full text for screen readers
+      document.querySelectorAll('[data-reveal-text]').forEach(block => {
+        block.setAttribute('aria-label', block.textContent.trim());
+      });
+
+      // Match media for devices with screen width >= 768px
+      const mm = gsap.matchMedia();
+
+      mm.add("(min-width: 768px)", () => {
+        // A) Scroll-Reveal Text (sirnik style) in .diferencial section
+        const difSection = document.querySelector('.diferencial');
+        if (difSection) {
+          const difBlocks = difSection.querySelectorAll('[data-reveal-text]');
+          const difBlockData = [];
+          difBlocks.forEach(block => {
+            const rWords = prepareRevealBlock(block);
+            difBlockData.push({ block, rWords });
+          });
+
+          const totalSegments = difBlockData.length;
+
+          ScrollTrigger.create({
+            trigger: difSection,
+            start: 'top 50%',
+            end: 'bottom 20%',
+            scrub: 0.5,
+            onUpdate: (self) => {
+              const p = self.progress;
+              difBlockData.forEach((data, bi) => {
+                const segStart = bi / totalSegments;
+                const segEnd = (bi + 1) / totalSegments;
+                const segProgress = Math.max(0, Math.min(1, (p - segStart) / (segEnd - segStart)));
+                data.rWords.forEach((w, wi) => {
+                  w.classList.toggle('active', segProgress > wi / data.rWords.length);
+                });
+              });
+            },
+          });
+        }
+
+        // B) Hero pixel elements: stagger reveal on load
+        const heroPixels = gsap.utils.toArray('.hero [data-pixel^="hero"]');
+        gsap.fromTo(heroPixels, 
+          { opacity: 0, scale: 0.8 },
+          { opacity: (i) => i === 0 ? 0.7 : 0.5, scale: 1, duration: 0.8, stagger: 0.2, ease: 'power2.out', delay: 0.8 }
+        );
+
+        // C) Hero grid outline: stroke draw on load
+        const heroGrid = document.querySelector('.hero [data-pixel-grid]');
+        if (heroGrid) {
+          const heroPaths = heroGrid.querySelectorAll('path');
+          heroPaths.forEach(p => {
+            const len = p.getTotalLength();
+            p.style.strokeDasharray = len;
+            p.style.strokeDashoffset = len;
+          });
+          gsap.to(heroGrid, { opacity: 0.4, duration: 0.5, delay: 0.6 });
+          gsap.to(heroPaths, {
+            strokeDashoffset: 0,
+            duration: 1.2,
+            stagger: 0.06,
+            ease: 'power2.inOut',
+            delay: 0.8
+          });
+        }
+
+        // D) Section pixel elements: fade-in on scroll entry
+        document.querySelectorAll('[data-pixel="section"]').forEach((el, i) => {
+          const parent = el.closest('section') || el.closest('.diferencial') || el.parentElement;
+          gsap.to(el, {
+            opacity: (i % 3 === 0) ? 0.7 : 0.5,
+            duration: 1,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: parent,
+              start: 'top 70%',
+              toggleActions: 'play none none reverse',
+            },
+          });
+        });
+
+        // E) Single pixel dots: fade-in + continuous pulse
+        document.querySelectorAll('[data-pixel="section-dot"]').forEach(el => {
+          const parent = el.closest('section') || el.closest('.diferencial') || el.parentElement;
+          gsap.to(el, {
+            opacity: 0.6,
+            duration: 0.6,
+            scrollTrigger: {
+              trigger: parent,
+              start: 'top 70%',
+              toggleActions: 'play none none reverse',
+            },
+          });
+
+          // Continuous pulse
+          gsap.to(el, {
+            scale: 1.4,
+            opacity: 0.3,
+            duration: 1.5,
+            repeat: -1,
+            yoyo: true,
+            ease: 'sine.inOut',
+            delay: Math.random() * 2,
+          });
+        });
+
+        // F) Parallax float: different scroll speeds per element
+        document.querySelectorAll('.pixel-deco:not(.pixel-deco--grid)').forEach((el, i) => {
+          const speed = ((i % 4) + 1) * 30;
+          const direction = i % 2 === 0 ? -1 : 1;
+          const parent = el.closest('section') || el.closest('.diferencial') || el.parentElement;
+
+          gsap.to(el, {
+            y: `${speed * direction}`,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: parent,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: 1.5,
+            },
+          });
+        });
+
+        // G) Grid outlines in cierre/footer: stroke draw animation
+        document.querySelectorAll('.cierre [data-pixel-grid], footer [data-pixel-grid]').forEach(el => {
+          const paths = el.querySelectorAll('path');
+          paths.forEach(p => {
+            const len = p.getTotalLength();
+            p.style.strokeDasharray = len;
+            p.style.strokeDashoffset = len;
+          });
+
+          const parent = el.closest('.cierre') || el.closest('footer');
+          const gridTl = gsap.timeline({
+            scrollTrigger: {
+              trigger: parent,
+              start: 'top 60%',
+              toggleActions: 'play none none reverse',
+            },
+          });
+
+          gridTl
+            .to(el, { opacity: 0.6, duration: 0.4 })
+            .to(paths, {
+              strokeDashoffset: 0,
+              duration: 1.2,
+              stagger: 0.05,
+              ease: 'power2.inOut',
+            }, '-=0.2');
+        });
+
+        // H) Subtle vertical float on hero pixel decos (no rotation)
+        document.querySelectorAll('.hero [data-pixel^="hero"]').forEach((el, i) => {
+          gsap.to(el, {
+            y: -15,
+            duration: 5 + i,
+            repeat: -1,
+            yoyo: true,
+            ease: 'sine.inOut',
+            delay: i * 0.5,
+          });
+        });
+      });
+    })();
 
     // ═══════════════════════════════════════
     // PAGE TRANSITION — GRID PIXELATE WIPE

@@ -1346,30 +1346,20 @@
         const difSection = document.querySelector('.diferencial');
         if (difSection) {
           const difBlocks = difSection.querySelectorAll('[data-reveal-text]');
-          const difBlockData = [];
           difBlocks.forEach(block => {
             const rWords = prepareRevealBlock(block);
-            difBlockData.push({ block, rWords });
-          });
-
-          const totalSegments = difBlockData.length;
-
-          ScrollTrigger.create({
-            trigger: difSection,
-            start: 'top 50%',
-            end: 'bottom 20%',
-            scrub: 0.5,
-            onUpdate: (self) => {
-              const p = self.progress;
-              difBlockData.forEach((data, bi) => {
-                const segStart = bi / totalSegments;
-                const segEnd = (bi + 1) / totalSegments;
-                const segProgress = Math.max(0, Math.min(1, (p - segStart) / (segEnd - segStart)));
-                data.rWords.forEach((w, wi) => {
-                  w.classList.toggle('active', segProgress > wi / data.rWords.length);
+            ScrollTrigger.create({
+              trigger: block,
+              start: 'top 75%',
+              end: 'bottom 45%',
+              scrub: 0.5,
+              onUpdate: (self) => {
+                const p = self.progress;
+                rWords.forEach((w, wi) => {
+                  w.classList.toggle('active', p > wi / rWords.length);
                 });
-              });
-            },
+              },
+            });
           });
         }
 

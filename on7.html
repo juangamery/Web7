@@ -1463,14 +1463,30 @@
             return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453123);
           }
 
+          float noise(vec2 p) {
+            vec2 i = floor(p);
+            vec2 f = fract(p);
+            f = f*f*(3.0-2.0*f);
+            return mix(mix(hash(i + vec2(0.0,0.0)), hash(i + vec2(1.0,0.0)), f.x),
+                       mix(hash(i + vec2(0.0,1.0)), hash(i + vec2(1.0,1.0)), f.x), f.y);
+          }
+
           void main() {
             vec2 uv = gl_FragCoord.xy / uResolution.xy;
             vec2 aspectUV = gl_FragCoord.xy / min(uResolution.x, uResolution.y);
             
             // Subtle mouse drift
-            vec2 mouseOffset = (uMouse - 0.5) * 0.20;
-            vec2 st = aspectUV * 40.0 - mouseOffset;
+            vec2 mouseOffset = (uMouse - 0.5) * 0.25;
             
+            // 1. Fine background dot grid
+            vec2 fineSt = aspectUV * 120.0 - mouseOffset * 0.5;
+            vec2 fineGridUv = fract(fineSt) - 0.5;
+            float fineDist = length(fineGridUv);
+            float fineDotMask = smoothstep(0.08, 0.04, fineDist);
+            float fineDotVal = fineDotMask * 0.15;
+            
+            // 2. Coarse dithered square pixel blocks
+            vec2 st = aspectUV * 55.0 - mouseOffset;
             vec2 gridId = floor(st);
             vec2 gridUv = fract(st) - 0.5;
             
@@ -1479,27 +1495,35 @@
             
             float n = hash(gridId);
             
-            // Slow breathing pulse (independent offsets per pixel block)
-            float breathing = 0.3 + 0.7 * sin(uTime * 1.2 + n * 6.28);
-            
-            // Make pixels larger (takes up more space inside each grid cell)
-            float radius = 0.15 * breathing;
-            
-            // Hard edge step to make a perfectly sharp square pixel block
-            float dotMask = step(dist, radius);
-            
-            // Denser grid: keep 75% of pixel blocks (hide only 25%)
-            if (n < 0.25) {
-              dotMask = 0.0;
-            }
+            // Organic density flow that changes over time
+            float timeScale = uTime * 0.15;
+            float density = noise(gridId * 0.08 + vec2(timeScale, -timeScale * 0.8));
+            float v = smoothstep(0.2, 0.8, density) * 0.65;
             
             // Soft depth fade towards the edges
             float centerDist = length(uv - 0.5);
-            float depthFade = smoothstep(1.0, 0.2, centerDist);
+            float depthFade = smoothstep(0.9, 0.3, centerDist);
+            v *= depthFade;
             
-            // Teal accent color (#34D399)
-            vec3 dotColor = vec3(0.2, 0.83, 0.6);
-            gl_FragColor = vec4(dotColor, dotMask * depthFade * 0.55);
+            // Slow breathing pulse
+            float breathing = 0.85 + 0.15 * sin(uTime * 0.8 + n * 6.28);
+            float radius = 0.38 * breathing;
+            
+            float blockMask = step(dist, radius);
+            if (n > v) {
+              blockMask = 0.0;
+            }
+            
+            // Premium Technical Grays Color Palette
+            vec3 grayColor = vec3(0.42); // Gray pixels
+            vec3 gridColor = vec3(0.28); // Faint background dots
+            
+            vec4 finalColor = vec4(gridColor, fineDotVal);
+            if (blockMask > 0.0) {
+              finalColor = vec4(grayColor, blockMask * 0.38);
+            }
+            
+            gl_FragColor = finalColor;
           }
         `;
 

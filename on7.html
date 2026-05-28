@@ -691,7 +691,7 @@
     .pixel-deco {
       position: absolute;
       pointer-events: none;
-      z-index: 2;
+      z-index: 1;
       will-change: transform, opacity;
     }
     .pixel-deco img {
@@ -715,6 +715,32 @@
     }
     @media (max-width: 768px) {
       .pixel-deco { display: none !important; }
+    }
+
+    /* Pixel trail interactive background */
+    .pixel-trail-container {
+      position: absolute; inset: 0; z-index: 0;
+      pointer-events: auto;
+    }
+    .pixel-trail-container.gooey {
+      filter: url(#gooey-pixel-trail);
+    }
+    .pixel-trail-grid {
+      display: flex; flex-wrap: wrap;
+      width: 100%; height: 100%;
+    }
+    .px-dot {
+      flex-shrink: 0;
+      opacity: 0;
+      border-radius: 0;
+    }
+    .cierre > *:not(.pixel-trail-container):not(.pixel-deco):not(svg),
+    .hero > *:not(.pixel-trail-container):not(.pixel-deco):not(.pixel-deco--grid) {
+      position: relative; z-index: 2;
+    }
+    .hero, .cierre {
+      position: relative;
+      overflow: hidden;
     }
   </style>
 </head>
@@ -751,11 +777,25 @@
 
   <!-- HERO -->
   <section class="hero" id="hero" style="position: relative;">
+    <!-- Gooey SVG filter -->
+    <svg style="position:absolute;width:0;height:0;pointer-events:none;">
+      <defs>
+        <filter id="gooey-pixel-trail">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="0.5" result="blur" />
+          <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 100 -50" result="goo" />
+          <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+        </filter>
+      </defs>
+    </svg>
+
+    <!-- Pixel trail interactive background -->
+    <div class="pixel-trail-container gooey" id="heroPixelTrail"></div>
+
     <!-- Pixel decorations -->
-    <div class="pixel-deco" style="top: 30%; right: 5%; width: 130px; opacity: 0;" data-pixel="hero-mosaic">
+    <div class="pixel-deco" style="top: 12%; right: 1%; width: 110px; opacity: 0;" data-pixel="hero-mosaic">
       <img src="assets/Group 1321314662.svg" alt="" loading="lazy">
     </div>
-    <div class="pixel-deco" style="bottom: 20%; right: 8%; width: 66px; opacity: 0;" data-pixel="hero-sm">
+    <div class="pixel-deco" style="bottom: 25%; right: 2%; width: 66px; opacity: 0;" data-pixel="hero-sm">
       <img src="assets/Group 1321314648.svg" alt="" loading="lazy">
     </div>
     <div class="pixel-deco pixel-deco--grid" style="bottom: 5%; right: 2%; width: 304px;" data-pixel-grid>
@@ -1071,6 +1111,9 @@
 
   <!-- CIERRE -->
   <section class="cierre" id="contacto" style="position: relative;">
+    <!-- Pixel trail interactive background -->
+    <div class="pixel-trail-container gooey" id="pixelTrail"></div>
+
     <div class="pixel-deco" style="top: 10%; left: 5%; width: 66px; opacity: 0;" data-pixel="section">
       <img src="assets/Group 1321314648.svg" alt="" loading="lazy">
     </div>
@@ -1202,6 +1245,67 @@
     // VISUAL EFFECTS: SCROLL REVEAL & PIXEL DECORATIONS
     // ═══════════════════════════════════════
     (function initVisualEffects() {
+      // Pixel trail hover drawing logic
+      const PIXEL_SIZE = window.innerWidth < 768 ? 24 : 32;
+      const DELAY = 500;
+      const ACCENT = '#34D399'; // ON7 Accent Color (Teal)
+
+      function initPixelTrail(container) {
+        if (!container) return;
+        const rect = container.getBoundingClientRect();
+        const cols = Math.ceil(rect.width / PIXEL_SIZE);
+        const rows = Math.ceil(rect.height / PIXEL_SIZE);
+
+        container.style.display = 'flex';
+        container.style.flexWrap = 'wrap';
+
+        const grid = document.createDocumentFragment();
+        const pixels = [];
+        for (let r = 0; r < rows; r++) {
+          for (let c = 0; c < cols; c++) {
+            const px = document.createElement('div');
+            px.className = 'px-dot';
+            px.style.cssText = `width:${PIXEL_SIZE}px;height:${PIXEL_SIZE}px;background:${ACCENT};opacity:0;border-radius:0;`;
+            grid.appendChild(px);
+            pixels.push(px);
+          }
+        }
+        container.appendChild(grid);
+
+        const timeouts = new Map();
+        function lightPixel(idx) {
+          const px = pixels[idx];
+          if (!px) return;
+          px.style.opacity = '1';
+          const existing = timeouts.get(idx);
+          if (existing) clearTimeout(existing);
+          const t = setTimeout(() => {
+            px.style.opacity = '0';
+            timeouts.delete(idx);
+          }, DELAY);
+          timeouts.set(idx, t);
+        }
+
+        container.addEventListener('mousemove', function(e) {
+          const r = container.getBoundingClientRect();
+          const col = Math.floor((e.clientX - r.left) / PIXEL_SIZE);
+          const row = Math.floor((e.clientY - r.top) / PIXEL_SIZE);
+          if (col >= 0 && col < cols && row >= 0 && row < rows) {
+            lightPixel(row * cols + col);
+          }
+        });
+
+        container.addEventListener('touchmove', function(e) {
+          const touch = e.touches[0];
+          const r = container.getBoundingClientRect();
+          const col = Math.floor((touch.clientX - r.left) / PIXEL_SIZE);
+          const row = Math.floor((touch.clientY - r.top) / PIXEL_SIZE);
+          if (col >= 0 && col < cols && row >= 0 && row < rows) {
+            lightPixel(row * cols + col);
+          }
+        }, { passive: true });
+      }
+
       // Helper function to split text block (Sirnik style)
       function prepareRevealBlock(block) {
         const accentPhrase = block.dataset.accent || '';
@@ -1235,6 +1339,9 @@
       const mm = gsap.matchMedia();
 
       mm.add("(min-width: 768px)", () => {
+        initPixelTrail(document.getElementById('heroPixelTrail'));
+        initPixelTrail(document.getElementById('pixelTrail'));
+
         // A) Scroll-Reveal Text (sirnik style) in .diferencial section
         const difSection = document.querySelector('.diferencial');
         if (difSection) {

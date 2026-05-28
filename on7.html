@@ -718,14 +718,16 @@
     }
 
     /* Hero Title clip-path reveal */
-    .reveal-container {
-      overflow: hidden;
-      display: block;
-    }
-    .reveal-container span {
-      display: inline-block;
-      transform: translateY(100%);
-      will-change: transform;
+    @media (min-width: 768px) {
+      .reveal-container {
+        overflow: hidden;
+        display: block;
+      }
+      .reveal-container span {
+        display: inline-block;
+        transform: translateY(100%);
+        will-change: transform;
+      }
     }
 
     /* Step-by-step progress line */
@@ -873,8 +875,8 @@
 
     <span class="label">On7 &middot; Atención inteligente</span>
     <h1>
-      <div class="reveal-container"><span>Tu negocio responde solo.</span></div>
-      <div class="reveal-container"><span>Incluso a las 3 de la mañana.</span></div>
+      <span class="reveal-container"><span>Tu negocio responde solo.</span></span>
+      <span class="reveal-container"><span>Incluso a las 3 de la mañana.</span></span>
     </h1>
     <p class="subtext">Un agente conectado a tus herramientas. Atiende consultas, guía clientes y captura reservas sin que tengas que estar presente.</p>
     <div class="cta-group">

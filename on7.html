@@ -1468,33 +1468,38 @@
             vec2 aspectUV = gl_FragCoord.xy / min(uResolution.x, uResolution.y);
             
             // Subtle mouse drift
-            vec2 mouseOffset = (uMouse - 0.5) * 0.15;
-            vec2 st = aspectUV * 35.0 - mouseOffset;
+            vec2 mouseOffset = (uMouse - 0.5) * 0.20;
+            vec2 st = aspectUV * 40.0 - mouseOffset;
             
             vec2 gridId = floor(st);
             vec2 gridUv = fract(st) - 0.5;
             
-            float dist = length(gridUv);
+            // Retro square pixel shape (Chebyshev distance)
+            float dist = max(abs(gridUv.x), abs(gridUv.y));
+            
             float n = hash(gridId);
             
-            // Slow breathing pulse
-            float breathing = 0.4 + 0.6 * sin(uTime * 1.0 + n * 6.28);
-            float radius = 0.04 * breathing;
+            // Slow breathing pulse (independent offsets per pixel block)
+            float breathing = 0.3 + 0.7 * sin(uTime * 1.2 + n * 6.28);
             
-            // Soft depth fade
-            float centerDist = length(uv - 0.5);
-            float depthFade = smoothstep(0.9, 0.1, centerDist);
+            // Make pixels larger (takes up more space inside each grid cell)
+            float radius = 0.15 * breathing;
             
-            float dotMask = smoothstep(radius, radius - 0.015, dist);
+            // Hard edge step to make a perfectly sharp square pixel block
+            float dotMask = step(dist, radius);
             
-            // Sparse spacing: keep ~30% of dots
-            if (n < 0.7) {
+            // Denser grid: keep 75% of pixel blocks (hide only 25%)
+            if (n < 0.25) {
               dotMask = 0.0;
             }
             
+            // Soft depth fade towards the edges
+            float centerDist = length(uv - 0.5);
+            float depthFade = smoothstep(1.0, 0.2, centerDist);
+            
             // Teal accent color (#34D399)
             vec3 dotColor = vec3(0.2, 0.83, 0.6);
-            gl_FragColor = vec4(dotColor, dotMask * depthFade * 0.6);
+            gl_FragColor = vec4(dotColor, dotMask * depthFade * 0.55);
           }
         `;
 

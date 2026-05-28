@@ -717,6 +717,60 @@
       .pixel-deco { display: none !important; }
     }
 
+    /* Hero Title clip-path reveal */
+    .reveal-container {
+      overflow: hidden;
+      display: block;
+    }
+    .reveal-container span {
+      display: inline-block;
+      transform: translateY(100%);
+      will-change: transform;
+    }
+
+    /* Step-by-step progress line */
+    .step-connector-line {
+      position: absolute;
+      left: 28px; top: 28px; bottom: 28px; width: 2px;
+      background: rgba(255, 255, 255, 0.05);
+      z-index: 1;
+    }
+    .step-connector-line-progress {
+      position: absolute;
+      left: 28px; top: 28px; bottom: 28px; width: 2px;
+      background: var(--accent);
+      transform-origin: top;
+      transform: scaleY(0);
+      z-index: 1;
+      will-change: transform;
+    }
+    @media (max-width: 768px) {
+      .step-connector-line, .step-connector-line-progress {
+        left: 28px;
+      }
+    }
+
+    /* 3D tilt cards styling */
+    .tilt-card {
+      transform-style: preserve-3d;
+      perspective: 1000px;
+      will-change: transform;
+    }
+    .tilt-card-inner {
+      transform: translateZ(20px);
+      backface-visibility: hidden;
+    }
+    .pixel-icon {
+      color: var(--teal);
+      display: block;
+      width: 24px;
+      height: 24px;
+      transition: transform 0.3s;
+    }
+    .tilt-card:hover .pixel-icon {
+      transform: scale(1.15) translateZ(10px);
+    }
+
     /* Pixel trail interactive background */
     .pixel-trail-container {
       position: absolute; inset: 0; z-index: 0;
@@ -818,7 +872,10 @@
     </div>
 
     <span class="label">On7 &middot; Atención inteligente</span>
-    <h1>Tu negocio responde solo.<br>Incluso a las 3 de la mañana.</h1>
+    <h1>
+      <div class="reveal-container"><span>Tu negocio responde solo.</span></div>
+      <div class="reveal-container"><span>Incluso a las 3 de la mañana.</span></div>
+    </h1>
     <p class="subtext">Un agente conectado a tus herramientas. Atiende consultas, guía clientes y captura reservas sin que tengas que estar presente.</p>
     <div class="cta-group">
       <a href="contacto.html?producto=on7" class="btn btn-primary">Quiero On7 para mi negocio &rarr;</a>
@@ -853,26 +910,30 @@
     <h2>Cada día sin un agente<br>tiene un costo real.</h2>
     
     <div class="comparison-grid">
-      <div class="comp-card loss">
-        <h3>Sin On7 — lo que se pierde hoy</h3>
-        <ul>
-          <li><strong>Consultas perdidas de noche y los fines de semana:</strong> El cliente pregunta, no recibe respuesta y reserva en otro lugar.</li>
-          <li><strong>Tiempo operativo drenado:</strong> Responder siempre las mismas preguntas consume horas que podrían dedicarse a atender mejor.</li>
-          <li><strong>Reservas sin seguimiento:</strong> Un interesado que no confirmó hoy probablemente no va a confirmar mañana sin un empujón.</li>
-          <li><strong>Agenda desorganizada:</strong> Sin validación automática de horarios, los solapamientos y errores son inevitables.</li>
-          <li><strong>Dependencia de una sola persona:</strong> Si quien responde está ocupado o no está, el negocio queda mudo.</li>
-        </ul>
+      <div class="comp-card loss tilt-card">
+        <div class="tilt-card-inner">
+          <h3>Sin On7 — lo que se pierde hoy</h3>
+          <ul>
+            <li><strong>Consultas perdidas de noche y los fines de semana:</strong> El cliente pregunta, no recibe respuesta y reserva en otro lugar.</li>
+            <li><strong>Tiempo operativo drenado:</strong> Responder siempre las mismas preguntas consume horas que podrían dedicarse a atender mejor.</li>
+            <li><strong>Reservas sin seguimiento:</strong> Un interesado que no confirmó hoy probablemente no va a confirmar mañana sin un empujón.</li>
+            <li><strong>Agenda desorganizada:</strong> Sin validación automática de horarios, los solapamientos y errores son inevitables.</li>
+            <li><strong>Dependencia de una sola persona:</strong> Si quien responde está ocupado o no está, el negocio queda mudo.</li>
+          </ul>
+        </div>
       </div>
       
-      <div class="comp-card gain">
-        <h3>Con On7 activo</h3>
-        <ul>
-          <li>Ninguna consulta queda sin respuesta, a cualquier hora.</li>
-          <li>El equipo se libera de tareas repetitivas y puede enfocarse en la atención de calidad.</li>
-          <li>Las reservas se capturan, registran y confirman con datos completos y sin errores.</li>
-          <li>Los clientes interesados reciben seguimiento automático hasta convertir.</li>
-          <li>La agenda se gestiona sola, con reglas de disponibilidad y tiempos entre actividades.</li>
-        </ul>
+      <div class="comp-card gain tilt-card">
+        <div class="tilt-card-inner">
+          <h3>Con On7 activo</h3>
+          <ul>
+            <li>Ninguna consulta queda sin respuesta, a cualquier hora.</li>
+            <li>El equipo se libera de tareas repetitivas y puede enfocarse en la atención de calidad.</li>
+            <li>Las reservas se capturan, registran y confirman con datos completos y sin errores.</li>
+            <li>Los clientes interesados reciben seguimiento automático hasta convertir.</li>
+            <li>La agenda se gestiona sola, con reglas de disponibilidad y tiempos entre actividades.</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
@@ -884,29 +945,71 @@
     <p class="body-text" style="margin-bottom: 3rem;">Antes de salir al aire, cargamos toda la información de tu negocio: productos, servicios, precios, horarios, preguntas frecuentes, condiciones. Eso es lo que On7 usa para responder. No respuestas automáticas genéricas — respuestas con la información real de tu negocio.</p>
 
     <div class="capabilities" id="que-incluye">
-      <div class="cap-card">
-        <h4>Responde 24/7</h4>
-        <p>Atiende consultas frecuentes en WhatsApp e Instagram en cualquier horario, sin demoras.</p>
+      <div class="cap-card tilt-card">
+        <div class="tilt-card-inner">
+          <div class="card-icon" style="margin-bottom: 1rem;">
+            <svg class="pixel-icon" viewBox="0 0 24 24" fill="currentColor" width="24" height="24" aria-hidden="true" focusable="false">
+              <path d="M9 2h6v2H9V2zM5 5h14v2H5V5zm-2 4h18v6H3V9zm2 8h14v2H5v-2zm4 2h6v2H9v-2zm2-9h2v4h4v2h-6V10z"/>
+            </svg>
+          </div>
+          <h4>Responde 24/7</h4>
+          <p>Atiende consultas frecuentes en WhatsApp e Instagram en cualquier horario, sin demoras.</p>
+        </div>
       </div>
-      <div class="cap-card">
-        <h4>Captura reservas</h4>
-        <p>Recolecta datos del cliente, verifica disponibilidad y registra la pre-reserva automáticamente.</p>
+      <div class="cap-card tilt-card">
+        <div class="tilt-card-inner">
+          <div class="card-icon" style="margin-bottom: 1rem;">
+            <svg class="pixel-icon" viewBox="0 0 24 24" fill="currentColor" width="24" height="24" aria-hidden="true" focusable="false">
+              <path d="M5 2h2v2H5V2zm12 0h2v2h-2V2zM3 5h18v2H3V5zm0 4h18v11H3V9zm4 4h2v2H7v-2zm6 0h2v2h-2v-2zm-6 4h2v2H7v-2zm6 0h2v2h-2v-2z"/>
+            </svg>
+          </div>
+          <h4>Captura reservas</h4>
+          <p>Recolecta datos del cliente, verifica disponibilidad y registra la pre-reserva automáticamente.</p>
+        </div>
       </div>
-      <div class="cap-card">
-        <h4>Envía recordatorios</h4>
-        <p>Confirma reservas y envía recordatorios el día de la actividad. Sin intervención manual.</p>
+      <div class="cap-card tilt-card">
+        <div class="tilt-card-inner">
+          <div class="card-icon" style="margin-bottom: 1rem;">
+            <svg class="pixel-icon" viewBox="0 0 24 24" fill="currentColor" width="24" height="24" aria-hidden="true" focusable="false">
+              <path d="M11 2h2v2h-2V2zm-4 4h10v2H7V6zm-2 4h14v7H5v-7zm-2 8h18v2H3v-2zm8 4h2v2h-2v-2z"/>
+            </svg>
+          </div>
+          <h4>Envía recordatorios</h4>
+          <p>Confirma reservas y envía recordatorios el día de la actividad. Sin intervención manual.</p>
+        </div>
       </div>
-      <div class="cap-card">
-        <h4>Deriva correctamente</h4>
-        <p>Identifica consultas complejas y las pasa a un humano con todo el contexto de la conversación.</p>
+      <div class="cap-card tilt-card">
+        <div class="tilt-card-inner">
+          <div class="card-icon" style="margin-bottom: 1rem;">
+            <svg class="pixel-icon" viewBox="0 0 24 24" fill="currentColor" width="24" height="24" aria-hidden="true" focusable="false">
+              <path d="M15 2h7v7h-2V5.4L13.4 12l6.6 6.6V15h2v7h-7v-2h3.6L12 13.4 5.4 20H2v-2h2.6l6-6-6-6H2V4h3.4L12 10.6 18.6 4H15V2z"/>
+            </svg>
+          </div>
+          <h4>Deriva correctamente</h4>
+          <p>Identifica consultas complejas y las pasa a un humano con todo el contexto de la conversación.</p>
+        </div>
       </div>
-      <div class="cap-card">
-        <h4>Recomienda y sugiere</h4>
-        <p>Si el cliente no sabe qué necesita, On7 lo guía según el contexto de la conversación.</p>
+      <div class="cap-card tilt-card">
+        <div class="tilt-card-inner">
+          <div class="card-icon" style="margin-bottom: 1rem;">
+            <svg class="pixel-icon" viewBox="0 0 24 24" fill="currentColor" width="24" height="24" aria-hidden="true" focusable="false">
+              <path d="M9 2h6v2H9V2zm-3 4h12v2H6V6zm-2 4h16v4H4v-4zm2 6h12v2H6v-2zm3 2h6v2H9v-2zm1 2h4v2h-4v-2z"/>
+            </svg>
+          </div>
+          <h4>Recomienda y sugiere</h4>
+          <p>Si el cliente no sabe qué necesita, On7 lo guía según el contexto de la conversación.</p>
+        </div>
       </div>
-      <div class="cap-card">
-        <h4>Registra todo</h4>
-        <p>Cada conversación queda guardada. Datos de contacto, resumen, resultado de la interacción.</p>
+      <div class="cap-card tilt-card">
+        <div class="tilt-card-inner">
+          <div class="card-icon" style="margin-bottom: 1rem;">
+            <svg class="pixel-icon" viewBox="0 0 24 24" fill="currentColor" width="24" height="24" aria-hidden="true" focusable="false">
+              <path d="M3 3h18v5H3V3zm0 7h18v5H3v-5zm0 7h18v4H3v-4zM6 5h2v2H6V5zm0 7h2v2H6v-2zm0 7h2v2H6v-2z"/>
+            </svg>
+          </div>
+          <h4>Registra todo</h4>
+          <p>Cada conversación queda guardada. Datos de contacto, resumen, resultado de la interacción.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -917,9 +1020,11 @@
     <h2>Así vive la experiencia<br>tu cliente.</h2>
     
     <div class="flow-steps">
-      <div class="flow-line"></div>
+      <!-- Timeline connection lines -->
+      <div class="step-connector-line"></div>
+      <div class="step-connector-line-progress"></div>
       
-      <div class="flow-step">
+      <div class="flow-step" data-step-idx="0">
         <div class="flow-number">01</div>
         <div class="flow-content">
           <h4>El cliente escribe por WhatsApp o Instagram</h4>
@@ -927,7 +1032,7 @@
         </div>
       </div>
       
-      <div class="flow-step">
+      <div class="flow-step" data-step-idx="1">
         <div class="flow-number">02</div>
         <div class="flow-content">
           <h4>On7 identifica qué busca</h4>
@@ -935,7 +1040,7 @@
         </div>
       </div>
       
-      <div class="flow-step">
+      <div class="flow-step" data-step-idx="2">
         <div class="flow-number">03</div>
         <div class="flow-content">
           <h4>Brinda información precisa</h4>
@@ -943,7 +1048,7 @@
         </div>
       </div>
       
-      <div class="flow-step">
+      <div class="flow-step" data-step-idx="3">
         <div class="flow-number">04</div>
         <div class="flow-content">
           <h4>Guía hacia la reserva o la acción</h4>
@@ -951,7 +1056,7 @@
         </div>
       </div>
       
-      <div class="flow-step">
+      <div class="flow-step" data-step-idx="4">
         <div class="flow-number">05</div>
         <div class="flow-content">
           <h4>Confirma y notifica</h4>
@@ -959,7 +1064,7 @@
         </div>
       </div>
       
-      <div class="flow-step">
+      <div class="flow-step" data-step-idx="5">
         <div class="flow-number">06</div>
         <div class="flow-content">
           <h4>Seguimiento automático</h4>
@@ -1036,19 +1141,19 @@
     
     <div class="metrics-grid">
       <div class="metric-card">
-        <div class="metric-val">24/7</div>
+        <div class="metric-val" data-target="24" data-suffix="/7">0/7</div>
         <div class="metric-desc">Atención sin interrupciones</div>
       </div>
       <div class="metric-card">
-        <div class="metric-val">-80%</div>
+        <div class="metric-val" data-target="80" data-prefix="-" data-suffix="%">-0%</div>
         <div class="metric-desc">Tiempo en consultas repetitivas</div>
       </div>
       <div class="metric-card">
-        <div class="metric-val">0</div>
+        <div class="metric-val" data-target="0">0</div>
         <div class="metric-desc">Consultas sin respuesta</div>
       </div>
       <div class="metric-card">
-        <div class="metric-val">+Reservas</div>
+        <div class="metric-val" data-target="100" data-prefix="+" data-suffix="%">+0%</div>
         <div class="metric-desc">Mayor conversión con seguimiento automático</div>
       </div>
     </div>
@@ -1363,14 +1468,23 @@
           });
         }
 
-        // B) Hero pixel elements: stagger reveal on load
+        // B) Hero Title clip-path reveal on load
+        gsap.to('.reveal-container span', {
+          translateY: '0%',
+          duration: 1.2,
+          stagger: 0.15,
+          ease: 'power4.out',
+          delay: 0.4
+        });
+
+        // C) Hero pixel elements: stagger reveal on load
         const heroPixels = gsap.utils.toArray('.hero [data-pixel^="hero"]');
         gsap.fromTo(heroPixels, 
           { opacity: 0, scale: 0.8 },
           { opacity: (i) => i === 0 ? 0.7 : 0.5, scale: 1, duration: 0.8, stagger: 0.2, ease: 'power2.out', delay: 0.8 }
         );
 
-        // C) Hero grid outline: stroke draw on load
+        // D) Hero grid outline: stroke draw on load
         const heroGrid = document.querySelector('.hero [data-pixel-grid]');
         if (heroGrid) {
           const heroPaths = heroGrid.querySelectorAll('path');
@@ -1389,7 +1503,7 @@
           });
         }
 
-        // D) Section pixel elements: fade-in on scroll entry
+        // E) Section pixel elements: fade-in on scroll entry
         document.querySelectorAll('[data-pixel="section"]').forEach((el, i) => {
           const parent = el.closest('section') || el.closest('.diferencial') || el.parentElement;
           gsap.to(el, {
@@ -1404,7 +1518,7 @@
           });
         });
 
-        // E) Single pixel dots: fade-in + continuous pulse
+        // F) Single pixel dots: fade-in + continuous pulse
         document.querySelectorAll('[data-pixel="section-dot"]').forEach(el => {
           const parent = el.closest('section') || el.closest('.diferencial') || el.parentElement;
           gsap.to(el, {
@@ -1429,7 +1543,7 @@
           });
         });
 
-        // F) Parallax float: different scroll speeds per element
+        // G) Parallax float: different scroll speeds per element
         document.querySelectorAll('.pixel-deco:not(.pixel-deco--grid)').forEach((el, i) => {
           const speed = ((i % 4) + 1) * 30;
           const direction = i % 2 === 0 ? -1 : 1;
@@ -1447,7 +1561,7 @@
           });
         });
 
-        // G) Grid outlines in cierre/footer: stroke draw animation
+        // H) Grid outlines in cierre/footer: stroke draw animation
         document.querySelectorAll('.cierre [data-pixel-grid], footer [data-pixel-grid]').forEach(el => {
           const paths = el.querySelectorAll('path');
           paths.forEach(p => {
@@ -1475,7 +1589,7 @@
             }, '-=0.2');
         });
 
-        // H) Subtle vertical float on hero pixel decos (no rotation)
+        // I) Subtle vertical float on hero pixel decos (no rotation)
         document.querySelectorAll('.hero [data-pixel^="hero"]').forEach((el, i) => {
           gsap.to(el, {
             y: -15,
@@ -1485,6 +1599,72 @@
             ease: 'sine.inOut',
             delay: i * 0.5,
           });
+        });
+
+        // J) 3D Card Tilt Interaction
+        document.querySelectorAll('.tilt-card').forEach(card => {
+          card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            const rotateX = -(y / (rect.height / 2)) * 8; // max 8 degrees
+            const rotateY = (x / (rect.width / 2)) * 8;
+            
+            gsap.to(card, {
+              rotateX: rotateX,
+              rotateY: rotateY,
+              transformPerspective: 1000,
+              ease: 'power2.out',
+              duration: 0.3
+            });
+          });
+          card.addEventListener('mouseleave', () => {
+            gsap.to(card, {
+              rotateX: 0,
+              rotateY: 0,
+              ease: 'power2.out',
+              duration: 0.5
+            });
+          });
+        });
+
+        // K) Step-by-Step progress line scaleY
+        gsap.fromTo('.step-connector-line-progress', 
+          { scaleY: 0 },
+          {
+            scaleY: 1,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: '.flow-steps',
+              start: 'top 70%',
+              end: 'bottom 40%',
+              scrub: true
+            }
+          }
+        );
+
+        // L) Dynamic metric count-up on scroll
+        document.querySelectorAll('.metric-val').forEach(el => {
+          const targetVal = parseFloat(el.dataset.target);
+          const prefix = el.dataset.prefix || '';
+          const suffix = el.dataset.suffix || '';
+          
+          gsap.fromTo(el,
+            { innerText: 0 },
+            {
+              innerText: targetVal,
+              duration: 1.8,
+              snap: { innerText: 1 },
+              scrollTrigger: {
+                trigger: el,
+                start: 'top 85%',
+                toggleActions: 'play none none none'
+              },
+              onUpdate: function() {
+                el.textContent = prefix + Math.floor(this.targets()[0].innerText) + suffix;
+              }
+            }
+          );
         });
       });
     })();

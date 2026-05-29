@@ -80,22 +80,17 @@
       padding: 1.5rem 4rem;
       background: rgba(10,10,10,0.85); backdrop-filter: blur(12px);
     }
-    .nav-brand {
-      display: flex; align-items: baseline; gap: 0.5rem;
+    nav .logo-outer {
+      perspective: 500px;
+      display: inline-block;
     }
-    .nav-brand .brand-on7 {
-      font-family: var(--font-display);
-      font-size: 1.4rem;
-      font-weight: 800;
-      color: var(--teal);
-      text-decoration: none;
+    nav .logo {
+      display: flex;
+      align-items: center;
+      transition: opacity 0.3s;
     }
-    .nav-brand .brand-by {
-      font-family: var(--font-alt);
-      font-size: 0.65rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
+    nav .logo:hover {
+      opacity: 0.8;
     }
     .nav-links {
       display: flex; gap: 2rem; list-style: none; align-items: center;
@@ -841,13 +836,14 @@
   <div class="cursor"></div>
   <div class="cursor-dot"></div>
 
-  <!-- NAV -->
   <nav>
-    <div class="nav-brand">
-      <a href="on7.html" class="brand-on7">ON7</a>
-      <span class="brand-by">by WEB7</span>
+    <div class="logo-outer">
+      <a href="index.html" class="logo" aria-label="WEB7">
+        <img src="assets/Logoweb7-verde.svg" alt="WEB7" style="height: 52px;">
+      </a>
     </div>
     <ul class="nav-links">
+      <li><a href="index.html">WEB7</a></li>
       <li><a href="#como-funciona">Cómo funciona</a></li>
       <li><a href="#que-incluye">Qué incluye</a></li>
       <li><a href="#contacto">Contacto</a></li>

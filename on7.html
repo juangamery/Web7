@@ -459,8 +459,8 @@
     /* ─── METRICS GRID ─── */
     .metrics-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.5rem;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
       margin-top: 3rem;
       text-align: center;
     }
@@ -468,7 +468,7 @@
       background: var(--bg-card);
       border: 1px solid #222;
       border-radius: 12px;
-      padding: 2.5rem 1.5rem;
+      padding: 3.5rem 2rem;
       transition: border-color 0.3s;
     }
     .metric-card:hover {
@@ -476,36 +476,41 @@
     }
     .metric-val {
       font-family: var(--font-display);
-      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-size: clamp(2.5rem, 5.5vw, 4.2rem);
       font-weight: 800;
       color: var(--teal);
-      margin-bottom: 0.75rem;
+      margin-bottom: 1rem;
     }
     .metric-desc {
       font-family: var(--font-alt);
-      font-size: 0.85rem;
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
       color: var(--text-muted);
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      line-height: 1.4;
+      letter-spacing: 0.08em;
+      line-height: 1.5;
     }
 
     /* ─── PARA QUIEN ─── */
     .for-you-list {
       margin-top: 2rem;
-      display: flex; flex-direction: column; gap: 0.8rem;
+      display: flex; flex-direction: column; gap: 1.2rem;
     }
     .for-you-item {
-      font-family: var(--font-alt);
-      font-size: 0.95rem;
+      font-family: var(--font-body);
+      font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+      font-weight: 600;
+      line-height: 1.5;
       color: var(--text);
-      padding-left: 1.5rem;
+      padding-left: 2rem;
       position: relative;
     }
     .for-you-item::before {
       content: '\2192';
       position: absolute; left: 0;
       color: var(--teal);
+      font-family: var(--font-alt);
+      font-size: 1.3em;
+      top: -0.1em;
     }
     .sectors {
       margin-top: 2.5rem;
@@ -692,14 +697,16 @@
       color: var(--accent);
     }
 
-    /* Reading effect for panel features */
+    /* Reading effect for panel features and for-you list */
     @media (min-width: 768px) {
-      .panel-feature .r-word {
+      .panel-feature .r-word,
+      .for-you-item .r-word {
         display: inline-block;
         color: rgba(255,255,255,0.15);
         transition: color 0.1s;
       }
-      .panel-feature .r-word.active {
+      .panel-feature .r-word.active,
+      .for-you-item .r-word.active {
         color: var(--text);
       }
     }
@@ -1239,11 +1246,11 @@
   <section class="section">
     <span class="label">On7 es para vos si...</span>
     <div class="for-you-list">
-      <div class="for-you-item">Recibís consultas por WhatsApp o Instagram y no siempre podés responder rápido</div>
-      <div class="for-you-item">Tu equipo pierde tiempo respondiendo siempre las mismas preguntas</div>
-      <div class="for-you-item">Perdés reservas o pedidos por no tener atención fuera del horario comercial</div>
-      <div class="for-you-item">Querés saber qué consultan tus clientes sin revisar chat por chat</div>
-      <div class="for-you-item">Necesitás escalar la atención sin contratar más personal</div>
+      <div class="for-you-item" data-reveal-text>Recibís consultas por WhatsApp o Instagram y no siempre podés responder rápido</div>
+      <div class="for-you-item" data-reveal-text>Tu equipo pierde tiempo respondiendo siempre las mismas preguntas</div>
+      <div class="for-you-item" data-reveal-text>Perdés reservas o pedidos por no tener atención fuera del horario comercial</div>
+      <div class="for-you-item" data-reveal-text>Querés saber qué consultan tus clientes sin revisar chat por chat</div>
+      <div class="for-you-item" data-reveal-text>Necesitás escalar la atención sin contratar más personal</div>
     </div>
     <div class="sectors">
       <h4>Sectores donde ya funciona</h4>

@@ -413,16 +413,21 @@
       display: flex; flex-direction: column; gap: 0.8rem;
     }
     .panel-feature {
-      font-family: var(--font-alt);
-      font-size: 0.95rem;
+      font-family: var(--font-body);
+      font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+      font-weight: 600;
+      line-height: 1.5;
       color: var(--text);
-      padding-left: 1.5rem;
+      padding-left: 2rem;
       position: relative;
     }
     .panel-feature::before {
       content: '\2192';
       position: absolute; left: 0;
       color: var(--teal);
+      font-family: var(--font-alt);
+      font-size: 1.3em;
+      top: -0.1em;
     }
     .panel-resumen {
       margin-top: 2.5rem;
@@ -687,6 +692,18 @@
       color: var(--accent);
     }
 
+    /* Reading effect for panel features */
+    @media (min-width: 768px) {
+      .panel-feature .r-word {
+        display: inline-block;
+        color: rgba(255,255,255,0.15);
+        transition: color 0.1s;
+      }
+      .panel-feature .r-word.active {
+        color: var(--text);
+      }
+    }
+
     /* Pixel decorations */
     .pixel-deco {
       position: absolute;
@@ -848,11 +865,24 @@
     <div class="pixel-trail-container gooey" id="heroPixelTrail"></div>
 
     <!-- Pixel decorations -->
-    <div class="pixel-deco" style="top: 12%; right: 1%; width: 110px; opacity: 0;" data-pixel="hero-mosaic">
-      <img src="assets/Group 1321314662.svg" alt="" loading="lazy">
+    <div class="pixel-deco" style="top: 12%; right: 1%; width: 158px; opacity: 0; color: var(--teal);" data-pixel="hero-mosaic">
+      <svg width="158" height="160" viewBox="0 0 158 160" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+        <path d="M32.3541 31.7441H64.0977V63.4877H32.3541V31.7441Z" fill="currentColor"/>
+        <path d="M64.0999 0H95.8438V31.7437H64.0999V0Z" fill="currentColor"/>
+        <path d="M0.61384 0H32.3574V31.7437H0.61384V0Z" fill="currentColor"/>
+        <path d="M63.4322 95.8438H95.1758V127.587H63.4322V95.8438Z" fill="currentColor"/>
+        <path d="M95.178 64.0996H126.922V95.8433H95.178V64.0996Z" fill="currentColor"/>
+        <path d="M0 62.6001H32V93.6001H0V62.6001Z" fill="currentColor"/>
+        <path d="M126 128.6H158V159.6H126V128.6Z" fill="currentColor"/>
+        <path d="M31 62.6001H63V93.6001H31V62.6001Z" fill="currentColor"/>
+        <path d="M64 30.6001H96V62.6001H64V30.6001Z" fill="currentColor"/>
+      </svg>
     </div>
-    <div class="pixel-deco" style="bottom: 25%; right: 2%; width: 66px; opacity: 0;" data-pixel="hero-sm">
-      <img src="assets/Group 1321314648.svg" alt="" loading="lazy">
+    <div class="pixel-deco" style="bottom: 25%; right: 2%; width: 66px; opacity: 0; color: var(--teal);" data-pixel="hero-sm">
+      <svg width="66" height="66" viewBox="0 0 66 66" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+        <path d="M65.4073 0H32.3574V33.0501H65.4073V0Z" fill="currentColor"/>
+        <path d="M33.0499 32.3574H0V65.4075H33.0499V32.3574Z" fill="currentColor"/>
+      </svg>
     </div>
     <div class="pixel-deco pixel-deco--grid" style="bottom: 5%; right: 2%; width: 304px;" data-pixel-grid>
       <svg width="304" height="93" viewBox="0 0 304 93" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
@@ -888,14 +918,24 @@
   <!-- EL PROBLEMA -->
   <section class="section diferencial" id="problema" style="position: relative;">
     <!-- Pixel decorations -->
-    <div class="pixel-deco" style="top: 8%; right: 6%; width: 131px; opacity: 0;" data-pixel="section">
-      <img src="assets/Group 1321314649.svg" alt="" loading="lazy">
+    <div class="pixel-deco" style="top: 8%; right: 6%; width: 98px; opacity: 0; color: var(--teal);" data-pixel="section">
+      <svg width="98" height="98" viewBox="0 0 98 98" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+        <path d="M33.0499 64.7148H0V97.7649H33.0499V64.7148Z" fill="currentColor"/>
+        <path d="M65.4073 32.3574H32.3574V65.4074H65.4073V32.3574Z" fill="currentColor"/>
+        <path d="M97.7648 0H64.7148V33.05H97.7648V0Z" fill="currentColor"/>
+      </svg>
     </div>
-    <div class="pixel-deco" style="bottom: 12%; right: 4%; width: 100px; opacity: 0;" data-pixel="section">
-      <img src="assets/Group 1321314654.svg" alt="" loading="lazy">
+    <div class="pixel-deco" style="bottom: 12%; right: 4%; width: 100px; opacity: 0; color: var(--teal);" data-pixel="section">
+      <svg width="100" height="67" viewBox="0 0 100 67" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+        <path d="M66.1026 33.0508H33.0527V66.1007H66.1026V33.0508Z" fill="currentColor"/>
+        <path d="M33.0502 0H0V33.0501H33.0502V0Z" fill="currentColor"/>
+        <path d="M99.1476 0H66.0977V33.0501H99.1476V0Z" fill="currentColor"/>
+      </svg>
     </div>
-    <div class="pixel-deco" style="top: 50%; right: 15%; width: 33px; opacity: 0;" data-pixel="section-dot">
-      <img src="assets/Vector.svg" alt="" loading="lazy">
+    <div class="pixel-deco" style="top: 50%; right: 15%; width: 33px; opacity: 0; color: var(--teal);" data-pixel="section-dot">
+      <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+        <path d="M33 0H0V33H33V0Z" fill="currentColor"/>
+      </svg>
     </div>
 
     <span class="label">Por qué existe On7</span>
@@ -907,7 +947,21 @@
   </section>
 
   <!-- EL COSTO REAL (PÉRDIDA / GANANCIA) -->
-  <section class="section" id="costo-real">
+  <section class="section" id="costo-real" style="position: relative;">
+    <!-- Pixel decorations -->
+    <div class="pixel-deco" style="top: 15%; left: 8%; width: 66px; opacity: 0; color: var(--teal);" data-pixel="section">
+      <svg width="66" height="66" viewBox="0 0 66 66" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+        <path d="M65.4073 0H32.3574V33.0501H65.4073V0Z" fill="currentColor"/>
+        <path d="M33.0499 32.3574H0V65.4075H33.0499V32.3574Z" fill="currentColor"/>
+      </svg>
+    </div>
+    <div class="pixel-deco" style="bottom: 10%; right: 10%; width: 100px; opacity: 0; color: var(--teal);" data-pixel="section">
+      <svg width="100" height="67" viewBox="0 0 100 67" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+        <path d="M66.1026 33.0508H33.0527V66.1007H66.1026V33.0508Z" fill="currentColor"/>
+        <path d="M33.0502 0H0V33.0501H33.0502V0Z" fill="currentColor"/>
+        <path d="M99.1476 0H66.0977V33.0501H99.1476V0Z" fill="currentColor"/>
+      </svg>
+    </div>
     <span class="label">El costo real de no tenerlo</span>
     <h2>Cada día sin un agente<br>tiene un costo real.</h2>
     
@@ -1022,7 +1076,15 @@
   </section>
 
   <!-- FLUJO DEL CLIENTE -->
-  <section class="section" id="flujo-cliente">
+  <section class="section" id="flujo-cliente" style="position: relative;">
+    <!-- Pixel decorations -->
+    <div class="pixel-deco" style="top: 20%; right: 5%; width: 98px; opacity: 0; color: var(--teal);" data-pixel="section">
+      <svg width="98" height="98" viewBox="0 0 98 98" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+        <path d="M33.0499 64.7148H0V97.7649H33.0499V64.7148Z" fill="currentColor"/>
+        <path d="M65.4073 32.3574H32.3574V65.4074H65.4073V32.3574Z" fill="currentColor"/>
+        <path d="M97.7648 0H64.7148V33.05H97.7648V0Z" fill="currentColor"/>
+      </svg>
+    </div>
     <span class="label">Paso a paso</span>
     <h2>Así vive la experiencia<br>tu cliente.</h2>
     
@@ -1123,16 +1185,23 @@
   </section>
 
   <!-- PANEL DE CONTROL -->
-  <section class="section">
+  <section class="section" style="position: relative;">
+    <!-- Pixel decorations -->
+    <div class="pixel-deco" style="bottom: 10%; right: 8%; width: 33px; opacity: 0; color: var(--teal);" data-pixel="section-dot">
+      <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+        <path d="M33 0H0V33H33V0Z" fill="currentColor"/>
+      </svg>
+    </div>
+
     <span class="label">Vos siempre en control</span>
     <h2>Automatizado no significa<br>que perdés el control.</h2>
     <p class="body-text">On7 incluye un panel de administración desde donde podés:</p>
     <div class="panel-features">
-      <div class="panel-feature">Ver todas las conversaciones en tiempo real</div>
-      <div class="panel-feature">Tomar el control manual de cualquier chat cuando querés</div>
-      <div class="panel-feature">Revisar el historial completo de cada cliente</div>
-      <div class="panel-feature">Ver qué clientes están pendientes de seguimiento</div>
-      <div class="panel-feature">Consultar reservas, pedidos y consultas generadas</div>
+      <div class="panel-feature" data-reveal-text>Ver todas las conversaciones en tiempo real</div>
+      <div class="panel-feature" data-reveal-text>Tomar el control manual de cualquier chat cuando querés</div>
+      <div class="panel-feature" data-reveal-text>Revisar el historial completo de cada cliente</div>
+      <div class="panel-feature" data-reveal-text>Ver qué clientes están pendientes de seguimiento</div>
+      <div class="panel-feature" data-reveal-text>Consultar reservas, pedidos y consultas generadas</div>
     </div>
     <div class="panel-resumen">
       <h4>Resumen diario por email</h4>
@@ -1191,7 +1260,15 @@
   </section>
 
   <!-- PROCESO DE IMPLEMENTACIÓN -->
-  <section class="section" id="proceso">
+  <section class="section" id="proceso" style="position: relative;">
+    <!-- Pixel decorations -->
+    <div class="pixel-deco" style="bottom: 15%; left: 6%; width: 98px; opacity: 0; color: var(--teal);" data-pixel="section">
+      <svg width="98" height="98" viewBox="0 0 98 98" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+        <path d="M33.0499 64.7148H0V97.7649H33.0499V64.7148Z" fill="currentColor"/>
+        <path d="M65.4073 32.3574H32.3574V65.4074H65.4073V32.3574Z" fill="currentColor"/>
+        <path d="M97.7648 0H64.7148V33.05H97.7648V0Z" fill="currentColor"/>
+      </svg>
+    </div>
     <span class="label">Cómo arrancamos</span>
     <h2>Paso a paso para tener IA<br>en tu negocio — en 4 semanas.</h2>
     <p class="body-text" style="margin-bottom: 3rem;">Un proceso claro y ordenado para que tu negocio empiece a atender mejor sin complicaciones.</p>
@@ -1226,8 +1303,11 @@
     <!-- Pixel trail interactive background -->
     <div class="pixel-trail-container gooey" id="pixelTrail"></div>
 
-    <div class="pixel-deco" style="top: 10%; left: 5%; width: 66px; opacity: 0;" data-pixel="section">
-      <img src="assets/Group 1321314648.svg" alt="" loading="lazy">
+    <div class="pixel-deco" style="top: 10%; left: 5%; width: 66px; opacity: 0; color: var(--teal);" data-pixel="section">
+      <svg width="66" height="66" viewBox="0 0 66 66" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+        <path d="M65.4073 0H32.3574V33.0501H65.4073V0Z" fill="currentColor"/>
+        <path d="M33.0499 32.3574H0V65.4075H33.0499V32.3574Z" fill="currentColor"/>
+      </svg>
     </div>
     <div class="pixel-deco pixel-deco--grid" style="bottom: 15%; right: 2%; width: 240px;" data-pixel-grid>
       <svg width="240" height="93" viewBox="0 0 240 93" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
@@ -1500,7 +1580,10 @@
             // Organic density flow (changes slowly over time)
             float timeScale = uTime * 0.12;
             float density = noise(gridId * 0.07 + vec2(timeScale, -timeScale * 0.9));
-            float v = smoothstep(0.18, 0.78, density) * 0.72;
+            
+            // Slow breathing pulse for density (causes clusters to expand and connect)
+            float densityPulse = 0.08 * sin(uTime * 0.6);
+            float v = smoothstep(0.18, 0.78, density + densityPulse) * 0.72;
             
             // Soft depth fade towards the edges of the section
             float centerDist = length(uv - 0.5);
@@ -1514,17 +1597,16 @@
               blockMask = 0.0;
             }
             
-            // Slow breathing pulse for block opacity
-            float breathing = 0.5 + 0.5 * sin(uTime * 0.8 + n * 6.28);
-            float blockOpacity = 0.16 + 0.08 * breathing;
-            
             // Premium Technical Grays Color Palette
             vec3 grayColor = vec3(0.42); // Gray pixels
             vec3 gridColor = vec3(0.28); // Faint background dots
             
+            // Constant, subtle opacity for active blocks (no half-faded opacities)
+            float blockOpacity = 0.16;
+            
             vec4 finalColor = vec4(gridColor, fineDotVal);
             if (blockMask > 0.0) {
-              finalColor = vec4(grayColor, blockMask * blockOpacity * depthFade);
+              finalColor = vec4(grayColor, blockOpacity);
             }
             
             gl_FragColor = finalColor;
@@ -1636,26 +1718,22 @@
         initPixelTrail(document.getElementById('pixelTrail'));
         initWebGL();
 
-        // A) Scroll-Reveal Text (sirnik style) in .diferencial section
-        const difSection = document.querySelector('.diferencial');
-        if (difSection) {
-          const difBlocks = difSection.querySelectorAll('[data-reveal-text]');
-          difBlocks.forEach(block => {
-            const rWords = prepareRevealBlock(block);
-            ScrollTrigger.create({
-              trigger: block,
-              start: 'top 75%',
-              end: 'bottom 45%',
-              scrub: 0.5,
-              onUpdate: (self) => {
-                const p = self.progress;
-                rWords.forEach((w, wi) => {
-                  w.classList.toggle('active', p > wi / rWords.length);
-                });
-              },
-            });
+        // A) Scroll-Reveal Text (sirnik style)
+        document.querySelectorAll('[data-reveal-text]').forEach(block => {
+          const rWords = prepareRevealBlock(block);
+          ScrollTrigger.create({
+            trigger: block,
+            start: 'top 80%',
+            end: 'bottom 50%',
+            scrub: 0.5,
+            onUpdate: (self) => {
+              const p = self.progress;
+              rWords.forEach((w, wi) => {
+                w.classList.toggle('active', p > wi / rWords.length);
+              });
+            },
           });
-        }
+        });
 
         // B) Hero Title clip-path reveal on load
         gsap.to('.reveal-container span', {

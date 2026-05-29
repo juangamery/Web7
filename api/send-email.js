@@ -2,6 +2,16 @@ import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+const escapeHtml = (text) => {
+  if (!text) return '';
+  return text
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+};
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'POST only' });
@@ -24,7 +34,7 @@ export default async function handler(req, res) {
         <div style="margin-bottom: 15px; text-align: ` + (msg.role === 'user' ? 'right' : 'left') + `;">
           <div style="display: inline-block; padding: 10px 15px; border-radius: 12px; font-family: sans-serif; font-size: 14px; max-width: 80%; ` + bgColor + ` ` + margin + `">
             <strong style="display: block; font-size: 11px; margin-bottom: 4px; opacity: 0.6;">` + roleName + `</strong>
-            ` + msg.content.replace(/\n/g, '<br>') + `
+            ` + escapeHtml(msg.content).replace(/\n/g, '<br>') + `
           </div>
         </div>
       `;

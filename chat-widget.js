@@ -472,6 +472,9 @@
 
       if (!res.ok) throw new Error("API error");
 
+      // Simulate human typing/thinking thought delay for 1.8s
+      await new Promise(resolve => setTimeout(resolve, 1800));
+
       const reader = res.body.getReader();
       const decoder = new TextDecoder();
       let assistantContent = "";
@@ -539,6 +542,20 @@
     const lowercase = text.toLowerCase();
 
     // 1. Acciones explícitas (Tags ocultos del prompt)
+    const mailMatch = text.match(/\[ACTION:\s*send-chat-email:\s*([^\]\s]+)\]/);
+    if (mailMatch && mailMatch[1]) {
+      const targetEmail = mailMatch[1].trim();
+      // Dispatch call to send email API in background
+      fetch("/api/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: targetEmail,
+          history: messages
+        })
+      }).catch(err => console.error("Error sending email:", err));
+    }
+
     if (text.includes("[ACTION: scroll-proyectos]") || text.includes("[ACTION: scroll-portfolio]")) {
       executeScroll("#proyectos", "proyectos.html");
       return;

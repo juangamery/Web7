@@ -50,7 +50,7 @@ export default async function handler(req, res) {
       <body style="background-color: #0a0a0a; color: #f5f5f5; padding: 20px; font-family: sans-serif;">
         <div style="max-width: 600px; margin: 0 auto; background: #111; border: 1px solid #222; border-radius: 16px; padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
           <div style="text-align: center; border-bottom: 1px solid #222; padding-bottom: 15px; margin-bottom: 20px;">
-            <h1 style="color: #34D399; margin: 0; font-size: 24px;">WEB7 Studio</h1>
+            <h1 style="color: #a1ff62; margin: 0; font-size: 24px;">WEB7 Studio</h1>
             <p style="color: #666; margin: 5px 0 0 0; font-size: 12px;">Historial de conversación</p>
           </div>
           <div>
@@ -58,7 +58,7 @@ export default async function handler(req, res) {
           </div>
           <div style="text-align: center; border-top: 1px solid #222; padding-top: 15px; margin-top: 20px; color: #666; font-size: 11px;">
             <p style="margin: 0;">Este es un mensaje automático enviado desde nuestro asistente virtual.</p>
-            <p style="margin: 5px 0 0 0;">WEB7 Studio — <a href="https://web7-studio.vercel.app" style="color: #34D399; text-decoration: none;">web7-studio.vercel.app</a></p>
+            <p style="margin: 5px 0 0 0;">WEB7 Studio — <a href="https://web7-studio.vercel.app" style="color: #a1ff62; text-decoration: none;">web7-studio.vercel.app</a></p>
           </div>
         </div>
       </body>

@@ -27,22 +27,31 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Doto:wght@400;700;800&family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Doto:wght@400;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
+    @font-face {
+      font-family: 'Alpha Lyrae';
+      src: url('assets/AlphaLyrae-Medium.woff2') format('woff2'),
+           url('assets/AlphaLyrae-Medium.woff') format('woff');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+
     :root {
       --bg: #0a0a0a;
       --bg-alt: #111;
       --bg-card: #141414;
       --text: #f5f5f5;
       --text-muted: #888;
-      --accent: #34D399;
-      --teal: #34D399;
-      --teal-dim: rgba(52,211,153,0.08);
-      --teal-glow: rgba(52,211,153,0.15);
+      --accent: #a1ff62;
+      --teal: #a1ff62;
+      --teal-dim: rgba(161, 255, 98, 0.08);
+      --teal-glow: rgba(161, 255, 98, 0.15);
       --red: #ef4444;
       --red-dim: rgba(239,68,68,0.08);
       --font-display: 'Doto', monospace;
-      --font-body: 'Manrope', sans-serif;
+      --font-body: 'Alpha Lyrae', sans-serif;
       --font-alt: 'Space Grotesk', sans-serif;
     }
 
@@ -608,11 +617,26 @@
       font-size: 0.8rem;
       color: var(--teal);
       text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
       transition: color 0.3s;
     }
     .footer-back:hover { color: #2aad8a; }
+    .footer-giant-logo {
+      margin-top: 3rem;
+      color: var(--accent);
+      opacity: 0.9;
+      transition: opacity 0.3s ease;
+    }
+    .footer-giant-logo:hover {
+      opacity: 1;
+    }
+    .footer-giant-logo svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .footer-giant-logo path {
+      fill: currentColor !important;
+    }
 
     /* ── PAGE TRANSITION OVERLAY ─────────────── */
     #pageTransitionOverlay {
@@ -817,6 +841,81 @@
       position: relative;
       overflow: hidden;
     }
+
+    /* Demos Grid & Cards */
+    .demos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .demo-card {
+      background: var(--bg-card);
+      border: 1px solid #222;
+      border-radius: 12px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+      position: relative;
+      cursor: pointer;
+    }
+    .demo-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    .demo-card .demo-tag {
+      align-self: flex-start;
+      font-family: var(--font-alt);
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      padding: 0.25rem 0.65rem;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--text-muted);
+    }
+    .demo-card h4 {
+      font-family: var(--font-alt);
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin: 0;
+      color: #f5f5f5;
+    }
+    .demo-card p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin: 0;
+      flex: 1;
+    }
+    .demo-card .btn-demo {
+      margin-top: 0.5rem;
+      width: 100%;
+      font-size: 0.75rem;
+      padding: 0.65rem 1rem;
+      border-radius: 8px;
+      border: 1px solid var(--accent);
+      background: transparent;
+      color: var(--accent);
+      font-family: var(--font-alt);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      transition: background 0.2s, color 0.2s;
+    }
+    .demo-card:hover .btn-demo {
+      background: var(--accent);
+      color: #0a0a0a;
+    }
   </style>
 </head>
 <body>
@@ -847,7 +946,7 @@
       <li><a href="#como-funciona">Cómo funciona</a></li>
       <li><a href="#que-incluye">Qué incluye</a></li>
       <li><a href="#contacto">Contacto</a></li>
-      <li><a href="contacto.html?producto=on7" class="nav-cta">Quiero On7 &rarr;</a></li>
+      <li><a href="contacto.html?producto=on7" class="nav-cta">Quiero On7 <svg viewBox="0 0 24 24" fill="currentColor" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle; margin-left: 4px;"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"/><path d="M14 15V7h2v8zm-2 2V5h2v12z"/></svg></a></li>
     </ul>
   </nav>
 
@@ -913,8 +1012,8 @@
     </h1>
     <p class="subtext">Un agente conectado a tus herramientas. Atiende consultas, guía clientes y captura reservas sin que tengas que estar presente.</p>
     <div class="cta-group">
-      <a href="contacto.html?producto=on7" class="btn btn-primary">Quiero On7 para mi negocio &rarr;</a>
-      <a href="#como-funciona" class="btn btn-secondary">Ver cómo funciona &darr;</a>
+      <a href="contacto.html?producto=on7" class="btn btn-primary">Quiero On7 para mi negocio <svg viewBox="0 0 24 24" fill="currentColor" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle; margin-left: 6px;"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"/><path d="M14 15V7h2v8zm-2 2V5h2v12z"/></svg></a>
+      <a href="#como-funciona" class="btn btn-secondary">Ver cómo funciona <svg viewBox="0 0 24 24" fill="currentColor" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle; margin-left: 6px;"><path d="M13 12h6v2h-2v2h-2v2h-2v2h-2v-2H9v-2H7v-2H5v-2h6V4h2v8Z"/></svg></a>
     </div>
   </section>
 
@@ -1075,6 +1174,80 @@
         </div>
       </div>
     </div>
+  </section>
+
+  <!-- DEMOS INTERACTIVAS -->
+  <section class="section" id="demos-chatbots" style="position: relative;">
+    <span class="label">Pruébalo en tiempo real</span>
+    <h2>Demos interactivas de agentes.</h2>
+    <p class="body-text" style="margin-bottom: 3rem;">Hacé clic en cualquiera de las siguientes tarjetas para configurar y abrir el chat automático de ese negocio. Vas a ver cómo se adapta la identidad y la información al instante.</p>
+    
+    <div class="demos-grid">
+      <!-- Tarjeta 1: Inmobiliaria -->
+      <div class="demo-card" data-agent="real-estate" data-tilt>
+        <span class="demo-tag">Inmobiliaria</span>
+        <div style="color: var(--accent); margin-bottom: 0.5rem;">
+          <svg viewBox="0 0 24 24" fill="currentColor" class="pixel-icon" width="24" height="24">
+            <path d="M5 2h14v2H5zm0 18h14v2H5zM3 4h2v16H3zm16 0h2v16h-2zM7 6h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2zm-8 4h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2zm-8 4h2v2H7zm4 0h2v2h-2zm-1 4h4v2h-4zm5-4h2v2h-2z"/>
+          </svg>
+        </div>
+        <h4>Norte Propiedades</h4>
+        <p>Busca inmuebles filtrando por presupuesto, ambientes o tipo de operación, y solicita visitas guiadas.</p>
+        <button class="btn-demo">Probar Agente <svg viewBox="0 0 24 24" fill="currentColor" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle; margin-left: 6px;"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"/><path d="M14 15V7h2v8zm-2 2V5h2v12z"/></svg></button>
+      </div>
+
+      <!-- Tarjeta 2: Concesionaria -->
+      <div class="demo-card" data-agent="car-sales" data-tilt>
+        <span class="demo-tag">Automotores</span>
+        <div style="color: var(--accent); margin-bottom: 0.5rem;">
+          <svg viewBox="0 0 24 24" fill="currentColor" class="pixel-icon" width="24" height="24">
+            <path d="M4 13h6v2H4zm10 0h6v2h-6zM4 17h6v2H4zm10 0h6v2h-6zM2 15h4v2H2zm6 0h8v2H8zm10 0h4v2h-4zm4-4h2v4h-2zm-6-4h2v2h-2zM4 5h12v2H4zm-4 6h2v4H0zm12-2h10v2H12zM2 7h2v4H2zm8 0h2v2h-2z"/>
+          </svg>
+        </div>
+        <h4>Auto7 Usados</h4>
+        <p>Explora catálogo de vehículos en stock, consulta planes de financiación y agenda un Test Drive.</p>
+        <button class="btn-demo">Probar Agente <svg viewBox="0 0 24 24" fill="currentColor" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle; margin-left: 6px;"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"/><path d="M14 15V7h2v8zm-2 2V5h2v12z"/></svg></button>
+      </div>
+
+      <!-- Tarjeta 3: Centro Médico -->
+      <div class="demo-card" data-agent="medical" data-tilt>
+        <span class="demo-tag">Salud</span>
+        <div style="color: var(--accent); margin-bottom: 0.5rem;">
+          <svg viewBox="0 0 24 24" fill="currentColor" class="pixel-icon" width="24" height="24">
+            <path d="M13 22h-2v-2h2v2Zm-2-2H9v-2h2v2Zm4 0h-2v-2h2v2Zm-6-2H7v-2h2v2Zm8 0h-2v-2h2v2ZM7 16H5v-2h2v2Zm12 0h-2v-2h2v2ZM5 14H3v-2h2v2Zm16 0h-2v-2h2v2ZM3 12H1V6h2v6Zm20 0h-2V6h2v6ZM13 8h-2V6h2v2ZM5 6H3V4h2v2Zm6 0H9V4h2v2Zm4 0h-2V4h2v2Zm6 0h-2V4h2v2ZM9 4H5V2h4v2Zm10 0h-4V2h4v2Z"/>
+          </svg>
+        </div>
+        <h4>Centro Médico Salud7</h4>
+        <p>Consulta turnos libres de médicos por especialidad, coberturas y simula una reserva de turno.</p>
+        <button class="btn-demo">Probar Agente <svg viewBox="0 0 24 24" fill="currentColor" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle; margin-left: 6px;"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"/><path d="M14 15V7h2v8zm-2 2V5h2v12z"/></svg></button>
+      </div>
+
+      <!-- Tarjeta 4: Restaurante -->
+      <div class="demo-card" data-agent="restaurant" data-tilt>
+        <span class="demo-tag">Gastronomía</span>
+        <div style="color: var(--accent); margin-bottom: 0.5rem;">
+          <svg viewBox="0 0 24 24" fill="currentColor" class="pixel-icon" width="24" height="24">
+            <path d="M4 4h16v2H4zm0 2h2v8H4zm2 8h10v2H6zm14-8h2v4h-2zm-2 4h2v2h-2zm-2-4h2v8h-2zM2 18h18v2H2z"/>
+          </svg>
+        </div>
+        <h4>Bistró7</h4>
+        <p>Consulta platos en carta, filtra opciones celíacas/vegetarianas y agenda una reserva de mesa.</p>
+        <button class="btn-demo">Probar Agente <svg viewBox="0 0 24 24" fill="currentColor" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle; margin-left: 6px;"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"/><path d="M14 15V7h2v8zm-2 2V5h2v12z"/></svg></button>
+      </div>
+
+      <!-- Tarjeta 5: Ecommerce Yerba Mate -->
+      <div class="demo-card" data-agent="yerba-mate" data-tilt>
+        <span class="demo-tag">Ecommerce</span>
+        <div style="color: var(--accent); margin-bottom: 0.5rem;">
+          <svg viewBox="0 0 24 24" fill="currentColor" class="pixel-icon" width="24" height="24">
+            <path d="M3 6h18v2H3zm2 14h14v2H5zM3 8h2v12H3zm16 0h2v12h-2z"/>
+            <path d="M7 4h2v6H7zm2-2h6v2H9zm6 2h2v6h-2z"/>
+          </svg>
+        </div>
+        <h4>Yerba Mate Primicia</h4>
+        <p>Asesora sobre productos, calcula gastos de envío por provincia y gestiona un carrito de compra.</p>
+        <button class="btn-demo">Probar Agente <svg viewBox="0 0 24 24" fill="currentColor" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle; margin-left: 6px;"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"/><path d="M14 15V7h2v8zm-2 2V5h2v12z"/></svg></button>
+      </div>
     </div>
   </section>
 
@@ -1330,15 +1503,35 @@
     <h2>Tu negocio no debería<br>depender de que estés disponible.</h2>
     <p class="body-text">On7 es the primer producto de Lab7 — el laboratorio de WEB7 donde construimos herramientas que resuelven problemas reales de negocios reales. Contanos sobre tu negocio y te mostramos cómo quedaría On7 implementado para tu caso específico.</p>
     <div class="cta-group">
-      <a href="contacto.html?producto=on7" class="btn btn-primary">Quiero On7 &rarr;</a>
-      <a href="https://wa.me/5493764000000" target="_blank" rel="noopener" class="btn btn-secondary">Hablar con WEB7 por WhatsApp &rarr;</a>
+      <a href="contacto.html?producto=on7" class="btn btn-primary">Quiero On7 <svg viewBox="0 0 24 24" fill="currentColor" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle; margin-left: 6px;"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"/><path d="M14 15V7h2v8zm-2 2V5h2v12z"/></svg></a>
+      <a href="https://wa.me/5493754415676" target="_blank" rel="noopener" class="btn btn-secondary">Hablar con WEB7 por WhatsApp <svg viewBox="0 0 24 24" fill="currentColor" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle; margin-left: 6px;"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"/><path d="M14 15V7h2v8zm-2 2V5h2v12z"/></svg></a>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
+    <div class="footer-giant-logo">
+      <svg viewBox="0 0 61.03 12.86" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g id="Capa_1-2" data-name="Capa 1">
+          <g>
+            <g>
+              <path class="cls-1" d="M29.57,1.7h1.02v2.36h-1.02V1.7ZM29.57,7.13h1.02v1.02h-1.02v-1.02ZM34.69,1.7h-4.09V.68h4.09v1.02ZM30.6,4.06h4.09v1.02h-4.09v-1.02ZM34.69,9.18h-4.09v-1.02h4.09v1.02ZM35.71,2.73h-1.02v-1.02h1.02v1.02ZM34.69,5.08h1.02v3.07h-1.02v-3.07Z"/>
+              <path class="cls-1" d="M42.26,6.4h-4.63c.1,1.42.9,2.02,2.01,2.02.9,0,1.29-.46,1.54-1.23l.99.35c-.4,1.06-1.11,1.78-2.55,1.78-1.99,0-3.01-1.31-3.01-3.24,0-1.74,1.14-3.19,2.84-3.19,1.82,0,2.88,1.44,2.82,3.5ZM37.66,5.53h3.54c-.17-1.11-.82-1.73-1.76-1.73-.89,0-1.6.65-1.78,1.73Z"/>
+              <path class="cls-1" d="M44.13,6.11h-1.02v-3.07h1.02v3.07ZM45.15,6.11v2.05h-1.02v-2.05h1.02ZM45.15,9.18v-1.02h1.02v1.02h-1.02ZM46.18,6.11h1.02v2.05h-1.02v-2.05ZM48.22,3.04v3.07h-1.02v-3.07h1.02Z"/>
+              <path class="cls-1" d="M54.58,6.4h-4.63c.1,1.42.9,2.02,2.01,2.02.9,0,1.29-.46,1.54-1.23l.99.35c-.4,1.06-1.11,1.78-2.55,1.78-1.99,0-3.01-1.31-3.01-3.24,0-1.74,1.14-3.19,2.84-3.19,1.82,0,2.88,1.44,2.82,3.5ZM49.98,5.53h3.54c-.17-1.11-.82-1.73-1.76-1.73s-1.6.65-1.78,1.73Z"/>
+              <path class="cls-1" d="M56.52,3.04v2.05h-1.02v-2.05h1.02ZM56.52,6.11v3.07h-1.02v-3.07h1.02ZM56.52,6.11v-1.02h1.02v1.02h-1.02ZM60,3.04v1.02h-1.43v1.02h-1.02v-2.05h2.46ZM61.03,4.06v5.11h-1.02v-5.11h1.02Z"/>
+            </g>
+            <g>
+              <path class="cls-1" d="M24.02,3.26h-2.02s-.05,0-.06,0c0,0,0,.03,0,.06v.54s0,.05,0,.06c0,0,.02,0,.06,0h2.02s.05,0,.06,0c0,0,0-.03,0-.06v-.54s0-.05,0-.06-.02,0-.06,0Z"/>
+              <path class="cls-1" d="M26.43,0H0v12.86h3.18l7.43-1v1h2.41l5.59-.99v.99h2.7l6.31-1V0h-1.18ZM.65,6.77V.68h3.39c-.08.4-.16.75-.22,1.07-.06.31-.14.65-.21,1-.08.35-.15.68-.21,1s-.14.67-.22,1.07c.2.05.4.1.6.15.09-.41.16-.78.23-1.11.07-.33.14-.67.22-1.03.08-.36.15-.71.22-1.03.07-.33.15-.7.23-1.11h1.58c.09.41.16.78.23,1.11.07.33.14.67.22,1.03.08.36.15.71.22,1.03.07.33.15.7.23,1.11.2-.05.4-.1.6-.15-.08-.4-.15-.75-.22-1.07s-.14-.65-.21-1c-.08-.35-.15-.68-.21-1s-.14-.67-.22-1.07h3.38v7.24s-.04.07-.13.17c-.08.1-.19.21-.31.34-.13.13-.25.27-.38.4s-.24.24-.33.32c-.09.08-.15.13-.16.13h-2.42c-.13-.2-.25-.38-.34-.53s-.2-.29-.29-.44-.21-.32-.34-.53h-.2c-.13.2-.25.38-.34.53-.1.15-.2.29-.29.44s-.21.32-.34.53H1.97s-.07-.04-.16-.13c-.09-.08-.2-.19-.33-.32s-.26-.26-.38-.4c-.12-.13-.23-.25-.31-.34-.08-.1-.13-.15-.13-.17v-1.16ZM18.31,1.23v2.02h-3.1s-.04,0-.04,0c0,0-.01,0-.02.02,0,0,0,.02,0,.05v.54s0,.04,0,.05c0,0,0,.01.02.02,0,0,.02,0,.04,0h3.1v2.28h-3.1s-.04,0-.04,0c0,0-.01,0-.02.02,0,0,0,.02,0,.05v.54s0,.04,0,.05c0,0,0,.01.02.02,0,0,.02,0,.04,0h3.1v2.4h-7.38V.68h7.38v.55ZM26.96,3.33v.85c-.23.19-.42.35-.57.48s-.34.29-.57.48c.23.19.42.35.57.48s.34.29.57.48v1.8s-.04.07-.13.17c-.08.1-.19.21-.31.34-.12.13-.25.27-.38.4-.13.13-.24.24-.33.32s-.15.13-.16.13h-6.67V.68h6.67s.07.04.16.13.2.19.33.32c.13.13.26.26.38.4.13.13.23.25.31.34.08.1.13.15.13.17v1.29Z"/>
+              <path class="cls-1" d="M24.02,6.02h-2.02s-.05,0-.06,0c0,0,0,.03,0,.06v.54s0,.05,0,.06c0,0,.02,0,.06,0h2.02s.05,0,.06,0,0-.03,0-.06v-.54s0-.05,0-.06c0,0-.02,0-.06,0Z"/>
+            </g>
+          </g>
+        </g>
+      </svg>
+    </div>
     <p class="footer-brand-on7">On7 es un producto de Lab7 &middot; WEB7</p>
-    <a href="index.html" class="footer-back">&rarr; Volver a WEB7</a>
+    <a href="index.html" class="footer-back"><svg viewBox="0 0 24 24" fill="currentColor" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle; margin-right: 6px; transform: scaleX(-1);"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"/><path d="M14 15V7h2v8zm-2 2V5h2v12z"/></svg> Volver a WEB7</a>
   </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -1391,7 +1584,7 @@
     });
 
     // Grids stagger
-    document.querySelectorAll('.capabilities, .integrations, .comparison-grid, .metrics-grid').forEach(grid => {
+    document.querySelectorAll('.capabilities, .integrations, .comparison-grid, .metrics-grid, .demos-grid').forEach(grid => {
       gsap.from(grid.children, {
         opacity: 0, y: 20, duration: 0.4, stagger: 0.08,
         scrollTrigger: { trigger: grid, start: 'top 80%' },
@@ -1443,7 +1636,7 @@
       // Pixel trail hover drawing logic
       const PIXEL_SIZE = window.innerWidth < 768 ? 24 : 32;
       const DELAY = 500;
-      const ACCENT = '#34D399'; // ON7 Accent Color (Teal)
+      const ACCENT = '#a1ff62'; // ON7 Accent Color
 
       function initPixelTrail(container) {
         if (!container) return;
@@ -1871,19 +2064,19 @@
           });
         });
 
-        // J) 3D Card Tilt Interaction
+        // J) 3D Card Tilt Interaction (Subtle)
         document.querySelectorAll('.tilt-card').forEach(card => {
           card.addEventListener('mousemove', (e) => {
             const rect = card.getBoundingClientRect();
             const x = e.clientX - rect.left - rect.width / 2;
             const y = e.clientY - rect.top - rect.height / 2;
-            const rotateX = -(y / (rect.height / 2)) * 8; // max 8 degrees
-            const rotateY = (x / (rect.width / 2)) * 8;
+            const rotateX = -(y / (rect.height / 2)) * 2.5; // max 2.5 degrees
+            const rotateY = (x / (rect.width / 2)) * 2.5;
             
             gsap.to(card, {
               rotateX: rotateX,
               rotateY: rotateY,
-              transformPerspective: 1000,
+              transformPerspective: 1200,
               ease: 'power2.out',
               duration: 0.3
             });
@@ -1966,8 +2159,46 @@
         }
       }
 
+      // Create and inject loader dynamically
+      const loader = document.createElement('div');
+      loader.className = 'w7-transition-loader';
+      loader.innerHTML = `
+        <div class="w7-spinner"></div>
+        <span style="font-family: 'Doto', monospace; font-weight: 800; letter-spacing: 0.1em; font-size: 1.2rem;">WEB7</span>
+      `;
+      overlay.appendChild(loader);
+
+      const loaderStyle = document.createElement('style');
+      loaderStyle.textContent = `
+        .w7-transition-loader {
+          position: absolute;
+          top: 50%; left: 50%;
+          transform: translate(-50%, -50%);
+          display: flex; flex-direction: column; align-items: center; gap: 1rem;
+          z-index: 100000;
+          opacity: 0;
+          transition: opacity 0.3s ease;
+          color: #0a0a0a;
+        }
+        #pageTransitionOverlay.loading .w7-transition-loader {
+          opacity: 1;
+        }
+        .w7-spinner {
+          width: 40px; height: 40px;
+          border: 3px solid rgba(10, 10, 10, 0.15);
+          border-top-color: #0a0a0a;
+          border-radius: 50%;
+          animation: w7-spin 0.8s linear infinite;
+        }
+        @keyframes w7-spin {
+          to { transform: rotate(360deg); }
+        }
+      `;
+      document.head.appendChild(loaderStyle);
+
       if (sessionStorage.getItem('wipe-in')) {
         sessionStorage.removeItem('wipe-in');
+        overlay.classList.remove('loading');
         overlay.style.pointerEvents = 'all';
         overlay.style.visibility = 'visible';
         cells.forEach(c => { c.style.opacity = 1; });
@@ -2000,8 +2231,31 @@
         const link = e.target.closest('a[href]');
         if (!link) return;
         const href = link.getAttribute('href');
-        if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
+        if (!href || href.startsWith('mailto:') || href.startsWith('tel:')) return;
         if (link.target === '_blank') return;
+
+        // Prevent same-page reload
+        try {
+          const url = new URL(link.href, location.origin);
+          if (url.origin === location.origin) {
+            let currentPath = location.pathname.replace(/\.html$/, "").replace(/\/$/, "");
+            let destPath = url.pathname.replace(/\.html$/, "").replace(/\/$/, "");
+            if (currentPath === "/index" || currentPath === "") currentPath = "/";
+            if (destPath === "/index" || destPath === "") destPath = "/";
+            
+            if (currentPath === destPath) {
+              if (!url.hash) {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                return;
+              } else {
+                return;
+              }
+            }
+          }
+        } catch (err) {}
+
+        if (href.startsWith('#')) return;
         if (!isInternalNav(link.href)) return;
 
         e.preventDefault();
@@ -2016,6 +2270,7 @@
           ease: 'power2.in',
           delay: (i) => delays[i] * 0.4,
           onComplete: () => {
+            overlay.classList.add('loading');
             sessionStorage.setItem('wipe-in', '1');
             window.location.href = dest;
           }
@@ -2038,6 +2293,16 @@
         }, { passive: true });
       }
     })();
+
+    // DEMO CARDS BINDINGS
+    document.querySelectorAll('.demo-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const agent = card.getAttribute('data-agent');
+        if (window.w7ChatWidget && window.w7ChatWidget.switchAgent) {
+          window.w7ChatWidget.switchAgent(agent);
+        }
+      });
+    });
 
     // SERVICE WORKER
     if ('serviceWorker' in navigator) {

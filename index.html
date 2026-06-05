@@ -31,8 +31,17 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Doto:wght@400;700;800&family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Doto:wght@400;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
+    @font-face {
+      font-family: 'Alpha Lyrae';
+      src: url('assets/AlphaLyrae-Medium.woff2') format('woff2'),
+           url('assets/AlphaLyrae-Medium.woff') format('woff');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+
     :root {
       --bg: #0a0a0a;
       --bg-alt: #111;
@@ -41,8 +50,10 @@
       --text-muted: #888;
       --accent: #DFFE02;
       --accent-dim: rgba(200,255,0,0.15);
+      --on7: #a1ff62;
+      --on7-rgb: 161, 255, 98;
       --font-display: 'Doto', monospace;
-      --font-body: 'Manrope', sans-serif;
+      --font-body: 'Alpha Lyrae', sans-serif;
       --font-alt: 'Space Grotesk', sans-serif;
     }
 
@@ -410,6 +421,7 @@
 
     @media (max-width: 768px) {
       .sprint-card { padding: 3rem 1.5rem; }
+      .sprint-card h3 { font-size: clamp(1.8rem, 8vw, 2.8rem); }
       .sprint-number { font-size: clamp(4rem, 15vw, 6rem); right: 1.5rem; top: 1.5rem; }
     }
 
@@ -420,6 +432,10 @@
       padding: 10rem 4rem; position: relative; overflow: hidden;
       text-align: center;
       display: flex; flex-direction: column; align-items: center;
+    }
+    .que-construimos > *:not(#dither-bg) {
+      position: relative;
+      z-index: 1;
     }
     .que-construimos h2 {
       font-family: var(--font-display);
@@ -467,9 +483,9 @@
     .construimos-card .ideal strong { color: rgba(255,255,255,0.5); }
     .que-construimos .footer-phrase {
       margin-top: 4rem; font-family: var(--font-display);
-      font-size: clamp(1.2rem, 2.5vw, 1.8rem);
-      font-weight: 700; color: var(--accent); max-width: 700px;
-      line-height: 1.4;
+      font-size: clamp(1.6rem, 3.2vw, 2.3rem);
+      font-weight: 700; color: var(--accent); max-width: 850px;
+      line-height: 1.45;
     }
     .scramble-inline .s-char {
       display: inline;
@@ -504,6 +520,8 @@
       gap: 2rem;
     }
     a.proyecto-card {
+      display: flex;
+      flex-direction: column;
       text-decoration: none; color: inherit;
     }
     .proyecto-card {
@@ -518,57 +536,116 @@
     .proyecto-card .reveal-overlay {
       position: absolute; inset: 0; background: var(--bg);
       clip-path: inset(0 0 0 0); z-index: 2;
+      pointer-events: none;
     }
     .proyecto-card .card-img {
       width: 100%; aspect-ratio: 16/9;
+      flex-shrink: 0;
       object-fit: cover; display: block;
+      transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .proyecto-card:hover .card-img {
+      transform: scale(1.03);
     }
     .proyecto-card .card-body {
       padding: 2rem 2.5rem 2.5rem; flex: 1;
       display: flex; flex-direction: column;
     }
+    .card-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.3rem;
+      gap: 1rem;
+      width: 100%;
+    }
     .proyecto-card .type-tag {
-      position: absolute; top: 1rem; left: 1rem; z-index: 1;
       font-family: var(--font-alt); font-size: 0.55rem;
       text-transform: uppercase; letter-spacing: 0.12em;
       padding: 0.2rem 0.6rem; border-radius: 100px;
       font-weight: 600;
-    }
-    .proyecto-card:not(:has(.card-img)) .type-tag {
-      position: relative; top: auto; left: auto;
-      margin-bottom: 1.2rem;
-    }
-    .proyecto-card:not(:has(.card-img)) .card-body {
-      padding-top: 2.5rem;
+      flex-shrink: 0;
     }
     .proyecto-card h3 {
       font-family: var(--font-display);
-      font-size: 1.3rem; font-weight: 700; margin-bottom: 0.3rem;
+      font-size: 1.3rem; font-weight: 700; margin-bottom: 0;
     }
     .proyecto-card .tags {
       font-family: var(--font-alt);
       font-size: 0.75rem; color: var(--accent);
       text-transform: uppercase; letter-spacing: 0.1em;
-      margin-bottom: 1rem;
+      margin-bottom: 0.8rem;
     }
     .proyecto-card p {
       font-size: 0.95rem; line-height: 1.6;
       color: var(--text-muted); font-weight: 300;
+      margin-bottom: 1rem;
     }
-    .proyecto-card.card-featured {
-      grid-column: 1 / -1;
-      background: linear-gradient(135deg, var(--bg-card), rgba(223,254,2,0.03));
-      border-color: rgba(200,255,0,0.1);
+    .proyecto-card .card-credits {
+      margin-top: auto;
+      padding-top: 0.8rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      font-family: var(--font-alt);
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
     }
-    .proyectos .also-list {
-      margin-top: 3rem; font-size: 0.9rem;
-      color: var(--text-muted); font-weight: 300;
+    .proyecto-card .credit-item {
+      line-height: 1.4;
+      opacity: 0.85;
     }
-    .proyectos .also-list strong {
-      color: rgba(255,255,255,0.6); font-weight: 500;
+    .proyecto-card.card-accent-info {
+      background: var(--accent);
+      border: 1px solid var(--accent);
+      color: #0a0a0a;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 100%;
+      box-sizing: border-box;
     }
-    .proyectos .cta-row {
-      margin-top: 4rem; text-align: center;
+    .proyecto-card.card-accent-info:hover {
+      border-color: var(--accent);
+      box-shadow: 0 0 30px rgba(223, 254, 2, 0.25);
+    }
+    .proyecto-card.card-accent-info .card-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+      padding: 3rem 2.5rem 2.5rem;
+    }
+    .proyecto-card.card-accent-info p {
+      color: #0a0a0a;
+      font-size: 1.5rem;
+      font-weight: 500;
+      line-height: 1.5;
+      margin: 0 0 2.5rem;
+      font-family: var(--font-body);
+    }
+    .proyecto-card.card-accent-info .btn-black {
+      background: #0a0a0a;
+      color: var(--accent);
+      border: 1px solid #0a0a0a;
+      padding: 0.9rem 1.6rem;
+      border-radius: 6px;
+      font-family: var(--font-alt);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      width: fit-content;
+      text-decoration: none;
+      transition: background 0.3s, color 0.3s, border-color 0.3s, transform 0.3s;
+    }
+    .proyecto-card.card-accent-info:hover .btn-black {
+      background: #151515;
+      transform: translateY(-2px);
     }
 
     /* ═══════════════════════════════════════ */
@@ -592,21 +669,57 @@
     .on7-card {
       margin-top: 4rem; background: var(--bg-card);
       border-radius: 16px; padding: 3rem 4rem;
-      border: 1px solid rgba(200,255,0,0.1);
+      border: 1px solid rgba(var(--on7-rgb), 0.15);
       max-width: 700px; text-align: left;
+      transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+                  border-color 0.4s ease,
+                  box-shadow 0.4s ease;
+    }
+    .on7-card:hover {
+      border-color: rgba(var(--on7-rgb), 0.4);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5),
+                  0 0 20px rgba(var(--on7-rgb), 0.08);
     }
     .on7-card .sub-label {
       font-family: var(--font-alt);
       font-size: 0.7rem; text-transform: uppercase;
       letter-spacing: 0.15em; color: var(--text-muted);
       margin-bottom: 0.8rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .on7-card .pulse-dot {
+      width: 7px; height: 7px;
+      background-color: var(--on7);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--on7);
+      animation: pulse-green 2s infinite;
+    }
+    @keyframes pulse-green {
+      0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(var(--on7-rgb), 0.7);
+      }
+      70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 6px rgba(var(--on7-rgb), 0);
+      }
+      100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(var(--on7-rgb), 0);
+      }
     }
     .on7-card h3 {
       font-family: var(--font-display);
       font-size: clamp(1.5rem, 3vw, 2.2rem);
       font-weight: 700; margin-bottom: 1rem;
     }
-    .on7-card h3 span { color: var(--accent); }
+    .on7-card h3 span {
+      color: var(--on7);
+      font-family: 'Alpha Lyrae', sans-serif;
+      text-shadow: 0 0 10px rgba(var(--on7-rgb), 0.2);
+    }
     .on7-card p {
       font-size: 1rem; line-height: 1.7;
       color: var(--text-muted); font-weight: 300;
@@ -615,10 +728,18 @@
       margin-top: 1.5rem; display: flex; gap: 0.6rem; flex-wrap: wrap;
     }
     .on7-card .on7-tags span {
-      font-family: var(--font-alt);
+      font-family: 'Alpha Lyrae', sans-serif;
       font-size: 0.75rem; padding: 0.3rem 0.8rem;
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 100px; color: var(--text-muted);
+      border: 1px solid rgba(var(--on7-rgb), 0.25);
+      background: rgba(var(--on7-rgb), 0.04);
+      border-radius: 100px; color: var(--on7);
+      text-shadow: 0 0 6px rgba(var(--on7-rgb), 0.15);
+      transition: border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+    }
+    .on7-card .on7-tags span:hover {
+      border-color: rgba(var(--on7-rgb), 0.6);
+      background: rgba(var(--on7-rgb), 0.08);
+      box-shadow: 0 0 8px rgba(var(--on7-rgb), 0.25);
     }
     .on7-card .on7-cta { margin-top: 2rem; }
     .lab7-status {
@@ -748,26 +869,40 @@
     .footer-bottom .philosophy {
       font-style: italic; max-width: 400px;
     }
+    .footer-giant-logo {
+      margin-top: 3rem;
+      color: var(--accent);
+      opacity: 0.9;
+      transition: opacity 0.3s ease;
+    }
+    .footer-giant-logo:hover {
+      opacity: 1;
+    }
+    .footer-giant-logo svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .footer-giant-logo path {
+      fill: currentColor !important;
+    }
 
     /* ─── MARQUEE ─── */
     .marquee-section {
-      padding: 4rem 0; overflow: hidden;
-      border-top: 1px solid rgba(255,255,255,0.05);
-      border-bottom: 1px solid rgba(255,255,255,0.05);
+      background: var(--accent);
+      padding: 0.8rem 0; overflow: hidden;
+      border: none;
     }
     .marquee-track {
-      display: flex; gap: 4rem;
+      display: flex; gap: 3rem;
       white-space: nowrap; will-change: transform;
     }
     .marquee-track span {
-      font-family: var(--font-display);
-      font-size: clamp(2rem, 4vw, 3.5rem);
-      font-weight: 700; color: transparent;
-      -webkit-text-stroke: 1px rgba(255,255,255,0.1);
-      letter-spacing: 0.02em; flex-shrink: 0;
-    }
-    .marquee-track span.filled {
-      color: var(--text); -webkit-text-stroke: none;
+      font-family: var(--font-alt);
+      font-size: clamp(0.8rem, 1.2vw, 1.05rem);
+      font-weight: 700; color: #0a0a0a;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      flex-shrink: 0;
     }
 
     /* ─── RESPONSIVE ─── */
@@ -1055,7 +1190,10 @@
   </section>
 
   <!-- BLOCK 3b: QUÉ CONSTRUIMOS -->
-  <section class="que-construimos">
+  <section class="que-construimos" id="que-construimos">
+    <!-- WebGL Dither Background -->
+    <canvas id="dither-bg" style="position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: 0.22;"></canvas>
+
     <span class="label">Qué construimos</span>
     <h2 class="split-heading" data-split-chars>De landing pages a ecommerce. Lo que tu negocio necesita.</h2>
     <p class="intro-text">Cada proyecto es distinto. Trabajamos con todo tipo de sitios y adaptamos el proceso según lo que necesitás construir.</p>
@@ -1106,89 +1244,134 @@
       <p class="subtext">Vinotecas, hoteles, distribuidoras, productores, profesionales y eventos. Negocios reales que necesitaban presencia clara y la tienen.</p>
     </div>
     <div class="proyecto-grid">
-      <a href="https://www.odaalvino.com.br/" target="_blank" rel="noopener" class="proyecto-card card-featured" data-cursor-portfolio data-tilt>
+      <a href="https://www.odaalvino.com.br/" target="_blank" rel="noopener" class="proyecto-card" data-cursor-portfolio data-tilt>
         <div class="reveal-overlay"></div>
-        <span class="type-tag type-tag--landing">Landing</span>
+        <img src="assets/oda-al-vino.jpg" alt="ODA Al Vino" class="card-img" loading="lazy">
         <div class="card-body">
-          <h3>ODA Al Vino</h3>
+          <div class="card-header-row">
+            <h3>ODA Al Vino</h3>
+            <span class="type-tag type-tag--landing">Landing</span>
+          </div>
           <div class="tags">Eventos · Vinos</div>
           <p>El festival de vinos más importante de la Triple Frontera. Landing para la 10ª edición en Iguazú — entradas, bodegas y experiencias.</p>
+          <div class="card-credits">
+            <div class="credit-item">• Diseño UI UX - Federico Gunther / Significa</div>
+          </div>
         </div>
       </a>
-      <a href="https://odaalvino.com.ar/" target="_blank" rel="noopener" class="proyecto-card" data-cursor-portfolio data-tilt>
+      <a href="https://www.odavinoteca.com.ar/" target="_blank" rel="noopener" class="proyecto-card" data-cursor-portfolio data-tilt>
         <div class="reveal-overlay"></div>
-        <span class="type-tag type-tag--institucional">Institucional</span>
+        <img src="assets/oda-vinoteca.jpg" alt="ODA Vinoteca" class="card-img" loading="lazy">
         <div class="card-body">
-          <h3>ODA Vinoteca</h3>
+          <div class="card-header-row">
+            <h3>ODA Vinoteca</h3>
+            <span class="type-tag type-tag--institucional">Institucional</span>
+          </div>
           <div class="tags">Gastronomía · Vinos</div>
           <p>Una propuesta de alta gama que ahora se entiende antes de entrar al local.</p>
+          <div class="card-credits">
+            <div class="credit-item">• Diseño UI UX - Federico Gunther / Significa</div>
+          </div>
         </div>
       </a>
       <a href="https://yvyhotel.com.ar/" target="_blank" rel="noopener" class="proyecto-card" data-cursor-portfolio data-tilt>
         <div class="reveal-overlay"></div>
-        <span class="type-tag type-tag--institucional">Institucional</span>
+        <img src="assets/yvy-hotel.jpg" alt="YVY Hotel" class="card-img" loading="lazy">
         <div class="card-body">
-          <h3>YVY Hotel</h3>
+          <div class="card-header-row">
+            <h3>YVY Hotel</h3>
+            <span class="type-tag type-tag--institucional">Institucional</span>
+          </div>
           <div class="tags">Hotelería · Turismo</div>
           <p>Un hotel de selva que se comunica como lo que es.</p>
+          <div class="card-credits">
+            <div class="credit-item">• Diseño UI UX - Federico Gunther / Satélite agencia</div>
+          </div>
         </div>
       </a>
       <a href="https://somostotal.com.ar/" target="_blank" rel="noopener" class="proyecto-card" data-cursor-portfolio data-tilt>
         <div class="reveal-overlay"></div>
-        <span class="type-tag type-tag--institucional">Institucional</span>
+        <img src="assets/total.jpg" alt="Total" class="card-img" loading="lazy">
         <div class="card-body">
-          <h3>Total</h3>
+          <div class="card-header-row">
+            <h3>Total</h3>
+            <span class="type-tag type-tag--institucional">Institucional</span>
+          </div>
           <div class="tags">Distribución · Alimentos</div>
           <p>Una distribuidora de marcas líderes con presencia digital a su altura.</p>
+          <div class="card-credits">
+            <div class="credit-item">• Diseño UX - Federico Gunther / Satélite agencia</div>
+            <div class="credit-item">• Diseño UI - Luciano Hermida / Satélite agencia</div>
+          </div>
         </div>
       </a>
       <a href="https://yerbamateprimicia.com.ar/" target="_blank" rel="noopener" class="proyecto-card" data-cursor-portfolio data-tilt>
         <div class="reveal-overlay"></div>
-        <span class="type-tag type-tag--ecommerce">Ecommerce</span>
+        <img src="assets/primicia.jpg" alt="Primicia" class="card-img" loading="lazy">
         <div class="card-body">
-          <h3>Primicia</h3>
+          <div class="card-header-row">
+            <h3>Primicia</h3>
+            <span class="type-tag type-tag--ecommerce">Ecommerce</span>
+          </div>
           <div class="tags">Producto · Yerba mate</div>
           <p>Identidad y venta online para una yerba con origen e historia propios.</p>
+          <div class="card-credits">
+            <div class="credit-item">• Diseño UI UX - Luciano Hermida / Federico Gunther / Satélite agencia</div>
+          </div>
         </div>
       </a>
       <a href="https://larutadelte.com.ar/" target="_blank" rel="noopener" class="proyecto-card" data-cursor-portfolio data-tilt>
         <div class="reveal-overlay"></div>
-        <span class="type-tag type-tag--ecommerce">Ecommerce</span>
+        <img src="assets/la-ruta-del-te.jpg" alt="La Ruta del Té" class="card-img" loading="lazy">
         <div class="card-body">
-          <h3>La Ruta del Té</h3>
+          <div class="card-header-row">
+            <h3>La Ruta del Té</h3>
+            <span class="type-tag type-tag--ecommerce">Ecommerce</span>
+          </div>
           <div class="tags">Gastronomía · Turismo</div>
           <p>Una experiencia gastronómica en la selva que ahora se descubre antes de llegar.</p>
+          <div class="card-credits">
+            <div class="credit-item">• Diseño UI UX: Portillo Partners</div>
+          </div>
         </div>
       </a>
       <a href="https://fincarumaroli.com/" target="_blank" rel="noopener" class="proyecto-card" data-cursor-portfolio data-tilt>
         <div class="reveal-overlay"></div>
-        <span class="type-tag type-tag--institucional">Institucional</span>
+        <img src="assets/finca-rumaroli.jpg" alt="Finca Rumaroli" class="card-img" loading="lazy">
         <div class="card-body">
-          <h3>Finca Rumaroli</h3>
+          <div class="card-header-row">
+            <h3>Finca Rumaroli</h3>
+            <span class="type-tag type-tag--institucional">Institucional</span>
+          </div>
           <div class="tags">Agro · Vinos</div>
           <p>Una finca con producto propio que por fin tiene la web que se merece.</p>
         </div>
       </a>
-    </div>
-    <p class="also-list"><strong>También trabajamos con:</strong> Don Basilio · Vipwork · Abelardo Cuffia · Los Lapachos · Envasando · Adolfo Sartoris</p>
-    <div class="cta-row">
-      <a href="proyectos.html" class="btn btn-secondary">Ver todos los proyectos <span>→</span></a>
+      <a href="proyectos.html" class="proyecto-card card-accent-info" data-cursor-portfolio data-tilt>
+        <div class="reveal-overlay"></div>
+        <div class="card-body">
+          <p>También trabajamos con: Don Basilio · Vipwork · Abelardo Cuffia · Los Lapachos · Envasando · Adolfo Sartori</p>
+          <div class="btn-black">Ver todos los proyectos <span>→</span></div>
+        </div>
+      </a>
     </div>
   </section>
 
   <!-- MARQUEE -->
   <section class="marquee-section">
     <div class="marquee-track">
-      <span class="filled">Web en 7 días</span>
-      <span>Automatización</span>
-      <span class="filled">Claridad</span>
-      <span>Contenido</span>
-      <span class="filled">Presencia digital</span>
-      <span>Desarrollo</span>
-      <span class="filled">Web en 7 días</span>
-      <span>Automatización</span>
-      <span class="filled">Claridad</span>
-      <span>Contenido</span>
+      <span>* WEB EN 7 DÍAS</span>
+      <span>* AUTOMATIZACIÓN</span>
+      <span>* CLARIDAD</span>
+      <span>* CONTENIDO</span>
+      <span>* PRESENCIA DIGITAL</span>
+      <span>* DESARROLLO</span>
+      <span>* WEB EN 7 DÍAS</span>
+      <span>* AUTOMATIZACIÓN</span>
+      <span>* CLARIDAD</span>
+      <span>* CONTENIDO</span>
+      <span>* PRESENCIA DIGITAL</span>
+      <span>* DESARROLLO</span>
     </div>
   </section>
 
@@ -1212,15 +1395,16 @@
       <p>Lab7 es donde construimos eso: agentes inteligentes, automatizaciones reales y herramientas que resuelven lo que hoy hacés a mano.</p>
     </div>
 
-    <div class="on7-card">
-      <div class="sub-label">Primer producto</div>
+    <div class="on7-card" data-tilt>
+      <div class="sub-label"><span class="pulse-dot"></span> Primer producto</div>
       <h3><span>On7</span> — Tu negocio, siempre encendido.</h3>
       <p>Cada mensaje sin respuesta es un cliente que se va. On7 atiende por WhatsApp, web y email cuando vos no podés. Responde, califica, agenda. Sin intervención manual.</p>
       <div class="on7-tags">
         <span>WhatsApp</span>
         <span>Chat web</span>
-        <span>Email</span>
-        <span>RRSS</span>
+        <span>Chatbot</span>
+        <span>Agente</span>
+        <span>Automatización</span>
       </div>
       <div class="on7-cta">
         <a href="on7.html" class="btn btn-secondary">Conocer On7 <span>→</span></a>
@@ -1309,7 +1493,6 @@
 
     <div class="footer-top">
       <div class="footer-brand">
-        <div class="logo"><img src="assets/Logoweb7-verde.svg" alt="WEB7" style="height: 24px;"></div>
         <p class="tagline">Desarrollo web · Automatizaciones · Lab7</p>
       </div>
       <div class="footer-links">
@@ -1321,17 +1504,38 @@
         <a href="contacto.html">Contacto</a>
       </div>
     </div>
+    <div class="footer-giant-logo">
+      <svg viewBox="0 0 61.03 12.86" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g id="Capa_1-2" data-name="Capa 1">
+          <g>
+            <g>
+              <path class="cls-1" d="M29.57,1.7h1.02v2.36h-1.02V1.7ZM29.57,7.13h1.02v1.02h-1.02v-1.02ZM34.69,1.7h-4.09V.68h4.09v1.02ZM30.6,4.06h4.09v1.02h-4.09v-1.02ZM34.69,9.18h-4.09v-1.02h4.09v1.02ZM35.71,2.73h-1.02v-1.02h1.02v1.02ZM34.69,5.08h1.02v3.07h-1.02v-3.07Z"/>
+              <path class="cls-1" d="M42.26,6.4h-4.63c.1,1.42.9,2.02,2.01,2.02.9,0,1.29-.46,1.54-1.23l.99.35c-.4,1.06-1.11,1.78-2.55,1.78-1.99,0-3.01-1.31-3.01-3.24,0-1.74,1.14-3.19,2.84-3.19,1.82,0,2.88,1.44,2.82,3.5ZM37.66,5.53h3.54c-.17-1.11-.82-1.73-1.76-1.73-.89,0-1.6.65-1.78,1.73Z"/>
+              <path class="cls-1" d="M44.13,6.11h-1.02v-3.07h1.02v3.07ZM45.15,6.11v2.05h-1.02v-2.05h1.02ZM45.15,9.18v-1.02h1.02v1.02h-1.02ZM46.18,6.11h1.02v2.05h-1.02v-2.05ZM48.22,3.04v3.07h-1.02v-3.07h1.02Z"/>
+              <path class="cls-1" d="M54.58,6.4h-4.63c.1,1.42.9,2.02,2.01,2.02.9,0,1.29-.46,1.54-1.23l.99.35c-.4,1.06-1.11,1.78-2.55,1.78-1.99,0-3.01-1.31-3.01-3.24,0-1.74,1.14-3.19,2.84-3.19,1.82,0,2.88,1.44,2.82,3.5ZM49.98,5.53h3.54c-.17-1.11-.82-1.73-1.76-1.73s-1.6.65-1.78,1.73Z"/>
+              <path class="cls-1" d="M56.52,3.04v2.05h-1.02v-2.05h1.02ZM56.52,6.11v3.07h-1.02v-3.07h1.02ZM56.52,6.11v-1.02h1.02v1.02h-1.02ZM60,3.04v1.02h-1.43v1.02h-1.02v-2.05h2.46ZM61.03,4.06v5.11h-1.02v-5.11h1.02Z"/>
+            </g>
+            <g>
+              <path class="cls-1" d="M24.02,3.26h-2.02s-.05,0-.06,0c0,0,0,.03,0,.06v.54s0,.05,0,.06c0,0,.02,0,.06,0h2.02s.05,0,.06,0c0,0,0-.03,0-.06v-.54s0-.05,0-.06-.02,0-.06,0Z"/>
+              <path class="cls-1" d="M26.43,0H0v12.86h3.18l7.43-1v1h2.41l5.59-.99v.99h2.7l6.31-1V0h-1.18ZM.65,6.77V.68h3.39c-.08.4-.16.75-.22,1.07-.06.31-.14.65-.21,1-.08.35-.15.68-.21,1s-.14.67-.22,1.07c.2.05.4.1.6.15.09-.41.16-.78.23-1.11.07-.33.14-.67.22-1.03.08-.36.15-.71.22-1.03.07-.33.15-.7.23-1.11h1.58c.09.41.16.78.23,1.11.07.33.14.67.22,1.03.08.36.15.71.22,1.03.07.33.15.7.23,1.11.2-.05.4-.1.6-.15-.08-.4-.15-.75-.22-1.07s-.14-.65-.21-1c-.08-.35-.15-.68-.21-1s-.14-.67-.22-1.07h3.38v7.24s-.04.07-.13.17c-.08.1-.19.21-.31.34-.13.13-.25.27-.38.4s-.24.24-.33.32c-.09.08-.15.13-.16.13h-2.42c-.13-.2-.25-.38-.34-.53s-.2-.29-.29-.44-.21-.32-.34-.53h-.2c-.13.2-.25.38-.34.53-.1.15-.2.29-.29.44s-.21.32-.34.53H1.97s-.07-.04-.16-.13c-.09-.08-.2-.19-.33-.32s-.26-.26-.38-.4c-.12-.13-.23-.25-.31-.34-.08-.1-.13-.15-.13-.17v-1.16ZM18.31,1.23v2.02h-3.1s-.04,0-.04,0c0,0-.01,0-.02.02,0,0,0,.02,0,.05v.54s0,.04,0,.05c0,0,0,.01.02.02,0,0,.02,0,.04,0h3.1v2.28h-3.1s-.04,0-.04,0c0,0-.01,0-.02.02,0,0,0,.02,0,.05v.54s0,.04,0,.05c0,0,0,.01.02.02,0,0,.02,0,.04,0h3.1v2.4h-7.38V.68h7.38v.55ZM26.96,3.33v.85c-.23.19-.42.35-.57.48s-.34.29-.57.48c.23.19.42.35.57.48s.34.29.57.48v1.8s-.04.07-.13.17c-.08.1-.19.21-.31.34-.12.13-.25.27-.38.4-.13.13-.24.24-.33.32s-.15.13-.16.13h-6.67V.68h6.67s.07.04.16.13.2.19.33.32c.13.13.26.26.38.4.13.13.23.25.31.34.08.1.13.15.13.17v1.29Z"/>
+              <path class="cls-1" d="M24.02,6.02h-2.02s-.05,0-.06,0c0,0,0,.03,0,.06v.54s0,.05,0,.06c0,0,.02,0,.06,0h2.02s.05,0,.06,0,0-.03,0-.06v-.54s0-.05,0-.06c0,0-.02,0-.06,0Z"/>
+            </g>
+          </g>
+        </g>
+      </svg>
+    </div>
     <div class="footer-bottom">
       <span class="philosophy">Construimos sistemas digitales que funcionan solos.</span>
       <span>© 2025 WEB7</span>
     </div>
   </footer>
-
   <!-- LIBS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
   <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
   <script src="chat-widget.js"></script>
+  <script src="webgl-reveal.js?v=6"></script>
 
   <script>
     gsap.registerPlugin(ScrollTrigger);
@@ -1386,7 +1590,7 @@
       });
     }
 
-    document.querySelectorAll('[data-cursor-portfolio]').forEach(el => {
+    document.querySelectorAll('a, button, .proyecto-card, .btn, [data-cursor-portfolio], [data-cursor-hover]').forEach(el => {
       el.addEventListener('mouseenter', () => {
         cursor.classList.add('active');
         cursorLabel.classList.add('visible');
@@ -1395,10 +1599,6 @@
         cursor.classList.remove('active');
         cursorLabel.classList.remove('visible');
       });
-    });
-    document.querySelectorAll('[data-cursor-hover]').forEach(el => {
-      el.addEventListener('mouseenter', () => gsap.to(cursor, { width: 40, height: 40, duration: 0.3 }));
-      el.addEventListener('mouseleave', () => gsap.to(cursor, { width: 20, height: 20, duration: 0.3 }));
     });
 
     // ═══════════════════════════════════════
@@ -1609,13 +1809,13 @@
       scrollTrigger: { trigger: '.tools-grid', start: 'top 80%', toggleActions: 'play none none reverse' },
     });
 
-    // 3D Tilt
+    // 3D Tilt (Subtle)
     document.querySelectorAll('[data-tilt]').forEach(card => {
       card.addEventListener('mousemove', (e) => {
         const rect = card.getBoundingClientRect();
-        const rotateX = ((e.clientY - rect.top - rect.height / 2) / (rect.height / 2)) * -6;
-        const rotateY = ((e.clientX - rect.left - rect.width / 2) / (rect.width / 2)) * 6;
-        gsap.to(card, { rotateX, rotateY, duration: 0.4, ease: 'power2.out', transformPerspective: 800 });
+        const rotateX = ((e.clientY - rect.top - rect.height / 2) / (rect.height / 2)) * -2.5;
+        const rotateY = ((e.clientX - rect.left - rect.width / 2) / (rect.width / 2)) * 2.5;
+        gsap.to(card, { rotateX, rotateY, duration: 0.4, ease: 'power2.out', transformPerspective: 1200 });
       });
       card.addEventListener('mouseleave', () => {
         gsap.to(card, { rotateX: 0, rotateY: 0, duration: 0.6, ease: 'power3.out' });
@@ -1720,9 +1920,47 @@
       // Store delay as data attribute for gsap function-based values
       cells.forEach((cell, i) => { cell._wipeDelay = delays[i]; });
 
+      // Create and inject loader dynamically
+      const loader = document.createElement('div');
+      loader.className = 'w7-transition-loader';
+      loader.innerHTML = `
+        <div class="w7-spinner"></div>
+        <span style="font-family: 'Doto', monospace; font-weight: 800; letter-spacing: 0.1em; font-size: 1.2rem;">WEB7</span>
+      `;
+      overlay.appendChild(loader);
+
+      const loaderStyle = document.createElement('style');
+      loaderStyle.textContent = `
+        .w7-transition-loader {
+          position: absolute;
+          top: 50%; left: 50%;
+          transform: translate(-50%, -50%);
+          display: flex; flex-direction: column; align-items: center; gap: 1rem;
+          z-index: 100000;
+          opacity: 0;
+          transition: opacity 0.3s ease;
+          color: #0a0a0a;
+        }
+        #pageTransitionOverlay.loading .w7-transition-loader {
+          opacity: 1;
+        }
+        .w7-spinner {
+          width: 40px; height: 40px;
+          border: 3px solid rgba(10, 10, 10, 0.15);
+          border-top-color: #0a0a0a;
+          border-radius: 50%;
+          animation: w7-spin 0.8s linear infinite;
+        }
+        @keyframes w7-spin {
+          to { transform: rotate(360deg); }
+        }
+      `;
+      document.head.appendChild(loaderStyle);
+
       // ON PAGE LOAD: if transition flag set, reveal (cells out)
       if (sessionStorage.getItem('wipe-in')) {
         sessionStorage.removeItem('wipe-in');
+        overlay.classList.remove('loading');
         overlay.style.pointerEvents = 'all';
         overlay.style.visibility = 'visible';
         cells.forEach(c => { c.style.opacity = 1; });
@@ -1756,8 +1994,31 @@
         const link = e.target.closest('a[href]');
         if (!link) return;
         const href = link.getAttribute('href');
-        if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
+        if (!href || href.startsWith('mailto:') || href.startsWith('tel:')) return;
         if (link.target === '_blank') return;
+
+        // Prevent same-page reload
+        try {
+          const url = new URL(link.href, location.origin);
+          if (url.origin === location.origin) {
+            let currentPath = location.pathname.replace(/\.html$/, "").replace(/\/$/, "");
+            let destPath = url.pathname.replace(/\.html$/, "").replace(/\/$/, "");
+            if (currentPath === "/index" || currentPath === "") currentPath = "/";
+            if (destPath === "/index" || destPath === "") destPath = "/";
+            
+            if (currentPath === destPath) {
+              if (!url.hash) {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                return;
+              } else {
+                return;
+              }
+            }
+          }
+        } catch (err) {}
+
+        if (href.startsWith('#')) return;
         if (!isInternalNav(link.href)) return;
 
         e.preventDefault();
@@ -1772,6 +2033,7 @@
           ease: 'power2.in',
           delay: (i) => delays[i] * 0.4,
           onComplete: () => {
+            overlay.classList.add('loading');
             sessionStorage.setItem('wipe-in', '1');
             window.location.href = dest;
           }
@@ -2103,8 +2365,195 @@
         }, { passive: true });
       }
 
+      function initWebGL() {
+        const canvas = document.getElementById('dither-bg');
+        if (!canvas) return;
+        const gl = canvas.getContext('webgl');
+        if (!gl) return;
+
+        const vsSource = `
+          attribute vec2 position;
+          void main() {
+            gl_Position = vec4(position, 0.0, 1.0);
+          }
+        `;
+
+        const fsSource = `
+          precision highp float;
+          uniform float uTime;
+          uniform vec2 uResolution;
+          uniform vec2 uMouse;
+
+          float hash(vec2 p) {
+            return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453123);
+          }
+
+          float noise(vec2 p) {
+            vec2 i = floor(p);
+            vec2 f = fract(p);
+            f = f*f*(3.0-2.0*f);
+            return mix(mix(hash(i + vec2(0.0,0.0)), hash(i + vec2(1.0,0.0)), f.x),
+                       mix(hash(i + vec2(0.0,1.0)), hash(i + vec2(1.0,1.0)), f.x), f.y);
+          }
+
+          void main() {
+            vec2 uv = gl_FragCoord.xy / uResolution.xy;
+            vec2 aspectUV = gl_FragCoord.xy / min(uResolution.x, uResolution.y);
+            
+            // Subtle mouse drift
+            vec2 mouseOffset = (uMouse - 0.5) * 0.25;
+            
+            // 1. Fine background dot grid (spaced wider / further apart)
+            vec2 fineSt = aspectUV * 75.0 - mouseOffset * 0.5;
+            vec2 fineGridUv = fract(fineSt) - 0.5;
+            float fineDist = length(fineGridUv);
+            float fineDotMask = smoothstep(0.06, 0.03, fineDist);
+            float fineDotVal = fineDotMask * 0.08;
+            
+            // 2. Coarse dithered square pixel blocks (seamlessly touching/merging)
+            vec2 st = aspectUV * 50.0 - mouseOffset;
+            vec2 gridId = floor(st);
+            vec2 gridUv = fract(st) - 0.5;
+            
+            // Chebyshev distance
+            float dist = max(abs(gridUv.x), abs(gridUv.y));
+            
+            float n = hash(gridId);
+            
+            // Organic density flow (changes slowly over time)
+            float timeScale = uTime * 0.12;
+            float density = noise(gridId * 0.07 + vec2(timeScale, -timeScale * 0.9));
+            
+            // Slow breathing pulse for density (causes clusters to expand and connect)
+            float densityPulse = 0.08 * sin(uTime * 0.6);
+            float v = smoothstep(0.18, 0.78, density + densityPulse) * 0.72;
+            
+            // Soft depth fade towards the edges of the section
+            float centerDist = length(uv - 0.5);
+            float depthFade = smoothstep(0.9, 0.3, centerDist);
+            v *= depthFade;
+            
+            // Active mask: fill cell completely (radius = 0.5) so adjacent cells touch and stick together
+            float radius = 0.5;
+            float blockMask = step(dist, radius);
+            if (n > v) {
+              blockMask = 0.0;
+            }
+            
+            // Premium Technical Grays Color Palette
+            vec3 grayColor = vec3(0.42); // Gray pixels
+            vec3 gridColor = vec3(0.28); // Faint background dots
+            
+            // Constant, subtle opacity for active blocks (no half-faded opacities)
+            float blockOpacity = 0.16;
+            
+            vec4 finalColor = vec4(gridColor, fineDotVal);
+            if (blockMask > 0.0) {
+              finalColor = vec4(grayColor, blockOpacity);
+            }
+            
+            gl_FragColor = finalColor;
+          }
+        `;
+
+        function compileShader(source, type) {
+          const shader = gl.createShader(type);
+          gl.shaderSource(shader, source);
+          gl.compileShader(shader);
+          if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+            console.error(gl.getShaderInfoLog(shader));
+            gl.deleteShader(shader);
+            return null;
+          }
+          return shader;
+        }
+
+        const vs = compileShader(vsSource, gl.VERTEX_SHADER);
+        const fs = compileShader(fsSource, gl.FRAGMENT_SHADER);
+        if (!vs || !fs) return;
+
+        const program = gl.createProgram();
+        gl.attachShader(program, vs);
+        gl.attachShader(program, fs);
+        gl.linkProgram(program);
+
+        if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+          console.error(gl.getProgramInfoLog(program));
+          return;
+        }
+
+        gl.useProgram(program);
+
+        const positionBuffer = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+        const vertices = new Float32Array([
+          -1, -1,
+           1, -1,
+          -1,  1,
+          -1,  1,
+           1, -1,
+           1,  1,
+        ]);
+        gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
+
+        const positionLocation = gl.getAttribLocation(program, 'position');
+        gl.enableVertexAttribArray(positionLocation);
+        gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
+
+        const uTimeLoc = gl.getUniformLocation(program, 'uTime');
+        const uResLoc = gl.getUniformLocation(program, 'uResolution');
+        const uMouseLoc = gl.getUniformLocation(program, 'uMouse');
+
+        let mouseX = 0.5, mouseY = 0.5;
+        let targetMouseX = 0.5, targetMouseY = 0.5;
+
+        const section = document.getElementById('que-construimos');
+        if (section) {
+          section.addEventListener('mousemove', (e) => {
+            const rect = section.getBoundingClientRect();
+            targetMouseX = (e.clientX - rect.left) / rect.width;
+            targetMouseY = 1.0 - (e.clientY - rect.top) / rect.height;
+          });
+        }
+
+        function resize() {
+          const w = canvas.clientWidth;
+          const h = canvas.clientHeight;
+          if (canvas.width !== w || canvas.height !== h) {
+            canvas.width = w;
+            canvas.height = h;
+            gl.viewport(0, 0, w, h);
+          }
+        }
+
+        let startTime = Date.now();
+
+        function render() {
+          resize();
+          mouseX += (targetMouseX - mouseX) * 0.05;
+          mouseY += (targetMouseY - mouseY) * 0.05;
+          const time = (Date.now() - startTime) * 0.001;
+
+          gl.clearColor(0, 0, 0, 0);
+          gl.clear(gl.COLOR_BUFFER_BIT);
+
+          gl.uniform1f(uTimeLoc, time);
+          gl.uniform2f(uResLoc, canvas.width, canvas.height);
+          gl.uniform2f(uMouseLoc, mouseX, mouseY);
+
+          gl.drawArrays(gl.TRIANGLES, 0, 6);
+          requestAnimationFrame(render);
+        }
+
+        requestAnimationFrame(render);
+      }
+
       initPixelTrail(document.getElementById('heroPixelTrail'));
       initPixelTrail(document.getElementById('pixelTrail'));
+
+      if (window.innerWidth >= 768) {
+        initWebGL();
+      }
     })();
 
     // ═══════════════════════════════════════

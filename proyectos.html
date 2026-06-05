@@ -27,8 +27,17 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Doto:wght@400;700;800&family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Doto:wght@400;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
+    @font-face {
+      font-family: 'Alpha Lyrae';
+      src: url('assets/AlphaLyrae-Medium.woff2') format('woff2'),
+           url('assets/AlphaLyrae-Medium.woff') format('woff');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+
     :root {
       --bg: #0a0a0a;
       --bg-alt: #111;
@@ -38,7 +47,7 @@
       --accent: #DFFE02;
       --accent-dim: rgba(200,255,0,0.15);
       --font-display: 'Doto', monospace;
-      --font-body: 'Manrope', sans-serif;
+      --font-body: 'Alpha Lyrae', sans-serif;
       --font-alt: 'Space Grotesk', sans-serif;
       --tag-landing: #a777ff;
       --tag-institucional: #B5ED3D;
@@ -65,6 +74,7 @@
       transition: width 0.3s, height 0.3s, background 0.3s;
       mix-blend-mode: difference;
     }
+    .cursor.active { width: 60px; height: 60px; background: var(--accent); }
     .cursor-dot {
       position: fixed; top: 0; left: 0;
       width: 6px; height: 6px;
@@ -72,6 +82,16 @@
       pointer-events: none; z-index: 10000;
       transform: translate(-50%, -50%);
     }
+    .cursor-label {
+      position: fixed; top: 0; left: 0;
+      pointer-events: none; z-index: 10001;
+      transform: translate(-50%, -50%);
+      font-size: 0.6rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--bg); opacity: 0; transition: opacity 0.3s;
+    }
+    .cursor-label.visible { opacity: 1; }
+    @media (max-width: 768px) { .cursor, .cursor-dot, .cursor-label { display: none; } }
 
     /* ─── NAV ─── */
     nav {
@@ -159,6 +179,12 @@
     }
 
     /* ─── PROJECT CARD — folder style ─── */
+    a.project-card {
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+    }
     .project-card {
       position: relative;
       background: var(--bg-card);
@@ -197,12 +223,17 @@
     .project-card[data-tag="ecommerce"]:hover,
     .project-card[data-tag="ecommerce"]:hover::before { border-color: var(--tag-ecommerce); }
 
-    /* Card image slot (future) */
+    /* Card image slot */
     .project-card .card-img {
       width: 100%;
       aspect-ratio: 16/9;
+      flex-shrink: 0;
       object-fit: cover;
       display: block;
+      transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .project-card:hover .card-img {
+      transform: scale(1.03);
     }
 
     /* Card body */
@@ -211,6 +242,15 @@
       flex: 1;
       display: flex;
       flex-direction: column;
+    }
+
+    .card-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.4rem;
+      gap: 1rem;
+      width: 100%;
     }
 
     .project-card .type-tag {
@@ -222,7 +262,7 @@
       border-radius: 3px;
       display: inline-block;
       width: fit-content;
-      margin-bottom: 1rem;
+      flex-shrink: 0;
     }
     .type-tag--landing { background: rgba(167,119,255,0.15); color: var(--tag-landing); }
     .type-tag--institucional { background: rgba(181,237,61,0.15); color: var(--tag-institucional); }
@@ -233,14 +273,38 @@
       font-family: var(--font-alt);
       font-size: 1.15rem;
       font-weight: 700;
-      margin-bottom: 0.4rem;
+      margin-bottom: 0;
     }
     .project-card .rubro {
       font-family: var(--font-alt);
       font-size: 0.72rem;
       color: var(--text-muted);
       letter-spacing: 0.05em;
-      margin-bottom: 1.2rem;
+      margin-bottom: 0.6rem;
+    }
+    .project-card .desc {
+      font-size: 0.88rem;
+      line-height: 1.55;
+      color: rgba(255,255,255,0.7);
+      font-weight: 300;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-card .card-credits {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      padding-top: 0.8rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      font-family: var(--font-alt);
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+    .project-card .credit-item {
+      line-height: 1.4;
+      opacity: 0.85;
     }
 
     .project-card .ver-sitio {
@@ -258,7 +322,7 @@
       margin-top: auto;
       transition: all 0.3s ease;
     }
-    .project-card .ver-sitio:hover {
+    .project-card:hover .ver-sitio {
       background: var(--accent);
       border-color: var(--accent);
       color: #0a0a0a;
@@ -303,31 +367,26 @@
       align-items: center;
     }
     .btn {
-      font-family: var(--font-display);
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
+      display: inline-flex; align-items: center; gap: 0.8rem;
       padding: 1rem 2.5rem;
-      border-radius: 50px;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      transition: all 0.3s ease;
+      border-radius: 100px;
+      font-family: var(--font-alt);
+      font-size: 0.9rem; font-weight: 600;
+      text-decoration: none; text-transform: uppercase;
+      letter-spacing: 0.04em;
+      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
       cursor: pointer;
     }
     .btn-primary {
-      background: var(--accent);
-      color: #0a0a0a;
-      border: 2px solid var(--accent);
+      background: var(--accent); color: var(--bg); border: none;
     }
-    .btn-primary:hover { background: #c8e600; border-color: #c8e600; }
+    .btn-primary:hover { background: #b8ef00; transform: scale(1.03); }
     .btn-secondary {
-      background: transparent;
-      color: var(--text);
-      border: 1px solid #444;
+      background: transparent; color: var(--text);
+      border: 1px solid rgba(255,255,255,0.2);
     }
-    .btn-secondary:hover { border-color: var(--text); }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
 
     /* ─── FOOTER ─── */
     footer {
@@ -349,6 +408,23 @@
     .footer-bottom {
       display: flex; justify-content: space-between;
       font-size: 0.75rem; color: #555;
+    }
+    .footer-giant-logo {
+      margin-top: 3rem;
+      color: var(--accent);
+      opacity: 0.9;
+      transition: opacity 0.3s ease;
+    }
+    .footer-giant-logo:hover {
+      opacity: 1;
+    }
+    .footer-giant-logo svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .footer-giant-logo path {
+      fill: currentColor !important;
     }
 
     /* ── PAGE TRANSITION OVERLAY ─────────────── */
@@ -424,6 +500,7 @@
   <!-- CURSOR -->
   <div class="cursor"></div>
   <div class="cursor-dot"></div>
+  <div class="cursor-label">Ver</div>
 
   <!-- NAV -->
   <nav>
@@ -441,7 +518,7 @@
   <!-- HERO -->
   <section class="projects-hero">
     <span class="label">Proyectos</span>
-    <h1>Cada proyecto es un negocio<br>que ahora se comunica solo.</h1>
+    <h1>Cada proyecto<br>es un negocio que<br>ahora se comunica solo.</h1>
     <p class="subtext">Mas de 30 proyectos. Mas de 10 sectores. Vinotecas, hoteles, distribuidoras, productores, eventos y profesionales. Todos con algo en comun: necesitaban claridad digital y la tienen.</p>
   </section>
 
@@ -457,128 +534,266 @@
   <!-- PROJECTS GRID -->
   <div class="projects-grid">
 
-    <div class="project-card" data-tag="landing">
+    <a href="https://www.odaalvino.com.br/" target="_blank" rel="noopener" class="project-card" data-tag="landing">
+      <img src="assets/oda-al-vino.jpg" alt="ODA Al Vino" class="card-img" loading="lazy">
       <div class="card-body">
-        <span class="type-tag type-tag--landing">Landing</span>
-        <h3>ODA Al Vino</h3>
+        <div class="card-header-row">
+          <h3>ODA Al Vino</h3>
+          <span class="type-tag type-tag--landing">Landing</span>
+        </div>
         <p class="rubro">Eventos &middot; Vinos</p>
-        <a href="https://www.odaalvino.com.br/" target="_blank" rel="noopener" class="ver-sitio">Ver sitio &rarr;</a>
+        <p class="desc">El festival de vinos más importante de la Triple Frontera. Landing para la 10ª edición en Iguazú — entradas, bodegas y experiencias.</p>
+        <div class="card-credits">
+          <div class="credit-item">• Diseño UI UX - Federico Gunther / Significa</div>
+        </div>
+        <span class="ver-sitio">Ver sitio &rarr;</span>
       </div>
-    </div>
+    </a>
 
-    <div class="project-card" data-tag="institucional">
+    <a href="https://www.odavinoteca.com.ar/" target="_blank" rel="noopener" class="project-card" data-tag="institucional">
+      <img src="assets/oda-vinoteca.jpg" alt="ODA Vinoteca" class="card-img" loading="lazy">
       <div class="card-body">
-        <span class="type-tag type-tag--institucional">Institucional</span>
-        <h3>ODA Vinoteca</h3>
+        <div class="card-header-row">
+          <h3>ODA Vinoteca</h3>
+          <span class="type-tag type-tag--institucional">Institucional</span>
+        </div>
         <p class="rubro">Gastronomia &middot; Vinos</p>
-        <a href="https://odaalvino.com.ar/" target="_blank" rel="noopener" class="ver-sitio">Ver sitio &rarr;</a>
+        <p class="desc">Una propuesta de alta gama que ahora se entiende antes de entrar al local.</p>
+        <div class="card-credits">
+          <div class="credit-item">• Diseño UI UX - Federico Gunther / Significa</div>
+        </div>
+        <span class="ver-sitio">Ver sitio &rarr;</span>
       </div>
-    </div>
+    </a>
 
-    <div class="project-card" data-tag="institucional">
+    <a href="https://yvyhotel.com.ar/" target="_blank" rel="noopener" class="project-card" data-tag="institucional">
+      <img src="assets/yvy-hotel.jpg" alt="YVY Hotel" class="card-img" loading="lazy">
       <div class="card-body">
-        <span class="type-tag type-tag--institucional">Institucional</span>
-        <h3>YVY Hotel</h3>
+        <div class="card-header-row">
+          <h3>YVY Hotel</h3>
+          <span class="type-tag type-tag--institucional">Institucional</span>
+        </div>
         <p class="rubro">Hoteleria &middot; Turismo</p>
-        <a href="https://yvyhotel.com.ar/" target="_blank" rel="noopener" class="ver-sitio">Ver sitio &rarr;</a>
+        <p class="desc">Un hotel de selva que se comunica como lo que es.</p>
+        <div class="card-credits">
+          <div class="credit-item">• Diseño UI UX - Federico Gunther / Satélite agencia</div>
+        </div>
+        <span class="ver-sitio">Ver sitio &rarr;</span>
       </div>
-    </div>
+    </a>
 
-    <div class="project-card" data-tag="institucional">
+    <a href="https://somostotal.com.ar/" target="_blank" rel="noopener" class="project-card" data-tag="institucional">
+      <img src="assets/total.jpg" alt="Total" class="card-img" loading="lazy">
       <div class="card-body">
-        <span class="type-tag type-tag--institucional">Institucional</span>
-        <h3>Total</h3>
+        <div class="card-header-row">
+          <h3>Total</h3>
+          <span class="type-tag type-tag--institucional">Institucional</span>
+        </div>
         <p class="rubro">Distribucion &middot; Alimentos</p>
-        <a href="https://somostotal.com.ar/" target="_blank" rel="noopener" class="ver-sitio">Ver sitio &rarr;</a>
+        <p class="desc">Una distribuidora de marcas líderes con presencia digital a su altura.</p>
+        <div class="card-credits">
+          <div class="credit-item">• Diseño UX - Federico Gunther / Satélite agencia</div>
+          <div class="credit-item">• Diseño UI - Luciano Hermida / Satélite agencia</div>
+        </div>
+        <span class="ver-sitio">Ver sitio &rarr;</span>
       </div>
-    </div>
+    </a>
 
-    <div class="project-card" data-tag="ecommerce">
+    <a href="https://yerbamateprimicia.com.ar/" target="_blank" rel="noopener" class="project-card" data-tag="ecommerce">
+      <img src="assets/primicia.jpg" alt="Primicia" class="card-img" loading="lazy">
       <div class="card-body">
-        <span class="type-tag type-tag--ecommerce">Ecommerce</span>
-        <h3>Primicia</h3>
+        <div class="card-header-row">
+          <h3>Primicia</h3>
+          <span class="type-tag type-tag--ecommerce">Ecommerce</span>
+        </div>
         <p class="rubro">Producto &middot; Yerba mate</p>
-        <a href="https://yerbamateprimicia.com.ar/" target="_blank" rel="noopener" class="ver-sitio">Ver sitio &rarr;</a>
+        <p class="desc">Identidad y venta online para una yerba con origen e historia propios.</p>
+        <div class="card-credits">
+          <div class="credit-item">• Diseño UI UX - Luciano Hermida / Federico Gunther / Satélite agencia</div>
+        </div>
+        <span class="ver-sitio">Ver sitio &rarr;</span>
       </div>
-    </div>
+    </a>
 
-    <div class="project-card" data-tag="profesional">
+    <a href="https://99parts.com.ar/" target="_blank" rel="noopener" class="project-card" data-tag="ecommerce">
+      <img src="assets/99parts.jpg" alt="99 Parts" class="card-img" loading="lazy">
       <div class="card-body">
-        <span class="type-tag type-tag--profesional">Profesional</span>
-        <h3>Vipwork</h3>
+        <div class="card-header-row">
+          <h3>99 Parts</h3>
+          <span class="type-tag type-tag--ecommerce">Ecommerce</span>
+        </div>
+        <p class="rubro">Ecommerce &middot; Repuestos</p>
+        <p class="desc">E-commerce de repuestos automotrices con catálogo robusto y experiencia de compra optimizada.</p>
+        <div class="card-credits">
+          <div class="credit-item">• Diseño UI UX: Web7</div>
+        </div>
+        <span class="ver-sitio">Ver sitio &rarr;</span>
+      </div>
+    </a>
+
+    <a href="https://vipwork.com.ar/" target="_blank" rel="noopener" class="project-card" data-tag="profesional">
+      <img src="assets/vipwork.jpg" alt="Vipwork" class="card-img" loading="lazy">
+      <div class="card-body">
+        <div class="card-header-row">
+          <h3>Vipwork</h3>
+          <span class="type-tag type-tag--profesional">Profesional</span>
+        </div>
         <p class="rubro">Servicios &middot; Profesional</p>
-        <a href="https://vipwork.com.ar/" target="_blank" rel="noopener" class="ver-sitio">Ver sitio &rarr;</a>
+        <p class="desc">Espacio de coworking premium. Diseño web que transmite confort, profesionalismo y networking.</p>
+        <div class="card-credits">
+          <div class="credit-item">• Diseño UX - Federico Gunther / Satélite agencia</div>
+        </div>
+        <span class="ver-sitio">Ver sitio &rarr;</span>
       </div>
-    </div>
+    </a>
 
-    <div class="project-card" data-tag="institucional">
+    <a href="https://fincarumaroli.com/" target="_blank" rel="noopener" class="project-card" data-tag="institucional">
+      <img src="assets/finca-rumaroli.jpg" alt="Finca Rumaroli" class="card-img" loading="lazy">
       <div class="card-body">
-        <span class="type-tag type-tag--institucional">Institucional</span>
-        <h3>Finca Rumaroli</h3>
+        <div class="card-header-row">
+          <h3>Finca Rumaroli</h3>
+          <span class="type-tag type-tag--institucional">Institucional</span>
+        </div>
         <p class="rubro">Agro &middot; Vinos</p>
-        <a href="https://fincarumaroli.com/" target="_blank" rel="noopener" class="ver-sitio">Ver sitio &rarr;</a>
+        <p class="desc">Una finca con producto propio que por fin tiene la web que se merece.</p>
+        <span class="ver-sitio">Ver sitio &rarr;</span>
       </div>
-    </div>
+    </a>
 
-    <div class="project-card" data-tag="institucional">
+    <a href="https://donbasilio.com/" target="_blank" rel="noopener" class="project-card" data-tag="institucional">
+      <img src="assets/don-basilio.jpg" alt="Don Basilio" class="card-img" loading="lazy">
       <div class="card-body">
-        <span class="type-tag type-tag--institucional">Institucional</span>
-        <h3>Don Basilio</h3>
+        <div class="card-header-row">
+          <h3>Don Basilio</h3>
+          <span class="type-tag type-tag--institucional">Institucional</span>
+        </div>
         <p class="rubro">Gastronomia</p>
-        <a href="https://donbasilio.com/" target="_blank" rel="noopener" class="ver-sitio">Ver sitio &rarr;</a>
+        <p class="desc">Gastronomía y tradición familiar. Un sitio que refleja su calidez y facilita las reservas.</p>
+        <div class="card-credits">
+          <div class="credit-item">• Diseño: Portillo Partners</div>
+        </div>
+        <span class="ver-sitio">Ver sitio &rarr;</span>
       </div>
-    </div>
+    </a>
 
-    <div class="project-card" data-tag="institucional">
+    <a href="https://larutadelte.com.ar/" target="_blank" rel="noopener" class="project-card" data-tag="institucional">
+      <img src="assets/la-ruta-del-te.jpg" alt="La Ruta del Té" class="card-img" loading="lazy">
       <div class="card-body">
-        <span class="type-tag type-tag--institucional">Institucional</span>
-        <h3>La Ruta del Te</h3>
+        <div class="card-header-row">
+          <h3>La Ruta del Te</h3>
+          <span class="type-tag type-tag--institucional">Institucional</span>
+        </div>
         <p class="rubro">Turismo &middot; Producto</p>
-        <a href="https://larutadelte.com.ar/" target="_blank" rel="noopener" class="ver-sitio">Ver sitio &rarr;</a>
+        <p class="desc">Una experiencia gastronómica en la selva que ahora se descubre antes de llegar.</p>
+        <div class="card-credits">
+          <div class="credit-item">• Diseño UI UX: Portillo Partners</div>
+        </div>
+        <span class="ver-sitio">Ver sitio &rarr;</span>
       </div>
-    </div>
+    </a>
 
-    <div class="project-card" data-tag="profesional">
+    <a href="https://abelardocuffia.com/" target="_blank" rel="noopener" class="project-card" data-tag="institucional">
+      <img src="assets/abelardo-cuffia.jpg" alt="Abelardo Cuffia" class="card-img" loading="lazy">
       <div class="card-body">
-        <span class="type-tag type-tag--profesional">Profesional</span>
-        <h3>Abelardo Cuffia</h3>
-        <p class="rubro">Profesional &middot; Personal</p>
-        <a href="https://abelardocuffia.com/" target="_blank" rel="noopener" class="ver-sitio">Ver sitio &rarr;</a>
+        <div class="card-header-row">
+          <h3>Abelardo Cuffia</h3>
+          <span class="type-tag type-tag--institucional">Institucional</span>
+        </div>
+        <p class="rubro">Institucional &middot; Servicios</p>
+        <p class="desc">Sitio web institucional para posicionar su trayectoria, servicios y soluciones de consultoría de primer nivel.</p>
+        <span class="ver-sitio">Ver sitio &rarr;</span>
       </div>
-    </div>
+    </a>
 
-    <div class="project-card" data-tag="institucional">
+    <a href="https://loslapachos.com/" target="_blank" rel="noopener" class="project-card" data-tag="institucional">
+      <img src="assets/los-lapachos.jpg" alt="Los Lapachos" class="card-img" loading="lazy">
       <div class="card-body">
-        <span class="type-tag type-tag--institucional">Institucional</span>
-        <h3>Los Lapachos</h3>
+        <div class="card-header-row">
+          <h3>Los Lapachos</h3>
+          <span class="type-tag type-tag--institucional">Institucional</span>
+        </div>
         <p class="rubro">Servicios</p>
-        <a href="https://loslapachos.com/" target="_blank" rel="noopener" class="ver-sitio">Ver sitio &rarr;</a>
+        <p class="desc">Servicios logísticos y corporativos. Un sitio institucional que proyecta solidez y alcance regional.</p>
+        <span class="ver-sitio">Ver sitio &rarr;</span>
       </div>
-    </div>
+    </a>
 
-    <div class="project-card" data-tag="institucional">
+    <a href="https://envasando.com.ar/" target="_blank" rel="noopener" class="project-card" data-tag="institucional">
+      <img src="assets/envasando.jpg" alt="Envasando" class="card-img" loading="lazy">
       <div class="card-body">
-        <span class="type-tag type-tag--institucional">Institucional</span>
-        <h3>Envasando</h3>
+        <div class="card-header-row">
+          <h3>Envasando</h3>
+          <span class="type-tag type-tag--institucional">Institucional</span>
+        </div>
         <p class="rubro">Industria &middot; Packaging</p>
-        <a href="https://envasando.com.ar/" target="_blank" rel="noopener" class="ver-sitio">Ver sitio &rarr;</a>
+        <p class="desc">Soluciones industriales de packaging y envasado con catálogo técnico orientado al sector B2B.</p>
+        <div class="card-credits">
+          <div class="credit-item">• Diseño UI UX - Luciano Hermida / Satélite agencia</div>
+        </div>
+        <span class="ver-sitio">Ver sitio &rarr;</span>
       </div>
-    </div>
+    </a>
 
-    <div class="project-card" data-tag="profesional">
+    <a href="https://adolfosartorisa.com.ar/" target="_blank" rel="noopener" class="project-card" data-tag="institucional">
+      <img src="assets/adolfo-sartori.jpg" alt="Adolfo Sartori" class="card-img" loading="lazy">
       <div class="card-body">
-        <span class="type-tag type-tag--profesional">Profesional</span>
-        <h3>Adolfo Sartori</h3>
-        <p class="rubro">Profesional &middot; Servicios</p>
-        <a href="https://adolfosartorisa.com.ar/" target="_blank" rel="noopener" class="ver-sitio">Ver sitio &rarr;</a>
+        <div class="card-header-row">
+          <h3>Adolfo Sartori</h3>
+          <span class="type-tag type-tag--institucional">Institucional</span>
+        </div>
+        <p class="rubro">Institucional &middot; Servicios</p>
+        <p class="desc">Sitio web institucional para presentar su trayectoria, grandes obras civiles e infraestructura de escala industrial.</p>
+        <div class="card-credits">
+          <div class="credit-item">• Diseño: Portillo Partners</div>
+        </div>
+        <span class="ver-sitio">Ver sitio &rarr;</span>
       </div>
-    </div>
+    </a>
+
+    <a href="https://plotterdoc.com/" target="_blank" rel="noopener" class="project-card" data-tag="institucional">
+      <img src="assets/plotterdoc.jpg" alt="Plotterdoc" class="card-img" loading="lazy">
+      <div class="card-body">
+        <div class="card-header-row">
+          <h3>Plotterdoc</h3>
+          <span class="type-tag type-tag--institucional">Institucional</span>
+        </div>
+        <p class="rubro">Soporte Técnico &middot; Servicios</p>
+        <p class="desc">Plataforma especializada en soporte técnico, venta de repuestos e insumos para plotters y equipos de impresión de gran formato.</p>
+        <span class="ver-sitio">Ver sitio &rarr;</span>
+      </div>
+    </a>
+
+    <a href="https://synergyshop.cl/" target="_blank" rel="noopener" class="project-card" data-tag="ecommerce">
+      <img src="assets/synergyshop.jpg" alt="Synergy Shop" class="card-img" loading="lazy">
+      <div class="card-body">
+        <div class="card-header-row">
+          <h3>Synergy Shop</h3>
+          <span class="type-tag type-tag--ecommerce">Ecommerce</span>
+        </div>
+        <p class="rubro">E-commerce &middot; Tecnología</p>
+        <p class="desc">Tienda online orientada a la venta y distribución de insumos de computación, impresión y soluciones tecnológicas en Chile.</p>
+        <span class="ver-sitio">Ver sitio &rarr;</span>
+      </div>
+    </a>
+
+    <a href="https://toppingsa.com.ar/" target="_blank" rel="noopener" class="project-card" data-tag="institucional">
+      <img src="assets/toppingsa.jpg" alt="Topping SA" class="card-img" loading="lazy">
+      <div class="card-body">
+        <div class="card-header-row">
+          <h3>Topping SA</h3>
+          <span class="type-tag type-tag--institucional">Institucional</span>
+        </div>
+        <p class="rubro">Industria &middot; Agroalimentario</p>
+        <p class="desc">Sitio institucional para presentar su catálogo de ingredientes, materias primas y soluciones para la industria alimentaria.</p>
+        <span class="ver-sitio">Ver sitio &rarr;</span>
+      </div>
+    </a>
 
   </div>
 
   <!-- CIERRE -->
   <section class="cierre-proyectos">
-    <h2>Tu negocio deberia<br>estar aca?</h2>
+    <h2>¿Tu negocio<br>deberia estar acá?</h2>
     <p>Contanos que necesitas.<br>Te respondemos en 24 horas.</p>
     <div class="cta-group">
       <a href="contacto.html" class="btn btn-primary">Empezar ahora <span>&rarr;</span></a>
@@ -590,7 +805,6 @@
   <footer>
     <div class="footer-top">
       <div class="footer-brand">
-        <div class="logo"><img src="assets/Logoweb7-verde.svg" alt="WEB7" style="height: 24px;"></div>
         <p class="tagline">Desarrollo web &middot; Automatizaciones &middot; Lab7</p>
       </div>
       <div class="footer-links">
@@ -602,20 +816,42 @@
         <a href="contacto.html">Contacto</a>
       </div>
     </div>
+    <div class="footer-giant-logo">
+      <svg viewBox="0 0 61.03 12.86" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g id="Capa_1-2" data-name="Capa 1">
+          <g>
+            <g>
+              <path class="cls-1" d="M29.57,1.7h1.02v2.36h-1.02V1.7ZM29.57,7.13h1.02v1.02h-1.02v-1.02ZM34.69,1.7h-4.09V.68h4.09v1.02ZM30.6,4.06h4.09v1.02h-4.09v-1.02ZM34.69,9.18h-4.09v-1.02h4.09v1.02ZM35.71,2.73h-1.02v-1.02h1.02v1.02ZM34.69,5.08h1.02v3.07h-1.02v-3.07Z"/>
+              <path class="cls-1" d="M42.26,6.4h-4.63c.1,1.42.9,2.02,2.01,2.02.9,0,1.29-.46,1.54-1.23l.99.35c-.4,1.06-1.11,1.78-2.55,1.78-1.99,0-3.01-1.31-3.01-3.24,0-1.74,1.14-3.19,2.84-3.19,1.82,0,2.88,1.44,2.82,3.5ZM37.66,5.53h3.54c-.17-1.11-.82-1.73-1.76-1.73-.89,0-1.6.65-1.78,1.73Z"/>
+              <path class="cls-1" d="M44.13,6.11h-1.02v-3.07h1.02v3.07ZM45.15,6.11v2.05h-1.02v-2.05h1.02ZM45.15,9.18v-1.02h1.02v1.02h-1.02ZM46.18,6.11h1.02v2.05h-1.02v-2.05ZM48.22,3.04v3.07h-1.02v-3.07h1.02Z"/>
+              <path class="cls-1" d="M54.58,6.4h-4.63c.1,1.42.9,2.02,2.01,2.02.9,0,1.29-.46,1.54-1.23l.99.35c-.4,1.06-1.11,1.78-2.55,1.78-1.99,0-3.01-1.31-3.01-3.24,0-1.74,1.14-3.19,2.84-3.19,1.82,0,2.88,1.44,2.82,3.5ZM49.98,5.53h3.54c-.17-1.11-.82-1.73-1.76-1.73s-1.6.65-1.78,1.73Z"/>
+              <path class="cls-1" d="M56.52,3.04v2.05h-1.02v-2.05h1.02ZM56.52,6.11v3.07h-1.02v-3.07h1.02ZM56.52,6.11v-1.02h1.02v1.02h-1.02ZM60,3.04v1.02h-1.43v1.02h-1.02v-2.05h2.46ZM61.03,4.06v5.11h-1.02v-5.11h1.02Z"/>
+            </g>
+            <g>
+              <path class="cls-1" d="M24.02,3.26h-2.02s-.05,0-.06,0c0,0,0,.03,0,.06v.54s0,.05,0,.06c0,0,.02,0,.06,0h2.02s.05,0,.06,0c0,0,0-.03,0-.06v-.54s0-.05,0-.06-.02,0-.06,0Z"/>
+              <path class="cls-1" d="M26.43,0H0v12.86h3.18l7.43-1v1h2.41l5.59-.99v.99h2.7l6.31-1V0h-1.18ZM.65,6.77V.68h3.39c-.08.4-.16.75-.22,1.07-.06.31-.14.65-.21,1-.08.35-.15.68-.21,1s-.14.67-.22,1.07c.2.05.4.1.6.15.09-.41.16-.78.23-1.11.07-.33.14-.67.22-1.03.08-.36.15-.71.22-1.03.07-.33.15-.7.23-1.11h1.58c.09.41.16.78.23,1.11.07.33.14.67.22,1.03.08.36.15.71.22,1.03.07.33.15.7.23,1.11.2-.05.4-.1.6-.15-.08-.4-.15-.75-.22-1.07s-.14-.65-.21-1c-.08-.35-.15-.68-.21-1s-.14-.67-.22-1.07h3.38v7.24s-.04.07-.13.17c-.08.1-.19.21-.31.34-.13.13-.25.27-.38.4s-.24.24-.33.32c-.09.08-.15.13-.16.13h-2.42c-.13-.2-.25-.38-.34-.53s-.2-.29-.29-.44-.21-.32-.34-.53h-.2c-.13.2-.25.38-.34.53-.1.15-.2.29-.29.44s-.21.32-.34.53H1.97s-.07-.04-.16-.13c-.09-.08-.2-.19-.33-.32s-.26-.26-.38-.4c-.12-.13-.23-.25-.31-.34-.08-.1-.13-.15-.13-.17v-1.16ZM18.31,1.23v2.02h-3.1s-.04,0-.04,0c0,0-.01,0-.02.02,0,0,0,.02,0,.05v.54s0,.04,0,.05c0,0,0,.01.02.02,0,0,.02,0,.04,0h3.1v2.28h-3.1s-.04,0-.04,0c0,0-.01,0-.02.02,0,0,0,.02,0,.05v.54s0,.04,0,.05c0,0,0,.01.02.02,0,0,.02,0,.04,0h3.1v2.4h-7.38V.68h7.38v.55ZM26.96,3.33v.85c-.23.19-.42.35-.57.48s-.34.29-.57.48c.23.19.42.35.57.48s.34.29.57.48v1.8s-.04.07-.13.17c-.08.1-.19.21-.31.34-.12.13-.25.27-.38.4-.13.13-.24.24-.33.32s-.15.13-.16.13h-6.67V.68h6.67s.07.04.16.13.2.19.33.32c.13.13.26.26.38.4.13.13.23.25.31.34.08.1.13.15.13.17v1.29Z"/>
+              <path class="cls-1" d="M24.02,6.02h-2.02s-.05,0-.06,0c0,0,0,.03,0,.06v.54s0,.05,0,.06c0,0,.02,0,.06,0h2.02s.05,0,.06,0,0-.03,0-.06v-.54s0-.05,0-.06c0,0-.02,0-.06,0Z"/>
+            </g>
+          </g>
+        </g>
+      </svg>
+    </div>
     <div class="footer-bottom">
       <span>Construimos sistemas digitales que funcionan solos.</span>
       <span>&copy; 2025 WEB7</span>
     </div>
   </footer>
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="chat-widget.js"></script>
+  <script src="webgl-reveal.js?v=6"></script>
   <script>
     // ═══════════════════════════════════════
     // CURSOR
     // ═══════════════════════════════════════
     const cursor = document.querySelector('.cursor');
     const cursorDot = document.querySelector('.cursor-dot');
+    const cursorLabel = document.querySelector('.cursor-label');
     let mouseX = 0, mouseY = 0, cursorX = 0, cursorY = 0;
 
     document.addEventListener('mousemove', (e) => {
@@ -626,7 +862,27 @@
       cursorX += (mouseX - cursorX) * 0.15;
       cursorY += (mouseY - cursorY) * 0.15;
       gsap.set(cursor, { x: cursorX, y: cursorY });
+      if (cursorLabel) {
+        gsap.set(cursorLabel, { x: mouseX, y: mouseY });
+      }
     });
+
+    function setupClickableCursors() {
+      document.querySelectorAll('a, button, .project-card, .btn, .ver-sitio').forEach(el => {
+        if (el.dataset.cursorBound) return;
+        el.dataset.cursorBound = "true";
+
+        el.addEventListener('mouseenter', () => {
+          if (cursor) cursor.classList.add('active');
+          if (cursorLabel) cursorLabel.classList.add('visible');
+        });
+        el.addEventListener('mouseleave', () => {
+          if (cursor) cursor.classList.remove('active');
+          if (cursorLabel) cursorLabel.classList.remove('visible');
+        });
+      });
+    }
+    setupClickableCursors();
 
     // ═══════════════════════════════════════
     // LOGO 3D TILT
@@ -738,8 +994,46 @@
 
       cells.forEach((cell, i) => { cell._wipeDelay = delays[i]; });
 
+      // Create and inject loader dynamically
+      const loader = document.createElement('div');
+      loader.className = 'w7-transition-loader';
+      loader.innerHTML = `
+        <div class="w7-spinner"></div>
+        <span style="font-family: 'Doto', monospace; font-weight: 800; letter-spacing: 0.1em; font-size: 1.2rem;">WEB7</span>
+      `;
+      overlay.appendChild(loader);
+
+      const loaderStyle = document.createElement('style');
+      loaderStyle.textContent = `
+        .w7-transition-loader {
+          position: absolute;
+          top: 50%; left: 50%;
+          transform: translate(-50%, -50%);
+          display: flex; flex-direction: column; align-items: center; gap: 1rem;
+          z-index: 100000;
+          opacity: 0;
+          transition: opacity 0.3s ease;
+          color: #0a0a0a;
+        }
+        #pageTransitionOverlay.loading .w7-transition-loader {
+          opacity: 1;
+        }
+        .w7-spinner {
+          width: 40px; height: 40px;
+          border: 3px solid rgba(10, 10, 10, 0.15);
+          border-top-color: #0a0a0a;
+          border-radius: 50%;
+          animation: w7-spin 0.8s linear infinite;
+        }
+        @keyframes w7-spin {
+          to { transform: rotate(360deg); }
+        }
+      `;
+      document.head.appendChild(loaderStyle);
+
       if (sessionStorage.getItem('wipe-in')) {
         sessionStorage.removeItem('wipe-in');
+        overlay.classList.remove('loading');
         overlay.style.pointerEvents = 'all';
         overlay.style.visibility = 'visible';
         cells.forEach(c => { c.style.opacity = 1; });
@@ -772,8 +1066,31 @@
         const link = e.target.closest('a[href]');
         if (!link) return;
         const href = link.getAttribute('href');
-        if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
+        if (!href || href.startsWith('mailto:') || href.startsWith('tel:')) return;
         if (link.target === '_blank') return;
+
+        // Prevent same-page reload
+        try {
+          const url = new URL(link.href, location.origin);
+          if (url.origin === location.origin) {
+            let currentPath = location.pathname.replace(/\.html$/, "").replace(/\/$/, "");
+            let destPath = url.pathname.replace(/\.html$/, "").replace(/\/$/, "");
+            if (currentPath === "/index" || currentPath === "") currentPath = "/";
+            if (destPath === "/index" || destPath === "") destPath = "/";
+            
+            if (currentPath === destPath) {
+              if (!url.hash) {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                return;
+              } else {
+                return;
+              }
+            }
+          }
+        } catch (err) {}
+
+        if (href.startsWith('#')) return;
         if (!isInternalNav(link.href)) return;
 
         e.preventDefault();
@@ -788,6 +1105,7 @@
           ease: 'power2.in',
           delay: (i) => delays[i] * 0.4,
           onComplete: () => {
+            overlay.classList.add('loading');
             sessionStorage.setItem('wipe-in', '1');
             window.location.href = dest;
           }

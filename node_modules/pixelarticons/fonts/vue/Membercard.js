@@ -1,0 +1,25 @@
+import { defineComponent, h } from 'vue';
+
+export const Membercard = defineComponent({
+  name: 'Membercard',
+  props: {
+    class: {
+      type: String,
+      default: ''
+    }
+  },
+  setup(props, { attrs }) {
+    return () => h(
+      'svg',
+      {
+        viewBox: '0 0 20 20',
+        width: '24px', height: '24px',
+        class: `pixelart-icons-font ${props.class}`,
+        ...attrs
+      },
+      [
+        h('path', {"d": "M20 19H15V23H13V21H11V23H9V19H4V17H20V19ZM4 17H2V7H4V17ZM22 17H20V7H22V17ZM14 15H6V13H14V15ZM18 11H6V9H18V11ZM20 7H4V5H20V7Z", "fillRule": "evenodd"})
+      ]
+    );
+  }
+});

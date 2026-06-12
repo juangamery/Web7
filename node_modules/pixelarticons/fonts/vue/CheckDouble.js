@@ -1,0 +1,25 @@
+import { defineComponent, h } from 'vue';
+
+export const CheckDouble = defineComponent({
+  name: 'CheckDouble',
+  props: {
+    class: {
+      type: String,
+      default: ''
+    }
+  },
+  setup(props, { attrs }) {
+    return () => h(
+      'svg',
+      {
+        viewBox: '0 0 20 20',
+        width: '24px', height: '24px',
+        class: `pixelart-icons-font ${props.class}`,
+        ...attrs
+      },
+      [
+        h('path', {"d": "M7 18H5v-2h2v2Zm6 0h-2v-2h2v2Zm-8-2H3v-2h2v2Zm4 0H7v-2h2v2Zm6-2v2h-2v-2h2ZM3 14H1v-2h2v2Zm8 0H9v-2h2v2Zm6 0h-2v-2h2v2Zm-4-2h-2v-2h2v2Zm6 0h-2v-2h2v2Zm-4-2h-2V8h2v2Zm6 0h-2V8h2v2Zm-4-2h-2V6h2v2Zm6 0h-2V6h2v2Z", "fillRule": "evenodd"})
+      ]
+    );
+  }
+});

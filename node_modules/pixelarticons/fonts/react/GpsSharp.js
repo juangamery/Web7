@@ -1,0 +1,4 @@
+import React from 'react';
+export const GpsSharp = props => (
+  <svg viewBox="0 0 20 20" width="24px" height="24px" {...props} className={`pixelart-icons-font ${props.className ? props.className : ''}`}><path d="M7 5h10v2H7zm10 0h2v14h-2zM7 17h10v2H7zM5 5h2v14H5zm14 6h4v2h-4zM1 11h4v2H1zM11 1h2v4h-2zm0 18h2v4h-2z" fillRule="evenodd" /></svg>
+);

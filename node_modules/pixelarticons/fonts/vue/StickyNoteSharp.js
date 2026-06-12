@@ -1,0 +1,25 @@
+import { defineComponent, h } from 'vue';
+
+export const StickyNoteSharp = defineComponent({
+  name: 'StickyNoteSharp',
+  props: {
+    class: {
+      type: String,
+      default: ''
+    }
+  },
+  setup(props, { attrs }) {
+    return () => h(
+      'svg',
+      {
+        viewBox: '0 0 20 20',
+        width: '24px', height: '24px',
+        class: `pixelart-icons-font ${props.class}`,
+        ...attrs
+      },
+      [
+        h('path', {"d": "M4 4H2v16h2zm12-2H2v2h14zm6 6h-2v12h2zm0 12H2v2h20zM18 6h2v2h-2zm-2-2h2v2h-2zm-4 0h2v6h-2zm0 6h8v2h-8z", "fillRule": "evenodd"})
+      ]
+    );
+  }
+});

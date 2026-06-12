@@ -1,0 +1,25 @@
+import { defineComponent, h } from 'vue';
+
+export const Radio = defineComponent({
+  name: 'Radio',
+  props: {
+    class: {
+      type: String,
+      default: ''
+    }
+  },
+  setup(props, { attrs }) {
+    return () => h(
+      'svg',
+      {
+        viewBox: '0 0 20 20',
+        width: '24px', height: '24px',
+        class: `pixelart-icons-font ${props.class}`,
+        ...attrs
+      },
+      [
+        h('path', {"d": "M11 9h2v2h-2zm0 4h2v2h-2zm-2-2h2v2H9zm4 0h2v2h-2zm6-2h-2v6h2zM5 9h2v6H5zm18-2h-2v10h2zM1 7h2v10H1zm16 0h-2v2h2zM7 7h2v2H7zm14-2h-2v2h2zM3 5h2v2H3zm14 10h-2v2h2zM7 15h2v2H7zm14 2h-2v2h2zM3 17h2v2H3z", "fillRule": "evenodd"})
+      ]
+    );
+  }
+});

@@ -1,0 +1,26 @@
+import { defineComponent, h } from 'vue';
+
+export const AtSign = defineComponent({
+  name: 'AtSign',
+  props: {
+    class: {
+      type: String,
+      default: ''
+    }
+  },
+  setup(props, { attrs }) {
+    return () => h(
+      'svg',
+      {
+        viewBox: '0 0 20 20',
+        width: '24px', height: '24px',
+        class: `pixelart-icons-font ${props.class}`,
+        ...attrs
+      },
+      [
+        h('path', {"d": "M9 8h6v2H9zm0 6h8v2H9zm-2 0v-4h2v4z", "fillRule": "evenodd"}),
+        h('path', {"d": "M13 14V8h2v6zm4-8h2v8h-2zM7 4h10v2H7zM3 8h2v8H3zm4 10h12v2H7zm-2-2h2v2H5zm14 0h2v2h-2zM5 6h2v2H5z", "fillRule": "evenodd"})
+      ]
+    );
+  }
+});

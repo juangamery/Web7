@@ -1,0 +1,27 @@
+import { defineComponent, h } from 'vue';
+
+export const Headphone = defineComponent({
+  name: 'Headphone',
+  props: {
+    class: {
+      type: String,
+      default: ''
+    }
+  },
+  setup(props, { attrs }) {
+    return () => h(
+      'svg',
+      {
+        viewBox: '0 0 20 20',
+        width: '24px', height: '24px',
+        class: `pixelart-icons-font ${props.class}`,
+        ...attrs
+      },
+      [
+        h('path', {"d": "M14 13h7v2h-7zm2 6h3v2h-3z", "fillRule": "evenodd"}),
+        h('path', {"d": "M14 13h2v8h-2zm5-6h2v12h-2zM3 13h7v2H3zm2 6h3v2H5z", "fillRule": "evenodd"}),
+        h('path', {"d": "M3 7h2v12H3zm5 6h2v8H8zM7 3h10v2H7zM5 5h2v2H5zm12 0h2v2h-2z", "fillRule": "evenodd"})
+      ]
+    );
+  }
+});

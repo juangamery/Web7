@@ -1,0 +1,4 @@
+import React from 'react';
+export const TeaSharp = props => (
+  <svg viewBox="0 0 20 20" width="24px" height="24px" {...props} className={`pixelart-icons-font ${props.className ? props.className : ''}`}><path d="M4 6h16v2H4zm0 2h2v10H4zm0 10h14v2H4zM20 6h2v8h-2zm-2 6h2v2h-2zm-2-4h2v10h-2zM7 2h2v2H7zm6 0h2v2h-2zM9 0h2v2H9zm6 0h2v2h-2zm-5 8h2v4h-2zm-2 4h6v4H8z" fillRule="evenodd" /></svg>
+);

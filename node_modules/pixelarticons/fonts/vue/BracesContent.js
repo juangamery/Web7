@@ -1,0 +1,25 @@
+import { defineComponent, h } from 'vue';
+
+export const BracesContent = defineComponent({
+  name: 'BracesContent',
+  props: {
+    class: {
+      type: String,
+      default: ''
+    }
+  },
+  setup(props, { attrs }) {
+    return () => h(
+      'svg',
+      {
+        viewBox: '0 0 20 20',
+        width: '24px', height: '24px',
+        class: `pixelart-icons-font ${props.class}`,
+        ...attrs
+      },
+      [
+        h('path', {"d": "M5 4h4v2H5zm14 0h-4v2h4zM5 20h4v-2H5zm14 0h-4v-2h4zM3 6h2v5H3zm18 0h-2v5h2zM3 18h2v-5H3zm18 0h-2v-5h2zM1 11h2v2H1zm10 0h2v2h-2zm-4 0h2v2H7zm8 0h2v2h-2zm8 0h-2v2h2z", "fillRule": "evenodd"})
+      ]
+    );
+  }
+});

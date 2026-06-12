@@ -1,0 +1,25 @@
+import { defineComponent, h } from 'vue';
+
+export const BusSharp = defineComponent({
+  name: 'BusSharp',
+  props: {
+    class: {
+      type: String,
+      default: ''
+    }
+  },
+  setup(props, { attrs }) {
+    return () => h(
+      'svg',
+      {
+        viewBox: '0 0 20 20',
+        width: '24px', height: '24px',
+        class: `pixelart-icons-font ${props.class}`,
+        ...attrs
+      },
+      [
+        h('path', {"d": "M4 15h6v2H4zm10 0h6v2h-6zM4 19h6v2H4zm10 0h6v2h-6zM0 7h2v10H0zm0-2h22v2H0zm22 2h2v10h-2zM2 11h20v2H2zm2 6h2v2H4zm4 0h8v2H8zm-8 0h4v2H0zm18 0h6v2h-6zM14 7h2v4h-2zM7 7h2v4H7z", "fillRule": "evenodd"})
+      ]
+    );
+  }
+});

@@ -3,13 +3,55 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Básico -->
   <title>WEB7 — Desarrollo web · Automatizaciones · Lab7</title>
-  <link rel="icon" href="assets/Logoweb7-verde.svg" type="image/svg+xml">
-  <meta name="theme-color" content="#0a0a0a">
   <meta name="description" content="Estudio de desarrollo web, automatizaciones y herramientas digitales. Diseño, código y resultados en 7 sprints.">
-  <meta property="og:title" content="WEB7 — Desarrollo web · Automatizaciones · Lab7">
-  <meta property="og:description" content="Estudio de desarrollo web, automatizaciones y herramientas digitales.">
+  <link rel="canonical" href="https://web7.com.ar/">
+  <meta name="theme-color" content="#0a0a0a">
+  
+  <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://web7.com.ar/">
+  <meta property="og:title" content="WEB7 — Desarrollo web · Automatizaciones · Lab7">
+  <meta property="og:description" content="Estudio de desarrollo web, automatizaciones y herramientas digitales. Diseño, código y resultados en 7 sprints.">
+  <meta property="og:image" content="https://web7.com.ar/assets/og-image.jpg">
+  <meta property="og:site_name" content="WEB7">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://web7.com.ar/">
+  <meta name="twitter:title" content="WEB7 — Desarrollo web · Automatizaciones · Lab7">
+  <meta name="twitter:description" content="Estudio de desarrollo web, automatizaciones y herramientas digitales. Diseño, código y resultados en 7 sprints.">
+  <meta name="twitter:image" content="https://web7.com.ar/assets/og-image.jpg">
+
+  <!-- Datos Estructurados (JSON-LD para GEO) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "WEB7",
+    "url": "https://web7.com.ar/",
+    "logo": "https://web7.com.ar/assets/Logoweb7-verde.svg",
+    "image": "https://web7.com.ar/assets/og-image.jpg",
+    "description": "Estudio de desarrollo web, automatizaciones y herramientas digitales. Diseño, código y resultados en 7 sprints.",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+54-9-3754-415676",
+      "contactType": "customer service",
+      "availableLanguage": "Spanish"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "AR"
+    },
+    "sameAs": [
+      "https://wa.me/5493754415676"
+    ]
+  }
+  </script>
+
+  <link rel="icon" href="assets/Logoweb7-verde.svg" type="image/svg+xml">
   <!-- PWA -->
   <link rel="manifest" href="manifest.json">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -1004,7 +1046,125 @@
         to   { transform: scaleX(1); }
       }
     }
+
+    /* ─── FAQ ─── */
+    .faq-section {
+      padding: 6rem 4rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .faq-section h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 800;
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .faq-item {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 1.5rem 0;
+      cursor: pointer;
+      transition: border-color 0.3s;
+    }
+    .faq-item:hover {
+      border-color: var(--accent);
+    }
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-alt);
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--text);
+      transition: color 0.3s;
+    }
+    .faq-item:hover .faq-question,
+    .faq-item.active .faq-question {
+      color: var(--accent);
+    }
+    .faq-icon {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 400;
+      transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .faq-item.active .faq-icon {
+      transform: rotate(45deg);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      color: var(--text-muted);
+      font-size: 1rem;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+    .faq-answer-inner {
+      padding-top: 1rem;
+      padding-bottom: 0.5rem;
+    }
+    @media (max-width: 768px) {
+      .faq-section { padding: 4rem 1.5rem; }
+      .faq-question { font-size: 1.05rem; }
+    }
   </style>
+
+  <!-- FAQ JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Cuánto tiempo tardan en desarrollar un sitio web?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nuestro Método 7 divide el trabajo en 7 sprints ágiles. Esto nos permite diseñar, programar y lanzar tu proyecto en tiempos récord sin sacrificar calidad ni rendimiento."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué tipos de proyectos desarrollan?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Construimos desde landings y sitios institucionales hasta plataformas de e-commerce complejas. Trabajamos con más de 10 sectores, incluyendo gastronomía, hotelería, salud y servicios profesionales."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es On7 y cómo funciona?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "On7 es nuestro agente de Inteligencia Artificial diseñado para atender a tus clientes 24/7 por WhatsApp, web y email. Responde consultas, califica leads y agenda reuniones automáticamente."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Incluyen optimización SEO en los desarrollos?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí, todos nuestros sitios nacen con una estructura técnica optimizada, SEO on-page básico, velocidad de carga extrema y preparativos GEO (para motores basados en IA)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué necesito para empezar a trabajar con ustedes?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Solo necesitamos tener una charla para entender tu negocio. Completá el formulario de contacto o escribinos por WhatsApp y te respondemos en menos de 24 horas con los próximos pasos."
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -1028,8 +1188,8 @@
     <div class="logo-outer"><a href="index.html" class="logo" aria-label="WEB7"><img src="assets/Logoweb7-verde.svg" alt="WEB7" style="height: 52px;"></a></div>
     <ul class="nav-links">
       <li><a href="#metodo" data-cursor-hover>Método</a></li>
-      <li><a href="proyectos.html" data-cursor-hover>Proyectos</a></li>
-      <li><a href="on7.html" data-cursor-hover>ON7</a></li>
+      <li><a href="#proyectos" data-cursor-hover>Proyectos</a></li>
+      <li><a href="#lab7" data-cursor-hover>ON7</a></li>
       <li><a href="#lab7" data-cursor-hover>Lab7</a></li>
       <li><a href="#herramientas" data-cursor-hover>Herramientas</a></li>
       <li><a href="contacto.html" data-cursor-hover>Contacto</a></li>
@@ -1075,7 +1235,7 @@
     <p class="hero-sub" data-split-words>El problema es que nadie lo sabe, o tenés que explicarlo todo el tiempo.</p>
     <div class="hero-reveal reveal-text" data-reveal-text data-accent="web seven Web clara en 7 días. Atención automatizada desde el día uno.">web seven construye tu presencia digital, la ordena y la hace funcionar sola. Web clara en 7 días. Atención automatizada desde el día uno.</div>
     <div class="hero-ctas">
-      <a href="contacto.html" class="btn btn-primary magnetic-btn" data-magnetic>Resolver esto <span>→</span></a>
+      <a href="contacto.html" class="btn btn-primary magnetic-btn" data-magnetic>Resolver esto <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" fill="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-left: 4px;"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"/><path d="M14 15V7h2v8zm-2 2V5h2v12z"/></svg></a>
       <a href="#metodo" class="btn btn-secondary">Ver cómo trabajamos <span>↓</span></a>
     </div>
     <div class="scroll-indicator">
@@ -1351,7 +1511,7 @@
         <div class="reveal-overlay"></div>
         <div class="card-body">
           <p>También trabajamos con: Don Basilio · Vipwork · Abelardo Cuffia · Los Lapachos · Envasando · Adolfo Sartori</p>
-          <div class="btn-black">Ver todos los proyectos <span>→</span></div>
+          <div class="btn-black">Ver todos los proyectos <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" fill="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-left: 4px;"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"/><path d="M14 15V7h2v8zm-2 2V5h2v12z"/></svg></div>
         </div>
       </a>
     </div>
@@ -1397,7 +1557,7 @@
 
     <div class="on7-card" data-tilt>
       <div class="sub-label"><span class="pulse-dot"></span> Primer producto</div>
-      <h3><span>On7</span> — Tu negocio, siempre encendido.</h3>
+      <h3 style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;"><img src="assets/ON7logo.svg" alt="ON7" style="height: 1.2em; transform: translateY(-2px);"> — Tu negocio, siempre encendido.</h3>
       <p>Cada mensaje sin respuesta es un cliente que se va. On7 atiende por WhatsApp, web y email cuando vos no podés. Responde, califica, agenda. Sin intervención manual.</p>
       <div class="on7-tags">
         <span>WhatsApp</span>
@@ -1407,7 +1567,7 @@
         <span>Automatización</span>
       </div>
       <div class="on7-cta">
-        <a href="on7.html" class="btn btn-secondary">Conocer On7 <span>→</span></a>
+        <a href="on7.html" class="btn btn-secondary">Conocer On7 <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" fill="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-left: 4px;"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"/><path d="M14 15V7h2v8zm-2 2V5h2v12z"/></svg></a>
       </div>
     </div>
     <p class="lab7-status">Lab7 está en construcción activa. On7 es el primer producto disponible.</p>
@@ -1445,6 +1605,44 @@
     </div>
   </section>
 
+  <!-- BLOCK FAQ -->
+  <section class="faq-section" id="faq">
+    <span class="label" style="text-align: center; color: var(--accent); display: block; margin-bottom: 1rem;">Dudas comunes</span>
+    <h2>Preguntas Frecuentes</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-question">¿Cuánto tiempo tardan en desarrollar un sitio web? <span class="faq-icon">+</span></div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Nuestro Método 7 divide el trabajo en 7 sprints ágiles. Esto nos permite diseñar, programar y lanzar tu proyecto en tiempos récord sin sacrificar calidad ni rendimiento.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">¿Qué tipos de proyectos desarrollan? <span class="faq-icon">+</span></div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Construimos desde landings y sitios institucionales hasta plataformas de e-commerce complejas. Trabajamos con más de 10 sectores, incluyendo gastronomía, hotelería, salud y servicios profesionales.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">¿Qué es On7 y cómo funciona? <span class="faq-icon">+</span></div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">On7 es nuestro agente de Inteligencia Artificial diseñado para atender a tus clientes 24/7 por WhatsApp, web y email. Responde consultas, califica leads y agenda reuniones automáticamente.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">¿Incluyen optimización SEO en los desarrollos? <span class="faq-icon">+</span></div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Sí, todos nuestros sitios nacen con una estructura técnica optimizada, SEO on-page básico, velocidad de carga extrema y preparativos GEO (para motores basados en IA).</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">¿Qué necesito para empezar a trabajar con ustedes? <span class="faq-icon">+</span></div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Solo necesitamos tener una charla para entender tu negocio. Completá el formulario de contacto o escribinos por WhatsApp y te respondemos en menos de 24 horas con los próximos pasos.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- BLOCK 07: CIERRE -->
   <section class="cierre" id="contacto">
     <!-- Gooey SVG filter -->
@@ -1464,8 +1662,8 @@
     <h2>Cuando tu negocio se comunica solo, vos podés hacer otra cosa.</h2>
     <p>El primer paso es simple: contanos tu proyecto. Nosotros nos encargamos del resto.</p>
     <div class="cta-group">
-      <a href="contacto.html" class="btn btn-primary magnetic-btn" data-magnetic>Empezar ahora <span>→</span></a>
-      <a href="contacto.html" class="btn btn-secondary">Escribinos por WhatsApp <span>→</span></a>
+      <a href="contacto.html" class="btn btn-primary magnetic-btn" data-magnetic>Empezar ahora <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" fill="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-left: 4px;"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"/><path d="M14 15V7h2v8zm-2 2V5h2v12z"/></svg></a>
+      <a href="contacto.html" class="btn btn-secondary">Escribinos por WhatsApp <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" fill="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-left: 4px;"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"/><path d="M14 15V7h2v8zm-2 2V5h2v12z"/></svg></a>
     </div>
   </section>
 
@@ -2581,6 +2779,27 @@
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/sw.js').catch(() => {});
     }
+
+    // FAQ Accordion Logic
+    document.querySelectorAll('.faq-item').forEach(item => {
+      const question = item.querySelector('.faq-question');
+      question.addEventListener('click', () => {
+        const isActive = item.classList.contains('active');
+        
+        // Cerrar todos los demás
+        document.querySelectorAll('.faq-item').forEach(otherItem => {
+          otherItem.classList.remove('active');
+          otherItem.querySelector('.faq-answer').style.maxHeight = null;
+        });
+
+        // Abrir/Cerrar el actual
+        if (!isActive) {
+          item.classList.add('active');
+          const answer = item.querySelector('.faq-answer');
+          answer.style.maxHeight = answer.scrollHeight + "px";
+        }
+      });
+    });
   </script>
 </body>
 </html>

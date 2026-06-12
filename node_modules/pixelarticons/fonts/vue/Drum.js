@@ -1,0 +1,25 @@
+import { defineComponent, h } from 'vue';
+
+export const Drum = defineComponent({
+  name: 'Drum',
+  props: {
+    class: {
+      type: String,
+      default: ''
+    }
+  },
+  setup(props, { attrs }) {
+    return () => h(
+      'svg',
+      {
+        viewBox: '0 0 20 20',
+        width: '24px', height: '24px',
+        class: `pixelart-icons-font ${props.class}`,
+        ...attrs
+      },
+      [
+        h('path', {"d": "M8 3h8v2H8zm0 10h8v2H8zm0 6h8v2H8zm-4-8h4v2H4zm0 6h4v2H4zm16-6h-4v2h4zm0 6h-4v2h4zM2 7h2v4H2zm0 4h2v6H2zm20-4h-2v4h2zm0 4h-2v6h2zM6 5h2v2H6zM4 3h2v2H4zM2 1h2v2H2zm6 6h2v2H8zm4 2h2v2h-2zm2-2h2v2h-2zm2-2h2v2h-2zm2-2h2v2h-2z", "fillRule": "evenodd"})
+      ]
+    );
+  }
+});

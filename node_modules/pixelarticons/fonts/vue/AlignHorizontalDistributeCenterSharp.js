@@ -1,0 +1,25 @@
+import { defineComponent, h } from 'vue';
+
+export const AlignHorizontalDistributeCenterSharp = defineComponent({
+  name: 'AlignHorizontalDistributeCenterSharp',
+  props: {
+    class: {
+      type: String,
+      default: ''
+    }
+  },
+  setup(props, { attrs }) {
+    return () => h(
+      'svg',
+      {
+        viewBox: '0 0 20 20',
+        width: '24px', height: '24px',
+        class: `pixelart-icons-font ${props.class}`,
+        ...attrs
+      },
+      [
+        h('path', {"d": "M5 8h4V6H5zm10 2h4V8h-4zm-6 8h2V6H9zm10-2h2V8h-2zM5 18h4v-2H5zm10-2h4v-2h-4zM3 18h2V6H3zm10-2h2V8h-2zM6 2h2v4H6zm0 16h2v4H6zm10-2h2v6h-2zm0-14h2v6h-2z", "fillRule": "evenodd"})
+      ]
+    );
+  }
+});

@@ -1,0 +1,25 @@
+import { defineComponent, h } from 'vue';
+
+export const Briefcases = defineComponent({
+  name: 'Briefcases',
+  props: {
+    class: {
+      type: String,
+      default: ''
+    }
+  },
+  setup(props, { attrs }) {
+    return () => h(
+      'svg',
+      {
+        viewBox: '0 0 20 20',
+        width: '24px', height: '24px',
+        class: `pixelart-icons-font ${props.class}`,
+        ...attrs
+      },
+      [
+        h('path', {"d": "M6 8h2v8H6zm14 0h2v8h-2zM8 6h12v2H8zm0 10h12v2H8zm-6-4h2v8H2zm2 8h12v2H4zm6-16h2v2h-2zm2-2h4v2h-4zm4 2h2v2h-2zM4 10h2v2H4zm12 8h2v2h-2z", "fillRule": "evenodd"})
+      ]
+    );
+  }
+});

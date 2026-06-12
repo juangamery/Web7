@@ -1,0 +1,25 @@
+import { defineComponent, h } from 'vue';
+
+export const KeyboardMusicSharp = defineComponent({
+  name: 'KeyboardMusicSharp',
+  props: {
+    class: {
+      type: String,
+      default: ''
+    }
+  },
+  setup(props, { attrs }) {
+    return () => h(
+      'svg',
+      {
+        viewBox: '0 0 20 20',
+        width: '24px', height: '24px',
+        class: `pixelart-icons-font ${props.class}`,
+        ...attrs
+      },
+      [
+        h('path', {"d": "M1 3h22v2H1zm0 16h22v2H1zM1 5h2v14H1zm20 0h2v14h-2zM3 11h18v2H3zm2-4h6v2H5zm8 0h2v2h-2zm4 0h2v2h-2zM5 13h2v4H5zm4 0h2v4H9zm4 0h2v4h-2zm4 0h2v4h-2z", "fillRule": "evenodd"})
+      ]
+    );
+  }
+});

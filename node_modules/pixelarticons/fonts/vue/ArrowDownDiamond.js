@@ -1,0 +1,25 @@
+import { defineComponent, h } from 'vue';
+
+export const ArrowDownDiamond = defineComponent({
+  name: 'ArrowDownDiamond',
+  props: {
+    class: {
+      type: String,
+      default: ''
+    }
+  },
+  setup(props, { attrs }) {
+    return () => h(
+      'svg',
+      {
+        viewBox: '0 0 20 20',
+        width: '24px', height: '24px',
+        class: `pixelart-icons-font ${props.class}`,
+        ...attrs
+      },
+      [
+        h('path', {"d": "M11 16h2v2h-2zm0-10h2v6h-2zm-2 8h6v2H9zm-2-2h10v2H7zm4-11h2v2h-2zm2 2h2v2h-2zm-2 0H9v2h2zm4 2h2v2h-2zM9 5H7v2h2zm8 2h2v2h-2zM7 7H5v2h2zm12 2h2v2h-2zM5 9H3v2h2zm16 2h2v2h-2zM3 11H1v2h2zm16 2h2v2h-2zM5 13H3v2h2zm12 2h2v2h-2zM7 15H5v2h2zm8 2h2v2h-2zm-6 0H7v2h2zm4 2h2v2h-2zm-2 0H9v2h2zm0 2h2v2h-2z", "fillRule": "evenodd"})
+      ]
+    );
+  }
+});

@@ -1,0 +1,25 @@
+import { defineComponent, h } from 'vue';
+
+export const DateTime = defineComponent({
+  name: 'DateTime',
+  props: {
+    class: {
+      type: String,
+      default: ''
+    }
+  },
+  setup(props, { attrs }) {
+    return () => h(
+      'svg',
+      {
+        viewBox: '0 0 20 20',
+        width: '24px', height: '24px',
+        class: `pixelart-icons-font ${props.class}`,
+        ...attrs
+      },
+      [
+        h('path', {"d": "M21 23h-8v-2h8v2ZM9 21H3v-2h6v2Zm4 0h-2v-8h2v8Zm10 0h-2v-8h2v8ZM3 7h14V5h2v4H3v10H1V5h2v2Zm15 10h2v2h-2v-1h-2v-4h2v3Zm3-4h-8v-2h8v2ZM7 3h6V1h2v2h2v2H3V3h2V1h2v2Z", "fillRule": "evenodd"})
+      ]
+    );
+  }
+});

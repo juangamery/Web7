@@ -1,0 +1,6 @@
+import React from 'react';
+export const Reload = props => (
+  <svg viewBox="0 0 20 20" width="24px" height="24px" {...props} className={`pixelart-icons-font ${props.className ? props.className : ''}`}><path d="M16 4h2v6h-2zm-2-2h2v2h-2zm0 2h2v8h-2zM4 8H2v5h2z" fillRule="evenodd" />,
+<path d="M4 6h16v2H4zm4 14H6v-6h2zm2 2H8v-2h2zm0-2H8v-8h2zm10-4h2v-5h-2z" fillRule="evenodd" />,
+<path d="M20 18H4v-2h16z" fillRule="evenodd" /></svg>
+);

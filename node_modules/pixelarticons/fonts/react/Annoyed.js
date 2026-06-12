@@ -1,0 +1,4 @@
+import React from 'react';
+export const Annoyed = props => (
+  <svg viewBox="0 0 20 20" width="24px" height="24px" {...props} className={`pixelart-icons-font ${props.className ? props.className : ''}`}><path d="M6 20h12v2H6zM6 2h12v2H6zm12 2h2v2h-2zM4 4h2v2H4zm0 14h2v2H4zm14 0h2v2h-2zM2 6h2v12H2zm18 0h2v12h-2zM7 8h3v2H7zm7 0h3v2h-3zm-7 6h10v2H7z" fillRule="evenodd" /></svg>
+);

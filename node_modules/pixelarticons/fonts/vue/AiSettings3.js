@@ -1,0 +1,26 @@
+import { defineComponent, h } from 'vue';
+
+export const AiSettings3 = defineComponent({
+  name: 'AiSettings3',
+  props: {
+    class: {
+      type: String,
+      default: ''
+    }
+  },
+  setup(props, { attrs }) {
+    return () => h(
+      'svg',
+      {
+        viewBox: '0 0 20 20',
+        width: '24px', height: '24px',
+        class: `pixelart-icons-font ${props.class}`,
+        ...attrs
+      },
+      [
+        h('path', {"d": "M4 2h2v2H4zm0 20h2v-2H4zM6 4h4v2H6zm0 16h4v-2H6zM4 6h2v4H4zm0 12h2v-4H4zM2 4h2v2H2zm0 16h2v-2H2z", "fillRule": "evenodd"}),
+        h('path', {"d": "M8 2h2v4H8zm0 20h2v-4H8zM2 8h2v8H2zm8 0h3v2h-3zm4 3h4v2h-4zm2-8h2v2h-2zm-2 2h2v2h-2zm2 14h2v2h-2zm-2-2h2v2h-2zM10 2h3v2h-3zm0 18h3v2h-3zM8 10h2v4H8zm2 4h3v2h-3zm8-5h2v2h-2zm0-8h2v2h-2zm0 16h2v2h-2zm2-6h2v2h-2zm0-8h2v2h-2zm0 16h2v2h-2zm-2-6h2v2h-2zm0-8h2v2h-2zm0 16h2v2h-2z", "fillRule": "evenodd"})
+      ]
+    );
+  }
+});

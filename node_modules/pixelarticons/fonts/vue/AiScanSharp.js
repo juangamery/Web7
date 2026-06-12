@@ -1,0 +1,25 @@
+import { defineComponent, h } from 'vue';
+
+export const AiScanSharp = defineComponent({
+  name: 'AiScanSharp',
+  props: {
+    class: {
+      type: String,
+      default: ''
+    }
+  },
+  setup(props, { attrs }) {
+    return () => h(
+      'svg',
+      {
+        viewBox: '0 0 20 20',
+        width: '24px', height: '24px',
+        class: `pixelart-icons-font ${props.class}`,
+        ...attrs
+      },
+      [
+        h('path', {"d": "M9 11h2v2H9zm4 0h2v2h-2zM5 7h14v2H5zm0 2h2v6H5zm0 6h14v2H5zm12-6h2v6h-2zm-6-4h2v2h-2zM2 2h6v2H2zm0 18h6v2H2zM16 2h6v2h-6zm0 18h6v2h-6zM2 4h2v4H2zm0 12h2v4H2zM20 4h2v4h-2zm0 12h2v4h-2z", "fillRule": "evenodd"})
+      ]
+    );
+  }
+});

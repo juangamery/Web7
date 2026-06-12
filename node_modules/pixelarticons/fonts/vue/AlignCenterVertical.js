@@ -1,0 +1,25 @@
+import { defineComponent, h } from 'vue';
+
+export const AlignCenterVertical = defineComponent({
+  name: 'AlignCenterVertical',
+  props: {
+    class: {
+      type: String,
+      default: ''
+    }
+  },
+  setup(props, { attrs }) {
+    return () => h(
+      'svg',
+      {
+        viewBox: '0 0 20 20',
+        width: '24px', height: '24px',
+        class: `pixelart-icons-font ${props.class}`,
+        ...attrs
+      },
+      [
+        h('path', {"d": "M22 5v4h-2V5zm-3 10v4h-2v-4zM5 15v4h2v-4zM9 3v2H4V3zm11 0v2h-5V3zm-3 10v2h-2v-2zM7 13v2h2v-2zM4 5v4H2V5zm5 4v2H4V9zm11 0v2h-5V9zm-3 10v2h-2v-2zM7 19v2h2v-2zm6-17v20h-2V2z", "fillRule": "evenodd"})
+      ]
+    );
+  }
+});

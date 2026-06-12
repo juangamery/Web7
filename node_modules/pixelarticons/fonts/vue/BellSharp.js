@@ -1,0 +1,26 @@
+import { defineComponent, h } from 'vue';
+
+export const BellSharp = defineComponent({
+  name: 'BellSharp',
+  props: {
+    class: {
+      type: String,
+      default: ''
+    }
+  },
+  setup(props, { attrs }) {
+    return () => h(
+      'svg',
+      {
+        viewBox: '0 0 20 20',
+        width: '24px', height: '24px',
+        class: `pixelart-icons-font ${props.class}`,
+        ...attrs
+      },
+      [
+        h('path', {"d": "M9 2h6v2H9zM7 4h2v2H7zm8 0h2v2h-2zM5 6h2v7H5zm12 0h2v7h-2zM3 13h2v4H3zm16 0h2v4h-2z", "fillRule": "evenodd"}),
+        h('path', {"d": "M3 15h18v2H3zm5 3h2v2H8zm6 0h2v2h-2zm-6 2h8v2H8z", "fillRule": "evenodd"})
+      ]
+    );
+  }
+});

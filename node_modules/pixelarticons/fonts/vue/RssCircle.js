@@ -1,0 +1,25 @@
+import { defineComponent, h } from 'vue';
+
+export const RssCircle = defineComponent({
+  name: 'RssCircle',
+  props: {
+    class: {
+      type: String,
+      default: ''
+    }
+  },
+  setup(props, { attrs }) {
+    return () => h(
+      'svg',
+      {
+        viewBox: '0 0 20 20',
+        width: '24px', height: '24px',
+        class: `pixelart-icons-font ${props.class}`,
+        ...attrs
+      },
+      [
+        h('path', {"d": "M6 2h12v2H6zm0 18h12v2H6zM20 6h2v12h-2zM2 6h2v12H2zm5 9h2v2H7zm0-4h4v2H7zm0-4h6v2H7zm4 6h2v4h-2zm4-2h2v6h-2zm-2-2h2v2h-2zm-9 9h2v2H4zM4 4h2v2H4zm14 0h2v2h-2zm0 14h2v2h-2z", "fillRule": "evenodd"})
+      ]
+    );
+  }
+});

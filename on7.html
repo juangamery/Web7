@@ -3,13 +3,46 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Básico -->
   <title>On7 — Tu negocio, siempre encendido</title>
-  <link rel="icon" href="assets/Logoweb7-verde.svg" type="image/svg+xml">
-  <meta name="theme-color" content="#0a0a0a">
   <meta name="description" content="On7 atiende a tus clientes por WhatsApp, web y email cuando vos no podés. Responde, califica y agenda. Sin intervención manual.">
+  <link rel="canonical" href="https://web7.com.ar/on7.html">
+  <meta name="theme-color" content="#0a0a0a">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://web7.com.ar/on7.html">
   <meta property="og:title" content="On7 — Tu negocio, siempre encendido">
   <meta property="og:description" content="Agente IA que atiende a tus clientes por WhatsApp cuando vos no podés.">
-  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://web7.com.ar/assets/og-image.jpg">
+  <meta property="og:site_name" content="WEB7">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://web7.com.ar/on7.html">
+  <meta name="twitter:title" content="On7 — Tu negocio, siempre encendido">
+  <meta name="twitter:description" content="Agente IA que atiende a tus clientes por WhatsApp cuando vos no podés.">
+  <meta name="twitter:image" content="https://web7.com.ar/assets/og-image.jpg">
+
+  <!-- Datos Estructurados (JSON-LD para GEO) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "On7",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web, WhatsApp",
+    "description": "Agente IA que atiende a tus clientes por WhatsApp, web y email cuando vos no podés. Responde, califica y agenda reuniones automáticamente.",
+    "provider": {
+      "@type": "Organization",
+      "name": "WEB7",
+      "url": "https://web7.com.ar/"
+    }
+  }
+  </script>
+
+  <link rel="icon" href="assets/Logoweb7-verde.svg" type="image/svg+xml">
   <link rel="manifest" href="manifest.json">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -1005,7 +1038,10 @@
       </svg>
     </div>
 
-    <span class="label">On7 &middot; Atención inteligente</span>
+    <div style="margin-bottom: 2rem;">
+      <img src="assets/ON7_largo.svg" alt="ON Seven" style="height: 64px; display: inline-block;">
+    </div>
+    <span class="label">Atención inteligente</span>
     <h1>
       <span class="reveal-container"><span>Tu negocio responde solo.</span></span>
       <span class="reveal-container"><span>Incluso a las 3 de la mañana.</span></span>
@@ -1191,7 +1227,7 @@
             <path d="M5 2h14v2H5zm0 18h14v2H5zM3 4h2v16H3zm16 0h2v16h-2zM7 6h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2zm-8 4h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2zm-8 4h2v2H7zm4 0h2v2h-2zm-1 4h4v2h-4zm5-4h2v2h-2z"/>
           </svg>
         </div>
-        <h4>Norte Propiedades</h4>
+        <h4>Inmobiliaria7</h4>
         <p>Busca inmuebles filtrando por presupuesto, ambientes o tipo de operación, y solicita visitas guiadas.</p>
         <button class="btn-demo">Probar Agente <svg viewBox="0 0 24 24" fill="currentColor" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle; margin-left: 6px;"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"/><path d="M14 15V7h2v8zm-2 2V5h2v12z"/></svg></button>
       </div>
@@ -1204,7 +1240,7 @@
             <path d="M4 13h6v2H4zm10 0h6v2h-6zM4 17h6v2H4zm10 0h6v2h-6zM2 15h4v2H2zm6 0h8v2H8zm10 0h4v2h-4zm4-4h2v4h-2zm-6-4h2v2h-2zM4 5h12v2H4zm-4 6h2v4H0zm12-2h10v2H12zM2 7h2v4H2zm8 0h2v2h-2z"/>
           </svg>
         </div>
-        <h4>Auto7 Usados</h4>
+        <h4>Concesionaria7</h4>
         <p>Explora catálogo de vehículos en stock, consulta planes de financiación y agenda un Test Drive.</p>
         <button class="btn-demo">Probar Agente <svg viewBox="0 0 24 24" fill="currentColor" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle; margin-left: 6px;"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"/><path d="M14 15V7h2v8zm-2 2V5h2v12z"/></svg></button>
       </div>
@@ -1214,10 +1250,10 @@
         <span class="demo-tag">Salud</span>
         <div style="color: var(--accent); margin-bottom: 0.5rem;">
           <svg viewBox="0 0 24 24" fill="currentColor" class="pixel-icon" width="24" height="24">
-            <path d="M13 22h-2v-2h2v2Zm-2-2H9v-2h2v2Zm4 0h-2v-2h2v2Zm-6-2H7v-2h2v2Zm8 0h-2v-2h2v2ZM7 16H5v-2h2v2Zm12 0h-2v-2h2v2ZM5 14H3v-2h2v2Zm16 0h-2v-2h2v2ZM3 12H1V6h2v6Zm20 0h-2V6h2v6ZM13 8h-2V6h2v2ZM5 6H3V4h2v2Zm6 0H9V4h2v2Zm4 0h-2V4h2v2Zm6 0h-2V4h2v2ZM9 4H5V2h4v2Zm10 0h-4V2h4v2Z"/>
+            <path d="M17 22H9V20H17V22ZM11 18H9V20H7V18H5V16H11V18ZM19 20H17V18H19V20ZM21 18H19V12H21V18ZM5 16H3V12H5V16ZM13 16H11V12H13V16ZM7 6H3V12H1V4H3V2H7V6ZM13 4H15V12H13V6H9V2H13V4ZM19 12H17V10H19V12ZM23 12H21V10H23V12ZM21 10H19V8H21V10Z"/>
           </svg>
         </div>
-        <h4>Centro Médico Salud7</h4>
+        <h4>Salud7</h4>
         <p>Consulta turnos libres de médicos por especialidad, coberturas y simula una reserva de turno.</p>
         <button class="btn-demo">Probar Agente <svg viewBox="0 0 24 24" fill="currentColor" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle; margin-left: 6px;"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"/><path d="M14 15V7h2v8zm-2 2V5h2v12z"/></svg></button>
       </div>
@@ -1226,9 +1262,30 @@
       <div class="demo-card" data-agent="restaurant" data-tilt>
         <span class="demo-tag">Gastronomía</span>
         <div style="color: var(--accent); margin-bottom: 0.5rem;">
-          <svg viewBox="0 0 24 24" fill="currentColor" class="pixel-icon" width="24" height="24">
-            <path d="M4 4h16v2H4zm0 2h2v8H4zm2 8h10v2H6zm14-8h2v4h-2zm-2 4h2v2h-2zm-2-4h2v8h-2zM2 18h18v2H2z"/>
-          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" id="Food-Drink-Hamburger--Streamline-Pixel" class="pixel-icon" width="24" height="24">
+  <g>
+    <path d="m30.47 19.05 -1.52 0 0 -1.53 -1.53 0 0 1.53 -1.52 0 0 1.52 -3.05 0 0 -1.52 -1.52 0 0 -1.53 -4.57 0 0 1.53 -3.05 0 0 1.52 -4.57 0 0 -1.52 -1.53 0 0 -1.53 -4.57 0 0 1.53 -1.52 0 0 1.52 1.52 0 0 4.57 1.53 0 0 -3.05 22.85 0 0 3.05 1.53 0 0 -3.05 1.52 0 0 -1.52 1.53 0L32 16l-1.53 0 0 3.05z" fill="currentColor"></path>
+    <path d="M25.9 25.14h1.52v1.53H25.9Z" fill="currentColor"></path>
+    <path d="M25.9 8.38h1.52V9.9H25.9Z" fill="currentColor"></path>
+    <path d="M24.38 6.86h1.52v1.52h-1.52Z" fill="currentColor"></path>
+    <path d="M6.09 26.67H25.9v1.52H6.09Z" fill="currentColor"></path>
+    <path d="M21.33 8.38h1.52V9.9h-1.52Z" fill="currentColor"></path>
+    <path d="M21.33 5.33h3.05v1.53h-3.05Z" fill="currentColor"></path>
+    <path d="M18.28 9.9h1.53v1.53h-1.53Z" fill="currentColor"></path>
+    <path d="M18.28 6.86h1.53v1.52h-1.53Z" fill="currentColor"></path>
+    <path d="M15.23 8.38h1.53V9.9h-1.53Z" fill="currentColor"></path>
+    <path d="M12.19 9.9h1.52v1.53h-1.52Z" fill="currentColor"></path>
+    <path d="M12.19 6.86h1.52v1.52h-1.52Z" fill="currentColor"></path>
+    <path d="M10.66 3.81h10.67v1.52H10.66Z" fill="currentColor"></path>
+    <path d="M9.14 8.38h1.52V9.9H9.14Z" fill="currentColor"></path>
+    <path d="M7.61 5.33h3.05v1.53H7.61Z" fill="currentColor"></path>
+    <path d="M6.09 6.86h1.52v1.52H6.09Z" fill="currentColor"></path>
+    <path d="M4.57 25.14h1.52v1.53H4.57Z" fill="currentColor"></path>
+    <path d="M4.57 8.38h1.52V9.9H4.57Z" fill="currentColor"></path>
+    <path d="m30.47 16 0 -1.53 -1.52 0 0 -4.57 -1.53 0 0 4.57 -22.85 0 0 -4.57 -1.53 0 0 4.57 -1.52 0 0 1.53 28.95 0z" fill="currentColor"></path>
+    <path d="M0 16h1.52v3.05H0Z" fill="currentColor"></path>
+  </g>
+</svg>
         </div>
         <h4>Bistró7</h4>
         <p>Consulta platos en carta, filtra opciones celíacas/vegetarianas y agenda una reserva de mesa.</p>
@@ -1240,12 +1297,23 @@
         <span class="demo-tag">Ecommerce</span>
         <div style="color: var(--accent); margin-bottom: 0.5rem;">
           <svg viewBox="0 0 24 24" fill="currentColor" class="pixel-icon" width="24" height="24">
-            <path d="M3 6h18v2H3zm2 14h14v2H5zM3 8h2v12H3zm16 0h2v12h-2z"/>
-            <path d="M7 4h2v6H7zm2-2h6v2H9zm6 2h2v6h-2z"/>
+            <path d="M3 22H1v-4h2v4Zm10 0H9v-2h4v2Zm-4-2H5v-2h4v2Zm8 0h-4v-2h4v2ZM5 18H3v-2h2v2Zm14 0h-2v-2h2v2Zm-8-2H5v-2h6v2Zm10 0h-2V4h2v12ZM5 14H3v-4h2v4Zm8 0h-2v-2h2v2Zm-6-4H5V8h2v2Zm6-2H7V6h6v2Zm4-2h-4V4h4v2Zm2-2h-2V2h2v2Z"/>
           </svg>
         </div>
-        <h4>Yerba Mate Primicia</h4>
+        <h4>Yerba7</h4>
         <p>Asesora sobre productos, calcula gastos de envío por provincia y gestiona un carrito de compra.</p>
+        <button class="btn-demo">Probar Agente <svg viewBox="0 0 24 24" fill="currentColor" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle; margin-left: 6px;"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"/><path d="M14 15V7h2v8zm-2 2V5h2v12z"/></svg></button>
+      </div>
+      <!-- Tarjeta 6: Vinoteca ODA -->
+      <div class="demo-card" data-agent="wine-shop" data-tilt>
+        <span class="demo-tag">Vinoteca</span>
+        <div style="color: var(--accent); margin-bottom: 0.5rem; filter: drop-shadow(0 0 8px rgba(163, 230, 53, 0.4));">
+          <svg viewBox="0 0 24 24" fill="currentColor" class="pixel-icon" width="24" height="24">
+            <path d="M7 8h10V4h2v8h-2v2h-2v2h-2v4h3v2H8v-2h3v-4H9v-2H7v-2H5V4h2v4Zm10-4H7V2h10v2Z"/>
+          </svg>
+        </div>
+        <h4>ODA Vinoteca</h4>
+        <p>Sommelier virtual experto. Recomienda vinos, enseña sobre cepas y arma pedidos para envío o retiro.</p>
         <button class="btn-demo">Probar Agente <svg viewBox="0 0 24 24" fill="currentColor" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle; margin-left: 6px;"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"/><path d="M14 15V7h2v8zm-2 2V5h2v12z"/></svg></button>
       </div>
     </div>

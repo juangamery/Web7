@@ -1,0 +1,25 @@
+import { defineComponent, h } from 'vue';
+
+export const SpeedSlow = defineComponent({
+  name: 'SpeedSlow',
+  props: {
+    class: {
+      type: String,
+      default: ''
+    }
+  },
+  setup(props, { attrs }) {
+    return () => h(
+      'svg',
+      {
+        viewBox: '0 0 20 20',
+        width: '24px', height: '24px',
+        class: `pixelart-icons-font ${props.class}`,
+        ...attrs
+      },
+      [
+        h('path', {"d": "M5 19H3v-2h2v2Zm16 0h-2v-2h2v2ZM3 17H1v-6h2v6Zm11 0h-4v-4h4v4Zm9 0h-2v-6h2v6Zm-13-4H8v-2h2v2Zm-2-2H6V9h2v2Zm13 0h-2V9h2v2ZM6 7v2H4V7h2Zm13 2h-4V7h4v2Zm-4-2H9V5h6v2Z", "fillRule": "evenodd"})
+      ]
+    );
+  }
+});

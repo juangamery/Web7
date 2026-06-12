@@ -27,7 +27,7 @@
       title: "Inmo7 — Asistente Inmobiliario",
       avatar: "IN",
       status: "Demo · Datos ficticios",
-      welcome: "¡Hola! 👋 Soy el asistente virtual de Norte Propiedades en Posadas. ¿Buscás comprar, alquilar o un alquiler temporario?",
+      welcome: "¡Hola! 👋 Soy el asistente virtual de Inmobiliaria7 en Posadas. ¿Buscás comprar, alquilar o un alquiler temporario?",
       chips: [
         { label: "Buscar alquiler", query: "Estoy buscando un departamento en alquiler" },
         { label: "Comprar casa", query: "Quiero comprar una casa" },
@@ -36,10 +36,10 @@
       ]
     },
     "car-sales": {
-      title: "Auto7 — Ventas y Financiación",
+      title: "Concesionaria7 — Ventas y Financiación",
       avatar: "A7",
       status: "Demo · Datos ficticios",
-      welcome: "¡Hola! 👋 Bienvenido a Auto7. Te ayudo a conocer nuestro catálogo de usados y planes de financiación. ¿Qué vehículo buscás?",
+      welcome: "¡Hola! 👋 Bienvenido a Concesionaria7. Te ayudo a conocer nuestro catálogo de usados y planes de financiación. ¿Qué vehículo buscás?",
       chips: [
         { label: "Ver catálogo", query: "¿Qué autos tienen disponibles en stock?" },
         { label: "Financiación", query: "¿Cómo son los planes de financiación?" },
@@ -51,7 +51,7 @@
       title: "Salud7 — Gestión de Turnos",
       avatar: "S7",
       status: "Demo · Datos ficticios",
-      welcome: "Hola. ¿Necesitás agendar un turno médico en el Centro Médico Salud7? Consultame por especialidades y turnos disponibles.",
+      welcome: "Hola. ¿Necesitás agendar un turno médico en el Salud7? Consultame por especialidades y turnos disponibles.",
       chips: [
         { label: "Turnos disponibles", query: "¿Qué turnos tienen disponibles?" },
         { label: "Dra. Martínez (Pediatría)", query: "Quiero un turno con Dra. Martínez de Pediatría" },
@@ -72,15 +72,27 @@
       ]
     },
     "yerba-mate": {
-      title: "Primicia — Asistente de Compra",
+      title: "Yerba7 — Asistente de Compra",
       avatar: "YP",
       status: "Demo · Datos ficticios",
-      welcome: "¡Hola! 🧉 Bienvenido a Yerba Mate Primicia. Te asesoro sobre nuestras variedades artesanales de Misiones y calculo tu envío. ¿Cuál te gusta?",
+      welcome: "¡Hola! 🧉 Bienvenido a Yerba7. Te asesoro sobre nuestras variedades artesanales de Misiones y calculo tu envío. ¿Cuál te gusta?",
       chips: [
         { label: "Ver productos", query: "¿Qué variedades de yerba mate tienen?" },
         { label: "Yerba Barbacuá", query: "Quiero consultar por la Yerba Barbacuá" },
         { label: "Costo de envío", query: "¿Cuánto cuesta el envío y a dónde envían?" },
         { label: "Hacer un pedido", query: "Quiero comprar yerba mate" }
+      ]
+    },
+    "wine-shop": {
+      title: "ODA Vinoteca — Mentor ODA",
+      avatar: "🍷",
+      status: "Demo · Datos ficticios",
+      welcome: "¡Hola! 🍷 Soy el Mentor de ODA Vinoteca. ¿Te gustaría que te ayude a descubrir tu vino ideal con unas breves preguntas?",
+      chips: [
+        { label: "Hacer el quiz", query: "Sí, quiero encontrar mi vino ideal" },
+        { label: "Ver catálogo", query: "¿Qué vinos tienen destacados?" },
+        { label: "Envíos y Retiros", query: "¿Cómo funciona la entrega o envíos?" },
+        { label: "Hacer un pedido", query: "Quiero armar un pedido de vino" }
       ]
     }
   };
@@ -282,6 +294,7 @@
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       position: relative;
+      justify-content: space-between;
     }
     #w7-chat-popup .chat-header::after {
       content: '';
@@ -592,9 +605,7 @@
   fab.id = "w7-chat-fab";
   fab.setAttribute("aria-label", "Abrir chat");
   fab.innerHTML = `
-    <svg class="fab-open" viewBox="0 0 24 24" fill="none" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-    </svg>
+    <svg class="fab-open" viewBox="0 0 24 24" fill="#0a0a0a" stroke="none"><path d="M19 21H5v-2h14v2ZM5 19H3v-4H1v-2h2V9h2v10Zm16-6h2v2h-2v4h-2V9h2v4Zm-11 3H8v-4h2v4Zm6 0h-2v-4h2v4Zm-3-9h6v2H5V7h6V5h2v2Zm-2-2H7V3h4v2Z"/></svg>
     <svg class="fab-close" viewBox="0 0 24 24" fill="none" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
     </svg>
@@ -610,13 +621,21 @@
   popup.id = "w7-chat-popup";
   popup.innerHTML = `
     <div class="chat-header">
-      <div class="chat-avatar">W7</div>
-      <div class="chat-header-text">
-        <h3>Asistente WEB7</h3>
-        <div class="chat-status-indicator">
-          <span class="chat-status-dot"></span>
-          <p>En línea</p>
+      <div style="display: flex; align-items: center; gap: 0.75rem;">
+        <div class="chat-avatar">W7</div>
+        <div class="chat-header-text">
+          <h3>Asistente WEB7</h3>
+          <div class="chat-status-indicator">
+            <span class="chat-status-dot"></span>
+            <p>En línea</p>
+          </div>
         </div>
+      </div>
+      <div class="chat-header-actions">
+        <button id="w7ChatMaximize" aria-label="Agrandar">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg>
+        </button>
+
       </div>
     </div>
     <div class="chat-messages" id="w7ChatMessages"></div>
@@ -627,14 +646,29 @@
   `;
 
   document.body.appendChild(popup);
+  popup.style.setProperty("--w7-brand", ACCENT);
   document.body.appendChild(fab);
   document.body.appendChild(tooltip);
+
+  // ── Window Controls ──
+  const btnMaximize = popup.querySelector("#w7ChatMaximize");
+  if (btnMaximize) {
+    btnMaximize.addEventListener("click", () => {
+      popup.classList.toggle("expanded");
+      if (popup.classList.contains("expanded")) {
+        btnMaximize.innerHTML = `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 14 10 14 10 20"></polyline><polyline points="20 10 14 10 14 4"></polyline><line x1="14" y1="10" x2="21" y2="3"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg>`; // Shrink icon
+      } else {
+        btnMaximize.innerHTML = `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg>`; // Maximize icon
+      }
+    });
+  }
+
 
   // ── Clear Chat ──
   const clearBtn = document.createElement("button");
   clearBtn.className = "chat-clear";
   clearBtn.textContent = "Limpiar";
-  popup.querySelector(".chat-header").appendChild(clearBtn);
+  popup.querySelector(".chat-header-actions").insertAdjacentElement("afterbegin", clearBtn);
 
   clearBtn.addEventListener("click", () => {
     if (confirm("¿Querés borrar el historial de chat?")) {

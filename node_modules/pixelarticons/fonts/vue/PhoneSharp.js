@@ -1,0 +1,25 @@
+import { defineComponent, h } from 'vue';
+
+export const PhoneSharp = defineComponent({
+  name: 'PhoneSharp',
+  props: {
+    class: {
+      type: String,
+      default: ''
+    }
+  },
+  setup(props, { attrs }) {
+    return () => h(
+      'svg',
+      {
+        viewBox: '0 0 20 20',
+        width: '24px', height: '24px',
+        class: `pixelart-icons-font ${props.class}`,
+        ...attrs
+      },
+      [
+        h('path', {"d": "M2 1h9v2H2zm7 2h2v6H9zM7 7h2v4H7zm-3 5h2v2H4zM2 3h2v9H2zm7 8h2v2H9zm2 2h2v2h-2zm2 2h4v2h-4zm2-2h6v2h-6zm6 0h2v9h-2zM6 14h2v2H6zm2 2h2v2H8zm2 2h2v2h-2zm2 2h9v2h-9z", "fillRule": "evenodd"})
+      ]
+    );
+  }
+});

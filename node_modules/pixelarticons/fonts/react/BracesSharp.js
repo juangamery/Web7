@@ -1,0 +1,4 @@
+import React from 'react';
+export const BracesSharp = props => (
+  <svg viewBox="0 0 20 20" width="24px" height="24px" {...props} className={`pixelart-icons-font ${props.className ? props.className : ''}`}><path d="M4 4h6v2H4zm16 0h-6v2h6zM4 20h6v-2H4zm16 0h-6v-2h6zM4 6h2v5H4zm16 0h-2v5h2zM4 18h2v-5H4zm16 0h-2v-5h2zM2 11h2v2H2zm20 0h-2v2h2z" fillRule="evenodd" /></svg>
+);

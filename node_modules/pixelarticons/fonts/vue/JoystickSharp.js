@@ -1,0 +1,25 @@
+import { defineComponent, h } from 'vue';
+
+export const JoystickSharp = defineComponent({
+  name: 'JoystickSharp',
+  props: {
+    class: {
+      type: String,
+      default: ''
+    }
+  },
+  setup(props, { attrs }) {
+    return () => h(
+      'svg',
+      {
+        viewBox: '0 0 20 20',
+        width: '24px', height: '24px',
+        class: `pixelart-icons-font ${props.class}`,
+        ...attrs
+      },
+      [
+        h('path', {"d": "M2 14h20v2H2zm0 6h20v2H2zm0-4h2v4H2zm18 0h2v4h-2zM8 2h8v2H8zm0 2h2v4H8zm6 0h2v4h-2zM8 8h8v2H8zm3 2h2v4h-2zm-4 2h2v2H7z", "fillRule": "evenodd"})
+      ]
+    );
+  }
+});

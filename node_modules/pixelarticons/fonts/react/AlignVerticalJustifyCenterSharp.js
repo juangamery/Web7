@@ -1,0 +1,4 @@
+import React from 'react';
+export const AlignVerticalJustifyCenterSharp = props => (
+  <svg viewBox="0 0 20 20" width="24px" height="24px" {...props} className={`pixelart-icons-font ${props.className ? props.className : ''}`}><path d="M2 13h20v-2H2zm2 4v3h2v-3zm0-2v2h16v-2zm14 2v3h2v-3zM4 20v2h16v-2zM7 7V4h2v3zm0 2V7h10v2zm8-2V4h2v3zM7 4V2h10v2z" fillRule="evenodd" /></svg>
+);

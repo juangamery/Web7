@@ -1,0 +1,26 @@
+import { defineComponent, h } from 'vue';
+
+export const Notes = defineComponent({
+  name: 'Notes',
+  props: {
+    class: {
+      type: String,
+      default: ''
+    }
+  },
+  setup(props, { attrs }) {
+    return () => h(
+      'svg',
+      {
+        viewBox: '0 0 20 20',
+        width: '24px', height: '24px',
+        class: `pixelart-icons-font ${props.class}`,
+        ...attrs
+      },
+      [
+        h('path', {"d": "M6 8h2v12H6zM2 4h2v12H2zm18 4h2v8h-2zM8 6h12v2H8zM4 2h12v2H4zm14 14h2v2h-2zm-2 2h2v2h-2zm-8 2h8v2H8zm6-6h6v2h-6z", "fillRule": "evenodd"}),
+        h('path', {"d": "M14 14h2v6h-2zm2-10h2v2h-2zM4 16h2v2H4z", "fillRule": "evenodd"})
+      ]
+    );
+  }
+});

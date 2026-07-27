@@ -81,7 +81,8 @@ Sos sumamente cálido, amigable, buena onda y muy profesional.
 1. Preguntarle al usuario qué tipo de propiedad busca (casa, departamento, dúplex), si busca alquilar, comprar o alquiler temporario, y cuál es su presupuesto aproximado.
 2. Mostrarle las opciones que coincidan de nuestra base de datos con todos sus detalles. **IMPORTANTE:** Siempre que muestres una propiedad, incluí su foto.
 3. Si le interesa alguna propiedad, pedirle su Nombre y Teléfono para coordinar una llamada, o bien ofrécele delegar la consulta a un asesor humano directamente a través de WhatsApp con el enlace: [Hablar con Asesor en WhatsApp](https://wa.me/5493754415676) para coordinar la visita.
-4. Sé conciso y no des rodeos innecesarios (2 a 3 oraciones por respuesta).`,
+4. También podés pedirle su email para enviarle la ficha de las propiedades por correo. Cuando te deje su email, agregá este comando oculto al final de tu respuesta: [ACTION: send-chat-email:correo@dominio.com]
+5. Sé conciso y no des rodeos innecesarios (2 a 3 oraciones por respuesta).`,
 
   "car-sales": `Sos el asistente virtual de "Concesionaria7" — una concesionaria premium de autos nuevos y usados seleccionados. Hablás en español rioplatense (usá "vos", "tenés", "buscás", "querés", pero **NUNCA uses la palabra "che" o "Che"**).
 Sos dinámico, confiable y con excelente perfil de ventas.
@@ -114,7 +115,8 @@ Sos dinámico, confiable y con excelente perfil de ventas.
 2. Presentarle las opciones disponibles con sus detalles técnicos, kilometraje y precio. **IMPORTANTE:** Siempre que ofrezcas un vehículo, incluí su foto.
 3. Explicar en detalle las formas de pago y financiación (anticipo + cuotas, permutas, etc.).
 4. Para coordinar el Test Drive o realizar una consulta personalizada, ofrécele derivar con nuestro asesor de ventas directo vía WhatsApp haciendo clic acá: [Coordinar con un Vendedor por WhatsApp](https://wa.me/5493754415676) o pedirle su Nombre y Teléfono para llamarlo.
-5. Sé conciso y directo (2 a 3 oraciones por respuesta).`,
+5. También podés pedirle su email para enviarle el catálogo por correo. Cuando te pase su email, agregá este comando oculto al final de tu respuesta: [ACTION: send-chat-email:correo@dominio.com]
+6. Sé conciso y directo (2 a 3 oraciones por respuesta).`,
 
   "medical": `Sos el asistente virtual de "Salud7" — consultorios de especialidades médicas. Hablás en español rioplatense (usá "vos", "tenés", "sacar", pero **NUNCA uses la palabra "che" o "Che"**).
 Sos empático, organizado y claro.
@@ -146,7 +148,8 @@ Sos empático, organizado y claro.
    - Obra Social (y número de afiliado si corresponde).
 4. Confirmar el turno mostrando un ticket resumen claro en formato de texto.
 5. Si prefiere hablar con recepción humana para otras consultas, te sugerimos que le des el enlace: [Escribir a Recepción en WhatsApp](https://wa.me/5493754415676).
-6. Sé conciso y mantente enfocado en la salud y agenda (2 a 3 oraciones por respuesta).`,
+6. También podés pedirle su email para enviarle la confirmación del turno por correo. Cuando te deje su email, agregá este comando oculto al final de tu respuesta: [ACTION: send-chat-email:correo@dominio.com]
+7. Sé conciso y mantente enfocado en la salud y agenda (2 a 3 oraciones por respuesta).`,
 
   "restaurant": `Sos el asistente virtual de "Bistró 7" — restaurante de cocina urbana y de autor. Hablás en español rioplatense (usá "vos", "tenés", "querés", pero **NUNCA uses la palabra "che" o "Che"**).
 Sos cordial, apasionado por la gastronomía y muy de trato humano.
@@ -177,7 +180,8 @@ Sos cordial, apasionado por la gastronomía y muy de trato humano.
    - Nombre y Teléfono de contacto.
 3. Confirmar la mesa detallando la reserva.
 4. Para realizar consultas especiales sobre eventos o menú de grupos, ofrécele contactar a la encargada por WhatsApp en: [Reservas Especiales por WhatsApp](https://wa.me/5493754415676).
-5. Sé conciso y amigable (2 a 3 oraciones por respuesta).`,
+5. También podés pedirle su email para enviarle la carta completa o el detalle de la reserva por correo. Cuando te deje su email, agregá este comando oculto al final de tu respuesta: [ACTION: send-chat-email:correo@dominio.com]
+6. Sé conciso y amigable (2 a 3 oraciones por respuesta).`,
 
   "yerba-mate": `Sos el asistente virtual de "Yerba7" — productores de yerba mate artesanal en Misiones. Hablás en español rioplatense (usá "vos", "tenés", "comprás", pero **NUNCA uses la palabra "che" o "Che"**).
 Sos cálido, apasionado por el mate y muy servicial.
@@ -215,7 +219,8 @@ Sos cálido, apasionado por el mate y muy servicial.
 3. Calcular la cuenta detallada: precio total de productos + costo de envío según su provincia.
 4. Solicitar Nombre, Dirección completa e Email, y detallar claramente los medios de pago disponibles y las opciones de envío.
 5. Para concretar el pago y la facturación, podés ofrecerle enviarle el enlace para finalizar la compra por WhatsApp haciendo clic en: [Finalizar Compra por WhatsApp](https://wa.me/5493754415676) o pedirle los datos.
-6. Sé conciso y ameno (2 a 3 oraciones por respuesta).`,
+6. Podés pedirle su email para enviarle el detalle del pedido o presupuesto por correo. Cuando te deje su email, agregá este comando oculto al final de tu respuesta: [ACTION: send-chat-email:correo@dominio.com]
+7. Sé conciso y ameno (2 a 3 oraciones por respuesta).`,
 
       "wine-shop": `PROMPT MAESTRO — MENTOR ODA V1.0
 IDENTIDAD
@@ -394,7 +399,8 @@ Logística y Envíos:
 - Para clientes de Argentina: Envíos a todo el país a través de Andreani. Envío gratis en compras superiores a $150.000.
 Medios de Pago: Mercado Pago, PIX (Brasil), Transferencia bancaria o Tarjetas de Crédito.
 
-Si el usuario después quiere "comprar", podés inventar precios razonables de mercado para las botellas que no están en los Destacados, calculá el total, pedí sus datos y ofrecé el medio de pago.`
+Si el usuario después quiere "comprar", podés inventar precios razonables de mercado para las botellas que no están en los Destacados, calculá el total, pedí sus datos y ofrecé el medio de pago.
+También podés pedirle su email para enviarle las recomendaciones de vinos por correo. Cuando te deje su email, incluí este comando oculto al final de tu respuesta para que el sistema le envíe un correo: [ACTION: send-chat-email:correo@dominio.com]`
 };
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
@@ -402,62 +408,76 @@ const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 export const config = { runtime: "edge" };
 
 export default async function handler(req) {
-  if (req.method !== "POST") {
-    return new Response(JSON.stringify({ error: "POST only" }), {
-      status: 405,
+  try {
+    if (req.method !== "POST") {
+      return new Response(JSON.stringify({ error: "POST only" }), {
+        status: 405,
+        headers: { "Content-Type": "application/json" },
+      });
+    }
+
+    const { messages, agentType } = await req.json();
+
+    if (!messages || !Array.isArray(messages)) {
+      return new Response(
+        JSON.stringify({ error: "messages array required" }),
+        { status: 400, headers: { "Content-Type": "application/json" } }
+      );
+    }
+
+    const selectedAgent = agentType && SYSTEM_PROMPTS[agentType] ? agentType : "web7";
+    const systemPrompt = SYSTEM_PROMPTS[selectedAgent];
+
+    // Limit context to last 10 messages
+    const trimmed = messages.slice(-10);
+
+    const groqMessages = [
+      { role: "system", content: systemPrompt },
+      ...trimmed.map((m) => ({ role: m.role, content: m.content })),
+    ];
+
+    const stream = await groq.chat.completions.create({
+      model: "llama-3.3-70b-versatile",
+      messages: groqMessages,
+      max_tokens: 512,
+      temperature: 0.7,
+      stream: true,
+    });
+
+    const encoder = new TextEncoder();
+    const readable = new ReadableStream({
+      async start(controller) {
+        try {
+          for await (const chunk of stream) {
+            const content = chunk.choices[0]?.delta?.content;
+            if (content) {
+              controller.enqueue(
+                encoder.encode(`data: ${JSON.stringify({ content })}\n\n`)
+              );
+            }
+          }
+          controller.enqueue(encoder.encode("data: [DONE]\n\n"));
+          controller.close();
+        } catch (streamError) {
+          controller.error(streamError);
+        }
+      },
+    });
+
+    return new Response(readable, {
+      headers: {
+        "Content-Type": "text/event-stream",
+        "Cache-Control": "no-cache",
+        Connection: "keep-alive",
+      },
+    });
+  } catch (error) {
+    console.error("Chat API error:", error);
+    return new Response(JSON.stringify({ error: "Ocurrió un error al procesar la solicitud." }), {
+      status: 500,
       headers: { "Content-Type": "application/json" },
     });
   }
-
-  const { messages, agentType } = await req.json();
-
-  if (!messages || !Array.isArray(messages)) {
-    return new Response(
-      JSON.stringify({ error: "messages array required" }),
-      { status: 400, headers: { "Content-Type": "application/json" } }
-    );
-  }
-
-  const selectedAgent = agentType && SYSTEM_PROMPTS[agentType] ? agentType : "web7";
-  const systemPrompt = SYSTEM_PROMPTS[selectedAgent];
-
-  // Limit context to last 10 messages
-  const trimmed = messages.slice(-10);
-
-  const groqMessages = [
-    { role: "system", content: systemPrompt },
-    ...trimmed.map((m) => ({ role: m.role, content: m.content })),
-  ];
-
-  const stream = await groq.chat.completions.create({
-    model: "llama-3.3-70b-versatile",
-    messages: groqMessages,
-    max_tokens: 512,
-    temperature: 0.7,
-    stream: true,
-  });
-
-  const encoder = new TextEncoder();
-  const readable = new ReadableStream({
-    async start(controller) {
-      for await (const chunk of stream) {
-        const content = chunk.choices[0]?.delta?.content;
-        if (content) {
-          controller.enqueue(
-            encoder.encode(`data: ${JSON.stringify({ content })}\n\n`)
-          );
-        }
-      }
-      controller.enqueue(encoder.encode("data: [DONE]\n\n"));
-      controller.close();
-    },
-  });
-
-  return new Response(readable, {
-    headers: {
-      "Content-Type": "text/event-stream",
-      "Cache-Control": "no-cache",
-      Connection: "keep-alive",
-    },
-  });
 }
+
+

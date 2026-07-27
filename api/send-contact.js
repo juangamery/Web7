@@ -32,8 +32,8 @@ export default async function handler(req, res) {
       <body style="background-color: #0a0a0a; color: #f5f5f5; padding: 20px; font-family: sans-serif;">
         <div style="max-width: 600px; margin: 0 auto; background: #111; border: 1px solid #222; border-radius: 16px; padding: 30px; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
           <div style="text-align: center; border-bottom: 1px solid #222; padding-bottom: 20px; margin-bottom: 25px;">
-            <h1 style="color: #DFFE02; margin: 0; font-size: 26px; font-weight: bold;">WEB7 Studio</h1>
-            <p style="color: #888; margin: 5px 0 0 0; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;">Nuevo Lead de Contacto</p>
+            <img src="https://web7.com.ar/assets/Logoweb7-verde.svg" alt="WEB7 Studio" style="height: 32px; margin-bottom: 15px; display: inline-block;" />
+            <p style="color: #888; margin: 0; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;">Nuevo Lead de Contacto</p>
           </div>
           
           <div style="margin-bottom: 25px;">

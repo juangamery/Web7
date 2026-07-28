@@ -1,6 +1,6 @@
-# Especificación de Diseño: Optimización de Chat Consultivo, Captura de Leads y Sección "Nosotros"
+# Especificación de Diseño: Optimización de Chat Consultivo, Captura de Leads y Sección "Nosotros" (Fase 1: Chat)
 
-Este documento establece la arquitectura y detalles de implementación para mejorar el widget de chat, corregir la navegación del sitio y agregar la sección de autoridad "Nosotros".
+Este documento establece la arquitectura y detalles de implementación para mejorar el widget de chat, corregir la navegación del sitio e implementar el sistema de captación de prospectos (leads) por email. La sección "Nosotros" se implementará en una fase posterior.
 
 ---
 
@@ -20,71 +20,59 @@ graph TD
 
 ## 2. Componente 1: Flujo Conversacional y Captura de Leads
 
-### A. Tono y Asesoramiento Consultivo (Backend - `api/chat.js`)
-El prompt de sistema se actualizará para guiar al asistente como un **asesor de ventas de alto nivel** que:
-- Comparte valor general (ideas de conversión, tips de SEO local, conceptos de automatización).
-- Ofrece un "Lead Magnet" (Guía de Estructura Web, Checklist SEO, o Catálogo de Automatización) de forma oportuna.
-- No regala diagnósticos técnicos exhaustivos.
+### A. Tono, Personalidad y Conocimientos (Backend - `api/chat.js`)
+El prompt de sistema se actualizará para guiar al asistente como un **asesor de ventas digital de alto nivel** con las siguientes reglas:
 
-#### Reglas del Prompt:
-```markdown
-## REGLA DE ASESORAMIENTO Y VALOR
-Aporta 2 o 3 ideas concretas ante consultas técnicas para demostrar autoridad y valor, pero de forma simplificada. Planteá que la ejecución óptima la realiza WEB7.
+1. **Conocimientos Generales y de Negocio**:
+   - Amplia base conceptual sobre Marketing Digital (embudos de venta, pauta publicitaria en Meta Ads e Instagram, Google Ads, SEO técnico y SEO Local/GEO para mapas).
+   - Digitalización de empresas y optimización de procesos (automatizaciones, integraciones CRM, WhatsApp API).
+2. **Humildad y Honestidad (Sin ser sabelotodo)**:
+   - Si el usuario pregunta algo técnico muy específico o fuera de su alcance, el bot debe ser transparente: *«Mirá, eso es un tema técnico bastante específico de [Tema]. Para no guitarrear, te sugiero que lo conversemos con Carlos y el equipo de desarrollo para darte la respuesta exacta. Si querés, contame de qué trata tu negocio y vemos cómo podemos enfocarlo...»*
+   - Tono rioplatense natural, amigable, que agrega valor (2 o 3 tips útiles) sin dar sermones largos.
 
-## REGLA DE CAPTURA DE LEADS (LEAD MAGNET)
-Si el usuario muestra interés en mejorar su negocio, ofrece enviarle un recurso por correo electrónico:
-- Web/Landing: "Guía de Conversión y Estructura Web de WEB7".
-- SEO/GEO: "Checklist de Optimización SEO Local de WEB7".
-- Automatización: "Catálogo de Ideas de Automatización para Negocios".
-Pídele su correo electrónico. Cuando te lo brinde, añade al final de tu respuesta el comando oculto: [ACTION: save-lead:email@dominio.com|Nombre (opcional)|Interes (opcional)]
-```
+### B. Ideas de Leads Magnets (PDFs a enviar)
+El bot ofrecerá enviar uno de los siguientes recursos PDF específicos según el tema de la charla:
+1. **«Guía Práctica: De Web Fantasma a Máquina de Conversión»**: Para quienes quieren renovar su web o no logran ventas.
+2. **«Checklist: Dominá Google Maps y Atraé Clientes Locales»**: Para comercios físicos, profesionales o empresas interesadas en posicionamiento local (SEO/GEO).
+3. **«Mapa de Ruta: Automatización de Ventas 24/7 con IA»**: Para negocios interesados en automatizar WhatsApp, agendamiento de turnos e integraciones.
+4. **«Manual Rápido: Embudos de Venta y Meta Ads que Convierten»**: Para consultas sobre campañas publicitarias de pauta en Instagram/Facebook.
 
-### B. Persistencia de Leads (Backend - `api/save-lead.js`) [NUEVO]
-Se creará un endpoint serverless en Node.js que:
-- Reciba: `email`, `name`, `interest` (ej. "SEO", "Automatización"), y el `history` del chat.
-- **Acción 1 (Email)**: Use Resend para enviar un correo estructurado de alerta a `cf.gunther@gmail.com` con el asunto `[Nuevo Lead - WEB7] Interesado en {Interest}`.
-- **Acción 2 (Webhook)**: Si la variable de entorno `LEADS_WEBHOOK_URL` está configurada, haga un POST con los datos estructurados en formato JSON.
+#### Reglas de Acción para Captura de Leads:
+Cuando el bot identifique el interés y el usuario le provea su email, añadirá al final de la respuesta de manera invisible para el usuario:
+`[ACTION: save-lead:email@dominio.com|Nombre|TemaInteres]`
+
+### C. Endpoint de Registro de Leads (`api/save-lead.js`) [NUEVO]
+Se creará este endpoint serverless en Node.js que:
+1. Valide el método `POST` y reciba `email`, `name`, `interest` e `history` del chat.
+2. **Email de Notificación Directa (Resend)**:
+   - Destinatario: Carlos Gunther / Admin (`info@web7.com.ar` y/o `cf.gunther@gmail.com`).
+   - Envía los datos del contacto con el asunto: `[Nuevo Lead WEB7] - {Email} - Interesado en {Interest}`.
+   - Incluye el nombre y los últimos mensajes del chat para contexto.
+3. **Integración con Webhook (Opcional)**:
+   - Si la variable de entorno `LEADS_WEBHOOK_URL` está configurada, enviará la información en JSON mediante un POST HTTP. Esto te permitirá conectarlo gratis a una hoja de cálculo de Google Sheets en Make.com o Zapier cuando lo desees.
 
 ---
 
 ## 3. Componente 2: Corrección de Navegación del Chat
 
 ### A. Comportamiento en el Cliente (`chat-widget.js`)
-- **Remover Heurística**: Se elimina todo el bloque de lógica basado en palabras clave (`lowercase.includes(...)`) que disparaba desplazamientos automáticos sin comandos del bot.
-- **Filtro de Comandos**: Solo se realizarán acciones de navegación si la respuesta contiene exactamente tags estructurados conocidos (ej. `[ACTION: scroll-proyectos]`).
-- **Navegación Controlada**: La IA solo usará comandos de navegación si el usuario pide explícitamente ver o ir a una sección, prohibiendo su uso en saludos o diálogos normales.
+- **Remover Heurística de Palabras Clave**: Se eliminará el bloque de código que analiza palabras como "proyectos" o "método 7" y hace scroll automático al azar.
+- **Acciones Estrictas**: Solo se realizará scroll o redirección cuando el bot incluya de forma explícita etiquetas de comandos de navegación válidas:
+  - `[ACTION: scroll-proyectos]`
+  - `[ACTION: scroll-metodo]`
+  - `[ACTION: scroll-contacto]`
+  - `[ACTION: redirect-on7]`
+  - `[ACTION: redirect-proyectos]`
+  - `[ACTION: redirect-contacto]`
+- **Regla del Backend**: El prompt le prohibirá al bot usar estas etiquetas al azar en saludos, despedidas o respuestas genéricas. Solo las usará cuando el usuario pida explícitamente ver o ir a esas secciones.
 
 ---
 
-## 4. Componente 3: Sección "Nosotros" en `index.html`
+## 4. Plan de Verificación
 
-### A. Contenido y Copia
-Ubicación: Justo después de la sección `#proyectos` y antes de `#lab7`.
-
-```html
-<section class="section nosotros" id="nosotros" style="position: relative;">
-  <span class="label">Quiénes Somos</span>
-  <h2>Código limpio. Ideas claras.<br>Negocios que convierten.</h2>
-  
-  <p class="reveal-text" data-reveal-text>
-    WEB7 fue fundado por Carlos Gunther en Misiones, Argentina, con la visión de romper el modelo tradicional de las agencias de software lentas y complejas. Creemos que una web no es un gasto estético, es una máquina de conversión.
-  </p>
-  <p class="reveal-text" data-reveal-text style="margin-top: 2rem;">
-    Con años de trayectoria desarrollando productos digitales y automatizaciones a medida, simplificamos la tecnología para que trabaje para vos, bajo un proceso ágil de 21 días (Método 7).
-  </p>
-</section>
-```
-
-### B. Animaciones
-Se integrará la clase `.reveal-text` y se registrará en las animaciones de GSAP en `index.html` para que el texto de la trayectoria se ilumine palabra por palabra al hacer scroll, manteniendo el estilo inmersivo del resto del sitio.
-Se agregará la sección al menú de navegación principal en `index.html`, `proyectos.html`, `contacto.html` y `on7.html`.
-
----
-
-## 5. Plan de Verificación
-
-1. **Prueba de Navegación**: Enviar un saludo ("Hola") y verificar que el chat responde sin mover la pantalla de lugar.
-2. **Prueba de Captura**: Simular el interés en SEO, proveer un correo de prueba, y verificar que:
-   - Se ejecuta el llamado a `api/save-lead`.
-   - Se recibe la notificación de correo de Resend.
-3. **Prueba Visual**: Revisar el renderizado de la sección "Nosotros" en escritorio y móviles, confirmando que las animaciones de scroll-reveal funcionen correctamente.
+1. **Prueba de Navegación del Chat**:
+   - Enviar un saludo genérico ("Hola, buenas") y verificar que responde sin desplazar la pantalla.
+   - Preguntar *"¿Me mostrás sus trabajos?"* y verificar que se realiza el desplazamiento a la sección de proyectos.
+2. **Prueba de Captura de Leads**:
+   - Simular una consulta de marketing digital, aceptar la guía ofrecida y proporcionar el correo de prueba.
+   - Verificar que se ejecuta el endpoint `api/save-lead.js` y que llega el correo de notificación con el lead estructurado.

@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auditoría IA — WEB7</title>
+  <meta name="description" content="Completá nuestro diagnóstico guiado por Inteligencia Artificial.">
+  <link rel="icon" href="assets/Logoweb7-verde.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Doto:wght@400;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Marked.js para renderizar el markdown de la IA -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <!-- Html2Pdf para descargar el reporte -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <style>
+    @font-face {
+      font-family: 'Alpha Lyrae';
+      src: url('assets/AlphaLyrae-Medium.woff2') format('woff2'),
+           url('assets/AlphaLyrae-Medium.woff') format('woff');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    :root {
+      --bg: #0a0a0a;
+      --bg-alt: #111;
+      --bg-card: #141414;
+      --text: #f5f5f5;
+      --text-muted: #888;
+      --accent: #DFFE02;
+      --accent-dim: rgba(223, 254, 2, 0.15);
+      --font-display: 'Doto', monospace;
+      --font-body: 'Alpha Lyrae', sans-serif;
+      --font-alt: 'Space Grotesk', sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* CURSOR */
+    .cursor { position: fixed; top: 0; left: 0; width: 20px; height: 20px; border: 2px solid var(--accent); border-radius: 0; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: width 0.3s, height 0.3s, background 0.3s; mix-blend-mode: difference; }
+    .cursor.active { width: 60px; height: 60px; background: var(--accent); }
+    .cursor-dot { position: fixed; top: 0; left: 0; width: 6px; height: 6px; background: var(--accent); pointer-events: none; z-index: 10000; transform: translate(-50%, -50%); }
+    @media (max-width: 768px) { .cursor, .cursor-dot { display: none; } }
+
+    /* PIXEL GRID BG */
+    .pixel-grid { position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: grid; grid-template-columns: repeat(20, 1fr); gap: 4px; opacity: 0.15; pointer-events: none; z-index: 0; }
+    .pixel-grid div { background: rgba(255,255,255,0.05); height: 100px; }
+
+    /* NAVBAR */
+    nav { position: relative; z-index: 10; padding: 1.5rem 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    nav img { height: 32px; cursor: pointer; }
+    nav a { color: var(--text); text-decoration: none; font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.05em; transition: color 0.3s; }
+    nav a:hover { color: var(--accent); }
+
+    /* APP CONTAINER */
+    #diagnostic-app {
+      flex: 1;
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 5%;
+      width: 100%;
+    }
+
+    .step-container {
+      width: 100%;
+      max-width: 800px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.4s ease;
+      display: none;
+    }
+    .step-container.active {
+      opacity: 1;
+      transform: translateY(0);
+      display: block;
+    }
+
+    /* TYPOGRAPHY */
+    .step-counter { font-family: var(--font-display); color: var(--accent); font-size: 1rem; margin-bottom: 1rem; letter-spacing: 0.1em; }
+    .question-title { font-family: var(--font-alt); font-size: 2.2rem; font-weight: 700; margin-bottom: 2rem; line-height: 1.2; }
+    .question-desc { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 2rem; }
+
+    /* OPTIONS */
+    .options-grid { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem; }
+    .option-btn {
+      background: var(--bg-card);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--text);
+      padding: 1.25rem 1.5rem;
+      border-radius: 8px;
+      font-family: var(--font-body);
+      font-size: 1.1rem;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .option-btn:hover { border-color: var(--accent); background: var(--accent-dim); transform: translateX(10px); }
+    .option-btn .key { font-family: var(--font-display); color: var(--accent); background: rgba(0,0,0,0.5); padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.9rem; }
+
+    /* INPUTS */
+    .input-group { margin-bottom: 2rem; display: flex; flex-direction: column; gap: 1.5rem; }
+    .input-group input, .input-group textarea {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid rgba(255,255,255,0.2);
+      color: var(--accent);
+      font-size: 1.6rem;
+      font-family: var(--font-alt);
+      padding: 0.5rem 0;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+    .input-group input:focus, .input-group textarea:focus { border-color: var(--accent); }
+    .input-group input::placeholder, .input-group textarea::placeholder { color: rgba(255,255,255,0.1); }
+    .contact-inputs input { font-size: 1.2rem; margin-bottom: 1rem; }
+
+    /* CONTROLS */
+    .controls { display: flex; align-items: center; gap: 1rem; margin-top: 2rem; }
+    .btn-next {
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+      padding: 1rem 2.5rem;
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      border-radius: 0;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: all 0.3s;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+    }
+    .btn-next:hover { transform: translateY(-3px); box-shadow: 0 10px 20px var(--accent-dim); }
+    .btn-next:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
+    
+    .btn-prev { background: transparent; border: none; color: var(--text-muted); cursor: pointer; font-family: var(--font-body); display: flex; align-items: center; gap: 0.5rem; transition: color 0.3s; }
+    .btn-prev:hover { color: var(--text); }
+
+    /* PROGRESS BAR */
+    .progress-bar-container { position: fixed; bottom: 0; left: 0; width: 100%; height: 4px; background: rgba(255,255,255,0.1); z-index: 100; }
+    .progress-bar { height: 100%; background: var(--accent); width: 0%; transition: width 0.4s ease; }
+
+    /* IA LOADING TERMINAL */
+    .terminal-loader {
+      background: #000;
+      border: 1px solid var(--accent);
+      border-radius: 8px;
+      padding: 2rem;
+      font-family: var(--font-display);
+      color: var(--accent);
+      text-align: left;
+      height: 300px;
+      overflow-y: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+    .terminal-line { margin-bottom: 0.5rem; font-size: 0.9rem; opacity: 0; animation: fade-in 0.2s forwards; }
+    .cursor-blink { display: inline-block; width: 10px; height: 1em; background: var(--accent); animation: blink 1s step-end infinite; }
+    @keyframes fade-in { to { opacity: 1; } }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    /* AI REPORT */
+    .ai-report {
+      background: var(--bg-card);
+      border-top: 4px solid var(--accent);
+      border-radius: 8px;
+      padding: 3rem;
+      text-align: left;
+      font-family: var(--font-alt);
+      line-height: 1.6;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    }
+    
+    /* Contenedor específico para imprimir PDF (oculto en web normal) */
+    #pdf-container {
+      display: none;
+    }
+    
+    .ai-report h1, .ai-report h2, .ai-report h3 { font-family: var(--font-display); color: var(--accent); margin: 2rem 0 1rem; }
+    .ai-report h1 { font-size: 2rem; margin-top: 0; }
+    .ai-report p { margin-bottom: 1rem; font-size: 1.1rem; color: #ddd; }
+    .ai-report ul, .ai-report ol { margin-bottom: 1.5rem; padding-left: 2rem; }
+    .ai-report li { margin-bottom: 0.5rem; }
+    .ai-report strong { color: #fff; }
+
+    .btn-whatsapp {
+      background: #25D366;
+      color: #fff;
+      border: none;
+      padding: 1rem 2rem;
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: all 0.3s;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      text-decoration: none;
+      margin-top: 2rem;
+    }
+    .btn-whatsapp:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3); }
+
+    .btn-pdf {
+      background: transparent;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 1rem 2rem;
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: all 0.3s;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      text-decoration: none;
+      margin-top: 2rem;
+    }
+    .btn-pdf:hover { 
+      background: rgba(223, 254, 2, 0.1); 
+      transform: translateY(-3px); 
+      box-shadow: 0 10px 20px rgba(223, 254, 2, 0.15);
+    }
+
+    #pdf-container {
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      .question-title { font-size: 1.6rem; }
+      .input-group input, .input-group textarea { font-size: 1.2rem; }
+      .ai-report { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-dot" id="cursor-dot"></div>
+  <div class="pixel-grid" id="pixel-grid"></div>
+
+  <nav>
+    <a href="index.html"><img src="assets/Logoweb7-verde.svg" alt="WEB7"></a>
+    <a href="index.html">VOLVER AL INICIO</a>
+  </nav>
+
+  <main id="diagnostic-app"></main>
+  <div class="progress-bar-container"><div class="progress-bar" id="progress-bar"></div></div>
+
+  <script>
+    // Cursor
+    const cursor = document.getElementById("cursor");
+    const cursorDot = document.getElementById("cursor-dot");
+    window.addEventListener("mousemove", (e) => {
+      cursor.style.left = e.clientX + "px";
+      cursor.style.top = e.clientY + "px";
+      cursorDot.style.left = e.clientX + "px";
+      cursorDot.style.top = e.clientY + "px";
+    });
+    
+    // Grid
+    const grid = document.getElementById('pixel-grid');
+    for(let i = 0; i < 40; i++) {
+      const div = document.createElement('div');
+      if (Math.random() > 0.8) div.style.background = 'rgba(223, 254, 2, 0.05)';
+      grid.appendChild(div);
+    }
+
+    const app = document.getElementById("diagnostic-app");
+    const progressBar = document.getElementById("progress-bar");
+    
+    const state = {
+      stepIndex: 0,
+      answers: {},
+      history: [] 
+    };
+
+    // SECUENCIA DE PREGUNTAS MACRO Y DE NEGOCIO
+    const questions = {
+      q1: {
+        id: "q1",
+        title: "Para empezar, ¿de qué trata tu negocio?",
+        desc: "Contanos brevemente qué vendés o qué servicio ofrecés.",
+        type: "textarea",
+        placeholder: "Ej: Vendo muebles a medida para oficinas...",
+        next: "q2"
+      },
+      q2: {
+        id: "q2",
+        title: "¿En qué sector o rubro te encontrás?",
+        type: "textarea",
+        placeholder: "Ej: Gastronomía, Salud, Tecnología, B2B...",
+        next: "q3"
+      },
+      q3: {
+        id: "q3",
+        title: "¿Cuál es el tamaño actual de tu empresa?",
+        options: [
+          { key: "A", label: "Soy solo yo (Independiente/Freelance)", next: "q4" },
+          { key: "B", label: "Equipo chico (2 a 5 personas)", next: "q4" },
+          { key: "C", label: "Pyme (6 a 15 personas)", next: "q4" },
+          { key: "D", label: "Empresa grande (+15 personas)", next: "q4" }
+        ]
+      },
+      q4: {
+        id: "q4",
+        title: "¿Dónde está ubicado el negocio y a dónde apuntan tus ventas?",
+        type: "textarea",
+        placeholder: "Ej: Local en Córdoba, pero vendemos a todo el país...",
+        next: "q5"
+      },
+      q5: {
+        id: "q5",
+        title: "Presencia digital básica:",
+        desc: "¿Tenés la ficha de Google Maps configurada y perfiles de Redes Sociales activos (Instagram, LinkedIn)?",
+        options: [
+          { key: "A", label: "Sí, tengo Maps y Redes muy activas", next: "q6" },
+          { key: "B", label: "Tengo perfiles, pero están medio abandonados", next: "q6" },
+          { key: "C", label: "No tengo o recién estoy armando todo", next: "q6" }
+        ]
+      },
+      q6: {
+        id: "q6",
+        title: "Atención al cliente:",
+        desc: "¿Tienen un número de WhatsApp Business exclusivo o algún CRM para atender clientes?",
+        options: [
+          { key: "A", label: "Sí, usamos WhatsApp Business u otro sistema", next: "q7" },
+          { key: "B", label: "Uso mi WhatsApp personal", next: "q7" },
+          { key: "C", label: "No atendemos por WhatsApp", next: "q7" }
+        ]
+      },
+      q7: {
+        id: "q7",
+        title: "¿Qué te hace diferente a tu competencia?",
+        desc: "Pensá en por qué tus clientes actuales te eligen a vos y no a otros.",
+        type: "textarea",
+        placeholder: "Ej: Nuestro producto llega en 24hs y es premium...",
+        next: "q8"
+      },
+      q8: {
+        id: "q8",
+        title: "¿Cuál es el mayor cuello de botella que frena tu crecimiento digital HOY?",
+        options: [
+          { key: "A", label: "No recibo suficientes consultas/tráfico", next: "q9" },
+          { key: "B", label: "Recibo consultas pero no me compran (baja conversión)", next: "q9" },
+          { key: "C", label: "Pierdo mucho tiempo en procesos manuales y atención", next: "q9" },
+          { key: "D", label: "No tengo presencia online profesional, pierdo confianza", next: "q9" },
+          { key: "E", label: "Otro (Escribir respuesta)", next: "q8_otro" }
+        ]
+      },
+      q8_otro: {
+        id: "q8_otro",
+        title: "¿Cuál es ese otro cuello de botella?",
+        desc: "Contanos brevemente qué es lo que sentís que más te frena actualmente.",
+        type: "textarea",
+        placeholder: "Ej: Me cuesta encontrar personal capacitado para ventas...",
+        next: "q9"
+      },
+      q9: {
+        id: "q9",
+        title: "Por último, describí a tu Cliente Ideal",
+        desc: "¿A quién apuntás específicamente? ¿Qué problema le resolvéis?",
+        type: "textarea",
+        placeholder: "Ej: Empresas de logística que necesitan abaratar costos...",
+        next: "q10"
+      },
+      q10: {
+        id: "q10",
+        title: "Dejanos los links de tu ecosistema digital (Opcional)",
+        desc: "Pegá la URL de tu Web, Google Maps, Instagram, LinkedIn, etc.",
+        type: "links",
+        next: "contact"
+      },
+      contact: {
+        id: "contact",
+        title: "¡Excelente! Ya tenemos toda la data.",
+        desc: "Ingresá tus datos para que nuestra IA genere el reporte de auditoría en tiempo real.",
+        type: "contact",
+        next: "submit"
+      }
+    };
+
+    let currentStepId = "q1";
+    const historyStack = [];
+    const totalSteps = Object.keys(questions).length;
+
+    function updateProgress() {
+      const percentage = Math.min((historyStack.length / totalSteps) * 100, 100);
+      progressBar.style.width = percentage + "%";
+    }
+
+    function renderStep(stepId) {
+      const step = questions[stepId];
+      currentStepId = stepId;
+      
+      let html = `<div class="step-container active">`;
+      html += `<div class="step-counter">[ PASO ${historyStack.length + 1} DE ${totalSteps} ]</div>`;
+      html += `<h2 class="question-title">${step.title}</h2>`;
+      if (step.desc) html += `<p class="question-desc">${step.desc}</p>`;
+
+      if (step.options) {
+        html += `<div class="options-grid">`;
+        step.options.forEach(opt => {
+          html += `<button class="option-btn" onclick="handleOptionSelect('${opt.label}', '${opt.next}')">
+            <span class="key">${opt.key}</span> ${opt.label}
+          </button>`;
+        });
+        html += `</div>`;
+      } else if (step.type === "textarea") {
+        html += `
+          <div class="input-group">
+            <textarea id="text-input" rows="2" placeholder="${step.placeholder}"></textarea>
+          </div>
+          <div class="controls">
+            <button class="btn-next" onclick="handleTextSelect('${step.next}')">Continuar ➔</button>
+          </div>
+        `;
+      } else if (step.type === "links") {
+        html += `
+          <div class="input-group contact-inputs">
+            <input type="text" id="link-web" placeholder="Tu sitio Web actual (Si tenés)">
+            <input type="text" id="link-social" placeholder="Instagram, Facebook o LinkedIn">
+            <input type="text" id="link-maps" placeholder="Link a Google Maps (Opcional)">
+          </div>
+          <div class="controls">
+            <button class="btn-next" onclick="handleLinksSelect('${step.next}')">Continuar ➔</button>
+          </div>
+        `;
+      } else if (step.type === "contact") {
+        html += `
+          <div class="input-group contact-inputs">
+            <input type="text" id="contact-name" placeholder="Tu Nombre">
+            <input type="email" id="contact-email" placeholder="Tu Email corporativo">
+            <input type="text" id="contact-phone" placeholder="Tu WhatsApp (con código de país)">
+          </div>
+          <div class="controls">
+            <button class="btn-next" id="btn-submit" onclick="handleSubmit()">Analizar con IA ➔</button>
+          </div>
+        `;
+      }
+
+      if (historyStack.length > 0) {
+        html += `<div class="controls" style="margin-top: 1rem;">
+          <button class="btn-prev" onclick="handleBack()">← Volver</button>
+        </div>`;
+      }
+
+      html += `</div>`;
+      app.innerHTML = html;
+      updateProgress();
+
+      if (step.type === "textarea" || step.type === "contact") {
+        setTimeout(() => {
+          const firstInput = app.querySelector('textarea, input');
+          if (firstInput) firstInput.focus();
+        }, 100);
+      }
+
+      if (step.options) {
+        window.onkeydown = (e) => {
+          const key = e.key.toUpperCase();
+          const option = step.options.find(o => o.key === key);
+          if (option) {
+            window.onkeydown = null;
+            handleOptionSelect(option.label, option.next);
+          }
+        };
+      } else {
+        window.onkeydown = null;
+      }
+    }
+
+    window.handleOptionSelect = (answerLabel, nextStepId) => {
+      const stepTitle = questions[currentStepId].title;
+      state.history.push({ question: stepTitle, answer: answerLabel });
+      historyStack.push(currentStepId);
+      renderStep(nextStepId);
+    };
+
+    window.handleTextSelect = (nextStepId) => {
+      const val = document.getElementById("text-input").value.trim();
+      if (!val) return alert("Por favor escribí algo para continuar.");
+      const stepTitle = questions[currentStepId].title;
+      state.history.push({ question: stepTitle, answer: val });
+      historyStack.push(currentStepId);
+      renderStep(nextStepId);
+    };
+
+    window.handleLinksSelect = (nextStepId) => {
+      const web = document.getElementById("link-web").value.trim();
+      const social = document.getElementById("link-social").value.trim();
+      const maps = document.getElementById("link-maps").value.trim();
+      
+      let answer = "";
+      if (web) answer += `Web: ${web}\n`;
+      if (social) answer += `Redes: ${social}\n`;
+      if (maps) answer += `Maps: ${maps}\n`;
+      
+      if (!answer) answer = "No proporcionó links.";
+
+      const stepTitle = questions[currentStepId].title;
+      state.history.push({ question: stepTitle, answer: answer });
+      historyStack.push(currentStepId);
+      renderStep(nextStepId);
+    };
+
+    window.handleBack = () => {
+      const prevStepId = historyStack.pop();
+      state.history.pop();
+      renderStep(prevStepId);
+    };
+
+    window.handleSubmit = async () => {
+      const name = document.getElementById("contact-name").value.trim();
+      const email = document.getElementById("contact-email").value.trim();
+      const phone = document.getElementById("contact-phone").value.trim();
+      
+      if (!name || !email) return alert("Nombre y Email son obligatorios.");
+
+      state.answers = { name, email, phone };
+      
+      renderLoadingAI();
+
+      try {
+        const res = await fetch("/api/save-diagnostic", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: state.answers.name,
+            email: state.answers.email,
+            phone: state.answers.phone,
+            history: state.history
+          })
+        });
+
+        if (res.ok) {
+          const data = await res.json();
+          renderAIReport(data.reportMarkdown);
+        } else {
+          alert("Hubo un error al procesar la IA. Intentando modo offline.");
+          // Fallback en caso de que la IA falle
+          renderAIReport("## Ocurrió un error\n\nNuestros sistemas están experimentando alta demanda. Nos pondremos en contacto por correo o WhatsApp con tu diagnóstico personalizado.");
+        }
+      } catch (e) {
+        alert("Error de red.");
+      }
+    };
+
+    function renderLoadingAI() {
+      progressBar.style.width = "100%";
+      app.innerHTML = `
+        <div class="step-container active" style="max-width: 800px; width: 100%;">
+          <h2 class="question-title">Procesando datos del negocio...</h2>
+          <div class="terminal-loader" id="terminal">
+            <div id="terminal-content"></div>
+            <div><span class="cursor-blink"></span></div>
+          </div>
+        </div>
+      `;
+      
+      const lines = [
+        "> INICIANDO MOTOR DE AUDITORÍA WEB7...",
+        "> RECOPILANDO RESPUESTAS DEL NEGOCIO...",
+        "> ANALIZANDO CUELLOS DE BOTELLA...",
+        "> EVALUANDO ESTRATEGIA DE COMPETENCIA...",
+        "> CONECTANDO CON CLÚSTER DE IA (LLAMA-3)...",
+        "> GENERANDO DIAGNÓSTICO ESTRATÉGICO...",
+        "> REDACTANDO PLAN DE ACCIÓN...",
+        "> FINALIZANDO REPORTE..."
+      ];
+      
+      const termContent = document.getElementById('terminal-content');
+      let i = 0;
+      const interval = setInterval(() => {
+        if (i < lines.length) {
+          const line = document.createElement('div');
+          line.className = 'terminal-line';
+          line.innerText = lines[i];
+          termContent.appendChild(line);
+          i++;
+        } else {
+          clearInterval(interval);
+        }
+      }, 500);
+    }
+
+    function renderAIReport(markdownString) {
+      const htmlContent = marked.parse(markdownString);
+      const clientName = state.answers.name || "Cliente";
+      
+      app.innerHTML = `
+        <div class="step-container active" style="max-width: 900px; width: 100%; animation: fade-in 1s forwards;">
+          <div class="step-counter">[ REPORTE DE IA FINALIZADO ]</div>
+          <div class="ai-report" id="report-view">
+            ${htmlContent}
+          </div>
+          
+          <div style="margin-top: 3rem; text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem;">
+            <h3>¿Listo para implementar estas mejoras?</h3>
+            <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Hablá directo con Carlos o Fede para empezar a trabajar juntos, o descargá este reporte.</p>
+            
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+              <button onclick="downloadPDF()" class="btn-pdf">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                DESCARGAR EN PDF
+              </button>
+              
+              <a href="https://wa.me/5493754415676?text=Hola!%20Acabo%20de%20leer%20el%20diagnóstico%20de%20IA%20y%20quiero%20avanzar." target="_blank" class="btn-whatsapp">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                HABLAR POR WHATSAPP
+              </a>
+            </div>
+          </div>
+          
+          <!-- CONTENEDOR OCULTO PARA EL PDF -->
+          <div id="pdf-container">
+            <div style="background: #0a0a0a; color: #f5f5f5; font-family: 'Space Grotesk', sans-serif; padding: 40px; border: 10px solid #141414;">
+              <div style="border-bottom: 2px solid #DFFE02; padding-bottom: 20px; margin-bottom: 30px; display: flex; justify-content: space-between; align-items: flex-end;">
+                <div>
+                  <h1 style="color: #DFFE02; font-family: 'Doto', monospace; margin: 0; font-size: 28px;">AUDITORÍA DIGITAL</h1>
+                  <p style="color: #888; margin: 5px 0 0 0; font-size: 16px;">Para: ${clientName}</p>
+                </div>
+                <div style="text-align: right;">
+                  <h2 style="margin: 0; font-size: 20px;">WEB7 STUDIO</h2>
+                  <p style="color: #DFFE02; margin: 0; font-size: 12px; font-family: 'Doto', monospace;">web7.com.ar</p>
+                </div>
+              </div>
+              <div style="font-size: 15px; line-height: 1.6; color: #ddd;">
+                ${htmlContent.replace(/<h1/g, '<h2').replace(/<\/h1>/g, '</h2>')}
+              </div>
+              <div style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #333; text-align: center; color: #888; font-size: 12px;">
+                <p>Generado automáticamente con IA por WEB7 Studio. Todos los derechos reservados.</p>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      `;
+    }
+
+    window.downloadPDF = () => {
+      const originalElement = document.getElementById('pdf-container').firstElementChild;
+      const clone = originalElement.cloneNode(true);
+      
+      const wrapper = document.createElement('div');
+      wrapper.style.position = 'absolute';
+      wrapper.style.top = '0';
+      wrapper.style.left = '0';
+      wrapper.style.width = '800px';
+      wrapper.style.zIndex = '-9999';
+      wrapper.style.background = '#0a0a0a';
+      wrapper.appendChild(clone);
+      document.body.appendChild(wrapper);
+      
+      // Temporarily scroll to top just to be completely safe with html2canvas
+      const currentScroll = window.scrollY;
+      window.scrollTo(0, 0);
+      
+      const opt = {
+        margin:       0.5,
+        filename:     `Auditoria_WEB7_${state.answers.name || 'Cliente'}.pdf`,
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2, useCORS: true, backgroundColor: '#0a0a0a', scrollY: 0, windowWidth: 800 },
+        jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' },
+        pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] }
+      };
+      
+      html2pdf().set(opt).from(clone).save().then(() => {
+        document.body.removeChild(wrapper);
+        window.scrollTo(0, currentScroll);
+      });
+    };
+
+    renderStep("q1");
+  </script>
+</body>
+</html>

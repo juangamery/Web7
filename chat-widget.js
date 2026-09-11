@@ -957,18 +957,23 @@
     const lowercase = text.toLowerCase();
 
     // 1. Acciones explícitas (Tags ocultos del prompt)
-    const mailMatch = text.match(/\[ACTION:\s*send-chat-email:\s*([^\]\s]+)\]/);
-    if (mailMatch && mailMatch[1]) {
-      const targetEmail = mailMatch[1].trim();
-      // Dispatch call to send email API in background
-      fetch("/api/send-email", {
+    const leadMatch = text.match(/\[ACTION:\s*save-lead:\s*([^|\]]+)(?:\|([^|\]]*))?(?:\|([^\]]*))?\]/);
+    if (leadMatch) {
+      const email = leadMatch[1].trim();
+      const name = leadMatch[2] ? leadMatch[2].trim() : "No especificado";
+      const interest = leadMatch[3] ? leadMatch[3].trim() : "General";
+      
+      // Dispatch call to save lead API in background
+      fetch("/api/save-lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          email: targetEmail,
+          email,
+          name,
+          interest,
           history: messages
         })
-      }).catch(err => console.error("Error sending email:", err));
+      }).catch(err => console.error("Error saving lead:", err));
     }
 
     if (text.includes("[ACTION: scroll-proyectos]") || text.includes("[ACTION: scroll-portfolio]")) {
@@ -1001,18 +1006,11 @@
       }
       return;
     }
-
-    // 2. Heurística básica por palabras clave
-    if (lowercase.includes("sección de proyectos") || lowercase.includes("página de proyectos") || lowercase.includes("ver los proyectos")) {
-      executeScroll("#proyectos", "proyectos.html");
-    } else if (lowercase.includes("sección de contacto") || lowercase.includes("formulario de contacto") || lowercase.includes("escribinos por whatsapp")) {
-      executeScroll("#contacto", "contacto.html");
-    } else if (lowercase.includes("metodología") || lowercase.includes("método 7") || lowercase.includes("cómo trabajamos")) {
-      executeScroll("#metodo", "index.html#metodo");
-    } else if (lowercase.includes("conocer on7") || lowercase.includes("página de on7") || lowercase.includes("producto on7")) {
-      if (!isSamePage("on7.html")) {
-        setTimeout(() => { window.location.href = "on7.html"; }, 1500);
+    if (text.includes("[ACTION: redirect-diagnostico]")) {
+      if (!isSamePage("diagnostico.html")) {
+        window.location.href = "diagnostico.html";
       }
+      return;
     }
   }
 

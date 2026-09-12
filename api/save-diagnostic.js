@@ -4,9 +4,10 @@ import { Groq } from "groq-sdk";
 const resend = new Resend(process.env.RESEND_API_KEY);
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
-export const config = {
-  runtime: "edge",
-};
+// Eliminamos runtime: "edge" para evitar incompatibilidades del SDK de Groq en Vercel
+// export const config = {
+//   runtime: "edge",
+// };
 
 export default async function handler(req) {
   if (req.method !== "POST") {
@@ -39,9 +40,9 @@ export default async function handler(req) {
        </div>`
     ).join("");
 
-    // 2. Generar Reporte con IA (Groq)
     let reportMarkdown = "";
     try {
+      // Intentamos con el modelo principal
       const completion = await groq.chat.completions.create({
         messages: [
           {
@@ -73,8 +74,30 @@ Estructura obligatoria del reporte (en formato Markdown: H2, listas, negritas):
 
       reportMarkdown = completion.choices[0]?.message?.content || "Hubo un error al generar el reporte.";
     } catch (iaError) {
-      console.error("Groq IA Error:", iaError);
-      reportMarkdown = "## Error en el motor de IA\n\nHubo un problema procesando el diagnóstico. Nos pondremos en contacto con vos a la brevedad con tu reporte manual.";
+      console.error("Groq IA Error con Llama 3.3:", iaError);
+      try {
+        // Fallback al modelo anterior más estable por si el nuevo falla
+        const fallbackCompletion = await groq.chat.completions.create({
+          messages: [
+            {
+              role: "system",
+              content: `Sos un Consultor Experto en Negocios Digitales, SEO, GEO y Desarrollo Web que trabaja en la agencia "WEB7"... (Mismas instrucciones)`
+            },
+            {
+              role: "user",
+              content: `El cliente se llama ${name}. Respuestas:\n\n${answersText}`
+            }
+          ],
+          model: "llama3-70b-8192", // Modelo de respaldo
+          temperature: 0.7,
+          max_tokens: 1000,
+        });
+        reportMarkdown = fallbackCompletion.choices[0]?.message?.content || "Hubo un error al generar el reporte en el fallback.";
+      } catch (fallbackError) {
+        console.error("Groq IA Fallback Error:", fallbackError);
+        // Ahora sí mostramos el error real para saber qué está fallando
+        reportMarkdown = `## Error en el motor de IA\n\nHubo un problema procesando el diagnóstico. Nos pondremos en contacto con vos a la brevedad con tu reporte manual.\n\n*(Debug interno para WEB7: ${iaError.message || "Error desconocido en Groq"})*`;
+      }
     }
 
     // 3. Enviar Mail (Resend) a WEB7 y al Cliente

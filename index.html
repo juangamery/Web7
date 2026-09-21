@@ -856,7 +856,7 @@
     }
     .pixel-trail-container {
       position: absolute; inset: 0; z-index: 0;
-      pointer-events: auto;
+      pointer-events: none;
     }
     .pixel-trail-container.gooey {
       filter: url(#gooey-pixel-trail);
@@ -2558,7 +2558,8 @@
           timeouts.set(idx, t);
         }
 
-        container.addEventListener('mousemove', function(e) {
+        const trigger = container.closest('section') || document.body;
+        trigger.addEventListener('mousemove', function(e) {
           const r = container.getBoundingClientRect();
           const col = Math.floor((e.clientX - r.left) / PIXEL_SIZE);
           const row = Math.floor((e.clientY - r.top) / PIXEL_SIZE);

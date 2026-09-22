@@ -87,13 +87,25 @@ export default async function handler(req, res) {
 
     const recipient = process.env.RECIPIENT_EMAIL || 'cf.gunther@gmail.com';
 
-    const data = await resend.emails.send({
+    let resendResponse = await resend.emails.send({
       from: sender,
       to: recipient,
-      reply_to: contacto.includes('@') ? contacto : undefined, // set reply-to if it looks like an email
+      reply_to: contacto.includes('@') ? contacto : undefined,
       subject: `Nuevo lead: ${nombre} (${negocio})`,
       html: htmlContent,
     });
+
+    // Si hubo un error (ej. dominio no verificado), reintentar con el sandbox
+    if (resendResponse.error) {
+      console.warn("Error enviando email con", sender, resendResponse.error);
+      resendResponse = await resend.emails.send({
+        from: 'WEB7 Contacto <onboarding@resend.dev>',
+        to: 'cf.gunther@gmail.com',
+        reply_to: contacto.includes('@') ? contacto : undefined,
+        subject: `Nuevo lead: ${nombre} (${negocio})`,
+        html: htmlContent,
+      });
+    }
 
     // Enviar también al Webhook (Make.com) si está configurado, para no perder ningún lead
     if (process.env.LEADS_WEBHOOK_URL) {
@@ -118,7 +130,7 @@ export default async function handler(req, res) {
       }
     }
 
-    return res.status(200).json({ success: true, data });
+    return res.status(200).json({ success: true, data: resendResponse });
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }

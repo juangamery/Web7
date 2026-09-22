@@ -78,8 +78,8 @@ export default async function handler(req, res) {
   `;
 
   try {
-    const sender = process.env.SENDER_EMAIL || 'info@web7.com.ar';
-    const recipient = 'info@web7.com.ar';
+    const sender = process.env.SENDER_EMAIL || 'onboarding@resend.dev';
+    const recipient = process.env.RECIPIENT_EMAIL || 'cf.gunther@gmail.com';
 
     const data = await resend.emails.send({
       from: sender,
@@ -88,6 +88,29 @@ export default async function handler(req, res) {
       subject: `Nuevo lead: ${nombre} (${negocio})`,
       html: htmlContent,
     });
+
+    // Enviar también al Webhook (Make.com) si está configurado, para no perder ningún lead
+    if (process.env.LEADS_WEBHOOK_URL) {
+      try {
+        await fetch(process.env.LEADS_WEBHOOK_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ 
+            source: "Formulario de Contacto",
+            nombre, 
+            contacto, 
+            email: contacto,
+            negocio, 
+            sector, 
+            necesidad, 
+            mensaje,
+            date: new Date().toISOString() 
+          })
+        });
+      } catch (err) {
+        console.error("Webhook Error:", err);
+      }
+    }
 
     return res.status(200).json({ success: true, data });
   } catch (error) {

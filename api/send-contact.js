@@ -78,7 +78,13 @@ export default async function handler(req, res) {
   `;
 
   try {
-    const sender = process.env.SENDER_EMAIL || 'onboarding@resend.dev';
+    let sender = process.env.SENDER_EMAIL || 'onboarding@resend.dev';
+    
+    // Forzar el uso de onboarding si el dominio no está verificado en Resend
+    if (sender.includes('@web7.') && !process.env.DOMINIO_VERIFICADO) {
+      sender = 'WEB7 Contacto <onboarding@resend.dev>';
+    }
+
     const recipient = process.env.RECIPIENT_EMAIL || 'cf.gunther@gmail.com';
 
     const data = await resend.emails.send({

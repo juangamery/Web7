@@ -855,7 +855,7 @@
       position: relative; overflow: hidden;
     }
     .pixel-trail-container {
-      position: absolute; inset: 0; z-index: 0;
+      position: absolute; inset: 0; z-index: -1;
       pointer-events: none;
     }
     .pixel-trail-container.gooey {
@@ -1223,7 +1223,7 @@
   <!-- BLOCK 01: HERO -->
   <section class="hero" id="heroSection">
     <!-- Canvas Pixel Animation Background -->
-    <canvas id="heroPixelCanvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none;"></canvas>
+    <canvas id="heroPixelCanvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none;"></canvas>
     
     <!-- Pixel trail interactive background -->
     <div class="pixel-trail-container gooey" id="heroPixelTrail"></div>
@@ -1235,7 +1235,7 @@
     </h1>
     <p class="hero-sub" data-split-words>El problema es que nadie lo sabe, o tenés que explicarlo todo el tiempo.</p>
     <div class="hero-reveal reveal-text" data-reveal-text data-accent="web seven Web clara en 7 días. Atención automatizada desde el día uno.">web seven construye tu presencia digital, la ordena y la hace funcionar sola. Web clara en 7 días. Atención automatizada desde el día uno.</div>
-    <div class="hero-ctas">
+    <div class="hero-ctas" style="position: relative; z-index: 50; pointer-events: auto;">
       <a href="contacto.html" class="btn btn-primary magnetic-btn" data-magnetic>Resolver esto <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" fill="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-left: 4px;"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"/><path d="M14 15V7h2v8zm-2 2V5h2v12z"/></svg></a>
       <a href="#metodo" class="btn btn-secondary">Ver cómo trabajamos <span>↓</span></a>
     </div>

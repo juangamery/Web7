@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin - WEB7 Logs</title>
+  <style>
+    :root {
+      --bg: #0a0a0a; --bg-card: #141414;
+      --text: #f5f5f5; --accent: #DFFE02;
+    }
+    body {
+      background: var(--bg); color: var(--text);
+      font-family: sans-serif; padding: 2rem;
+    }
+    h1 { color: var(--accent); }
+    .hidden { display: none !important; }
+    #loginScreen, #dashboardScreen {
+      max-width: 800px; margin: 0 auto;
+      background: var(--bg-card); padding: 2rem;
+      border-radius: 8px; border: 1px solid #333;
+    }
+    input {
+      padding: 0.5rem; background: #222; color: #fff;
+      border: 1px solid #444; border-radius: 4px; width: 100%;
+      margin-bottom: 1rem;
+    }
+    button {
+      padding: 0.6rem 1.2rem; background: var(--accent);
+      color: #000; border: none; border-radius: 4px;
+      cursor: pointer; font-weight: bold;
+    }
+    button:hover { opacity: 0.9; }
+    table {
+      width: 100%; border-collapse: collapse; margin-top: 1rem;
+    }
+    th, td {
+      padding: 0.8rem; text-align: left;
+      border-bottom: 1px solid #333;
+    }
+    th { color: #888; }
+    .actions button {
+      background: #333; color: #fff; margin-right: 0.5rem;
+      font-size: 0.8rem;
+    }
+    .actions button.danger { background: #820; }
+  </style>
+</head>
+<body>
+
+  <div id="loginScreen">
+    <h1>WEB7 Tracker Admin</h1>
+    <p>Ingresá la contraseña para acceder a los logs.</p>
+    <form id="loginForm">
+      <input type="password" id="password" placeholder="Contraseña..." required>
+      <button type="submit">Entrar</button>
+    </form>
+    <p id="loginError" style="color: #f55; margin-top: 1rem;" class="hidden">Contraseña incorrecta</p>
+  </div>
+
+  <div id="dashboardScreen" class="hidden">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <h1>Logs de Referidos</h1>
+      <button id="logoutBtn" style="background: #333; color: #fff;">Salir</button>
+    </div>
+    
+    <table id="logsTable">
+      <thead>
+        <tr>
+          <th>Archivo</th>
+          <th>Tamaño / Fecha</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td colspan="3">Cargando...</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    const loginScreen = document.getElementById('loginScreen');
+    const dashboardScreen = document.getElementById('dashboardScreen');
+    const loginForm = document.getElementById('loginForm');
+    const loginError = document.getElementById('loginError');
+    const logsTableBody = document.querySelector('#logsTable tbody');
+    let currentToken = sessionStorage.getItem('w7_admin_token');
+
+    if (currentToken) {
+      showDashboard();
+    }
+
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const pwd = document.getElementById('password').value;
+      
+      // Test the password
+      try {
+        const res = await fetch('/api/admin-logs', {
+          headers: { 'Authorization': `Bearer ${pwd}` }
+        });
+        if (res.ok) {
+          currentToken = pwd;
+          sessionStorage.setItem('w7_admin_token', pwd);
+          loginError.classList.add('hidden');
+          showDashboard();
+        } else {
+          loginError.classList.remove('hidden');
+        }
+      } catch (err) {
+        alert("Error de conexión");
+      }
+    });
+
+    document.getElementById('logoutBtn').addEventListener('click', () => {
+      sessionStorage.removeItem('w7_admin_token');
+      currentToken = null;
+      dashboardScreen.classList.add('hidden');
+      loginScreen.classList.remove('hidden');
+      document.getElementById('password').value = '';
+    });
+
+    async function showDashboard() {
+      loginScreen.classList.add('hidden');
+      dashboardScreen.classList.remove('hidden');
+      loadLogs();
+    }
+
+    async function loadLogs() {
+      logsTableBody.innerHTML = '<tr><td colspan="3">Cargando...</td></tr>';
+      try {
+        const res = await fetch('/api/admin-logs', {
+          headers: { 'Authorization': `Bearer ${currentToken}` }
+        });
+        if (!res.ok) throw new Error("Auth error");
+        
+        const data = await res.json();
+        const blobs = data.blobs || [];
+        
+        if (blobs.length === 0) {
+          logsTableBody.innerHTML = '<tr><td colspan="3">No hay logs guardados.</td></tr>';
+          return;
+        }
+
+        logsTableBody.innerHTML = '';
+        // Sort by uploaded date desc
+        blobs.sort((a, b) => new Date(b.uploadedAt) - new Date(a.uploadedAt));
+        
+        blobs.forEach(b => {
+          const tr = document.createElement('tr');
+          const name = b.pathname.replace('logs/', '');
+          const date = new Date(b.uploadedAt).toLocaleString('es-AR');
+          
+          tr.innerHTML = `
+            <td><strong>${name}</strong></td>
+            <td>${(b.size / 1024).toFixed(2)} KB <br><small style="color:#888">${date}</small></td>
+            <td class="actions">
+              <button onclick="window.open('${b.url}', '_blank')">Ver / Descargar</button>
+              <button class="danger" onclick="deleteLog('${b.url}')">Borrar</button>
+            </td>
+          `;
+          logsTableBody.appendChild(tr);
+        });
+      } catch (e) {
+        logsTableBody.innerHTML = '<tr><td colspan="3" style="color:red">Error cargando logs. Verifique su contraseña.</td></tr>';
+        document.getElementById('logoutBtn').click();
+      }
+    }
+
+    window.deleteLog = async function(url) {
+      if (!confirm("¿Seguro que querés borrar este archivo de log? No se puede recuperar.")) return;
+      
+      try {
+        const res = await fetch(`/api/admin-logs?url=${encodeURIComponent(url)}`, {
+          method: 'DELETE',
+          headers: { 'Authorization': `Bearer ${currentToken}` }
+        });
+        if (res.ok) {
+          loadLogs();
+        } else {
+          alert("Error al borrar el archivo");
+        }
+      } catch (e) {
+        alert("Error de red");
+      }
+    };
+  </script>
+</body>
+</html>

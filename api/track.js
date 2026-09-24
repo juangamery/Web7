@@ -107,7 +107,8 @@ export default async function handler(req, res) {
         
         await put(fileName, existingContent + logLine, {
           access: 'private',
-          addRandomSuffix: false
+          addRandomSuffix: false,
+          allowOverwrite: true
         });
       } catch (err) {
         console.error("Error guardando en Vercel Blob:", err);

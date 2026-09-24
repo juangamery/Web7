@@ -1,4 +1,4 @@
-import { put, list, head } from '@vercel/blob';
+import { put, list } from '@vercel/blob';
 import crypto from 'crypto';
 
 // Removed edge runtime due to node:crypto and @vercel/blob dependencies
@@ -25,22 +25,19 @@ function isValidReferral(r) {
   return c === cExpected;
 }
 
-export default async function handler(req) {
+export default async function handler(req, res) {
   if (req.method !== 'POST') {
-    return new Response(JSON.stringify({ error: 'Method Not Allowed' }), {
-      status: 405,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return res.status(405).json({ error: 'Method Not Allowed' });
   }
 
   try {
-    const body = await req.json();
+    const body = req.body || {};
     const { event, path, detail } = body;
     
     // Obtener `r` del body o de las cookies
     let r = body.r;
     if (!r) {
-      const cookieHeader = req.headers.get('cookie') || '';
+      const cookieHeader = req.headers['cookie'] || '';
       const match = cookieHeader.match(/(^| )web7_ref=([^;]+)/);
       if (match) r = match[2];
     }
@@ -51,41 +48,32 @@ export default async function handler(req) {
       isRefValid = isValidReferral(r);
     }
 
-    // Si el r no es válido, no hacemos tracking de campaña para este request
-    // Podría registrarse como orgánico, pero la especificación v1 dice que
-    // no se persiste ni se asocia si es inválido.
     if (!isRefValid) {
-      return new Response(JSON.stringify({ success: true, valid: false }), {
-        status: 200,
-        headers: { 'Content-Type': 'application/json' }
-      });
+      return res.status(200).json({ success: true, valid: false });
     }
 
     // Geo por IP desde headers de Vercel
-    const ip = req.headers.get('x-forwarded-for') || '127.0.0.1';
-    const country = req.headers.get('x-vercel-ip-country') || 'Unknown';
-    const region = req.headers.get('x-vercel-ip-country-region') || '';
-    const city = req.headers.get('x-vercel-ip-city') || '';
+    const ip = req.headers['x-forwarded-for'] || '127.0.0.1';
+    const country = req.headers['x-vercel-ip-country'] || 'Unknown';
+    const region = req.headers['x-vercel-ip-country-region'] || '';
+    const city = req.headers['x-vercel-ip-city'] || '';
     
-    // Hash de la IP (sin guardarla en crudo)
+    // Hash de la IP
     const salt = process.env.IP_SALT || 'web7_secure_salt';
     const ip_hash = crypto.createHash('sha256').update(ip + salt).digest('hex').substring(0, 16);
     
-    // Hash del User Agent para agrupar sesiones básicas
-    const ua = req.headers.get('user-agent') || 'Unknown';
+    // Hash del User Agent
+    const ua = req.headers['user-agent'] || 'Unknown';
     const ua_hash = crypto.createHash('sha256').update(ua + salt).digest('hex').substring(0, 16);
 
     // Preparar el log event
     const now = new Date();
-    // Ajustar a zona horaria de Buenos Aires (aprox, para nombre de archivo)
     const argDate = new Date(now.toLocaleString('en-US', { timeZone: 'America/Argentina/Buenos_Aires' }));
     const year = argDate.getFullYear();
     const month = String(argDate.getMonth() + 1).padStart(2, '0');
     const day = String(argDate.getDate()).padStart(2, '0');
     const dateStr = `${year}-${month}-${day}`;
     
-    // Hash the filename to make it unguessable in public Vercel Blob
-    const salt = process.env.IP_SALT || 'web7_secure_salt';
     const nameHash = crypto.createHash('md5').update(dateStr + salt).digest('hex').substring(0, 8);
     const fileName = `logs/${dateStr}-${nameHash}.jsonl`;
 
@@ -104,11 +92,8 @@ export default async function handler(req) {
 
     const logLine = JSON.stringify(logEntry) + '\n';
 
-    // Para evitar problemas de sobreescritura concurrente severa, en un sitio de bajo tráfico
-    // leer, concatenar y subir es suficiente en Vercel Blob.
     let existingContent = '';
     
-    // Blob necesita token
     if (process.env.BLOB_READ_WRITE_TOKEN) {
       try {
         const { blobs } = await list({ prefix: fileName });
@@ -121,40 +106,25 @@ export default async function handler(req) {
         }
         
         await put(fileName, existingContent + logLine, {
-          access: 'public', // Debe ser public para poder descargarlo luego fácilmente desde la API, pero ofuscado el nombre si hiciera falta. Usar public es requerido por Blob en plan free.
-          addRandomSuffix: false // Sobreescribimos el mismo archivo
+          access: 'public',
+          addRandomSuffix: false
         });
       } catch (err) {
         console.error("Error guardando en Vercel Blob:", err);
       }
     } else {
-      console.warn("BLOB_READ_WRITE_TOKEN no configurado. Log generado pero no guardado:", logLine);
+      console.warn("BLOB_READ_WRITE_TOKEN no configurado.");
     }
-
-    // Preparar respuesta
-    const responseHeaders = new Headers({
-      'Content-Type': 'application/json'
-    });
 
     // Si es el evento landing, intentar inyectar la cookie
     if (event === 'landing') {
-      // 60 días = 60 * 24 * 60 * 60 = 5184000 segundos
-      responseHeaders.append(
-        'Set-Cookie', 
-        `web7_ref=${r}; Path=/; Max-Age=5184000; SameSite=Lax; Secure; HttpOnly`
-      );
+      res.setHeader('Set-Cookie', `web7_ref=${r}; Path=/; Max-Age=5184000; SameSite=Lax; Secure; HttpOnly`);
     }
 
-    return new Response(JSON.stringify({ success: true, valid: true }), {
-      status: 200,
-      headers: responseHeaders,
-    });
+    return res.status(200).json({ success: true, valid: true });
     
   } catch (error) {
     console.error("Track error:", error);
-    return new Response(JSON.stringify({ error: "Internal Server Error" }), {
-      status: 500,
-      headers: { "Content-Type": "application/json" },
-    });
+    return res.status(500).json({ error: "Internal Server Error" });
   }
 }

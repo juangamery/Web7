@@ -2,47 +2,43 @@ import { list, del } from '@vercel/blob';
 
 // Removed edge runtime to allow node modules.
 
-export default async function handler(req) {
+export default async function handler(req, res) {
   // Configuración CORS simple
-  const headers = new Headers({
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'GET, DELETE, OPTIONS',
-    'Access-Control-Allow-Headers': 'Authorization',
-    'Content-Type': 'application/json'
-  });
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, DELETE, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Authorization');
 
   if (req.method === 'OPTIONS') {
-    return new Response(null, { status: 200, headers });
+    return res.status(200).end();
   }
 
   // Verificar Auth
-  const authHeader = req.headers.get('authorization');
+  const authHeader = req.headers['authorization'];
   const adminPassword = process.env.ADMIN_PASSWORD;
 
   if (!adminPassword || authHeader !== `Bearer ${adminPassword}`) {
-    return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401, headers });
+    return res.status(401).json({ error: 'Unauthorized' });
   }
 
   try {
     if (req.method === 'GET') {
       const { blobs } = await list({ prefix: 'logs/' });
-      return new Response(JSON.stringify({ blobs }), { status: 200, headers });
+      return res.status(200).json({ blobs });
     }
 
     if (req.method === 'DELETE') {
-      const url = new URL(req.url);
-      const urlToDelete = url.searchParams.get('url');
+      const urlToDelete = req.query.url;
       if (!urlToDelete) {
-        return new Response(JSON.stringify({ error: 'Falta parámetro url' }), { status: 400, headers });
+        return res.status(400).json({ error: 'Falta parámetro url' });
       }
       
       await del(urlToDelete);
-      return new Response(JSON.stringify({ success: true }), { status: 200, headers });
+      return res.status(200).json({ success: true });
     }
 
-    return new Response(JSON.stringify({ error: 'Method Not Allowed' }), { status: 405, headers });
+    return res.status(405).json({ error: 'Method Not Allowed' });
   } catch (error) {
     console.error("Admin Error:", error);
-    return new Response(JSON.stringify({ error: error.message }), { status: 500, headers });
+    return res.status(500).json({ error: error.message });
   }
 }

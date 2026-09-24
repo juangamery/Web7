@@ -154,7 +154,7 @@
             <td><strong>${name}</strong></td>
             <td>${(b.size / 1024).toFixed(2)} KB <br><small style="color:#888">${date}</small></td>
             <td class="actions">
-              <button onclick="window.open('${b.url}', '_blank')">Ver / Descargar</button>
+              <button onclick="window.open('${b.downloadUrl || b.url}', '_blank')">Ver / Descargar</button>
               <button class="danger" onclick="deleteLog('${b.url}')">Borrar</button>
             </td>
           `;

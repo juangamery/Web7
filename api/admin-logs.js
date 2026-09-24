@@ -17,7 +17,14 @@ export default async function handler(req, res) {
   const adminPassword = process.env.ADMIN_PASSWORD;
 
   if (!adminPassword || authHeader !== `Bearer ${adminPassword}`) {
-    return res.status(401).json({ error: 'Unauthorized' });
+    return res.status(401).json({ 
+      error: 'Unauthorized', 
+      debug: { 
+        hasPassword: !!adminPassword, 
+        hasHeader: !!authHeader,
+        headerMatches: authHeader === `Bearer ${adminPassword}` 
+      } 
+    });
   }
 
   try {

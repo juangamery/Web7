@@ -62,11 +62,21 @@
     trackEvent(eventName, null, detail);
   };
 
-  // Auto-track portfolio opens
+  // Auto-track portfolio opens and section navigation
   document.addEventListener('click', function(e) {
     const card = e.target.closest('.project-card');
     if (card && card.href) {
       trackEvent('portfolio_open', null, { url: card.href });
+      return;
+    }
+
+    const link = e.target.closest('a');
+    if (link && link.href) {
+      // Si el enlace es interno o un ancla, lo registramos como navigation
+      const url = new URL(link.href, window.location.origin);
+      if (url.origin === window.location.origin && url.pathname === window.location.pathname && url.hash) {
+        trackEvent('section_view', null, { section: url.hash });
+      }
     }
   });
 

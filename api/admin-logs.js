@@ -1,8 +1,6 @@
 import { list, del } from '@vercel/blob';
 
-export const config = {
-  runtime: 'edge',
-};
+// Removed edge runtime to allow node modules.
 
 export default async function handler(req) {
   // Configuración CORS simple

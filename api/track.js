@@ -1,9 +1,7 @@
 import { put, list, head } from '@vercel/blob';
 import crypto from 'crypto';
 
-export const config = {
-  runtime: 'edge',
-};
+// Removed edge runtime due to node:crypto and @vercel/blob dependencies
 
 // Algoritmo de validación de código de referencia
 function isValidReferral(r) {

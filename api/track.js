@@ -111,6 +111,7 @@ export default async function handler(req, res) {
         });
       } catch (err) {
         console.error("Error guardando en Vercel Blob:", err);
+        return res.status(200).json({ success: true, valid: true, errorBlob: err.message, stack: err.stack });
       }
     } else {
       console.warn("BLOB_READ_WRITE_TOKEN no configurado.");

@@ -104,6 +104,8 @@
           loginError.classList.add('hidden');
           showDashboard();
         } else {
+          const errData = await res.json().catch(e => ({}));
+          loginError.innerText = 'Error: ' + (errData.debug ? JSON.stringify(errData.debug) : 'Desconocido');
           loginError.classList.remove('hidden');
         }
       } catch (err) {

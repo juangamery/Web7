@@ -22,7 +22,9 @@ export default async function handler(req, res) {
       debug: { 
         hasPassword: !!adminPassword, 
         hasHeader: !!authHeader,
-        headerMatches: authHeader === `Bearer ${adminPassword}` 
+        headerMatches: authHeader === `Bearer ${adminPassword}`,
+        headerLen: authHeader ? authHeader.length : 0,
+        expectedLen: adminPassword ? (`Bearer ` + adminPassword).length : 0
       } 
     });
   }

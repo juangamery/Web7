@@ -98,7 +98,7 @@ export default async function handler(req, res) {
       try {
         const { blobs } = await list({ prefix: fileName });
         if (blobs.length > 0) {
-          const blobUrl = blobs[0].url;
+          const blobUrl = blobs[0].downloadUrl || blobs[0].url;
           const resp = await fetch(blobUrl);
           if (resp.ok) {
             existingContent = await resp.text();

@@ -106,7 +106,7 @@ export default async function handler(req, res) {
         }
         
         await put(fileName, existingContent + logLine, {
-          access: 'public',
+          access: 'private',
           addRandomSuffix: false
         });
       } catch (err) {

@@ -29,8 +29,12 @@ export default async function handler(req, res) {
 
   try {
     if (req.method === 'GET') {
+      const hasToken = !!process.env.BLOB_READ_WRITE_TOKEN;
+      if (!hasToken) {
+        return res.status(200).json({ blobs: [], debug: 'NO_TOKEN' });
+      }
       const { blobs } = await list({ prefix: 'logs/' });
-      return res.status(200).json({ blobs });
+      return res.status(200).json({ blobs, hasToken });
     }
 
     if (req.method === 'DELETE') {

@@ -180,7 +180,7 @@
             <td>${(b.size / 1024).toFixed(2)} KB <br><small style="color:#888">${date}</small></td>
             <td class="actions">
               <button onclick="viewLog('${b.downloadUrl || b.url}')">Ver Tabla</button>
-              <button style="background:#222;" onclick="window.open('${b.downloadUrl || b.url}', '_blank')">↓ JSON</button>
+              <button style="background:#222;" onclick="window.open('/api/admin-logs?fileUrl=' + encodeURIComponent('${b.downloadUrl || b.url}'), '_blank')">↓ JSON</button>
               <button class="danger" onclick="deleteLog('${b.url}')">Borrar</button>
             </td>
           `;
@@ -198,7 +198,9 @@
       tbody.innerHTML = '<tr><td colspan="7">Descargando datos...</td></tr>';
       
       try {
-        const res = await fetch(downloadUrl);
+        const proxyUrl = '/api/admin-logs?fileUrl=' + encodeURIComponent(downloadUrl);
+        const res = await fetch(proxyUrl, { headers: { 'Authorization': `Bearer ${currentToken}` } });
+        if (!res.ok) throw new Error('Proxy failed');
         const text = await res.text();
         const lines = text.split('\\n').filter(l => l.trim().length > 0);
         

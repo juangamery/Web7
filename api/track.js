@@ -99,7 +99,11 @@ export default async function handler(req, res) {
         const { blobs } = await list({ prefix: fileName });
         if (blobs.length > 0) {
           const blobUrl = blobs[0].downloadUrl || blobs[0].url;
-          const resp = await fetch(blobUrl);
+          const resp = await fetch(blobUrl, {
+            headers: {
+              'Authorization': `Bearer ${process.env.BLOB_READ_WRITE_TOKEN}`
+            }
+          });
           if (resp.ok) {
             existingContent = await resp.text();
           }

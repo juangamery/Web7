@@ -1,4 +1,4 @@
-const CACHE_NAME = 'web7-v7';
+const CACHE_NAME = 'web7-v8';
 const PRECACHE = [
   '/',
   '/index.html',
@@ -34,6 +34,23 @@ self.addEventListener('fetch', (e) => {
 
   // Skip non-GET and external requests
   if (e.request.method !== 'GET' || url.origin !== self.location.origin) return;
+
+  // Nunca cachear API, admin ni el tracker
+  if (url.pathname.startsWith('/api/') || url.pathname.startsWith('/admin') || url.pathname.includes('tracker.js')) return;
+
+  // JS / CSS: network-first para que los cambios lleguen siempre
+  if (/\.(js|css)$/.test(url.pathname)) {
+    e.respondWith(
+      fetch(e.request)
+        .then(res => {
+          const clone = res.clone();
+          caches.open(CACHE_NAME).then(cache => cache.put(e.request, clone));
+          return res;
+        })
+        .catch(() => caches.match(e.request))
+    );
+    return;
+  }
 
   // HTML pages: network-first with cache fallback
   if (e.request.headers.get('accept')?.includes('text/html')) {

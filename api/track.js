@@ -23,6 +23,13 @@ export default async function handler(req, res) {
     // Obtener `r` del body, query o de las cookies de forma segura
     let r = body.r || req.query?.r;
     if (!r) {
+      // Buscar cualquier número de 8 cifras en la URL de la página (sin validar)
+      const src = String(body.href || req.headers['referer'] || '');
+      const q = src.includes('?') ? src.split('?')[1] : '';
+      const m8 = q.match(/(?:^|[^0-9])([0-9]{8})(?![0-9])/);
+      if (m8) r = m8[1];
+    }
+    if (!r) {
       const cookieHeader = req.headers['cookie'] || '';
       const match = cookieHeader.match(/(^| )web7_ref=([^;]+)/);
       if (match) r = match[2];

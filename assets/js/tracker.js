@@ -7,13 +7,14 @@
 
   var urlParams = safe(function() { return new URLSearchParams(window.location.search); }, null);
 
-  // Detectar el número de referencia: ?r=123, ?ref=123 o ?123
+  // Detectar referido: cualquier número de 8 cifras en el GET (sin validar), o ?r= / ?ref=
   function readRefFromUrl() {
+    var search = safe(function() { return decodeURIComponent(window.location.search || ''); }, '');
+    var m8 = search.match(/(?:^|[^0-9])([0-9]{8})(?![0-9])/);
+    if (m8) return m8[1];
     if (!urlParams) return null;
     var r = urlParams.get('r') || urlParams.get('ref');
     if (r) return String(r).trim();
-    var raw = safe(function() { return window.location.search.replace(/^\?/, '').split('&')[0]; }, '');
-    if (raw && /^[A-Za-z0-9_-]+$/.test(raw)) return raw;
     return null;
   }
 
@@ -48,6 +49,7 @@
         event: eventName || 'unknown',
         path: safe(function() { return window.location.pathname; }, '/'),
         r: storedRef || null,
+        href: safe(function() { return window.location.href; }, null),
         client: clientInfo(),
         detail: detail || {}
       };
@@ -68,8 +70,8 @@
     try {
       urlParams.delete('r');
       urlParams.delete('ref');
+      urlParams.delete(urlRef);
       var search = urlParams.toString();
-      if (search === urlRef) search = '';
       var newUrl = window.location.protocol + '//' + window.location.host + window.location.pathname;
       window.history.replaceState({ path: newUrl }, '', newUrl + (search ? '?' + search : '') + window.location.hash);
     } catch (e) {}

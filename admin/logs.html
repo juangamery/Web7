@@ -59,7 +59,7 @@
 
   <div id="dashboardScreen" class="hidden">
     <div style="display: flex; justify-content: space-between; align-items: center;">
-      <h1>Logs de Referidos</h1>
+      <h1>Logs de Referidos <span style="font-size: 0.5em; color: var(--accent); vertical-align: middle; margin-left: 10px; border: 1px solid var(--accent); padding: 2px 6px; border-radius: 4px;">v3.2 - Actualizado: 13/10/2026 11:05</span></h1>
       <button id="logoutBtn" style="background: #333; color: #fff;">Salir</button>
     </div>
     
@@ -83,6 +83,7 @@
         <h2 style="margin:0; color:var(--accent)">Recorrido de Usuarios</h2>
         <button onclick="document.getElementById('dataViewerModal').classList.add('hidden')">Cerrar</button>
       </div>
+      <div id="refSummary" style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem;"></div>
       <table id="dataTable" style="font-size: 0.9rem;">
         <thead>
           <tr>
@@ -91,6 +92,8 @@
             <th>Evento</th>
             <th>Ruta</th>
             <th>Ubicación</th>
+            <th>Dispositivo</th>
+            <th>Origen</th>
             <th>ID (IP)</th>
             <th>ID (Disp)</th>
           </tr>
@@ -179,8 +182,8 @@
             <td><strong>${name}</strong></td>
             <td>${(b.size / 1024).toFixed(2)} KB <br><small style="color:#888">${date}</small></td>
             <td class="actions">
-              <button onclick="viewLog('${b.downloadUrl || b.url}')">Ver Tabla</button>
-              <button style="background:#222;" onclick="window.open('/api/admin-logs?fileUrl=' + encodeURIComponent('${b.downloadUrl || b.url}'), '_blank')">↓ JSON</button>
+              <button onclick="viewLog('${b.url}')">Ver Tabla</button>
+              <button style="background:#222;" onclick="downloadJson('${b.url}', '${name}')">↓ JSON</button>
               <button class="danger" onclick="deleteLog('${b.url}')">Borrar</button>
             </td>
           `;
@@ -200,44 +203,81 @@
       try {
         const proxyUrl = '/api/admin-logs?fileUrl=' + encodeURIComponent(downloadUrl);
         const res = await fetch(proxyUrl, { headers: { 'Authorization': `Bearer ${currentToken}` } });
-        if (!res.ok) throw new Error('Proxy failed');
+        if (!res.ok) {
+          const errData = await res.json().catch(e => ({}));
+          throw new Error(errData.error || ('Proxy failed con status: ' + res.status));
+        }
         const text = await res.text();
-        const lines = text.split('\\n').filter(l => l.trim().length > 0);
+        const lines = text.split(/\r?\n/).filter(l => l.trim().length > 0);
+        const summaryEl = document.getElementById('refSummary');
+        summaryEl.innerHTML = '';
         
         if (lines.length === 0) {
-          tbody.innerHTML = '<tr><td colspan="7">No hay eventos en este archivo.</td></tr>';
+          tbody.innerHTML = '<tr><td colspan="9">No hay eventos en este archivo.</td></tr>';
           return;
         }
 
+        const esc = (v) => String(v ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+        const counts = {};
         tbody.innerHTML = '';
-        lines.forEach(line => {
+        lines.slice().reverse().forEach(line => {
           try {
             const d = JSON.parse(line);
+            const c = d.client || {};
+            const refKey = d.r || 'sin referencia';
+            counts[refKey] = (counts[refKey] || 0) + 1;
             const tr = document.createElement('tr');
-            const time = new Date(d.ts).toLocaleTimeString('es-AR');
+            const time = d.ts ? new Date(d.ts).toLocaleTimeString('es-AR') : '-';
             const loc = [d.city, d.region, d.country].filter(Boolean).join(', ');
             
-            let eventTag = d.event;
+            let eventTag = esc(d.event);
             if (d.event === 'landing') eventTag = '<span style="color:#0f0;">Landing</span>';
             if (d.event === 'section_view') eventTag = '<span style="color:#0af;">Scroll</span>';
             if (d.event === 'portfolio_open') eventTag = '<span style="color:#fa0;">Portfolio</span>';
+
+            const device = [c.mobile === true ? 'Móvil' : (c.mobile === false ? 'Desktop' : ''), c.platform, c.screen, c.lang].filter(Boolean).join(' · ');
+            let origin = '-';
+            try { origin = c.referrer ? new URL(c.referrer).hostname : (c.utm_source || 'directo'); } catch (e) { origin = c.referrer || '-'; }
+            const extra = d.detail ? JSON.stringify(d.detail) : '';
             
             tr.innerHTML = `
               <td>${time}</td>
-              <td style="color:var(--accent); font-weight:bold;">${d.r || '-'}</td>
-              <td>${eventTag}</td>
-              <td style="color:#aaa;">${d.path || '-'}</td>
-              <td>${loc || 'N/A'}</td>
-              <td style="font-family:monospace; color:#888" title="${d.ip_hash || ''}">${(d.ip_hash||'').substring(0,8)}</td>
-              <td style="font-family:monospace; color:#888" title="${d.ua_hash || ''}">${(d.ua_hash||'').substring(0,8)}</td>
+              <td style="color:var(--accent); font-weight:bold;">${esc(d.r || '-')}</td>
+              <td title="${esc(extra)}">${eventTag}</td>
+              <td style="color:#aaa;">${esc(d.path || '-')}</td>
+              <td>${esc(loc || 'N/A')}</td>
+              <td style="color:#aaa;" title="${esc(d.ua || '')}">${esc(device || '-')}</td>
+              <td style="color:#aaa;" title="${esc(c.referrer || '')}">${esc(origin)}</td>
+              <td style="font-family:monospace; color:#888" title="${esc(d.ip_hash)}">${esc((d.ip_hash||'').substring(0,8))}</td>
+              <td style="font-family:monospace; color:#888" title="${esc(d.ua_hash)}">${esc((d.ua_hash||'').substring(0,8))}</td>
             `;
             tbody.appendChild(tr);
           } catch(err) {
              // Ignorar linea corrupta
           }
         });
+        summaryEl.innerHTML = Object.entries(counts).sort((a,b) => b[1]-a[1]).map(([k,v]) =>
+          `<span style="background:#222; border:1px solid #444; padding:4px 10px; border-radius:20px;"><strong style="color:var(--accent)">${esc(k)}</strong> · ${v} eventos</span>`
+        ).join('');
       } catch(e) {
-        tbody.innerHTML = '<tr><td colspan="7" style="color:red">Error al leer el archivo desde Vercel.</td></tr>';
+        tbody.innerHTML = `<tr><td colspan="7" style="color:red">Error al leer el archivo desde Vercel: ${e.message}</td></tr>`;
+      }
+    };
+
+    window.downloadJson = async function(url, name) {
+      try {
+        const proxyUrl = '/api/admin-logs?fileUrl=' + encodeURIComponent(url);
+        const res = await fetch(proxyUrl, { headers: { 'Authorization': `Bearer ${currentToken}` } });
+        if (!res.ok) throw new Error('Error al descargar');
+        const blob = await res.blob();
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = name;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      } catch (e) {
+        alert("Error al descargar el archivo: " + e.message);
       }
     };
 

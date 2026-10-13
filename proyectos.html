@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
+<!DOCTYPE html><html lang="es"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
@@ -60,8 +58,8 @@
   }
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Doto:wght@400;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Doto:wght@400;700;800&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
   <style>
     @font-face {
       font-family: 'Alpha Lyrae';
@@ -519,10 +517,10 @@
   </style>
   <!-- Vercel Web Analytics -->
   <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
-  <script defer src="/_vercel/insights/script.js"></script>
+  <script defer="" src="/_vercel/insights/script.js"></script>
 
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8J1BW6FFXV"></script>
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-8J1BW6FFXV"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -530,7 +528,8 @@
 
     gtag('config', 'G-8J1BW6FFXV');
   </script>
-<script src="assets/js/tracker.js"></script>
+  <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/tracker.js"></script>
 </head>
 <body>
 
@@ -548,35 +547,40 @@
   <!-- CURSOR -->
   <div class="cursor"></div>
   <div class="cursor-dot"></div>
-  <div class="cursor-label">Ver</div>
+  <div class="cursor-label" data-i18n="proj_cursor_lbl_121">Ver</div>
 
   <!-- NAV -->
   <nav>
     <div class="logo-outer"><a href="index.html" class="logo" aria-label="WEB7"><img src="assets/Logoweb7-verde.svg" alt="WEB7" style="height: 52px;"></a></div>
-    <ul class="nav-links">
-      <li><a href="index.html#metodo">Método</a></li>
-      <li><a href="proyectos.html" style="color: var(--accent);">Proyectos</a></li>
+    <ul class="nav-links" style="align-items: center;">
+      <li><a href="index.html#metodo" data-i18n="nav_metodo">Método</a></li>
+      <li><a href="proyectos.html" style="color: var(--accent);" data-i18n="nav_proyectos">Proyectos</a></li>
       <li><a href="on7.html">ON7</a></li>
-      <li><a href="index.html#lab7">Lab7</a></li>
-      <li><a href="index.html#herramientas">Herramientas</a></li>
-      <li><a href="contacto.html">Contacto</a></li>
+      <li><a href="index.html#lab7" data-i18n="label_lab7">Lab7</a></li>
+      <li><a href="index.html#herramientas" data-i18n="label_herramientas">Herramientas</a></li>
+      <li><a href="contacto.html" data-i18n="nav_contacto">Contacto</a></li>
+      <li class="lang-selector" style="display: flex; gap: 0.5rem; margin-left: 1rem; border-left: 1px solid rgba(255,255,255,0.2); padding-left: 1rem;">
+        <a href="#" onclick="changeLang('es'); return false;" style="font-size: 1.2rem; transition: opacity 0.3s;" title="Español">🇦🇷</a>
+        <a href="#" onclick="changeLang('pt'); return false;" style="font-size: 1.2rem; transition: opacity 0.3s;" title="Português">🇧🇷</a>
+        <a href="#" onclick="changeLang('en'); return false;" style="font-size: 1.2rem; transition: opacity 0.3s;" title="English">🇺🇸</a>
+      </li>
     </ul>
   </nav>
 
   <!-- HERO -->
   <section class="projects-hero">
-    <span class="label">Proyectos</span>
-    <h1>Cada proyecto<br>es un negocio que<br>ahora se comunica solo.</h1>
-    <p class="subtext">Mas de 30 proyectos. Mas de 10 sectores. Vinotecas, hoteles, distribuidoras, productores, eventos y profesionales. Todos con algo en comun: necesitaban claridad digital y la tienen.</p>
+    <span class="label" data-i18n="proj_hero_lbl_0">Proyectos</span>
+    <h1 data-i18n="proj_hero_h1_1">Cada proyecto<br>es un negocio que<br>ahora se comunica solo.</h1>
+    <p class="subtext" data-i18n="proj_hero_sub_2">Mas de 30 proyectos. Mas de 10 sectores. Vinotecas, hoteles, distribuidoras, productores, eventos y profesionales. Todos con algo en comun: necesitaban claridad digital y la tienen.</p>
   </section>
 
   <!-- FILTERS -->
   <div class="filters-bar">
-    <button class="filter-btn active" data-filter="todos">Todos</button>
-    <button class="filter-btn" data-filter="landing">Landing</button>
-    <button class="filter-btn" data-filter="institucional">Institucional</button>
-    <button class="filter-btn" data-filter="profesional">Profesional</button>
-    <button class="filter-btn" data-filter="ecommerce">Ecommerce</button>
+    <button class="filter-btn active" data-filter="todos" data-i18n="proj_filter_3">Todos</button>
+    <button class="filter-btn" data-filter="landing" data-i18n="proj_filter_4">Landing</button>
+    <button class="filter-btn" data-filter="institucional" data-i18n="proj_filter_5">Institucional</button>
+    <button class="filter-btn" data-filter="profesional" data-i18n="proj_filter_6">Profesional</button>
+    <button class="filter-btn" data-filter="ecommerce" data-i18n="proj_filter_7">Ecommerce</button>
   </div>
 
   <!-- PROJECTS GRID -->
@@ -586,15 +590,15 @@
       <img src="assets/oda-al-vino.jpg" alt="ODA Al Vino" class="card-img" loading="lazy">
       <div class="card-body">
         <div class="card-header-row">
-          <h3>ODA Al Vino</h3>
-          <span class="type-tag type-tag--landing">Landing</span>
+          <h3 data-i18n="proj_card_0_title_8">ODA Al Vino</h3>
+          <span class="type-tag type-tag--landing" data-i18n="proj_card_0_tag_9">Landing</span>
         </div>
-        <p class="rubro">Eventos &middot; Vinos</p>
-        <p class="desc">El festival de vinos más importante de la Triple Frontera. Landing para la 10ª edición en Iguazú — entradas, bodegas y experiencias.</p>
+        <p class="rubro" data-i18n="proj_card_0_rubro_10">Eventos · Vinos</p>
+        <p class="desc" data-i18n="proj_card_0_desc_11">El festival de vinos más importante de la Triple Frontera. Landing para la 10ª edición en Iguazú — entradas, bodegas y experiencias.</p>
         <div class="card-credits">
-          <div class="credit-item">• Diseño UI UX - Federico Gunther / Significa</div>
+          <div class="credit-item" data-i18n="proj_card_0_cr_0_12">• Diseño UI UX - Federico Gunther / Significa</div>
         </div>
-        <span class="ver-sitio">Ver sitio &rarr;</span>
+        <span class="ver-sitio" data-i18n="proj_card_0_btn_13">Ver sitio →</span>
       </div>
     </a>
 
@@ -602,15 +606,15 @@
       <img src="assets/oda-vinoteca.jpg" alt="ODA Vinoteca" class="card-img" loading="lazy">
       <div class="card-body">
         <div class="card-header-row">
-          <h3>ODA Vinoteca</h3>
-          <span class="type-tag type-tag--institucional">Institucional</span>
+          <h3 data-i18n="proj_card_1_title_14">ODA Vinoteca</h3>
+          <span class="type-tag type-tag--institucional" data-i18n="proj_card_1_tag_15">Institucional</span>
         </div>
-        <p class="rubro">Gastronomia &middot; Vinos</p>
-        <p class="desc">Una propuesta de alta gama que ahora se entiende antes de entrar al local.</p>
+        <p class="rubro" data-i18n="proj_card_1_rubro_16">Gastronomia · Vinos</p>
+        <p class="desc" data-i18n="proj_card_1_desc_17">Una propuesta de alta gama que ahora se entiende antes de entrar al local.</p>
         <div class="card-credits">
-          <div class="credit-item">• Diseño UI UX - Federico Gunther / Significa</div>
+          <div class="credit-item" data-i18n="proj_card_1_cr_0_18">• Diseño UI UX - Federico Gunther / Significa</div>
         </div>
-        <span class="ver-sitio">Ver sitio &rarr;</span>
+        <span class="ver-sitio" data-i18n="proj_card_1_btn_19">Ver sitio →</span>
       </div>
     </a>
 
@@ -618,15 +622,15 @@
       <img src="assets/yvy-hotel.jpg" alt="YVY Hotel" class="card-img" loading="lazy">
       <div class="card-body">
         <div class="card-header-row">
-          <h3>YVY Hotel</h3>
-          <span class="type-tag type-tag--institucional">Institucional</span>
+          <h3 data-i18n="proj_card_2_title_20">YVY Hotel</h3>
+          <span class="type-tag type-tag--institucional" data-i18n="proj_card_2_tag_21">Institucional</span>
         </div>
-        <p class="rubro">Hoteleria &middot; Turismo</p>
-        <p class="desc">Un hotel de selva que se comunica como lo que es.</p>
+        <p class="rubro" data-i18n="proj_card_2_rubro_22">Hoteleria · Turismo</p>
+        <p class="desc" data-i18n="proj_card_2_desc_23">Un hotel de selva que se comunica como lo que es.</p>
         <div class="card-credits">
-          <div class="credit-item">• Diseño UI UX - Federico Gunther / Satélite agencia</div>
+          <div class="credit-item" data-i18n="proj_card_2_cr_0_24">• Diseño UI UX - Federico Gunther / Satélite agencia</div>
         </div>
-        <span class="ver-sitio">Ver sitio &rarr;</span>
+        <span class="ver-sitio" data-i18n="proj_card_2_btn_25">Ver sitio →</span>
       </div>
     </a>
 
@@ -634,16 +638,16 @@
       <img src="assets/total.jpg" alt="Total" class="card-img" loading="lazy">
       <div class="card-body">
         <div class="card-header-row">
-          <h3>Total</h3>
-          <span class="type-tag type-tag--institucional">Institucional</span>
+          <h3 data-i18n="proj_card_3_title_26">Total</h3>
+          <span class="type-tag type-tag--institucional" data-i18n="proj_card_3_tag_27">Institucional</span>
         </div>
-        <p class="rubro">Distribucion &middot; Alimentos</p>
-        <p class="desc">Una distribuidora de marcas líderes con presencia digital a su altura.</p>
+        <p class="rubro" data-i18n="proj_card_3_rubro_28">Distribucion · Alimentos</p>
+        <p class="desc" data-i18n="proj_card_3_desc_29">Una distribuidora de marcas líderes con presencia digital a su altura.</p>
         <div class="card-credits">
-          <div class="credit-item">• Diseño UX - Federico Gunther / Satélite agencia</div>
-          <div class="credit-item">• Diseño UI - Luciano Hermida / Satélite agencia</div>
+          <div class="credit-item" data-i18n="proj_card_3_cr_0_30">• Diseño UX - Federico Gunther / Satélite agencia</div>
+          <div class="credit-item" data-i18n="proj_card_3_cr_1_31">• Diseño UI - Luciano Hermida / Satélite agencia</div>
         </div>
-        <span class="ver-sitio">Ver sitio &rarr;</span>
+        <span class="ver-sitio" data-i18n="proj_card_3_btn_32">Ver sitio →</span>
       </div>
     </a>
 
@@ -651,15 +655,15 @@
       <img src="assets/primicia.jpg" alt="Primicia" class="card-img" loading="lazy">
       <div class="card-body">
         <div class="card-header-row">
-          <h3>Primicia</h3>
-          <span class="type-tag type-tag--ecommerce">Ecommerce</span>
+          <h3 data-i18n="proj_card_4_title_33">Primicia</h3>
+          <span class="type-tag type-tag--ecommerce" data-i18n="proj_card_4_tag_34">Ecommerce</span>
         </div>
-        <p class="rubro">Producto &middot; Yerba mate</p>
-        <p class="desc">Identidad y venta online para una yerba con origen e historia propios.</p>
+        <p class="rubro" data-i18n="proj_card_4_rubro_35">Producto · Yerba mate</p>
+        <p class="desc" data-i18n="proj_card_4_desc_36">Identidad y venta online para una yerba con origen e historia propios.</p>
         <div class="card-credits">
-          <div class="credit-item">• Diseño UI UX - Luciano Hermida / Federico Gunther / Satélite agencia</div>
+          <div class="credit-item" data-i18n="proj_card_4_cr_0_37">• Diseño UI UX - Luciano Hermida / Federico Gunther / Satélite agencia</div>
         </div>
-        <span class="ver-sitio">Ver sitio &rarr;</span>
+        <span class="ver-sitio" data-i18n="proj_card_4_btn_38">Ver sitio →</span>
       </div>
     </a>
 
@@ -667,12 +671,12 @@
       <img src="assets/finca-rumaroli.jpg" alt="Finca Rumaroli" class="card-img" loading="lazy">
       <div class="card-body">
         <div class="card-header-row">
-          <h3>Finca Rumaroli</h3>
-          <span class="type-tag type-tag--institucional">Institucional</span>
+          <h3 data-i18n="proj_card_5_title_39">Finca Rumaroli</h3>
+          <span class="type-tag type-tag--institucional" data-i18n="proj_card_5_tag_40">Institucional</span>
         </div>
-        <p class="rubro">Agro &middot; Vinos</p>
-        <p class="desc">Una finca con producto propio que por fin tiene la web que se merece.</p>
-        <span class="ver-sitio">Ver sitio &rarr;</span>
+        <p class="rubro" data-i18n="proj_card_5_rubro_41">Agro · Vinos</p>
+        <p class="desc" data-i18n="proj_card_5_desc_42">Una finca con producto propio que por fin tiene la web que se merece.</p>
+        <span class="ver-sitio" data-i18n="proj_card_5_btn_43">Ver sitio →</span>
       </div>
     </a>
 
@@ -680,15 +684,15 @@
       <img src="assets/ODF.png" alt="ODA Duty Free" class="card-img" loading="lazy">
       <div class="card-body">
         <div class="card-header-row">
-          <h3>ODA Duty Free</h3>
-          <span class="type-tag type-tag--ecommerce">Ecommerce</span>
+          <h3 data-i18n="proj_card_6_title_44">ODA Duty Free</h3>
+          <span class="type-tag type-tag--ecommerce" data-i18n="proj_card_6_tag_45">Ecommerce</span>
         </div>
-        <p class="rubro">Ecommerce &middot; Vinos</p>
-        <p class="desc">Tienda online de vinos con catálogo completo para el mercado brasileño.</p>
+        <p class="rubro" data-i18n="proj_card_6_rubro_46">Ecommerce · Vinos</p>
+        <p class="desc" data-i18n="proj_card_6_desc_47">Tienda online de vinos con catálogo completo para el mercado brasileño.</p>
         <div class="card-credits">
-          <div class="credit-item" style="white-space: normal;">• Participación en el desarrollo y mantenimiento web</div>
+          <div class="credit-item" style="white-space: normal;" data-i18n="proj_card_6_cr_0_48">• Participación en el desarrollo y mantenimiento web</div>
         </div>
-        <span class="ver-sitio">Ver sitio &rarr;</span>
+        <span class="ver-sitio" data-i18n="proj_card_6_btn_49">Ver sitio →</span>
       </div>
     </a>
 
@@ -696,15 +700,15 @@
       <img src="assets/OWS.png" alt="ODA Wine Shop" class="card-img" loading="lazy">
       <div class="card-body">
         <div class="card-header-row">
-          <h3>ODA Wine Shop</h3>
-          <span class="type-tag type-tag--ecommerce">Ecommerce</span>
+          <h3 data-i18n="proj_card_7_title_50">ODA Wine Shop</h3>
+          <span class="type-tag type-tag--ecommerce" data-i18n="proj_card_7_tag_51">Ecommerce</span>
         </div>
-        <p class="rubro">Ecommerce &middot; Vinos</p>
-        <p class="desc">Plataforma de e-commerce especializada en vinos para brindar una experiencia de compra fluida.</p>
+        <p class="rubro" data-i18n="proj_card_7_rubro_52">Ecommerce · Vinos</p>
+        <p class="desc" data-i18n="proj_card_7_desc_53">Plataforma de e-commerce especializada en vinos para brindar una experiencia de compra fluida.</p>
         <div class="card-credits">
-          <div class="credit-item" style="white-space: normal;">• Participación en el desarrollo y mantenimiento web</div>
+          <div class="credit-item" style="white-space: normal;" data-i18n="proj_card_7_cr_0_54">• Participación en el desarrollo y mantenimiento web</div>
         </div>
-        <span class="ver-sitio">Ver sitio &rarr;</span>
+        <span class="ver-sitio" data-i18n="proj_card_7_btn_55">Ver sitio →</span>
       </div>
     </a>
 
@@ -712,15 +716,15 @@
       <img src="assets/vipwork.jpg" alt="Vipwork" class="card-img" loading="lazy">
       <div class="card-body">
         <div class="card-header-row">
-          <h3>Vipwork</h3>
-          <span class="type-tag type-tag--profesional">Profesional</span>
+          <h3 data-i18n="proj_card_8_title_56">Vipwork</h3>
+          <span class="type-tag type-tag--profesional" data-i18n="proj_card_8_tag_57">Profesional</span>
         </div>
-        <p class="rubro">Servicios &middot; Profesional</p>
-        <p class="desc">Espacio de coworking premium. Diseño web que transmite confort, profesionalismo y networking.</p>
+        <p class="rubro" data-i18n="proj_card_8_rubro_58">Servicios · Profesional</p>
+        <p class="desc" data-i18n="proj_card_8_desc_59">Espacio de coworking premium. Diseño web que transmite confort, profesionalismo y networking.</p>
         <div class="card-credits">
-          <div class="credit-item">• Diseño UX - Federico Gunther / Satélite agencia</div>
+          <div class="credit-item" data-i18n="proj_card_8_cr_0_60">• Diseño UX - Federico Gunther / Satélite agencia</div>
         </div>
-        <span class="ver-sitio">Ver sitio &rarr;</span>
+        <span class="ver-sitio" data-i18n="proj_card_8_btn_61">Ver sitio →</span>
       </div>
     </a>
 
@@ -728,15 +732,15 @@
       <img src="assets/don-basilio.jpg" alt="Don Basilio" class="card-img" loading="lazy">
       <div class="card-body">
         <div class="card-header-row">
-          <h3>Don Basilio</h3>
-          <span class="type-tag type-tag--institucional">Institucional</span>
+          <h3 data-i18n="proj_card_9_title_62">Don Basilio</h3>
+          <span class="type-tag type-tag--institucional" data-i18n="proj_card_9_tag_63">Institucional</span>
         </div>
-        <p class="rubro">Gastronomia</p>
-        <p class="desc">Gastronomía y tradición familiar. Un sitio que refleja su calidez y facilita las reservas.</p>
+        <p class="rubro" data-i18n="proj_card_9_rubro_64">Gastronomia</p>
+        <p class="desc" data-i18n="proj_card_9_desc_65">Gastronomía y tradición familiar. Un sitio que refleja su calidez y facilita las reservas.</p>
         <div class="card-credits">
-          <div class="credit-item" style="white-space: normal;">• Participación en el desarrollo de la web para el estudio <span onclick="window.open('https://portillopartners.com.ar', '_blank'); event.preventDefault(); event.stopPropagation();" style="text-decoration: underline; cursor: pointer;">portillopartners</span></div>
+          <div class="credit-item" style="white-space: normal;" data-i18n="proj_card_9_cr_0_66">• Participación en el desarrollo de la web para el estudio <span onclick="window.open('https://portillopartners.com.ar', '_blank'); event.preventDefault(); event.stopPropagation();" style="text-decoration: underline; cursor: pointer;">portillopartners</span></div>
         </div>
-        <span class="ver-sitio">Ver sitio &rarr;</span>
+        <span class="ver-sitio" data-i18n="proj_card_9_btn_67">Ver sitio →</span>
       </div>
     </a>
 
@@ -744,15 +748,15 @@
       <img src="assets/la-ruta-del-te.jpg" alt="La Ruta del Té" class="card-img" loading="lazy">
       <div class="card-body">
         <div class="card-header-row">
-          <h3>La Ruta del Te</h3>
-          <span class="type-tag type-tag--institucional">Institucional</span>
+          <h3 data-i18n="proj_card_10_title_68">La Ruta del Te</h3>
+          <span class="type-tag type-tag--institucional" data-i18n="proj_card_10_tag_69">Institucional</span>
         </div>
-        <p class="rubro">Turismo &middot; Producto</p>
-        <p class="desc">Una experiencia gastronómica en la selva que ahora se descubre antes de llegar.</p>
+        <p class="rubro" data-i18n="proj_card_10_rubro_70">Turismo · Producto</p>
+        <p class="desc" data-i18n="proj_card_10_desc_71">Una experiencia gastronómica en la selva que ahora se descubre antes de llegar.</p>
         <div class="card-credits">
-          <div class="credit-item" style="white-space: normal;">• Participación en el desarrollo de la web para el estudio <span onclick="window.open('https://portillopartners.com.ar', '_blank'); event.preventDefault(); event.stopPropagation();" style="text-decoration: underline; cursor: pointer;">portillopartners</span></div>
+          <div class="credit-item" style="white-space: normal;" data-i18n="proj_card_10_cr_0_72">• Participación en el desarrollo de la web para el estudio <span onclick="window.open('https://portillopartners.com.ar', '_blank'); event.preventDefault(); event.stopPropagation();" style="text-decoration: underline; cursor: pointer;">portillopartners</span></div>
         </div>
-        <span class="ver-sitio">Ver sitio &rarr;</span>
+        <span class="ver-sitio" data-i18n="proj_card_10_btn_73">Ver sitio →</span>
       </div>
     </a>
 
@@ -760,15 +764,15 @@
       <img src="assets/envasando.jpg" alt="Envasando" class="card-img" loading="lazy">
       <div class="card-body">
         <div class="card-header-row">
-          <h3>Envasando</h3>
-          <span class="type-tag type-tag--institucional">Institucional</span>
+          <h3 data-i18n="proj_card_11_title_74">Envasando</h3>
+          <span class="type-tag type-tag--institucional" data-i18n="proj_card_11_tag_75">Institucional</span>
         </div>
-        <p class="rubro">Industria &middot; Packaging</p>
-        <p class="desc">Soluciones industriales de packaging y envasado con catálogo técnico orientado al sector B2B.</p>
+        <p class="rubro" data-i18n="proj_card_11_rubro_76">Industria · Packaging</p>
+        <p class="desc" data-i18n="proj_card_11_desc_77">Soluciones industriales de packaging y envasado con catálogo técnico orientado al sector B2B.</p>
         <div class="card-credits">
-          <div class="credit-item">• Diseño UI UX - Luciano Hermida / Satélite agencia</div>
+          <div class="credit-item" data-i18n="proj_card_11_cr_0_78">• Diseño UI UX - Luciano Hermida / Satélite agencia</div>
         </div>
-        <span class="ver-sitio">Ver sitio &rarr;</span>
+        <span class="ver-sitio" data-i18n="proj_card_11_btn_79">Ver sitio →</span>
       </div>
     </a>
 
@@ -776,15 +780,15 @@
       <img src="assets/99parts.jpg" alt="99 Parts" class="card-img" loading="lazy">
       <div class="card-body">
         <div class="card-header-row">
-          <h3>99 Parts</h3>
-          <span class="type-tag type-tag--ecommerce">Ecommerce</span>
+          <h3 data-i18n="proj_card_12_title_80">99 Parts</h3>
+          <span class="type-tag type-tag--ecommerce" data-i18n="proj_card_12_tag_81">Ecommerce</span>
         </div>
-        <p class="rubro">Ecommerce &middot; Repuestos</p>
-        <p class="desc">E-commerce de repuestos automotrices con catálogo robusto y experiencia de compra optimizada.</p>
+        <p class="rubro" data-i18n="proj_card_12_rubro_82">Ecommerce · Repuestos</p>
+        <p class="desc" data-i18n="proj_card_12_desc_83">E-commerce de repuestos automotrices con catálogo robusto y experiencia de compra optimizada.</p>
         <div class="card-credits">
-          <div class="credit-item">• Diseño UI UX: Web7</div>
+          <div class="credit-item" data-i18n="proj_card_12_cr_0_84">• Diseño UI UX: Web7</div>
         </div>
-        <span class="ver-sitio">Ver sitio &rarr;</span>
+        <span class="ver-sitio" data-i18n="proj_card_12_btn_85">Ver sitio →</span>
       </div>
     </a>
 
@@ -792,15 +796,15 @@
       <img src="assets/adolfo-sartori.jpg" alt="Adolfo Sartori" class="card-img" loading="lazy">
       <div class="card-body">
         <div class="card-header-row">
-          <h3>Adolfo Sartori</h3>
-          <span class="type-tag type-tag--institucional">Institucional</span>
+          <h3 data-i18n="proj_card_13_title_86">Adolfo Sartori</h3>
+          <span class="type-tag type-tag--institucional" data-i18n="proj_card_13_tag_87">Institucional</span>
         </div>
-        <p class="rubro">Institucional &middot; Servicios</p>
-        <p class="desc">Sitio web institucional para presentar su trayectoria, grandes obras civiles e infraestructura de escala industrial.</p>
+        <p class="rubro" data-i18n="proj_card_13_rubro_88">Institucional · Servicios</p>
+        <p class="desc" data-i18n="proj_card_13_desc_89">Sitio web institucional para presentar su trayectoria, grandes obras civiles e infraestructura de escala industrial.</p>
         <div class="card-credits">
-          <div class="credit-item" style="white-space: normal;">• Participación en el desarrollo de la web para el estudio <span onclick="window.open('https://portillopartners.com.ar', '_blank'); event.preventDefault(); event.stopPropagation();" style="text-decoration: underline; cursor: pointer;">portillopartners</span></div>
+          <div class="credit-item" style="white-space: normal;" data-i18n="proj_card_13_cr_0_90">• Participación en el desarrollo de la web para el estudio <span onclick="window.open('https://portillopartners.com.ar', '_blank'); event.preventDefault(); event.stopPropagation();" style="text-decoration: underline; cursor: pointer;">portillopartners</span></div>
         </div>
-        <span class="ver-sitio">Ver sitio &rarr;</span>
+        <span class="ver-sitio" data-i18n="proj_card_13_btn_91">Ver sitio →</span>
       </div>
     </a>
 
@@ -808,12 +812,12 @@
       <img src="assets/abelardo-cuffia.jpg" alt="Abelardo Cuffia" class="card-img" loading="lazy">
       <div class="card-body">
         <div class="card-header-row">
-          <h3>Abelardo Cuffia</h3>
-          <span class="type-tag type-tag--institucional">Institucional</span>
+          <h3 data-i18n="proj_card_14_title_92">Abelardo Cuffia</h3>
+          <span class="type-tag type-tag--institucional" data-i18n="proj_card_14_tag_93">Institucional</span>
         </div>
-        <p class="rubro">Institucional &middot; Servicios</p>
-        <p class="desc">Sitio web institucional para posicionar su trayectoria, servicios y soluciones de consultoría de primer nivel.</p>
-        <span class="ver-sitio">Ver sitio &rarr;</span>
+        <p class="rubro" data-i18n="proj_card_14_rubro_94">Institucional · Servicios</p>
+        <p class="desc" data-i18n="proj_card_14_desc_95">Sitio web institucional para posicionar su trayectoria, servicios y soluciones de consultoría de primer nivel.</p>
+        <span class="ver-sitio" data-i18n="proj_card_14_btn_96">Ver sitio →</span>
       </div>
     </a>
 
@@ -821,12 +825,12 @@
       <img src="assets/los-lapachos.jpg" alt="Los Lapachos" class="card-img" loading="lazy">
       <div class="card-body">
         <div class="card-header-row">
-          <h3>Los Lapachos</h3>
-          <span class="type-tag type-tag--institucional">Institucional</span>
+          <h3 data-i18n="proj_card_15_title_97">Los Lapachos</h3>
+          <span class="type-tag type-tag--institucional" data-i18n="proj_card_15_tag_98">Institucional</span>
         </div>
-        <p class="rubro">Servicios</p>
-        <p class="desc">Servicios logísticos y corporativos. Un sitio institucional que proyecta solidez y alcance regional.</p>
-        <span class="ver-sitio">Ver sitio &rarr;</span>
+        <p class="rubro" data-i18n="proj_card_15_rubro_99">Servicios</p>
+        <p class="desc" data-i18n="proj_card_15_desc_100">Servicios logísticos y corporativos. Un sitio institucional que proyecta solidez y alcance regional.</p>
+        <span class="ver-sitio" data-i18n="proj_card_15_btn_101">Ver sitio →</span>
       </div>
     </a>
 
@@ -834,12 +838,12 @@
       <img src="assets/plotterdoc.jpg" alt="Plotterdoc" class="card-img" loading="lazy">
       <div class="card-body">
         <div class="card-header-row">
-          <h3>Plotterdoc</h3>
-          <span class="type-tag type-tag--institucional">Institucional</span>
+          <h3 data-i18n="proj_card_16_title_102">Plotterdoc</h3>
+          <span class="type-tag type-tag--institucional" data-i18n="proj_card_16_tag_103">Institucional</span>
         </div>
-        <p class="rubro">Soporte Técnico &middot; Servicios</p>
-        <p class="desc">Plataforma especializada en soporte técnico, venta de repuestos e insumos para plotters y equipos de impresión de gran formato.</p>
-        <span class="ver-sitio">Ver sitio &rarr;</span>
+        <p class="rubro" data-i18n="proj_card_16_rubro_104">Soporte Técnico · Servicios</p>
+        <p class="desc" data-i18n="proj_card_16_desc_105">Plataforma especializada en soporte técnico, venta de repuestos e insumos para plotters y equipos de impresión de gran formato.</p>
+        <span class="ver-sitio" data-i18n="proj_card_16_btn_106">Ver sitio →</span>
       </div>
     </a>
 
@@ -847,12 +851,12 @@
       <img src="assets/synergyshop.jpg" alt="Synergy Shop" class="card-img" loading="lazy">
       <div class="card-body">
         <div class="card-header-row">
-          <h3>Synergy Shop</h3>
-          <span class="type-tag type-tag--ecommerce">Ecommerce</span>
+          <h3 data-i18n="proj_card_17_title_107">Synergy Shop</h3>
+          <span class="type-tag type-tag--ecommerce" data-i18n="proj_card_17_tag_108">Ecommerce</span>
         </div>
-        <p class="rubro">E-commerce &middot; Tecnología</p>
-        <p class="desc">Tienda online orientada a la venta y distribución de insumos de computación, impresión y soluciones tecnológicas en Chile.</p>
-        <span class="ver-sitio">Ver sitio &rarr;</span>
+        <p class="rubro" data-i18n="proj_card_17_rubro_109">E-commerce · Tecnología</p>
+        <p class="desc" data-i18n="proj_card_17_desc_110">Tienda online orientada a la venta y distribución de insumos de computación, impresión y soluciones tecnológicas en Chile.</p>
+        <span class="ver-sitio" data-i18n="proj_card_17_btn_111">Ver sitio →</span>
       </div>
     </a>
 
@@ -860,12 +864,12 @@
       <img src="assets/toppingsa.jpg" alt="Topping SA" class="card-img" loading="lazy">
       <div class="card-body">
         <div class="card-header-row">
-          <h3>Topping SA</h3>
-          <span class="type-tag type-tag--institucional">Institucional</span>
+          <h3 data-i18n="proj_card_18_title_112">Topping SA</h3>
+          <span class="type-tag type-tag--institucional" data-i18n="proj_card_18_tag_113">Institucional</span>
         </div>
-        <p class="rubro">Industria &middot; Agroalimentario</p>
-        <p class="desc">Sitio institucional para presentar su catálogo de ingredientes, materias primas y soluciones para la industria alimentaria.</p>
-        <span class="ver-sitio">Ver sitio &rarr;</span>
+        <p class="rubro" data-i18n="proj_card_18_rubro_114">Industria · Agroalimentario</p>
+        <p class="desc" data-i18n="proj_card_18_desc_115">Sitio institucional para presentar su catálogo de ingredientes, materias primas y soluciones para la industria alimentaria.</p>
+        <span class="ver-sitio" data-i18n="proj_card_18_btn_116">Ver sitio →</span>
       </div>
     </a>
 
@@ -873,12 +877,12 @@
 
   <!-- CIERRE -->
   <section class="cierre-proyectos">
-    <h2>¿Tu negocio<br>deberia estar acá?</h2>
-    <p>Contanos que necesitas.<br>Te respondemos en 24 horas.</p>
+    <h2 data-i18n="proj_cierre_h2_117">¿Tu negocio<br>deberia estar acá?</h2>
+    <p data-i18n="proj_cierre_p_118">Contanos que necesitas.<br>Te respondemos en 24 horas.</p>
     <div class="cta-group" style="flex-wrap: wrap; justify-content: center; gap: 1rem;">
-      <a href="diagnostico.html" class="btn btn-primary" style="background: var(--accent); color: var(--bg);">Hacer Diagnóstico Gratuito <span>&rarr;</span></a>
-      <a href="contacto.html" class="btn btn-secondary">Empezar ahora <span>&rarr;</span></a>
-      <a href="contacto.html" class="btn btn-secondary">Escribinos por WhatsApp <span>&rarr;</span></a>
+      <a href="diagnostico.html" class="btn btn-primary" style="background: var(--accent); color: var(--bg);" data-i18n="proj_cierre_btn1_119">Hacer Diagnóstico Gratuito <span>→</span></a>
+      <a href="contacto.html" class="btn btn-secondary" data-i18n="proj_cierre_btn2_120">Empezar ahora <span>→</span></a>
+      <a href="contacto.html" class="btn btn-secondary" data-i18n="proj_cierre_btn2_120">Escribinos por WhatsApp <span>→</span></a>
     </div>
   </section>
 
@@ -886,7 +890,7 @@
   <footer>
     <div class="footer-top">
       <div class="footer-brand">
-        <p class="tagline">Desarrollo web &middot; Automatizaciones &middot; Lab7</p>
+        <p class="tagline">Desarrollo web · Automatizaciones · Lab7</p>
       </div>
       <div class="footer-links">
         <a href="index.html#metodo">Método 7</a>
@@ -902,16 +906,16 @@
         <g id="Capa_1-2" data-name="Capa 1">
           <g>
             <g>
-              <path class="cls-1" d="M29.57,1.7h1.02v2.36h-1.02V1.7ZM29.57,7.13h1.02v1.02h-1.02v-1.02ZM34.69,1.7h-4.09V.68h4.09v1.02ZM30.6,4.06h4.09v1.02h-4.09v-1.02ZM34.69,9.18h-4.09v-1.02h4.09v1.02ZM35.71,2.73h-1.02v-1.02h1.02v1.02ZM34.69,5.08h1.02v3.07h-1.02v-3.07Z"/>
-              <path class="cls-1" d="M42.26,6.4h-4.63c.1,1.42.9,2.02,2.01,2.02.9,0,1.29-.46,1.54-1.23l.99.35c-.4,1.06-1.11,1.78-2.55,1.78-1.99,0-3.01-1.31-3.01-3.24,0-1.74,1.14-3.19,2.84-3.19,1.82,0,2.88,1.44,2.82,3.5ZM37.66,5.53h3.54c-.17-1.11-.82-1.73-1.76-1.73-.89,0-1.6.65-1.78,1.73Z"/>
-              <path class="cls-1" d="M44.13,6.11h-1.02v-3.07h1.02v3.07ZM45.15,6.11v2.05h-1.02v-2.05h1.02ZM45.15,9.18v-1.02h1.02v1.02h-1.02ZM46.18,6.11h1.02v2.05h-1.02v-2.05ZM48.22,3.04v3.07h-1.02v-3.07h1.02Z"/>
-              <path class="cls-1" d="M54.58,6.4h-4.63c.1,1.42.9,2.02,2.01,2.02.9,0,1.29-.46,1.54-1.23l.99.35c-.4,1.06-1.11,1.78-2.55,1.78-1.99,0-3.01-1.31-3.01-3.24,0-1.74,1.14-3.19,2.84-3.19,1.82,0,2.88,1.44,2.82,3.5ZM49.98,5.53h3.54c-.17-1.11-.82-1.73-1.76-1.73s-1.6.65-1.78,1.73Z"/>
-              <path class="cls-1" d="M56.52,3.04v2.05h-1.02v-2.05h1.02ZM56.52,6.11v3.07h-1.02v-3.07h1.02ZM56.52,6.11v-1.02h1.02v1.02h-1.02ZM60,3.04v1.02h-1.43v1.02h-1.02v-2.05h2.46ZM61.03,4.06v5.11h-1.02v-5.11h1.02Z"/>
+              <path class="cls-1" d="M29.57,1.7h1.02v2.36h-1.02V1.7ZM29.57,7.13h1.02v1.02h-1.02v-1.02ZM34.69,1.7h-4.09V.68h4.09v1.02ZM30.6,4.06h4.09v1.02h-4.09v-1.02ZM34.69,9.18h-4.09v-1.02h4.09v1.02ZM35.71,2.73h-1.02v-1.02h1.02v1.02ZM34.69,5.08h1.02v3.07h-1.02v-3.07Z"></path>
+              <path class="cls-1" d="M42.26,6.4h-4.63c.1,1.42.9,2.02,2.01,2.02.9,0,1.29-.46,1.54-1.23l.99.35c-.4,1.06-1.11,1.78-2.55,1.78-1.99,0-3.01-1.31-3.01-3.24,0-1.74,1.14-3.19,2.84-3.19,1.82,0,2.88,1.44,2.82,3.5ZM37.66,5.53h3.54c-.17-1.11-.82-1.73-1.76-1.73-.89,0-1.6.65-1.78,1.73Z"></path>
+              <path class="cls-1" d="M44.13,6.11h-1.02v-3.07h1.02v3.07ZM45.15,6.11v2.05h-1.02v-2.05h1.02ZM45.15,9.18v-1.02h1.02v1.02h-1.02ZM46.18,6.11h1.02v2.05h-1.02v-2.05ZM48.22,3.04v3.07h-1.02v-3.07h1.02Z"></path>
+              <path class="cls-1" d="M54.58,6.4h-4.63c.1,1.42.9,2.02,2.01,2.02.9,0,1.29-.46,1.54-1.23l.99.35c-.4,1.06-1.11,1.78-2.55,1.78-1.99,0-3.01-1.31-3.01-3.24,0-1.74,1.14-3.19,2.84-3.19,1.82,0,2.88,1.44,2.82,3.5ZM49.98,5.53h3.54c-.17-1.11-.82-1.73-1.76-1.73s-1.6.65-1.78,1.73Z"></path>
+              <path class="cls-1" d="M56.52,3.04v2.05h-1.02v-2.05h1.02ZM56.52,6.11v3.07h-1.02v-3.07h1.02ZM56.52,6.11v-1.02h1.02v1.02h-1.02ZM60,3.04v1.02h-1.43v1.02h-1.02v-2.05h2.46ZM61.03,4.06v5.11h-1.02v-5.11h1.02Z"></path>
             </g>
             <g>
-              <path class="cls-1" d="M24.02,3.26h-2.02s-.05,0-.06,0c0,0,0,.03,0,.06v.54s0,.05,0,.06c0,0,.02,0,.06,0h2.02s.05,0,.06,0c0,0,0-.03,0-.06v-.54s0-.05,0-.06-.02,0-.06,0Z"/>
-              <path class="cls-1" d="M26.43,0H0v12.86h3.18l7.43-1v1h2.41l5.59-.99v.99h2.7l6.31-1V0h-1.18ZM.65,6.77V.68h3.39c-.08.4-.16.75-.22,1.07-.06.31-.14.65-.21,1-.08.35-.15.68-.21,1s-.14.67-.22,1.07c.2.05.4.1.6.15.09-.41.16-.78.23-1.11.07-.33.14-.67.22-1.03.08-.36.15-.71.22-1.03.07-.33.15-.7.23-1.11h1.58c.09.41.16.78.23,1.11.07.33.14.67.22,1.03.08.36.15.71.22,1.03.07.33.15.7.23,1.11.2-.05.4-.1.6-.15-.08-.4-.15-.75-.22-1.07s-.14-.65-.21-1c-.08-.35-.15-.68-.21-1s-.14-.67-.22-1.07h3.38v7.24s-.04.07-.13.17c-.08.1-.19.21-.31.34-.13.13-.25.27-.38.4s-.24.24-.33.32c-.09.08-.15.13-.16.13h-2.42c-.13-.2-.25-.38-.34-.53s-.2-.29-.29-.44-.21-.32-.34-.53h-.2c-.13.2-.25.38-.34.53-.1.15-.2.29-.29.44s-.21.32-.34.53H1.97s-.07-.04-.16-.13c-.09-.08-.2-.19-.33-.32s-.26-.26-.38-.4c-.12-.13-.23-.25-.31-.34-.08-.1-.13-.15-.13-.17v-1.16ZM18.31,1.23v2.02h-3.1s-.04,0-.04,0c0,0-.01,0-.02.02,0,0,0,.02,0,.05v.54s0,.04,0,.05c0,0,0,.01.02.02,0,0,.02,0,.04,0h3.1v2.28h-3.1s-.04,0-.04,0c0,0-.01,0-.02.02,0,0,0,.02,0,.05v.54s0,.04,0,.05c0,0,0,.01.02.02,0,0,.02,0,.04,0h3.1v2.4h-7.38V.68h7.38v.55ZM26.96,3.33v.85c-.23.19-.42.35-.57.48s-.34.29-.57.48c.23.19.42.35.57.48s.34.29.57.48v1.8s-.04.07-.13.17c-.08.1-.19.21-.31.34-.12.13-.25.27-.38.4-.13.13-.24.24-.33.32s-.15.13-.16.13h-6.67V.68h6.67s.07.04.16.13.2.19.33.32c.13.13.26.26.38.4.13.13.23.25.31.34.08.1.13.15.13.17v1.29Z"/>
-              <path class="cls-1" d="M24.02,6.02h-2.02s-.05,0-.06,0c0,0,0,.03,0,.06v.54s0,.05,0,.06c0,0,.02,0,.06,0h2.02s.05,0,.06,0,0-.03,0-.06v-.54s0-.05,0-.06c0,0-.02,0-.06,0Z"/>
+              <path class="cls-1" d="M24.02,3.26h-2.02s-.05,0-.06,0c0,0,0,.03,0,.06v.54s0,.05,0,.06c0,0,.02,0,.06,0h2.02s.05,0,.06,0c0,0,0-.03,0-.06v-.54s0-.05,0-.06-.02,0-.06,0Z"></path>
+              <path class="cls-1" d="M26.43,0H0v12.86h3.18l7.43-1v1h2.41l5.59-.99v.99h2.7l6.31-1V0h-1.18ZM.65,6.77V.68h3.39c-.08.4-.16.75-.22,1.07-.06.31-.14.65-.21,1-.08.35-.15.68-.21,1s-.14.67-.22,1.07c.2.05.4.1.6.15.09-.41.16-.78.23-1.11.07-.33.14-.67.22-1.03.08-.36.15-.71.22-1.03.07-.33.15-.7.23-1.11h1.58c.09.41.16.78.23,1.11.07.33.14.67.22,1.03.08.36.15.71.22,1.03.07.33.15.7.23,1.11.2-.05.4-.1.6-.15-.08-.4-.15-.75-.22-1.07s-.14-.65-.21-1c-.08-.35-.15-.68-.21-1s-.14-.67-.22-1.07h3.38v7.24s-.04.07-.13.17c-.08.1-.19.21-.31.34-.13.13-.25.27-.38.4s-.24.24-.33.32c-.09.08-.15.13-.16.13h-2.42c-.13-.2-.25-.38-.34-.53s-.2-.29-.29-.44-.21-.32-.34-.53h-.2c-.13.2-.25.38-.34.53-.1.15-.2.29-.29.44s-.21.32-.34.53H1.97s-.07-.04-.16-.13c-.09-.08-.2-.19-.33-.32s-.26-.26-.38-.4c-.12-.13-.23-.25-.31-.34-.08-.1-.13-.15-.13-.17v-1.16ZM18.31,1.23v2.02h-3.1s-.04,0-.04,0c0,0-.01,0-.02.02,0,0,0,.02,0,.05v.54s0,.04,0,.05c0,0,0,.01.02.02,0,0,.02,0,.04,0h3.1v2.28h-3.1s-.04,0-.04,0c0,0-.01,0-.02.02,0,0,0,.02,0,.05v.54s0,.04,0,.05c0,0,0,.01.02.02,0,0,.02,0,.04,0h3.1v2.4h-7.38V.68h7.38v.55ZM26.96,3.33v.85c-.23.19-.42.35-.57.48s-.34.29-.57.48c.23.19.42.35.57.48s.34.29.57.48v1.8s-.04.07-.13.17c-.08.1-.19.21-.31.34-.12.13-.25.27-.38.4-.13.13-.24.24-.33.32s-.15.13-.16.13h-6.67V.68h6.67s.07.04.16.13.2.19.33.32c.13.13.26.26.38.4.13.13.23.25.31.34.08.1.13.15.13.17v1.29Z"></path>
+              <path class="cls-1" d="M24.02,6.02h-2.02s-.05,0-.06,0c0,0,0,.03,0,.06v.54s0,.05,0,.06c0,0,.02,0,.06,0h2.02s.05,0,.06,0,0-.03,0-.06v-.54s0-.05,0-.06c0,0-.02,0-.06,0Z"></path>
             </g>
           </g>
         </g>
@@ -919,7 +923,7 @@
     </div>
     <div class="footer-bottom">
       <span>Construimos sistemas digitales que funcionan solos.</span>
-      <span>&copy; 2025 WEB7</span>
+      <span>© 2025 WEB7</span>
     </div>
   </footer>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -927,6 +931,10 @@
   <script src="chat-widget.js"></script>
   <script src="webgl-reveal.js?v=6"></script>
   <script>
+    if (typeof applyTranslations === 'function') {
+       applyTranslations(localStorage.getItem('lang') || 'es');
+    }
+
     // ═══════════════════════════════════════
     // CURSOR
     // ═══════════════════════════════════════
@@ -1215,5 +1223,6 @@
       navigator.serviceWorker.register('/sw.js').catch(() => {});
     }
   </script>
-</body>
-</html>
+
+
+</body></html>

@@ -1,133 +1,100 @@
 (function() {
-  const DEBUG_KEY = 'WEB7_DEBUG';
-  const isDebug = localStorage.getItem(DEBUG_KEY) === 'true';
-
-  function logDebug(title, message, data = null) {
-    if (isDebug) {
-      console.log(`%c[WEB7 TRACKER]%c ${title}`, 'color: #DFFE02; background: #000; padding: 2px 4px; border-radius: 3px; font-weight: bold;', 'color: inherit;', message, data || '');
-    }
+  // Lectura segura: nunca debe romper la página
+  function safe(fn, fallback) {
+    try { var v = fn(); return (v === undefined || v === null || v === '') ? fallback : v; }
+    catch (e) { return fallback; }
   }
 
-  // Si debug está activado, exponemos cómo desactivarlo
-  if (isDebug) {
-    console.log("%c[WEB7 TRACKER] MODO DEBUG ACTIVADO. Para desactivarlo, ejecuta en esta consola: localStorage.removeItem('WEB7_DEBUG')", 'color: #f55;');
-  } else {
-    // Y viceversa, si no está activado, les contamos en silencio cómo activarlo (esto solo sale si miran el source code, o le podés decir por chat).
-    // Opcionalmente podemos dejar un log estándar para los developers, pero mejor mantener la consola limpia.
+  var urlParams = safe(function() { return new URLSearchParams(window.location.search); }, null);
+
+  // Detectar el número de referencia: ?r=123, ?ref=123 o ?123
+  function readRefFromUrl() {
+    if (!urlParams) return null;
+    var r = urlParams.get('r') || urlParams.get('ref');
+    if (r) return String(r).trim();
+    var raw = safe(function() { return window.location.search.replace(/^\?/, '').split('&')[0]; }, '');
+    if (raw && /^[A-Za-z0-9_-]+$/.test(raw)) return raw;
+    return null;
   }
 
-  // Función para validar localmente y dar feedback detallado
-  function validateReferral(r) {
-    if (!r) return { valid: false, reason: 'Vacío' };
-    if (typeof r !== 'string') return { valid: false, reason: 'No es texto' };
-    if (!/^[0-9]+$/.test(r)) return { valid: false, reason: 'Contiene caracteres no numéricos o espacios' };
-    if (r.length < 2) return { valid: false, reason: 'Longitud insuficiente (min 2)' };
+  var urlRef = readRefFromUrl();
+  if (urlRef) {
+    safe(function() { localStorage.setItem('web7_ref', urlRef); localStorage.setItem('web7_ref_ts', new Date().toISOString()); });
+  }
+  var storedRef = urlRef || safe(function() { return localStorage.getItem('web7_ref'); }, null);
 
-    const c = parseInt(r[0]);
-    const payload = r.slice(1);
-    
-    let s = 0;
-    for (let char of payload) {
-      s += parseInt(char);
-    }
-    
-    while (s > 9) {
-      s = s.toString().split('').reduce((a, b) => a + parseInt(b), 0);
-    }
-    
-    const cExpected = (s === 9) ? 0 : (9 - s);
-    const valid = (c === cExpected);
-    
-    if (!valid) {
-      return { valid: false, reason: `Dígito de control incorrecto. Se recibió [${c}] pero la fórmula del payload exige [${cExpected}]` };
-    }
-    return { valid: true, reason: 'Número completamente válido' };
+  // Datos del cliente (todos opcionales)
+  function clientInfo() {
+    return {
+      referrer: safe(function() { return document.referrer; }, null),
+      lang: safe(function() { return navigator.language; }, null),
+      tz: safe(function() { return Intl.DateTimeFormat().resolvedOptions().timeZone; }, null),
+      screen: safe(function() { return screen.width + 'x' + screen.height; }, null),
+      viewport: safe(function() { return window.innerWidth + 'x' + window.innerHeight; }, null),
+      platform: safe(function() { return navigator.userAgentData ? navigator.userAgentData.platform : navigator.platform; }, null),
+      mobile: safe(function() { return /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent); }, null),
+      title: safe(function() { return document.title; }, null),
+      site_lang: safe(function() { return localStorage.getItem('lang'); }, null),
+      first_ref_ts: safe(function() { return localStorage.getItem('web7_ref_ts'); }, null),
+      utm_source: safe(function() { return urlParams.get('utm_source'); }, null),
+      utm_medium: safe(function() { return urlParams.get('utm_medium'); }, null),
+      utm_campaign: safe(function() { return urlParams.get('utm_campaign'); }, null)
+    };
   }
 
-  // Enviar evento al backend
-  async function trackEvent(eventName, rValue, detail = {}) {
+  function trackEvent(eventName, detail) {
     try {
-      const payload = {
-        event: eventName,
-        path: window.location.pathname,
-        detail: detail
+      var payload = {
+        event: eventName || 'unknown',
+        path: safe(function() { return window.location.pathname; }, '/'),
+        r: storedRef || null,
+        client: clientInfo(),
+        detail: detail || {}
       };
-      if (rValue) {
-        payload.r = rValue;
-      }
-
-      logDebug('🚀 PREPARANDO EVENTO', `Tipo: ${eventName}`, payload);
-
-      const resp = await fetch('/api/track', {
+      fetch('/api/track', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-      
-      const responseData = await resp.json().catch(() => null);
-      
-      if (resp.ok) {
-        logDebug('✅ EVENTO GUARDADO EXITOSAMENTE', `El servidor confirmó el registro de [${eventName}].`, responseData);
-      } else {
-        logDebug('❌ ERROR DEL SERVIDOR', `Falló el guardado del evento [${eventName}]. Código HTTP: ${resp.status}`, responseData);
-      }
+        body: JSON.stringify(payload),
+        keepalive: true,
+        credentials: 'same-origin'
+      }).catch(function() {});
     } catch (e) {
-      logDebug('❌ ERROR DE RED', `No se pudo alcanzar la API para guardar [${eventName}].`, e);
-      console.warn("[WEB7 TRACKER] Error de red:", e);
+      // Ignorar errores para no afectar la experiencia
     }
   }
 
-  // 1. Check URL para el parámetro de entrada
-  const urlParams = new URLSearchParams(window.location.search);
-  const r = urlParams.get('r');
-
-  if (r) {
-    logDebug('🔍 PARAMETRO DETECTADO', `Se encontró ?r=${r} en la URL. Evaluando...`);
-    const validation = validateReferral(r);
-    
-    if (validation.valid) {
-      logDebug('🟢 REFERIDO VALIDO', validation.reason + '. Registrando entrada principal (landing).');
-      trackEvent('landing', r);
-      
-      // Limpiar URL
-      const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+  if (urlRef) {
+    trackEvent('landing');
+    try {
       urlParams.delete('r');
-      const newSearch = urlParams.toString();
-      window.history.replaceState({ path: newUrl }, '', newUrl + (newSearch ? '?' + newSearch : '') + window.location.hash);
-      logDebug('🧹 URL LIMPIADA', 'El parámetro ?r fue removido de la barra de direcciones por privacidad.');
-    } else {
-      logDebug('🔴 REFERIDO INVALIDO', validation.reason + '. Se ignorará por completo y NO se registrará como landing.', r);
-    }
+      urlParams.delete('ref');
+      var search = urlParams.toString();
+      if (search === urlRef) search = '';
+      var newUrl = window.location.protocol + '//' + window.location.host + window.location.pathname;
+      window.history.replaceState({ path: newUrl }, '', newUrl + (search ? '?' + search : '') + window.location.hash);
+    } catch (e) {}
   } else {
-    // Si no hay r en la URL, trackeamos page_view genérico
-    logDebug('ℹ️ NAVEGACION NORMAL', 'No hay parámetro ?r en la URL. Registrando vista normal (puede usar cookie si ya entró antes).');
-    trackEvent('page_view', null);
+    trackEvent('page_view');
   }
 
-  // Exponer API global
-  window.web7Track = function(eventName, detail = {}) {
-    logDebug('⚡ TRACK MANUAL', `Se invocó web7Track('${eventName}') de forma manual.`);
-    trackEvent(eventName, null, detail);
+  window.web7Track = function(eventName, detail) {
+    trackEvent(eventName, detail || {});
   };
 
-  // Auto-track portfolio opens and section navigation
   document.addEventListener('click', function(e) {
-    const card = e.target.closest('.project-card');
-    if (card && card.href) {
-      logDebug('🖱️ CLIC PORTFOLIO', `El usuario hizo clic en el proyecto: ${card.href}`);
-      trackEvent('portfolio_open', null, { url: card.href });
-      return;
-    }
-
-    const link = e.target.closest('a');
-    if (link && link.href) {
-      // Si el enlace es interno o un ancla, lo registramos como navigation
-      const url = new URL(link.href, window.location.origin);
-      if (url.origin === window.location.origin && url.pathname === window.location.pathname && url.hash) {
-        logDebug('🖱️ NAVEGACION SECCION', `El usuario escroleó a la sección: ${url.hash}`);
-        trackEvent('section_view', null, { section: url.hash });
+    try {
+      var card = e.target.closest('.project-card');
+      if (card && card.href) {
+        trackEvent('portfolio_open', { url: card.href });
+        return;
       }
-    }
+      var link = e.target.closest('a');
+      if (link && link.href) {
+        var url = new URL(link.href, window.location.origin);
+        if (url.origin === window.location.origin && url.pathname === window.location.pathname && url.hash) {
+          trackEvent('section_view', { section: url.hash });
+        }
+      }
+    } catch (err) {}
   });
-
 })();

@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
+<!DOCTYPE html><html lang="es"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
@@ -59,8 +57,8 @@
   }
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Doto:wght@400;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Doto:wght@400;700;800&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
   <style>
     @font-face {
       font-family: 'Alpha Lyrae';
@@ -952,10 +950,10 @@
   </style>
   <!-- Vercel Web Analytics -->
   <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
-  <script defer src="/_vercel/insights/script.js"></script>
+  <script defer="" src="/_vercel/insights/script.js"></script>
 
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8J1BW6FFXV"></script>
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-8J1BW6FFXV"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -963,7 +961,8 @@
 
     gtag('config', 'G-8J1BW6FFXV');
   </script>
-<script src="assets/js/tracker.js"></script>
+  <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/tracker.js"></script>
 </head>
 <body>
 
@@ -988,12 +987,17 @@
         <img src="assets/Logoweb7-verde.svg" alt="WEB7" style="height: 52px;">
       </a>
     </div>
-    <ul class="nav-links">
-      <li><a href="index.html">WEB7</a></li>
-      <li><a href="#como-funciona">Cómo funciona</a></li>
-      <li><a href="#que-incluye">Qué incluye</a></li>
-      <li><a href="#contacto">Contacto</a></li>
-      <li><a href="contacto.html?producto=on7" class="nav-cta">Quiero On7 <svg viewBox="0 0 24 24" fill="currentColor" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle; margin-left: 4px;"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"/><path d="M14 15V7h2v8zm-2 2V5h2v12z"/></svg></a></li>
+    <ul class="nav-links" style="align-items: center;">
+      <li><a href="index.html" data-i18n="on7_nav_0">WEB7</a></li>
+      <li><a href="#como-funciona" data-i18n="on7_nav_1">Cómo funciona</a></li>
+      <li><a href="#que-incluye" data-i18n="on7_nav_2">Qué incluye</a></li>
+      <li><a href="#contacto" data-i18n="on7_nav_3">Contacto</a></li>
+      <li><a href="contacto.html?producto=on7" class="nav-cta" data-i18n="on7_nav_4">Quiero On7 <svg viewBox="0 0 24 24" fill="currentColor" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle; margin-left: 4px;"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"></path><path d="M14 15V7h2v8zm-2 2V5h2v12z"></path></svg></a></li>
+      <li class="lang-selector" style="display: flex; gap: 0.5rem; margin-left: 1rem; border-left: 1px solid rgba(255,255,255,0.2); padding-left: 1rem;">
+        <a href="#" onclick="changeLang('es'); return false;" style="font-size: 1.2rem; transition: opacity 0.3s;" title="Español">🇦🇷</a>
+        <a href="#" onclick="changeLang('pt'); return false;" style="font-size: 1.2rem; transition: opacity 0.3s;" title="Português">🇧🇷</a>
+        <a href="#" onclick="changeLang('en'); return false;" style="font-size: 1.2rem; transition: opacity 0.3s;" title="English">🇺🇸</a>
+      </li>
     </ul>
   </nav>
 
@@ -1003,9 +1007,9 @@
     <svg style="position:absolute;width:0;height:0;pointer-events:none;">
       <defs>
         <filter id="gooey-pixel-trail">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="0.5" result="blur" />
-          <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 100 -50" result="goo" />
-          <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+          <feGaussianBlur in="SourceGraphic" stdDeviation="0.5" result="blur"></feGaussianBlur>
+          <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 100 -50" result="goo"></feColorMatrix>
+          <feComposite in="SourceGraphic" in2="goo" operator="atop"></feComposite>
         </filter>
       </defs>
     </svg>
@@ -1016,54 +1020,54 @@
     <!-- Pixel decorations -->
     <div class="pixel-deco" style="top: 12%; right: 1%; width: 158px; opacity: 0; color: var(--teal);" data-pixel="hero-mosaic">
       <svg width="158" height="160" viewBox="0 0 158 160" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-        <path d="M32.3541 31.7441H64.0977V63.4877H32.3541V31.7441Z" fill="currentColor"/>
-        <path d="M64.0999 0H95.8438V31.7437H64.0999V0Z" fill="currentColor"/>
-        <path d="M0.61384 0H32.3574V31.7437H0.61384V0Z" fill="currentColor"/>
-        <path d="M63.4322 95.8438H95.1758V127.587H63.4322V95.8438Z" fill="currentColor"/>
-        <path d="M95.178 64.0996H126.922V95.8433H95.178V64.0996Z" fill="currentColor"/>
-        <path d="M0 62.6001H32V93.6001H0V62.6001Z" fill="currentColor"/>
-        <path d="M126 128.6H158V159.6H126V128.6Z" fill="currentColor"/>
-        <path d="M31 62.6001H63V93.6001H31V62.6001Z" fill="currentColor"/>
-        <path d="M64 30.6001H96V62.6001H64V30.6001Z" fill="currentColor"/>
+        <path d="M32.3541 31.7441H64.0977V63.4877H32.3541V31.7441Z" fill="currentColor"></path>
+        <path d="M64.0999 0H95.8438V31.7437H64.0999V0Z" fill="currentColor"></path>
+        <path d="M0.61384 0H32.3574V31.7437H0.61384V0Z" fill="currentColor"></path>
+        <path d="M63.4322 95.8438H95.1758V127.587H63.4322V95.8438Z" fill="currentColor"></path>
+        <path d="M95.178 64.0996H126.922V95.8433H95.178V64.0996Z" fill="currentColor"></path>
+        <path d="M0 62.6001H32V93.6001H0V62.6001Z" fill="currentColor"></path>
+        <path d="M126 128.6H158V159.6H126V128.6Z" fill="currentColor"></path>
+        <path d="M31 62.6001H63V93.6001H31V62.6001Z" fill="currentColor"></path>
+        <path d="M64 30.6001H96V62.6001H64V30.6001Z" fill="currentColor"></path>
       </svg>
     </div>
     <div class="pixel-deco" style="bottom: 25%; right: 2%; width: 66px; opacity: 0; color: var(--teal);" data-pixel="hero-sm">
       <svg width="66" height="66" viewBox="0 0 66 66" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-        <path d="M65.4073 0H32.3574V33.0501H65.4073V0Z" fill="currentColor"/>
-        <path d="M33.0499 32.3574H0V65.4075H33.0499V32.3574Z" fill="currentColor"/>
+        <path d="M65.4073 0H32.3574V33.0501H65.4073V0Z" fill="currentColor"></path>
+        <path d="M33.0499 32.3574H0V65.4075H33.0499V32.3574Z" fill="currentColor"></path>
       </svg>
     </div>
-    <div class="pixel-deco pixel-deco--grid" style="bottom: 5%; right: 2%; width: 304px;" data-pixel-grid>
+    <div class="pixel-deco pixel-deco--grid" style="bottom: 5%; right: 2%; width: 304px;" data-pixel-grid="">
       <svg width="304" height="93" viewBox="0 0 304 93" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-        <path d="M303.021 61.6973L303.021 30.5215L273 30.5215L273 61.6973L303.021 61.6973Z" stroke="currentColor" stroke-miterlimit="10"/>
-        <path d="M273 30.5212L273 0.5L241.824 0.499999L241.824 30.5212L273 30.5212Z" stroke="currentColor" stroke-miterlimit="10"/>
-        <path d="M273 91.7185L273 61.6973L241.824 61.6973L241.824 91.7185L273 91.7185Z" stroke="currentColor" stroke-miterlimit="10"/>
-        <path d="M241.824 61.6973L241.824 30.5215L211.803 30.5215L211.803 61.6973L241.824 61.6973Z" stroke="currentColor" stroke-miterlimit="10"/>
-        <path d="M241.824 91.7185L241.824 61.6973L211.803 61.6973L211.803 91.7185L241.824 91.7185Z" stroke="currentColor" stroke-miterlimit="10"/>
-        <path d="M211.803 91.7185L211.803 61.6973L181.782 61.6973L181.782 91.7185L211.803 91.7185Z" stroke="currentColor" stroke-miterlimit="10"/>
-        <path d="M181.782 30.5212L181.782 0.5L151.761 0.499999L151.761 30.5212L181.782 30.5212Z" stroke="currentColor" stroke-miterlimit="10"/>
-        <path d="M181.782 91.7185L181.782 61.6973L151.761 61.6973L151.761 91.7185L181.782 91.7185Z" stroke="currentColor" stroke-miterlimit="10"/>
-        <path d="M151.761 61.6973L151.761 30.5215L121.74 30.5215L121.74 61.6973L151.761 61.6973Z" stroke="currentColor" stroke-miterlimit="10"/>
-        <path d="M151.761 91.7185L151.761 61.6973L121.74 61.6973L121.74 91.7185L151.761 91.7185Z" stroke="currentColor" stroke-miterlimit="10"/>
-        <path d="M91.7187 61.6973L91.7188 30.5215L61.6976 30.5215L61.6976 61.6973L91.7187 61.6973Z" stroke="currentColor" stroke-miterlimit="10"/>
-        <path d="M61.6973 61.6973L61.6973 30.5215L30.5214 30.5215L30.5214 61.6973L61.6973 61.6973Z" stroke="currentColor" stroke-miterlimit="10"/>
-        <path d="M61.6973 91.7185L61.6973 61.6973L30.5214 61.6973L30.5214 91.7185L61.6973 91.7185Z" stroke="currentColor" stroke-miterlimit="10"/>
-        <path d="M30.5215 91.7185L30.5215 61.6973L0.500301 61.6973L0.5003 91.7185L30.5215 91.7185Z" stroke="currentColor" stroke-miterlimit="10"/>
+        <path d="M303.021 61.6973L303.021 30.5215L273 30.5215L273 61.6973L303.021 61.6973Z" stroke="currentColor" stroke-miterlimit="10"></path>
+        <path d="M273 30.5212L273 0.5L241.824 0.499999L241.824 30.5212L273 30.5212Z" stroke="currentColor" stroke-miterlimit="10"></path>
+        <path d="M273 91.7185L273 61.6973L241.824 61.6973L241.824 91.7185L273 91.7185Z" stroke="currentColor" stroke-miterlimit="10"></path>
+        <path d="M241.824 61.6973L241.824 30.5215L211.803 30.5215L211.803 61.6973L241.824 61.6973Z" stroke="currentColor" stroke-miterlimit="10"></path>
+        <path d="M241.824 91.7185L241.824 61.6973L211.803 61.6973L211.803 91.7185L241.824 91.7185Z" stroke="currentColor" stroke-miterlimit="10"></path>
+        <path d="M211.803 91.7185L211.803 61.6973L181.782 61.6973L181.782 91.7185L211.803 91.7185Z" stroke="currentColor" stroke-miterlimit="10"></path>
+        <path d="M181.782 30.5212L181.782 0.5L151.761 0.499999L151.761 30.5212L181.782 30.5212Z" stroke="currentColor" stroke-miterlimit="10"></path>
+        <path d="M181.782 91.7185L181.782 61.6973L151.761 61.6973L151.761 91.7185L181.782 91.7185Z" stroke="currentColor" stroke-miterlimit="10"></path>
+        <path d="M151.761 61.6973L151.761 30.5215L121.74 30.5215L121.74 61.6973L151.761 61.6973Z" stroke="currentColor" stroke-miterlimit="10"></path>
+        <path d="M151.761 91.7185L151.761 61.6973L121.74 61.6973L121.74 91.7185L151.761 91.7185Z" stroke="currentColor" stroke-miterlimit="10"></path>
+        <path d="M91.7187 61.6973L91.7188 30.5215L61.6976 30.5215L61.6976 61.6973L91.7187 61.6973Z" stroke="currentColor" stroke-miterlimit="10"></path>
+        <path d="M61.6973 61.6973L61.6973 30.5215L30.5214 30.5215L30.5214 61.6973L61.6973 61.6973Z" stroke="currentColor" stroke-miterlimit="10"></path>
+        <path d="M61.6973 91.7185L61.6973 61.6973L30.5214 61.6973L30.5214 91.7185L61.6973 91.7185Z" stroke="currentColor" stroke-miterlimit="10"></path>
+        <path d="M30.5215 91.7185L30.5215 61.6973L0.500301 61.6973L0.5003 91.7185L30.5215 91.7185Z" stroke="currentColor" stroke-miterlimit="10"></path>
       </svg>
     </div>
 
     <div style="margin-bottom: 2rem;">
       <img src="assets/ON7_largo.svg" alt="ON Seven" style="height: 64px; display: inline-block;">
     </div>
-    <span class="label">Atención inteligente</span>
-    <h1>
+    <span class="label" data-i18n="on7_label_5">Atención inteligente</span>
+    <h1 data-i18n="on7_hero_h1_16">
       <span class="reveal-container"><span>Tu negocio responde solo.</span></span>
       <span class="reveal-container"><span>Incluso a las 3 de la mañana.</span></span>
     </h1>
-    <p class="subtext">Un agente conectado a tus herramientas. Atiende consultas, guía clientes y captura reservas sin que tengas que estar presente.</p>
+    <p class="subtext" data-i18n="on7_hero_sub_17">Un agente conectado a tus herramientas. Atiende consultas, guía clientes y captura reservas sin que tengas que estar presente.</p>
     <div class="cta-group">
-      <a href="contacto.html?producto=on7" class="btn btn-primary">Quiero On7 para mi negocio <svg viewBox="0 0 24 24" fill="currentColor" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle; margin-left: 6px;"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"/><path d="M14 15V7h2v8zm-2 2V5h2v12z"/></svg></a>
-      <a href="#como-funciona" class="btn btn-secondary">Ver cómo funciona <svg viewBox="0 0 24 24" fill="currentColor" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle; margin-left: 6px;"><path d="M13 12h6v2h-2v2h-2v2h-2v2h-2v-2H9v-2H7v-2H5v-2h6V4h2v8Z"/></svg></a>
+      <a href="contacto.html?producto=on7" class="btn btn-primary" data-i18n="on7_hero_btn_18">Quiero On7 para mi negocio <svg viewBox="0 0 24 24" fill="currentColor" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle; margin-left: 6px;"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"></path><path d="M14 15V7h2v8zm-2 2V5h2v12z"></path></svg></a>
+      <a href="#como-funciona" class="btn btn-secondary" data-i18n="on7_hero_btn_19">Ver cómo funciona <svg viewBox="0 0 24 24" fill="currentColor" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle; margin-left: 6px;"><path d="M13 12h6v2h-2v2h-2v2h-2v2h-2v-2H9v-2H7v-2H5v-2h6V4h2v8Z"></path></svg></a>
     </div>
   </section>
 
@@ -1072,30 +1076,30 @@
     <!-- Pixel decorations -->
     <div class="pixel-deco" style="top: 8%; right: 6%; width: 98px; opacity: 0; color: var(--teal);" data-pixel="section">
       <svg width="98" height="98" viewBox="0 0 98 98" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-        <path d="M33.0499 64.7148H0V97.7649H33.0499V64.7148Z" fill="currentColor"/>
-        <path d="M65.4073 32.3574H32.3574V65.4074H65.4073V32.3574Z" fill="currentColor"/>
-        <path d="M97.7648 0H64.7148V33.05H97.7648V0Z" fill="currentColor"/>
+        <path d="M33.0499 64.7148H0V97.7649H33.0499V64.7148Z" fill="currentColor"></path>
+        <path d="M65.4073 32.3574H32.3574V65.4074H65.4073V32.3574Z" fill="currentColor"></path>
+        <path d="M97.7648 0H64.7148V33.05H97.7648V0Z" fill="currentColor"></path>
       </svg>
     </div>
     <div class="pixel-deco" style="bottom: 12%; right: 4%; width: 100px; opacity: 0; color: var(--teal);" data-pixel="section">
       <svg width="100" height="67" viewBox="0 0 100 67" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-        <path d="M66.1026 33.0508H33.0527V66.1007H66.1026V33.0508Z" fill="currentColor"/>
-        <path d="M33.0502 0H0V33.0501H33.0502V0Z" fill="currentColor"/>
-        <path d="M99.1476 0H66.0977V33.0501H99.1476V0Z" fill="currentColor"/>
+        <path d="M66.1026 33.0508H33.0527V66.1007H66.1026V33.0508Z" fill="currentColor"></path>
+        <path d="M33.0502 0H0V33.0501H33.0502V0Z" fill="currentColor"></path>
+        <path d="M99.1476 0H66.0977V33.0501H99.1476V0Z" fill="currentColor"></path>
       </svg>
     </div>
     <div class="pixel-deco" style="top: 50%; right: 15%; width: 33px; opacity: 0; color: var(--teal);" data-pixel="section-dot">
       <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-        <path d="M33 0H0V33H33V0Z" fill="currentColor"/>
+        <path d="M33 0H0V33H33V0Z" fill="currentColor"></path>
       </svg>
     </div>
 
-    <span class="label">Por qué existe On7</span>
-    <h2>Tener web no alcanza<br>si después no respondés.</h2>
+    <span class="label" data-i18n="on7_label_6">Por qué existe On7</span>
+    <h2 data-i18n="on7_section_h2_32">Tener web no alcanza<br>si después no respondés.</h2>
     
-    <p class="reveal-text" data-reveal-text>La mayoría de los negocios pierde clientes no por falta de producto sino por falta de respuesta.</p>
-    <p class="reveal-text" data-reveal-text style="margin-top: 2rem;">Un cliente que no recibe respuesta en los primeros minutos busca en otro lado. Así de simple.</p>
-    <p class="reveal-text" data-reveal-text data-accent="On7 sí puede." style="margin-top: 2rem;">El problema no es la intención — es que no podés estar disponible todo el tiempo. On7 sí puede.</p>
+    <p class="reveal-text" data-reveal-text="">La mayoría de los negocios pierde clientes no por falta de producto sino por falta de respuesta.</p>
+    <p class="reveal-text" data-reveal-text="" style="margin-top: 2rem;">Un cliente que no recibe respuesta en los primeros minutos busca en otro lado. Así de simple.</p>
+    <p class="reveal-text" data-reveal-text="" data-accent="On7 sí puede." style="margin-top: 2rem;">El problema no es la intención — es que no podés estar disponible todo el tiempo. On7 sí puede.</p>
   </section>
 
   <!-- EL COSTO REAL (PÉRDIDA / GANANCIA) -->
@@ -1103,43 +1107,43 @@
     <!-- Pixel decorations -->
     <div class="pixel-deco" style="top: 15%; left: 8%; width: 66px; opacity: 0; color: var(--teal);" data-pixel="section">
       <svg width="66" height="66" viewBox="0 0 66 66" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-        <path d="M65.4073 0H32.3574V33.0501H65.4073V0Z" fill="currentColor"/>
-        <path d="M33.0499 32.3574H0V65.4075H33.0499V32.3574Z" fill="currentColor"/>
+        <path d="M65.4073 0H32.3574V33.0501H65.4073V0Z" fill="currentColor"></path>
+        <path d="M33.0499 32.3574H0V65.4075H33.0499V32.3574Z" fill="currentColor"></path>
       </svg>
     </div>
     <div class="pixel-deco" style="bottom: 10%; right: 10%; width: 100px; opacity: 0; color: var(--teal);" data-pixel="section">
       <svg width="100" height="67" viewBox="0 0 100 67" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-        <path d="M66.1026 33.0508H33.0527V66.1007H66.1026V33.0508Z" fill="currentColor"/>
-        <path d="M33.0502 0H0V33.0501H33.0502V0Z" fill="currentColor"/>
-        <path d="M99.1476 0H66.0977V33.0501H99.1476V0Z" fill="currentColor"/>
+        <path d="M66.1026 33.0508H33.0527V66.1007H66.1026V33.0508Z" fill="currentColor"></path>
+        <path d="M33.0502 0H0V33.0501H33.0502V0Z" fill="currentColor"></path>
+        <path d="M99.1476 0H66.0977V33.0501H99.1476V0Z" fill="currentColor"></path>
       </svg>
     </div>
-    <span class="label">El costo real de no tenerlo</span>
-    <h2>Cada día sin un agente<br>tiene un costo real.</h2>
+    <span class="label" data-i18n="on7_label_7">El costo real de no tenerlo</span>
+    <h2 data-i18n="on7_section_h2_33">Cada día sin un agente<br>tiene un costo real.</h2>
     
     <div class="comparison-grid">
       <div class="comp-card loss tilt-card">
         <div class="tilt-card-inner">
-          <h3>Sin On7 — lo que se pierde hoy</h3>
+          <h3 data-i18n="on7_comp_h3_20">Sin On7 — lo que se pierde hoy</h3>
           <ul>
-            <li><strong>Consultas perdidas de noche y los fines de semana:</strong> El cliente pregunta, no recibe respuesta y reserva en otro lugar.</li>
-            <li><strong>Tiempo operativo drenado:</strong> Responder siempre las mismas preguntas consume horas que podrían dedicarse a atender mejor.</li>
-            <li><strong>Reservas sin seguimiento:</strong> Un interesado que no confirmó hoy probablemente no va a confirmar mañana sin un empujón.</li>
-            <li><strong>Agenda desorganizada:</strong> Sin validación automática de horarios, los solapamientos y errores son inevitables.</li>
-            <li><strong>Dependencia de una sola persona:</strong> Si quien responde está ocupado o no está, el negocio queda mudo.</li>
+            <li data-i18n="on7_comp_li_22"><strong>Consultas perdidas de noche y los fines de semana:</strong> El cliente pregunta, no recibe respuesta y reserva en otro lugar.</li>
+            <li data-i18n="on7_comp_li_23"><strong>Tiempo operativo drenado:</strong> Responder siempre las mismas preguntas consume horas que podrían dedicarse a atender mejor.</li>
+            <li data-i18n="on7_comp_li_24"><strong>Reservas sin seguimiento:</strong> Un interesado que no confirmó hoy probablemente no va a confirmar mañana sin un empujón.</li>
+            <li data-i18n="on7_comp_li_25"><strong>Agenda desorganizada:</strong> Sin validación automática de horarios, los solapamientos y errores son inevitables.</li>
+            <li data-i18n="on7_comp_li_26"><strong>Dependencia de una sola persona:</strong> Si quien responde está ocupado o no está, el negocio queda mudo.</li>
           </ul>
         </div>
       </div>
       
       <div class="comp-card gain tilt-card">
         <div class="tilt-card-inner">
-          <h3>Con On7 activo</h3>
+          <h3 data-i18n="on7_comp_h3_21">Con On7 activo</h3>
           <ul>
-            <li>Ninguna consulta queda sin respuesta, a cualquier hora.</li>
-            <li>El equipo se libera de tareas repetitivas y puede enfocarse en la atención de calidad.</li>
-            <li>Las reservas se capturan, registran y confirman con datos completos y sin errores.</li>
-            <li>Los clientes interesados reciben seguimiento automático hasta convertir.</li>
-            <li>La agenda se gestiona sola, con reglas de disponibilidad y tiempos entre actividades.</li>
+            <li data-i18n="on7_comp_li_27">Ninguna consulta queda sin respuesta, a cualquier hora.</li>
+            <li data-i18n="on7_comp_li_28">El equipo se libera de tareas repetitivas y puede enfocarse en la atención de calidad.</li>
+            <li data-i18n="on7_comp_li_29">Las reservas se capturan, registran y confirman con datos completos y sin errores.</li>
+            <li data-i18n="on7_comp_li_30">Los clientes interesados reciben seguimiento automático hasta convertir.</li>
+            <li data-i18n="on7_comp_li_31">La agenda se gestiona sola, con reglas de disponibilidad y tiempos entre actividades.</li>
           </ul>
         </div>
       </div>
@@ -1152,128 +1156,128 @@
     <canvas id="dither-bg" style="position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: 0.22;"></canvas>
     
     <div class="section" style="position: relative; z-index: 1;">
-      <span class="label">Cómo funciona</span>
-      <h2>On7 no es un bot genérico.<br>Conoce tu negocio.</h2>
-      <p class="body-text" style="margin-bottom: 3rem;">Antes de salir al aire, cargamos toda la información de tu negocio: productos, servicios, precios, horarios, preguntas frecuentes, condiciones. Eso es lo que On7 usa para responder. No respuestas automáticas genéricas — respuestas con la información real de tu negocio.</p>
+      <span class="label" data-i18n="on7_label_8">Cómo funciona</span>
+      <h2 data-i18n="on7_section_h2_34">On7 no es un bot genérico.<br>Conoce tu negocio.</h2>
+      <p class="body-text" style="margin-bottom: 3rem;" data-i18n="on7_section_p_41">Antes de salir al aire, cargamos toda la información de tu negocio: productos, servicios, precios, horarios, preguntas frecuentes, condiciones. Eso es lo que On7 usa para responder. No respuestas automáticas genéricas — respuestas con la información real de tu negocio.</p>
 
     <div class="capabilities" id="que-incluye">
       <div class="cap-card tilt-card">
         <div class="tilt-card-inner">
           <div class="card-icon" style="margin-bottom: 1rem;">
             <svg class="pixel-icon" viewBox="0 0 24 24" fill="currentColor" width="24" height="24" aria-hidden="true" focusable="false">
-              <path d="M9 2h6v2H9V2zM5 5h14v2H5V5zm-2 4h18v6H3V9zm2 8h14v2H5v-2zm4 2h6v2H9v-2zm2-9h2v4h4v2h-6V10z"/>
+              <path d="M9 2h6v2H9V2zM5 5h14v2H5V5zm-2 4h18v6H3V9zm2 8h14v2H5v-2zm4 2h6v2H9v-2zm2-9h2v4h4v2h-6V10z"></path>
             </svg>
           </div>
-          <h4>Responde 24/7</h4>
-          <p>Atiende consultas frecuentes en WhatsApp e Instagram en cualquier horario, sin demoras.</p>
+          <h4 data-i18n="on7_cap_h4_45">Responde 24/7</h4>
+          <p data-i18n="on7_cap_p_51">Atiende consultas frecuentes en WhatsApp e Instagram en cualquier horario, sin demoras.</p>
         </div>
       </div>
       <div class="cap-card tilt-card">
         <div class="tilt-card-inner">
           <div class="card-icon" style="margin-bottom: 1rem;">
             <svg class="pixel-icon" viewBox="0 0 24 24" fill="currentColor" width="24" height="24" aria-hidden="true" focusable="false">
-              <path d="M5 2h2v2H5V2zm12 0h2v2h-2V2zM3 5h18v2H3V5zm0 4h18v11H3V9zm4 4h2v2H7v-2zm6 0h2v2h-2v-2zm-6 4h2v2H7v-2zm6 0h2v2h-2v-2z"/>
+              <path d="M5 2h2v2H5V2zm12 0h2v2h-2V2zM3 5h18v2H3V5zm0 4h18v11H3V9zm4 4h2v2H7v-2zm6 0h2v2h-2v-2zm-6 4h2v2H7v-2zm6 0h2v2h-2v-2z"></path>
             </svg>
           </div>
-          <h4>Captura reservas</h4>
-          <p>Recolecta datos del cliente, verifica disponibilidad y registra la pre-reserva automáticamente.</p>
+          <h4 data-i18n="on7_cap_h4_46">Captura reservas</h4>
+          <p data-i18n="on7_cap_p_52">Recolecta datos del cliente, verifica disponibilidad y registra la pre-reserva automáticamente.</p>
         </div>
       </div>
       <div class="cap-card tilt-card">
         <div class="tilt-card-inner">
           <div class="card-icon" style="margin-bottom: 1rem;">
             <svg class="pixel-icon" viewBox="0 0 24 24" fill="currentColor" width="24" height="24" aria-hidden="true" focusable="false">
-              <path d="M11 2h2v2h-2V2zm-4 4h10v2H7V6zm-2 4h14v7H5v-7zm-2 8h18v2H3v-2zm8 4h2v2h-2v-2z"/>
+              <path d="M11 2h2v2h-2V2zm-4 4h10v2H7V6zm-2 4h14v7H5v-7zm-2 8h18v2H3v-2zm8 4h2v2h-2v-2z"></path>
             </svg>
           </div>
-          <h4>Envía recordatorios</h4>
-          <p>Confirma reservas y envía recordatorios el día de la actividad. Sin intervención manual.</p>
+          <h4 data-i18n="on7_cap_h4_47">Envía recordatorios</h4>
+          <p data-i18n="on7_cap_p_53">Confirma reservas y envía recordatorios el día de la actividad. Sin intervención manual.</p>
         </div>
       </div>
       <div class="cap-card tilt-card">
         <div class="tilt-card-inner">
           <div class="card-icon" style="margin-bottom: 1rem;">
             <svg class="pixel-icon" viewBox="0 0 24 24" fill="currentColor" width="24" height="24" aria-hidden="true" focusable="false">
-              <path d="M15 2h7v7h-2V5.4L13.4 12l6.6 6.6V15h2v7h-7v-2h3.6L12 13.4 5.4 20H2v-2h2.6l6-6-6-6H2V4h3.4L12 10.6 18.6 4H15V2z"/>
+              <path d="M15 2h7v7h-2V5.4L13.4 12l6.6 6.6V15h2v7h-7v-2h3.6L12 13.4 5.4 20H2v-2h2.6l6-6-6-6H2V4h3.4L12 10.6 18.6 4H15V2z"></path>
             </svg>
           </div>
-          <h4>Deriva correctamente</h4>
-          <p>Identifica consultas complejas y las pasa a un humano con todo el contexto de la conversación.</p>
+          <h4 data-i18n="on7_cap_h4_48">Deriva correctamente</h4>
+          <p data-i18n="on7_cap_p_54">Identifica consultas complejas y las pasa a un humano con todo el contexto de la conversación.</p>
         </div>
       </div>
       <div class="cap-card tilt-card">
         <div class="tilt-card-inner">
           <div class="card-icon" style="margin-bottom: 1rem;">
             <svg class="pixel-icon" viewBox="0 0 24 24" fill="currentColor" width="24" height="24" aria-hidden="true" focusable="false">
-              <path d="M9 2h6v2H9V2zm-3 4h12v2H6V6zm-2 4h16v4H4v-4zm2 6h12v2H6v-2zm3 2h6v2H9v-2zm1 2h4v2h-4v-2z"/>
+              <path d="M9 2h6v2H9V2zm-3 4h12v2H6V6zm-2 4h16v4H4v-4zm2 6h12v2H6v-2zm3 2h6v2H9v-2zm1 2h4v2h-4v-2z"></path>
             </svg>
           </div>
-          <h4>Recomienda y sugiere</h4>
-          <p>Si el cliente no sabe qué necesita, On7 lo guía según el contexto de la conversación.</p>
+          <h4 data-i18n="on7_cap_h4_49">Recomienda y sugiere</h4>
+          <p data-i18n="on7_cap_p_55">Si el cliente no sabe qué necesita, On7 lo guía según el contexto de la conversación.</p>
         </div>
       </div>
       <div class="cap-card tilt-card">
         <div class="tilt-card-inner">
           <div class="card-icon" style="margin-bottom: 1rem;">
             <svg class="pixel-icon" viewBox="0 0 24 24" fill="currentColor" width="24" height="24" aria-hidden="true" focusable="false">
-              <path d="M3 3h18v5H3V3zm0 7h18v5H3v-5zm0 7h18v4H3v-4zM6 5h2v2H6V5zm0 7h2v2H6v-2zm0 7h2v2H6v-2z"/>
+              <path d="M3 3h18v5H3V3zm0 7h18v5H3v-5zm0 7h18v4H3v-4zM6 5h2v2H6V5zm0 7h2v2H6v-2zm0 7h2v2H6v-2z"></path>
             </svg>
           </div>
-          <h4>Registra todo</h4>
-          <p>Cada conversación queda guardada. Datos de contacto, resumen, resultado de la interacción.</p>
+          <h4 data-i18n="on7_cap_h4_50">Registra todo</h4>
+          <p data-i18n="on7_cap_p_56">Cada conversación queda guardada. Datos de contacto, resumen, resultado de la interacción.</p>
         </div>
       </div>
     </div>
-  </section>
+  </div></section>
 
   <!-- DEMOS INTERACTIVAS -->
   <section class="section" id="demos-chatbots" style="position: relative;">
-    <span class="label">Pruébalo en tiempo real</span>
-    <h2>Demos interactivas de agentes.</h2>
-    <p class="body-text" style="margin-bottom: 3rem;">Hacé clic en cualquiera de las siguientes tarjetas para configurar y abrir el chat automático de ese negocio. Vas a ver cómo se adapta la identidad y la información al instante.</p>
+    <span class="label" data-i18n="on7_label_9">Pruébalo en tiempo real</span>
+    <h2 data-i18n="on7_section_h2_35">Demos interactivas de agentes.</h2>
+    <p class="body-text" style="margin-bottom: 3rem;" data-i18n="on7_section_p_42">Hacé clic en cualquiera de las siguientes tarjetas para configurar y abrir el chat automático de ese negocio. Vas a ver cómo se adapta la identidad y la información al instante.</p>
     
     <div class="demos-grid">
       <!-- Tarjeta 1: Inmobiliaria -->
-      <div class="demo-card" data-agent="real-estate" data-tilt>
+      <div class="demo-card" data-agent="real-estate" data-tilt="">
         <span class="demo-tag">Inmobiliaria</span>
         <div style="color: var(--accent); margin-bottom: 0.5rem;">
           <svg viewBox="0 0 24 24" fill="currentColor" class="pixel-icon" width="24" height="24">
-            <path d="M5 2h14v2H5zm0 18h14v2H5zM3 4h2v16H3zm16 0h2v16h-2zM7 6h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2zm-8 4h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2zm-8 4h2v2H7zm4 0h2v2h-2zm-1 4h4v2h-4zm5-4h2v2h-2z"/>
+            <path d="M5 2h14v2H5zm0 18h14v2H5zM3 4h2v16H3zm16 0h2v16h-2zM7 6h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2zm-8 4h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2zm-8 4h2v2H7zm4 0h2v2h-2zm-1 4h4v2h-4zm5-4h2v2h-2z"></path>
           </svg>
         </div>
         <h4>Inmobiliaria7</h4>
         <p>Busca inmuebles filtrando por presupuesto, ambientes o tipo de operación, y solicita visitas guiadas.</p>
-        <button class="btn-demo">Probar Agente <svg viewBox="0 0 24 24" fill="currentColor" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle; margin-left: 6px;"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"/><path d="M14 15V7h2v8zm-2 2V5h2v12z"/></svg></button>
+        <button class="btn-demo">Probar Agente <svg viewBox="0 0 24 24" fill="currentColor" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle; margin-left: 6px;"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"></path><path d="M14 15V7h2v8zm-2 2V5h2v12z"></path></svg></button>
       </div>
 
       <!-- Tarjeta 2: Concesionaria -->
-      <div class="demo-card" data-agent="car-sales" data-tilt>
+      <div class="demo-card" data-agent="car-sales" data-tilt="">
         <span class="demo-tag">Automotores</span>
         <div style="color: var(--accent); margin-bottom: 0.5rem;">
           <svg viewBox="0 0 24 24" fill="currentColor" class="pixel-icon" width="24" height="24">
-            <path d="M4 13h6v2H4zm10 0h6v2h-6zM4 17h6v2H4zm10 0h6v2h-6zM2 15h4v2H2zm6 0h8v2H8zm10 0h4v2h-4zm4-4h2v4h-2zm-6-4h2v2h-2zM4 5h12v2H4zm-4 6h2v4H0zm12-2h10v2H12zM2 7h2v4H2zm8 0h2v2h-2z"/>
+            <path d="M4 13h6v2H4zm10 0h6v2h-6zM4 17h6v2H4zm10 0h6v2h-6zM2 15h4v2H2zm6 0h8v2H8zm10 0h4v2h-4zm4-4h2v4h-2zm-6-4h2v2h-2zM4 5h12v2H4zm-4 6h2v4H0zm12-2h10v2H12zM2 7h2v4H2zm8 0h2v2h-2z"></path>
           </svg>
         </div>
         <h4>Concesionaria7</h4>
         <p>Explora catálogo de vehículos en stock, consulta planes de financiación y agenda un Test Drive.</p>
-        <button class="btn-demo">Probar Agente <svg viewBox="0 0 24 24" fill="currentColor" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle; margin-left: 6px;"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"/><path d="M14 15V7h2v8zm-2 2V5h2v12z"/></svg></button>
+        <button class="btn-demo">Probar Agente <svg viewBox="0 0 24 24" fill="currentColor" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle; margin-left: 6px;"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"></path><path d="M14 15V7h2v8zm-2 2V5h2v12z"></path></svg></button>
       </div>
 
       <!-- Tarjeta 3: Centro Médico -->
-      <div class="demo-card" data-agent="medical" data-tilt>
+      <div class="demo-card" data-agent="medical" data-tilt="">
         <span class="demo-tag">Salud</span>
         <div style="color: var(--accent); margin-bottom: 0.5rem;">
           <svg viewBox="0 0 24 24" fill="currentColor" class="pixel-icon" width="24" height="24">
-            <path d="M17 22H9V20H17V22ZM11 18H9V20H7V18H5V16H11V18ZM19 20H17V18H19V20ZM21 18H19V12H21V18ZM5 16H3V12H5V16ZM13 16H11V12H13V16ZM7 6H3V12H1V4H3V2H7V6ZM13 4H15V12H13V6H9V2H13V4ZM19 12H17V10H19V12ZM23 12H21V10H23V12ZM21 10H19V8H21V10Z"/>
+            <path d="M17 22H9V20H17V22ZM11 18H9V20H7V18H5V16H11V18ZM19 20H17V18H19V20ZM21 18H19V12H21V18ZM5 16H3V12H5V16ZM13 16H11V12H13V16ZM7 6H3V12H1V4H3V2H7V6ZM13 4H15V12H13V6H9V2H13V4ZM19 12H17V10H19V12ZM23 12H21V10H23V12ZM21 10H19V8H21V10Z"></path>
           </svg>
         </div>
         <h4>Salud7</h4>
         <p>Consulta turnos libres de médicos por especialidad, coberturas y simula una reserva de turno.</p>
-        <button class="btn-demo">Probar Agente <svg viewBox="0 0 24 24" fill="currentColor" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle; margin-left: 6px;"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"/><path d="M14 15V7h2v8zm-2 2V5h2v12z"/></svg></button>
+        <button class="btn-demo">Probar Agente <svg viewBox="0 0 24 24" fill="currentColor" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle; margin-left: 6px;"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"></path><path d="M14 15V7h2v8zm-2 2V5h2v12z"></path></svg></button>
       </div>
 
       <!-- Tarjeta 4: Restaurante -->
-      <div class="demo-card" data-agent="restaurant" data-tilt>
+      <div class="demo-card" data-agent="restaurant" data-tilt="">
         <span class="demo-tag">Gastronomía</span>
         <div style="color: var(--accent); margin-bottom: 0.5rem;">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" id="Food-Drink-Hamburger--Streamline-Pixel" class="pixel-icon" width="24" height="24">
@@ -1303,32 +1307,32 @@
         </div>
         <h4>Bistró7</h4>
         <p>Consulta platos en carta, filtra opciones celíacas/vegetarianas y agenda una reserva de mesa.</p>
-        <button class="btn-demo">Probar Agente <svg viewBox="0 0 24 24" fill="currentColor" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle; margin-left: 6px;"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"/><path d="M14 15V7h2v8zm-2 2V5h2v12z"/></svg></button>
+        <button class="btn-demo">Probar Agente <svg viewBox="0 0 24 24" fill="currentColor" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle; margin-left: 6px;"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"></path><path d="M14 15V7h2v8zm-2 2V5h2v12z"></path></svg></button>
       </div>
 
       <!-- Tarjeta 5: Ecommerce Yerba Mate -->
-      <div class="demo-card" data-agent="yerba-mate" data-tilt>
+      <div class="demo-card" data-agent="yerba-mate" data-tilt="">
         <span class="demo-tag">Ecommerce</span>
         <div style="color: var(--accent); margin-bottom: 0.5rem;">
           <svg viewBox="0 0 24 24" fill="currentColor" class="pixel-icon" width="24" height="24">
-            <path d="M3 22H1v-4h2v4Zm10 0H9v-2h4v2Zm-4-2H5v-2h4v2Zm8 0h-4v-2h4v2ZM5 18H3v-2h2v2Zm14 0h-2v-2h2v2Zm-8-2H5v-2h6v2Zm10 0h-2V4h2v12ZM5 14H3v-4h2v4Zm8 0h-2v-2h2v2Zm-6-4H5V8h2v2Zm6-2H7V6h6v2Zm4-2h-4V4h4v2Zm2-2h-2V2h2v2Z"/>
+            <path d="M3 22H1v-4h2v4Zm10 0H9v-2h4v2Zm-4-2H5v-2h4v2Zm8 0h-4v-2h4v2ZM5 18H3v-2h2v2Zm14 0h-2v-2h2v2Zm-8-2H5v-2h6v2Zm10 0h-2V4h2v12ZM5 14H3v-4h2v4Zm8 0h-2v-2h2v2Zm-6-4H5V8h2v2Zm6-2H7V6h6v2Zm4-2h-4V4h4v2Zm2-2h-2V2h2v2Z"></path>
           </svg>
         </div>
         <h4>Yerba7</h4>
         <p>Asesora sobre productos, calcula gastos de envío por provincia y gestiona un carrito de compra.</p>
-        <button class="btn-demo">Probar Agente <svg viewBox="0 0 24 24" fill="currentColor" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle; margin-left: 6px;"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"/><path d="M14 15V7h2v8zm-2 2V5h2v12z"/></svg></button>
+        <button class="btn-demo">Probar Agente <svg viewBox="0 0 24 24" fill="currentColor" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle; margin-left: 6px;"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"></path><path d="M14 15V7h2v8zm-2 2V5h2v12z"></path></svg></button>
       </div>
       <!-- Tarjeta 6: Vinoteca ODA -->
-      <div class="demo-card" data-agent="wine-shop" data-tilt>
+      <div class="demo-card" data-agent="wine-shop" data-tilt="">
         <span class="demo-tag">Vinoteca</span>
         <div style="color: var(--accent); margin-bottom: 0.5rem; filter: drop-shadow(0 0 8px rgba(163, 230, 53, 0.4));">
           <svg viewBox="0 0 24 24" fill="currentColor" class="pixel-icon" width="24" height="24">
-            <path d="M7 8h10V4h2v8h-2v2h-2v2h-2v4h3v2H8v-2h3v-4H9v-2H7v-2H5V4h2v4Zm10-4H7V2h10v2Z"/>
+            <path d="M7 8h10V4h2v8h-2v2h-2v2h-2v4h3v2H8v-2h3v-4H9v-2H7v-2H5V4h2v4Zm10-4H7V2h10v2Z"></path>
           </svg>
         </div>
         <h4>ODA Vinoteca</h4>
         <p>Sommelier virtual experto. Recomienda vinos, enseña sobre cepas y arma pedidos para envío o retiro.</p>
-        <button class="btn-demo">Probar Agente <svg viewBox="0 0 24 24" fill="currentColor" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle; margin-left: 6px;"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"/><path d="M14 15V7h2v8zm-2 2V5h2v12z"/></svg></button>
+        <button class="btn-demo">Probar Agente <svg viewBox="0 0 24 24" fill="currentColor" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle; margin-left: 6px;"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"></path><path d="M14 15V7h2v8zm-2 2V5h2v12z"></path></svg></button>
       </div>
     </div>
   </section>
@@ -1338,13 +1342,13 @@
     <!-- Pixel decorations -->
     <div class="pixel-deco" style="top: 20%; right: 5%; width: 98px; opacity: 0; color: var(--teal);" data-pixel="section">
       <svg width="98" height="98" viewBox="0 0 98 98" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-        <path d="M33.0499 64.7148H0V97.7649H33.0499V64.7148Z" fill="currentColor"/>
-        <path d="M65.4073 32.3574H32.3574V65.4074H65.4073V32.3574Z" fill="currentColor"/>
-        <path d="M97.7648 0H64.7148V33.05H97.7648V0Z" fill="currentColor"/>
+        <path d="M33.0499 64.7148H0V97.7649H33.0499V64.7148Z" fill="currentColor"></path>
+        <path d="M65.4073 32.3574H32.3574V65.4074H65.4073V32.3574Z" fill="currentColor"></path>
+        <path d="M97.7648 0H64.7148V33.05H97.7648V0Z" fill="currentColor"></path>
       </svg>
     </div>
-    <span class="label">Paso a paso</span>
-    <h2>Así vive la experiencia<br>tu cliente.</h2>
+    <span class="label" data-i18n="on7_label_10">Paso a paso</span>
+    <h2 data-i18n="on7_section_h2_36">Así vive la experiencia<br>tu cliente.</h2>
     
     <div class="flow-steps">
       <!-- Timeline connection lines -->
@@ -1354,48 +1358,48 @@
       <div class="flow-step" data-step-idx="0">
         <div class="flow-number">01</div>
         <div class="flow-content">
-          <h4>El cliente escribe por WhatsApp o Instagram</h4>
-          <p>On7 responde de inmediato con un saludo y un menú de opciones claro.</p>
+          <h4 data-i18n="on7_flow_h4_97">El cliente escribe por WhatsApp o Instagram</h4>
+          <p data-i18n="on7_flow_p_103">On7 responde de inmediato con un saludo y un menú de opciones claro.</p>
         </div>
       </div>
       
       <div class="flow-step" data-step-idx="1">
         <div class="flow-number">02</div>
         <div class="flow-content">
-          <h4>On7 identifica qué busca</h4>
-          <p>Entiende el tipo de consulta y orienta según el perfil del cliente: individual, grupo o empresa.</p>
+          <h4 data-i18n="on7_flow_h4_98">On7 identifica qué busca</h4>
+          <p data-i18n="on7_flow_p_104">Entiende el tipo de consulta y orienta según el perfil del cliente: individual, grupo o empresa.</p>
         </div>
       </div>
       
       <div class="flow-step" data-step-idx="2">
         <div class="flow-number">03</div>
         <div class="flow-content">
-          <h4>Brinda información precisa</h4>
-          <p>Precios, disponibilidad, qué incluye, cómo llegar — siempre con datos actualizados de tu negocio.</p>
+          <h4 data-i18n="on7_flow_h4_99">Brinda información precisa</h4>
+          <p data-i18n="on7_flow_p_105">Precios, disponibilidad, qué incluye, cómo llegar — siempre con datos actualizados de tu negocio.</p>
         </div>
       </div>
       
       <div class="flow-step" data-step-idx="3">
         <div class="flow-number">04</div>
         <div class="flow-content">
-          <h4>Guía hacia la reserva o la acción</h4>
-          <p>Recolecta los datos necesarios y valida disponibilidad en tiempo real.</p>
+          <h4 data-i18n="on7_flow_h4_100">Guía hacia la reserva o la acción</h4>
+          <p data-i18n="on7_flow_p_106">Recolecta los datos necesarios y valida disponibilidad en tiempo real.</p>
         </div>
       </div>
       
       <div class="flow-step" data-step-idx="4">
         <div class="flow-number">05</div>
         <div class="flow-content">
-          <h4>Confirma y notifica</h4>
-          <p>Envía confirmación, información de ingreso y registra todo automáticamente.</p>
+          <h4 data-i18n="on7_flow_h4_101">Confirma y notifica</h4>
+          <p data-i18n="on7_flow_p_107">Envía confirmación, información de ingreso y registra todo automáticamente.</p>
         </div>
       </div>
       
       <div class="flow-step" data-step-idx="5">
         <div class="flow-number">06</div>
         <div class="flow-content">
-          <h4>Seguimiento automático</h4>
-          <p>Recordatorio el día de la actividad. Re-contacto a quienes consultaron pero no convirtieron.</p>
+          <h4 data-i18n="on7_flow_h4_102">Seguimiento automático</h4>
+          <p data-i18n="on7_flow_p_108">Recordatorio el día de la actividad. Re-contacto a quienes consultaron pero no convirtieron.</p>
         </div>
       </div>
     </div>
@@ -1403,41 +1407,41 @@
 
   <!-- INTEGRACIONES -->
   <section class="section">
-    <span class="label">Se conecta con lo que ya usás</span>
-    <h2>No reemplaza tus herramientas.<br>Se integra con ellas.</h2>
+    <span class="label" data-i18n="on7_label_11">Se conecta con lo que ya usás</span>
+    <h2 data-i18n="on7_section_h2_37">No reemplaza tus herramientas.<br>Se integra con ellas.</h2>
     
     <div class="sectors" style="margin-top: 2rem; margin-bottom: 2rem;">
-      <h4 style="font-family: var(--font-alt); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--text-muted); margin-bottom: 1rem;">Canales Activos</h4>
+      <h4 style="font-family: var(--font-alt); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--text-muted); margin-bottom: 1rem;" data-i18n="on7_sector_h4_86">Canales Activos</h4>
       <div class="sector-tags">
-        <span class="sector-tag" style="color: var(--teal); border-color: var(--teal);">WhatsApp</span>
-        <span class="sector-tag" style="color: var(--teal); border-color: var(--teal);">Instagram</span>
+        <span class="sector-tag" style="color: var(--teal); border-color: var(--teal);" data-i18n="on7_sector_tag_88">WhatsApp</span>
+        <span class="sector-tag" style="color: var(--teal); border-color: var(--teal);" data-i18n="on7_sector_tag_89">Instagram</span>
       </div>
     </div>
 
     <div class="integrations">
       <div class="int-card">
-        <h4>Google Calendar</h4>
-        <p>Reservas, turnos y llamadas directamente en tu calendario.</p>
+        <h4 data-i18n="on7_int_h4_57">Google Calendar</h4>
+        <p data-i18n="on7_int_p_63">Reservas, turnos y llamadas directamente en tu calendario.</p>
       </div>
       <div class="int-card">
-        <h4>Google Sheets</h4>
-        <p>Datos de clientes y consultas en tu planilla, al instante.</p>
+        <h4 data-i18n="on7_int_h4_58">Google Sheets</h4>
+        <p data-i18n="on7_int_p_64">Datos de clientes y consultas en tu planilla, al instante.</p>
       </div>
       <div class="int-card">
-        <h4>Gmail</h4>
-        <p>Resúmenes, alertas y notificaciones en tu correo.</p>
+        <h4 data-i18n="on7_int_h4_59">Gmail</h4>
+        <p data-i18n="on7_int_p_65">Resúmenes, alertas y notificaciones en tu correo.</p>
       </div>
       <div class="int-card">
-        <h4>Google Docs</h4>
-        <p>Consulta de documentos internos para responder con precisión.</p>
+        <h4 data-i18n="on7_int_h4_60">Google Docs</h4>
+        <p data-i18n="on7_int_p_66">Consulta de documentos internos para responder con precisión.</p>
       </div>
       <div class="int-card">
-        <h4>Chatwoot</h4>
-        <p>Panel de conversaciones centralizado para tu equipo.</p>
+        <h4 data-i18n="on7_int_h4_61">Chatwoot</h4>
+        <p data-i18n="on7_int_p_67">Panel de conversaciones centralizado para tu equipo.</p>
       </div>
       <div class="int-card">
-        <h4>Otros sistemas</h4>
-        <p>Conexión con sistemas externos mediante APIs si tu negocio lo requiere.</p>
+        <h4 data-i18n="on7_int_h4_62">Otros sistemas</h4>
+        <p data-i18n="on7_int_p_68">Conexión con sistemas externos mediante APIs si tu negocio lo requiere.</p>
       </div>
     </div>
   </section>
@@ -1447,72 +1451,72 @@
     <!-- Pixel decorations -->
     <div class="pixel-deco" style="bottom: 10%; right: 8%; width: 33px; opacity: 0; color: var(--teal);" data-pixel="section-dot">
       <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-        <path d="M33 0H0V33H33V0Z" fill="currentColor"/>
+        <path d="M33 0H0V33H33V0Z" fill="currentColor"></path>
       </svg>
     </div>
 
-    <span class="label">Vos siempre en control</span>
-    <h2>Automatizado no significa<br>que perdés el control.</h2>
-    <p class="body-text">On7 incluye un panel de administración desde donde podés:</p>
+    <span class="label" data-i18n="on7_label_12">Vos siempre en control</span>
+    <h2 data-i18n="on7_section_h2_38">Automatizado no significa<br>que perdés el control.</h2>
+    <p class="body-text" data-i18n="on7_section_p_43">On7 incluye un panel de administración desde donde podés:</p>
     <div class="panel-features">
-      <div class="panel-feature" data-reveal-text>Ver todas las conversaciones en tiempo real</div>
-      <div class="panel-feature" data-reveal-text>Tomar el control manual de cualquier chat cuando querés</div>
-      <div class="panel-feature" data-reveal-text>Revisar el historial completo de cada cliente</div>
-      <div class="panel-feature" data-reveal-text>Ver qué clientes están pendientes de seguimiento</div>
-      <div class="panel-feature" data-reveal-text>Consultar reservas, pedidos y consultas generadas</div>
+      <div class="panel-feature" data-reveal-text="" data-i18n="on7_panel_feat_69">Ver todas las conversaciones en tiempo real</div>
+      <div class="panel-feature" data-reveal-text="" data-i18n="on7_panel_feat_70">Tomar el control manual de cualquier chat cuando querés</div>
+      <div class="panel-feature" data-reveal-text="" data-i18n="on7_panel_feat_71">Revisar el historial completo de cada cliente</div>
+      <div class="panel-feature" data-reveal-text="" data-i18n="on7_panel_feat_72">Ver qué clientes están pendientes de seguimiento</div>
+      <div class="panel-feature" data-reveal-text="" data-i18n="on7_panel_feat_73">Consultar reservas, pedidos y consultas generadas</div>
     </div>
     <div class="panel-resumen">
-      <h4>Resumen diario por email</h4>
-      <p>Cada mañana recibís un resumen con: conversaciones del día anterior, reservas generadas, clientes que requieren seguimiento e incidencias detectadas.</p>
+      <h4 data-i18n="on7_panel_res_h4_74">Resumen diario por email</h4>
+      <p data-i18n="on7_panel_res_p_75">Cada mañana recibís un resumen con: conversaciones del día anterior, reservas generadas, clientes que requieren seguimiento e incidencias detectadas.</p>
     </div>
-    <p class="highlight-phrase">On7 trabaja solo. Vos decidís cuándo intervenir.</p>
+    <p class="highlight-phrase" data-i18n="on7_highlight_76">On7 trabaja solo. Vos decidís cuándo intervenir.</p>
   </section>
 
   <!-- MÉTRICAS DE IMPACTO -->
   <section class="section" id="impacto">
-    <span class="label">Impacto esperado</span>
-    <h2>Resultados para tu negocio.</h2>
+    <span class="label" data-i18n="on7_label_13">Impacto esperado</span>
+    <h2 data-i18n="on7_section_h2_39">Resultados para tu negocio.</h2>
     
     <div class="metrics-grid">
       <div class="metric-card">
         <div class="metric-val" data-target="24" data-suffix="/7">0/7</div>
-        <div class="metric-desc">Atención sin interrupciones</div>
+        <div class="metric-desc" data-i18n="on7_metric_77">Atención sin interrupciones</div>
       </div>
       <div class="metric-card">
         <div class="metric-val" data-target="80" data-prefix="-" data-suffix="%">-0%</div>
-        <div class="metric-desc">Tiempo en consultas repetitivas</div>
+        <div class="metric-desc" data-i18n="on7_metric_78">Tiempo en consultas repetitivas</div>
       </div>
       <div class="metric-card">
         <div class="metric-val" data-target="0">0</div>
-        <div class="metric-desc">Consultas sin respuesta</div>
+        <div class="metric-desc" data-i18n="on7_metric_79">Consultas sin respuesta</div>
       </div>
       <div class="metric-card">
         <div class="metric-val" data-target="100" data-prefix="+" data-suffix="%">+0%</div>
-        <div class="metric-desc">Mayor conversión con seguimiento automático</div>
+        <div class="metric-desc" data-i18n="on7_metric_80">Mayor conversión con seguimiento automático</div>
       </div>
     </div>
   </section>
 
   <!-- PARA QUIÉN ES -->
   <section class="section">
-    <span class="label">On7 es para vos si...</span>
+    <span class="label" data-i18n="on7_label_14">On7 es para vos si...</span>
     <div class="for-you-list">
-      <div class="for-you-item" data-reveal-text>Recibís consultas por WhatsApp o Instagram y no siempre podés responder rápido</div>
-      <div class="for-you-item" data-reveal-text>Tu equipo pierde tiempo respondiendo siempre las mismas preguntas</div>
-      <div class="for-you-item" data-reveal-text>Perdés reservas o pedidos por no tener atención fuera del horario comercial</div>
-      <div class="for-you-item" data-reveal-text>Querés saber qué consultan tus clientes sin revisar chat por chat</div>
-      <div class="for-you-item" data-reveal-text>Necesitás escalar la atención sin contratar más personal</div>
+      <div class="for-you-item" data-reveal-text="" data-i18n="on7_foryou_81">Recibís consultas por WhatsApp o Instagram y no siempre podés responder rápido</div>
+      <div class="for-you-item" data-reveal-text="" data-i18n="on7_foryou_82">Tu equipo pierde tiempo respondiendo siempre las mismas preguntas</div>
+      <div class="for-you-item" data-reveal-text="" data-i18n="on7_foryou_83">Perdés reservas o pedidos por no tener atención fuera del horario comercial</div>
+      <div class="for-you-item" data-reveal-text="" data-i18n="on7_foryou_84">Querés saber qué consultan tus clientes sin revisar chat por chat</div>
+      <div class="for-you-item" data-reveal-text="" data-i18n="on7_foryou_85">Necesitás escalar la atención sin contratar más personal</div>
     </div>
     <div class="sectors">
-      <h4>Sectores donde ya funciona</h4>
+      <h4 data-i18n="on7_sector_h4_87">Sectores donde ya funciona</h4>
       <div class="sector-tags">
-        <span class="sector-tag">Gastronomía</span>
-        <span class="sector-tag">Hotelería</span>
-        <span class="sector-tag">Comercios</span>
-        <span class="sector-tag">Servicios profesionales</span>
-        <span class="sector-tag">Salud</span>
-        <span class="sector-tag">Turismo</span>
-        <span class="sector-tag">Retail</span>
+        <span class="sector-tag" data-i18n="on7_sector_tag_90">Gastronomía</span>
+        <span class="sector-tag" data-i18n="on7_sector_tag_91">Hotelería</span>
+        <span class="sector-tag" data-i18n="on7_sector_tag_92">Comercios</span>
+        <span class="sector-tag" data-i18n="on7_sector_tag_93">Servicios profesionales</span>
+        <span class="sector-tag" data-i18n="on7_sector_tag_94">Salud</span>
+        <span class="sector-tag" data-i18n="on7_sector_tag_95">Turismo</span>
+        <span class="sector-tag" data-i18n="on7_sector_tag_96">Retail</span>
       </div>
     </div>
   </section>
@@ -1522,35 +1526,35 @@
     <!-- Pixel decorations -->
     <div class="pixel-deco" style="bottom: 15%; left: 6%; width: 98px; opacity: 0; color: var(--teal);" data-pixel="section">
       <svg width="98" height="98" viewBox="0 0 98 98" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-        <path d="M33.0499 64.7148H0V97.7649H33.0499V64.7148Z" fill="currentColor"/>
-        <path d="M65.4073 32.3574H32.3574V65.4074H65.4073V32.3574Z" fill="currentColor"/>
-        <path d="M97.7648 0H64.7148V33.05H97.7648V0Z" fill="currentColor"/>
+        <path d="M33.0499 64.7148H0V97.7649H33.0499V64.7148Z" fill="currentColor"></path>
+        <path d="M65.4073 32.3574H32.3574V65.4074H65.4073V32.3574Z" fill="currentColor"></path>
+        <path d="M97.7648 0H64.7148V33.05H97.7648V0Z" fill="currentColor"></path>
       </svg>
     </div>
-    <span class="label">Cómo arrancamos</span>
-    <h2>Paso a paso para tener IA<br>en tu negocio — en 4 semanas.</h2>
-    <p class="body-text" style="margin-bottom: 3rem;">Un proceso claro y ordenado para que tu negocio empiece a atender mejor sin complicaciones.</p>
+    <span class="label" data-i18n="on7_label_15">Cómo arrancamos</span>
+    <h2 data-i18n="on7_section_h2_40">Paso a paso para tener IA<br>en tu negocio — en 4 semanas.</h2>
+    <p class="body-text" style="margin-bottom: 3rem;" data-i18n="on7_section_p_44">Un proceso claro y ordenado para que tu negocio empiece a atender mejor sin complicaciones.</p>
     
     <div class="steps">
       <div class="step">
         <div class="step-number">01</div>
         <div class="step-content">
-          <h4>Estudio del proceso comercial (5 días)</h4>
-          <p>Analizamos tu proceso comercial actual para entender exactamente qué debe hacer On7 y cómo replicar el trabajo de un humano de forma más rápida y eficiente.</p>
+          <h4 data-i18n="on7_step_h4_109">Estudio del proceso comercial (5 días)</h4>
+          <p data-i18n="on7_step_p_112">Analizamos tu proceso comercial actual para entender exactamente qué debe hacer On7 y cómo replicar el trabajo de un humano de forma más rápida y eficiente.</p>
         </div>
       </div>
       <div class="step">
         <div class="step-number">02</div>
         <div class="step-content">
-          <h4>Desarrollo del MVP (10 días)</h4>
-          <p>Construimos la primera versión funcional del agente, las automatizaciones necesarias y el panel de gestión adaptado a tu negocio. Todo integrado con WhatsApp, Instagram o Facebook.</p>
+          <h4 data-i18n="on7_step_h4_110">Desarrollo del MVP (10 días)</h4>
+          <p data-i18n="on7_step_p_113">Construimos la primera versión funcional del agente, las automatizaciones necesarias y el panel de gestión adaptado a tu negocio. Todo integrado con WhatsApp, Instagram o Facebook.</p>
         </div>
       </div>
       <div class="step">
         <div class="step-number">03</div>
         <div class="step-content">
-          <h4>Puesta a punto (15 días)</h4>
-          <p>Testeamos y ajustamos el comportamiento del agente para que brinde una atención impecable. On7 sale al aire cuando está listo.</p>
+          <h4 data-i18n="on7_step_h4_111">Puesta a punto (15 días)</h4>
+          <p data-i18n="on7_step_p_114">Testeamos y ajustamos el comportamiento del agente para que brinde una atención impecable. On7 sale al aire cuando está listo.</p>
         </div>
       </div>
     </div>
@@ -1563,30 +1567,30 @@
 
     <div class="pixel-deco" style="top: 10%; left: 5%; width: 66px; opacity: 0; color: var(--teal);" data-pixel="section">
       <svg width="66" height="66" viewBox="0 0 66 66" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-        <path d="M65.4073 0H32.3574V33.0501H65.4073V0Z" fill="currentColor"/>
-        <path d="M33.0499 32.3574H0V65.4075H33.0499V32.3574Z" fill="currentColor"/>
+        <path d="M65.4073 0H32.3574V33.0501H65.4073V0Z" fill="currentColor"></path>
+        <path d="M33.0499 32.3574H0V65.4075H33.0499V32.3574Z" fill="currentColor"></path>
       </svg>
     </div>
-    <div class="pixel-deco pixel-deco--grid" style="bottom: 15%; right: 2%; width: 240px;" data-pixel-grid>
+    <div class="pixel-deco pixel-deco--grid" style="bottom: 15%; right: 2%; width: 240px;" data-pixel-grid="">
       <svg width="240" height="93" viewBox="0 0 240 93" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-        <path d="M239.021 61.6973L239.021 30.5215L209 30.5215L209 61.6973L239.021 61.6973Z" stroke="currentColor" stroke-miterlimit="10"/>
-        <path d="M209 30.5212L209 0.5L177.824 0.499999L177.824 30.5212L209 30.5212Z" stroke="currentColor" stroke-miterlimit="10"/>
-        <path d="M209 91.7185L209 61.6973L177.824 61.6973L177.824 91.7185L209 91.7185Z" stroke="currentColor" stroke-miterlimit="10"/>
-        <path d="M177.824 61.6973L177.824 30.5215L147.803 30.5215L147.803 61.6973L177.824 61.6973Z" stroke="currentColor" stroke-miterlimit="10"/>
-        <path d="M177.824 91.7185L177.824 61.6973L147.803 61.6973L147.803 91.7185L177.824 91.7185Z" stroke="currentColor" stroke-miterlimit="10"/>
-        <path d="M147.803 91.7185L147.803 61.6973L117.782 61.6973L117.782 91.7185L147.803 91.7185Z" stroke="currentColor" stroke-miterlimit="10"/>
-        <path d="M117.782 30.5212L117.782 0.5L87.761 0.499999L87.761 30.5212L117.782 30.5212Z" stroke="currentColor" stroke-miterlimit="10"/>
-        <path d="M117.782 91.7185L117.782 61.6973L87.761 61.6973L87.761 91.7185L117.782 91.7185Z" stroke="currentColor" stroke-miterlimit="10"/>
-        <path d="M87.761 61.6973L87.761 30.5215L57.74 30.5215L57.74 61.6973L87.761 61.6973Z" stroke="currentColor" stroke-miterlimit="10"/>
-        <path d="M87.761 91.7185L87.761 61.6973L57.74 61.6973L57.74 91.7185L87.761 91.7185Z" stroke="currentColor" stroke-miterlimit="10"/>
-        <path d="M27.7187 61.6973L27.7188 30.5215L0 30.5215L0 61.6973L27.7187 61.6973Z" stroke="currentColor" stroke-miterlimit="10"/>
+        <path d="M239.021 61.6973L239.021 30.5215L209 30.5215L209 61.6973L239.021 61.6973Z" stroke="currentColor" stroke-miterlimit="10"></path>
+        <path d="M209 30.5212L209 0.5L177.824 0.499999L177.824 30.5212L209 30.5212Z" stroke="currentColor" stroke-miterlimit="10"></path>
+        <path d="M209 91.7185L209 61.6973L177.824 61.6973L177.824 91.7185L209 91.7185Z" stroke="currentColor" stroke-miterlimit="10"></path>
+        <path d="M177.824 61.6973L177.824 30.5215L147.803 30.5215L147.803 61.6973L177.824 61.6973Z" stroke="currentColor" stroke-miterlimit="10"></path>
+        <path d="M177.824 91.7185L177.824 61.6973L147.803 61.6973L147.803 91.7185L177.824 91.7185Z" stroke="currentColor" stroke-miterlimit="10"></path>
+        <path d="M147.803 91.7185L147.803 61.6973L117.782 61.6973L117.782 91.7185L147.803 91.7185Z" stroke="currentColor" stroke-miterlimit="10"></path>
+        <path d="M117.782 30.5212L117.782 0.5L87.761 0.499999L87.761 30.5212L117.782 30.5212Z" stroke="currentColor" stroke-miterlimit="10"></path>
+        <path d="M117.782 91.7185L117.782 61.6973L87.761 61.6973L87.761 91.7185L117.782 91.7185Z" stroke="currentColor" stroke-miterlimit="10"></path>
+        <path d="M87.761 61.6973L87.761 30.5215L57.74 30.5215L57.74 61.6973L87.761 61.6973Z" stroke="currentColor" stroke-miterlimit="10"></path>
+        <path d="M87.761 91.7185L87.761 61.6973L57.74 61.6973L57.74 91.7185L87.761 91.7185Z" stroke="currentColor" stroke-miterlimit="10"></path>
+        <path d="M27.7187 61.6973L27.7188 30.5215L0 30.5215L0 61.6973L27.7187 61.6973Z" stroke="currentColor" stroke-miterlimit="10"></path>
       </svg>
     </div>
-    <h2>Tu negocio no debería<br>depender de que estés disponible.</h2>
-    <p class="body-text">On7 es the primer producto de Lab7 — el laboratorio de WEB7 donde construimos herramientas que resuelven problemas reales de negocios reales. Contanos sobre tu negocio y te mostramos cómo quedaría On7 implementado para tu caso específico.</p>
+    <h2 data-i18n="on7_cierre_h2_115">Tu negocio no debería<br>depender de que estés disponible.</h2>
+    <p class="body-text" data-i18n="on7_cierre_p_116">On7 es the primer producto de Lab7 — el laboratorio de WEB7 donde construimos herramientas que resuelven problemas reales de negocios reales. Contanos sobre tu negocio y te mostramos cómo quedaría On7 implementado para tu caso específico.</p>
     <div class="cta-group">
-      <a href="contacto.html?producto=on7" class="btn btn-primary">Quiero On7 <svg viewBox="0 0 24 24" fill="currentColor" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle; margin-left: 6px;"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"/><path d="M14 15V7h2v8zm-2 2V5h2v12z"/></svg></a>
-      <a href="https://wa.me/5493754415676" target="_blank" rel="noopener" class="btn btn-secondary">Hablar con WEB7 por WhatsApp <svg viewBox="0 0 24 24" fill="currentColor" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle; margin-left: 6px;"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"/><path d="M14 15V7h2v8zm-2 2V5h2v12z"/></svg></a>
+      <a href="contacto.html?producto=on7" class="btn btn-primary" data-i18n="on7_cierre_btn_117">Quiero On7 <svg viewBox="0 0 24 24" fill="currentColor" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle; margin-left: 6px;"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"></path><path d="M14 15V7h2v8zm-2 2V5h2v12z"></path></svg></a>
+      <a href="https://wa.me/5493754415676" target="_blank" rel="noopener" class="btn btn-secondary" data-i18n="on7_cierre_btn_118">Hablar con WEB7 por WhatsApp <svg viewBox="0 0 24 24" fill="currentColor" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle; margin-left: 6px;"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"></path><path d="M14 15V7h2v8zm-2 2V5h2v12z"></path></svg></a>
     </div>
   </section>
 
@@ -1597,29 +1601,33 @@
         <g id="Capa_1-2" data-name="Capa 1">
           <g>
             <g>
-              <path class="cls-1" d="M29.57,1.7h1.02v2.36h-1.02V1.7ZM29.57,7.13h1.02v1.02h-1.02v-1.02ZM34.69,1.7h-4.09V.68h4.09v1.02ZM30.6,4.06h4.09v1.02h-4.09v-1.02ZM34.69,9.18h-4.09v-1.02h4.09v1.02ZM35.71,2.73h-1.02v-1.02h1.02v1.02ZM34.69,5.08h1.02v3.07h-1.02v-3.07Z"/>
-              <path class="cls-1" d="M42.26,6.4h-4.63c.1,1.42.9,2.02,2.01,2.02.9,0,1.29-.46,1.54-1.23l.99.35c-.4,1.06-1.11,1.78-2.55,1.78-1.99,0-3.01-1.31-3.01-3.24,0-1.74,1.14-3.19,2.84-3.19,1.82,0,2.88,1.44,2.82,3.5ZM37.66,5.53h3.54c-.17-1.11-.82-1.73-1.76-1.73-.89,0-1.6.65-1.78,1.73Z"/>
-              <path class="cls-1" d="M44.13,6.11h-1.02v-3.07h1.02v3.07ZM45.15,6.11v2.05h-1.02v-2.05h1.02ZM45.15,9.18v-1.02h1.02v1.02h-1.02ZM46.18,6.11h1.02v2.05h-1.02v-2.05ZM48.22,3.04v3.07h-1.02v-3.07h1.02Z"/>
-              <path class="cls-1" d="M54.58,6.4h-4.63c.1,1.42.9,2.02,2.01,2.02.9,0,1.29-.46,1.54-1.23l.99.35c-.4,1.06-1.11,1.78-2.55,1.78-1.99,0-3.01-1.31-3.01-3.24,0-1.74,1.14-3.19,2.84-3.19,1.82,0,2.88,1.44,2.82,3.5ZM49.98,5.53h3.54c-.17-1.11-.82-1.73-1.76-1.73s-1.6.65-1.78,1.73Z"/>
-              <path class="cls-1" d="M56.52,3.04v2.05h-1.02v-2.05h1.02ZM56.52,6.11v3.07h-1.02v-3.07h1.02ZM56.52,6.11v-1.02h1.02v1.02h-1.02ZM60,3.04v1.02h-1.43v1.02h-1.02v-2.05h2.46ZM61.03,4.06v5.11h-1.02v-5.11h1.02Z"/>
+              <path class="cls-1" d="M29.57,1.7h1.02v2.36h-1.02V1.7ZM29.57,7.13h1.02v1.02h-1.02v-1.02ZM34.69,1.7h-4.09V.68h4.09v1.02ZM30.6,4.06h4.09v1.02h-4.09v-1.02ZM34.69,9.18h-4.09v-1.02h4.09v1.02ZM35.71,2.73h-1.02v-1.02h1.02v1.02ZM34.69,5.08h1.02v3.07h-1.02v-3.07Z"></path>
+              <path class="cls-1" d="M42.26,6.4h-4.63c.1,1.42.9,2.02,2.01,2.02.9,0,1.29-.46,1.54-1.23l.99.35c-.4,1.06-1.11,1.78-2.55,1.78-1.99,0-3.01-1.31-3.01-3.24,0-1.74,1.14-3.19,2.84-3.19,1.82,0,2.88,1.44,2.82,3.5ZM37.66,5.53h3.54c-.17-1.11-.82-1.73-1.76-1.73-.89,0-1.6.65-1.78,1.73Z"></path>
+              <path class="cls-1" d="M44.13,6.11h-1.02v-3.07h1.02v3.07ZM45.15,6.11v2.05h-1.02v-2.05h1.02ZM45.15,9.18v-1.02h1.02v1.02h-1.02ZM46.18,6.11h1.02v2.05h-1.02v-2.05ZM48.22,3.04v3.07h-1.02v-3.07h1.02Z"></path>
+              <path class="cls-1" d="M54.58,6.4h-4.63c.1,1.42.9,2.02,2.01,2.02.9,0,1.29-.46,1.54-1.23l.99.35c-.4,1.06-1.11,1.78-2.55,1.78-1.99,0-3.01-1.31-3.01-3.24,0-1.74,1.14-3.19,2.84-3.19,1.82,0,2.88,1.44,2.82,3.5ZM49.98,5.53h3.54c-.17-1.11-.82-1.73-1.76-1.73s-1.6.65-1.78,1.73Z"></path>
+              <path class="cls-1" d="M56.52,3.04v2.05h-1.02v-2.05h1.02ZM56.52,6.11v3.07h-1.02v-3.07h1.02ZM56.52,6.11v-1.02h1.02v1.02h-1.02ZM60,3.04v1.02h-1.43v1.02h-1.02v-2.05h2.46ZM61.03,4.06v5.11h-1.02v-5.11h1.02Z"></path>
             </g>
             <g>
-              <path class="cls-1" d="M24.02,3.26h-2.02s-.05,0-.06,0c0,0,0,.03,0,.06v.54s0,.05,0,.06c0,0,.02,0,.06,0h2.02s.05,0,.06,0c0,0,0-.03,0-.06v-.54s0-.05,0-.06-.02,0-.06,0Z"/>
-              <path class="cls-1" d="M26.43,0H0v12.86h3.18l7.43-1v1h2.41l5.59-.99v.99h2.7l6.31-1V0h-1.18ZM.65,6.77V.68h3.39c-.08.4-.16.75-.22,1.07-.06.31-.14.65-.21,1-.08.35-.15.68-.21,1s-.14.67-.22,1.07c.2.05.4.1.6.15.09-.41.16-.78.23-1.11.07-.33.14-.67.22-1.03.08-.36.15-.71.22-1.03.07-.33.15-.7.23-1.11h1.58c.09.41.16.78.23,1.11.07.33.14.67.22,1.03.08.36.15.71.22,1.03.07.33.15.7.23,1.11.2-.05.4-.1.6-.15-.08-.4-.15-.75-.22-1.07s-.14-.65-.21-1c-.08-.35-.15-.68-.21-1s-.14-.67-.22-1.07h3.38v7.24s-.04.07-.13.17c-.08.1-.19.21-.31.34-.13.13-.25.27-.38.4s-.24.24-.33.32c-.09.08-.15.13-.16.13h-2.42c-.13-.2-.25-.38-.34-.53s-.2-.29-.29-.44-.21-.32-.34-.53h-.2c-.13.2-.25.38-.34.53-.1.15-.2.29-.29.44s-.21.32-.34.53H1.97s-.07-.04-.16-.13c-.09-.08-.2-.19-.33-.32s-.26-.26-.38-.4c-.12-.13-.23-.25-.31-.34-.08-.1-.13-.15-.13-.17v-1.16ZM18.31,1.23v2.02h-3.1s-.04,0-.04,0c0,0-.01,0-.02.02,0,0,0,.02,0,.05v.54s0,.04,0,.05c0,0,0,.01.02.02,0,0,.02,0,.04,0h3.1v2.28h-3.1s-.04,0-.04,0c0,0-.01,0-.02.02,0,0,0,.02,0,.05v.54s0,.04,0,.05c0,0,0,.01.02.02,0,0,.02,0,.04,0h3.1v2.4h-7.38V.68h7.38v.55ZM26.96,3.33v.85c-.23.19-.42.35-.57.48s-.34.29-.57.48c.23.19.42.35.57.48s.34.29.57.48v1.8s-.04.07-.13.17c-.08.1-.19.21-.31.34-.12.13-.25.27-.38.4-.13.13-.24.24-.33.32s-.15.13-.16.13h-6.67V.68h6.67s.07.04.16.13.2.19.33.32c.13.13.26.26.38.4.13.13.23.25.31.34.08.1.13.15.13.17v1.29Z"/>
-              <path class="cls-1" d="M24.02,6.02h-2.02s-.05,0-.06,0c0,0,0,.03,0,.06v.54s0,.05,0,.06c0,0,.02,0,.06,0h2.02s.05,0,.06,0,0-.03,0-.06v-.54s0-.05,0-.06c0,0-.02,0-.06,0Z"/>
+              <path class="cls-1" d="M24.02,3.26h-2.02s-.05,0-.06,0c0,0,0,.03,0,.06v.54s0,.05,0,.06c0,0,.02,0,.06,0h2.02s.05,0,.06,0c0,0,0-.03,0-.06v-.54s0-.05,0-.06-.02,0-.06,0Z"></path>
+              <path class="cls-1" d="M26.43,0H0v12.86h3.18l7.43-1v1h2.41l5.59-.99v.99h2.7l6.31-1V0h-1.18ZM.65,6.77V.68h3.39c-.08.4-.16.75-.22,1.07-.06.31-.14.65-.21,1-.08.35-.15.68-.21,1s-.14.67-.22,1.07c.2.05.4.1.6.15.09-.41.16-.78.23-1.11.07-.33.14-.67.22-1.03.08-.36.15-.71.22-1.03.07-.33.15-.7.23-1.11h1.58c.09.41.16.78.23,1.11.07.33.14.67.22,1.03.08.36.15.71.22,1.03.07.33.15.7.23,1.11.2-.05.4-.1.6-.15-.08-.4-.15-.75-.22-1.07s-.14-.65-.21-1c-.08-.35-.15-.68-.21-1s-.14-.67-.22-1.07h3.38v7.24s-.04.07-.13.17c-.08.1-.19.21-.31.34-.13.13-.25.27-.38.4s-.24.24-.33.32c-.09.08-.15.13-.16.13h-2.42c-.13-.2-.25-.38-.34-.53s-.2-.29-.29-.44-.21-.32-.34-.53h-.2c-.13.2-.25.38-.34.53-.1.15-.2.29-.29.44s-.21.32-.34.53H1.97s-.07-.04-.16-.13c-.09-.08-.2-.19-.33-.32s-.26-.26-.38-.4c-.12-.13-.23-.25-.31-.34-.08-.1-.13-.15-.13-.17v-1.16ZM18.31,1.23v2.02h-3.1s-.04,0-.04,0c0,0-.01,0-.02.02,0,0,0,.02,0,.05v.54s0,.04,0,.05c0,0,0,.01.02.02,0,0,.02,0,.04,0h3.1v2.28h-3.1s-.04,0-.04,0c0,0-.01,0-.02.02,0,0,0,.02,0,.05v.54s0,.04,0,.05c0,0,0,.01.02.02,0,0,.02,0,.04,0h3.1v2.4h-7.38V.68h7.38v.55ZM26.96,3.33v.85c-.23.19-.42.35-.57.48s-.34.29-.57.48c.23.19.42.35.57.48s.34.29.57.48v1.8s-.04.07-.13.17c-.08.1-.19.21-.31.34-.12.13-.25.27-.38.4-.13.13-.24.24-.33.32s-.15.13-.16.13h-6.67V.68h6.67s.07.04.16.13.2.19.33.32c.13.13.26.26.38.4.13.13.23.25.31.34.08.1.13.15.13.17v1.29Z"></path>
+              <path class="cls-1" d="M24.02,6.02h-2.02s-.05,0-.06,0c0,0,0,.03,0,.06v.54s0,.05,0,.06c0,0,.02,0,.06,0h2.02s.05,0,.06,0,0-.03,0-.06v-.54s0-.05,0-.06c0,0-.02,0-.06,0Z"></path>
             </g>
           </g>
         </g>
       </svg>
     </div>
-    <p class="footer-brand-on7">On7 es un producto de Lab7 &middot; WEB7</p>
-    <a href="index.html" class="footer-back"><svg viewBox="0 0 24 24" fill="currentColor" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle; margin-right: 6px; transform: scaleX(-1);"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"/><path d="M14 15V7h2v8zm-2 2V5h2v12z"/></svg> Volver a WEB7</a>
+    <p class="footer-brand-on7">On7 es un producto de Lab7 · WEB7</p>
+    <a href="index.html" class="footer-back"><svg viewBox="0 0 24 24" fill="currentColor" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle; margin-right: 6px; transform: scaleX(-1);"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"></path><path d="M14 15V7h2v8zm-2 2V5h2v12z"></path></svg> Volver a WEB7</a>
   </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="chat-widget.js"></script>
   <script>
+    if (typeof applyTranslations === 'function') {
+       applyTranslations(localStorage.getItem('lang') || 'es');
+    }
+
     gsap.registerPlugin(ScrollTrigger);
 
     // Refrescar ScrollTrigger al cargar la página para recalcular posiciones correctas
@@ -2391,5 +2399,6 @@
       navigator.serviceWorker.register('/sw.js').catch(() => {});
     }
   </script>
-</body>
-</html>
+
+
+</body></html>

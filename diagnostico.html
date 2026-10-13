@@ -254,7 +254,8 @@
       .ai-report { padding: 1.5rem; }
     }
   </style>
-<script src="assets/js/tracker.js"></script>
+  <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/tracker.js"></script>
 </head>
 <body>
 
@@ -264,13 +265,24 @@
 
   <nav>
     <a href="index.html"><img src="assets/Logoweb7-verde.svg" alt="WEB7"></a>
-    <a href="index.html">VOLVER AL INICIO</a>
+    <div style="display: flex; align-items: center; gap: 1rem;">
+      <a href="index.html">VOLVER AL INICIO</a>
+      <div class="lang-selector" style="display: flex; gap: 0.5rem; border-left: 1px solid rgba(255,255,255,0.2); padding-left: 1rem;">
+        <a href="#" onclick="changeLang('es'); return false;" style="font-size: 1.2rem; transition: opacity 0.3s; text-decoration: none;" title="Español">🇦🇷</a>
+        <a href="#" onclick="changeLang('pt'); return false;" style="font-size: 1.2rem; transition: opacity 0.3s; text-decoration: none;" title="Português">🇧🇷</a>
+        <a href="#" onclick="changeLang('en'); return false;" style="font-size: 1.2rem; transition: opacity 0.3s; text-decoration: none;" title="English">🇺🇸</a>
+      </div>
+    </div>
   </nav>
 
   <main id="diagnostic-app"></main>
   <div class="progress-bar-container"><div class="progress-bar" id="progress-bar"></div></div>
 
   <script>
+    if (typeof applyTranslations === 'function') {
+       applyTranslations(localStorage.getItem('lang') || 'es');
+    }
+
     // Cursor
     const cursor = document.getElementById("cursor");
     const cursorDot = document.getElementById("cursor-dot");
@@ -417,60 +429,68 @@
       currentStepId = stepId;
       
       let html = `<div class="step-container active">`;
-      html += `<div class="step-counter">[ PASO ${historyStack.length + 1} DE ${totalSteps} ]</div>`;
-      html += `<h2 class="question-title">${step.title}</h2>`;
-      if (step.desc) html += `<p class="question-desc">${step.desc}</p>`;
+      html += `<div class="step-counter">[ <span data-i18n="diag_paso">PASO</span> ${historyStack.length + 1} <span data-i18n="diag_de">DE</span> ${totalSteps} ]</div>`;
+      html += `<h2 class="question-title" data-i18n="diag_${step.id}_title">${step.title}</h2>`;
+      if (step.desc) html += `<p class="question-desc" data-i18n="diag_${step.id}_desc">${step.desc}</p>`;
 
       if (step.options) {
         html += `<div class="options-grid">`;
-        step.options.forEach(opt => {
+        step.options.forEach((opt, idx) => {
+          let extraKey = '';
+          if (step.id === 'q8' && idx === 4) extraKey = '4'; // special case for Q8's option 5
+          else extraKey = idx;
+          
           html += `<button class="option-btn" onclick="handleOptionSelect('${opt.label}', '${opt.next}')">
-            <span class="key">${opt.key}</span> ${opt.label}
+            <span class="key">${opt.key}</span> <span data-i18n="diag_${step.id}_opt${extraKey}">${opt.label}</span>
           </button>`;
         });
         html += `</div>`;
       } else if (step.type === "textarea") {
         html += `
           <div class="input-group">
-            <textarea id="text-input" rows="2" placeholder="${step.placeholder}"></textarea>
+            <textarea id="text-input" rows="2" placeholder="${step.placeholder}" data-i18n-placeholder="diag_${step.id}_ph"></textarea>
           </div>
           <div class="controls">
-            <button class="btn-next" onclick="handleTextSelect('${step.next}')">Continuar ➔</button>
+            <button class="btn-next" onclick="handleTextSelect('${step.next}')"><span data-i18n="diag_btn_next">Continuar</span> ➔</button>
           </div>
         `;
       } else if (step.type === "links") {
         html += `
           <div class="input-group contact-inputs">
-            <input type="text" id="link-web" placeholder="Tu sitio Web actual (Si tenés)">
-            <input type="text" id="link-social" placeholder="Instagram, Facebook o LinkedIn">
-            <input type="text" id="link-maps" placeholder="Link a Google Maps (Opcional)">
+            <input type="text" id="link-web" placeholder="Tu sitio Web actual (Si tenés)" data-i18n-placeholder="diag_ph_web">
+            <input type="text" id="link-social" placeholder="Instagram, Facebook o LinkedIn" data-i18n-placeholder="diag_ph_social">
+            <input type="text" id="link-maps" placeholder="Link a Google Maps (Opcional)" data-i18n-placeholder="diag_ph_maps">
           </div>
           <div class="controls">
-            <button class="btn-next" onclick="handleLinksSelect('${step.next}')">Continuar ➔</button>
+            <button class="btn-next" onclick="handleLinksSelect('${step.next}')"><span data-i18n="diag_btn_next">Continuar</span> ➔</button>
           </div>
         `;
       } else if (step.type === "contact") {
         html += `
           <div class="input-group contact-inputs">
-            <input type="text" id="contact-name" placeholder="Tu Nombre">
-            <input type="email" id="contact-email" placeholder="Tu Email corporativo">
-            <input type="text" id="contact-phone" placeholder="Tu WhatsApp (con código de país)">
+            <input type="text" id="contact-name" placeholder="Tu Nombre" data-i18n-placeholder="diag_ph_name">
+            <input type="email" id="contact-email" placeholder="Tu Email corporativo" data-i18n-placeholder="diag_ph_email">
+            <input type="text" id="contact-phone" placeholder="Tu WhatsApp (con código de país)" data-i18n-placeholder="diag_ph_phone">
           </div>
           <div class="controls">
-            <button class="btn-next" id="btn-submit" onclick="handleSubmit()">Analizar con IA ➔</button>
+            <button class="btn-next" id="btn-submit" onclick="handleSubmit()"><span data-i18n="diag_btn_submit">Analizar con IA</span> ➔</button>
           </div>
         `;
       }
 
       if (historyStack.length > 0) {
         html += `<div class="controls" style="margin-top: 1rem;">
-          <button class="btn-prev" onclick="handleBack()">← Volver</button>
+          <button class="btn-prev" onclick="handleBack()"><span data-i18n="diag_btn_back">← Volver</span></button>
         </div>`;
       }
 
       html += `</div>`;
       app.innerHTML = html;
       updateProgress();
+      
+      if (typeof applyTranslations === 'function') {
+        applyTranslations(localStorage.getItem('lang') || 'es');
+      }
 
       if (step.type === "textarea" || step.type === "contact") {
         setTimeout(() => {
@@ -573,7 +593,7 @@
       progressBar.style.width = "100%";
       app.innerHTML = `
         <div class="step-container active" style="max-width: 800px; width: 100%;">
-          <h2 class="question-title">Procesando datos del negocio...</h2>
+          <h2 class="question-title" data-i18n="diag_loading_title">Procesando datos del negocio...</h2>
           <div class="terminal-loader" id="terminal">
             <div id="terminal-content"></div>
             <div><span class="cursor-blink"></span></div>
@@ -582,14 +602,11 @@
       `;
       
       const lines = [
-        "> INICIANDO MOTOR DE AUDITORÍA WEB7...",
-        "> RECOPILANDO RESPUESTAS DEL NEGOCIO...",
-        "> ANALIZANDO CUELLOS DE BOTELLA...",
-        "> EVALUANDO ESTRATEGIA DE COMPETENCIA...",
-        "> CONECTANDO CON CLÚSTER DE IA (LLAMA-3)...",
-        "> GENERANDO DIAGNÓSTICO ESTRATÉGICO...",
-        "> REDACTANDO PLAN DE ACCIÓN...",
-        "> FINALIZANDO REPORTE..."
+        '<span data-i18n="diag_loading_t1">> INICIANDO MOTOR DE AUDITORÍA WEB7...</span>',
+        '<span data-i18n="diag_loading_t2">> RECOPILANDO RESPUESTAS DEL NEGOCIO...</span>',
+        '<span data-i18n="diag_loading_t3">> ANALIZANDO CUELLOS DE BOTELLA...</span>',
+        '<span data-i18n="diag_loading_t4">> EVALUANDO ESTRATEGIA DE COMPETENCIA...</span>',
+        '<span data-i18n="diag_loading_t5">> GENERANDO REPORTE DE 3 PASOS...</span>'
       ];
       
       const termContent = document.getElementById('terminal-content');
@@ -598,8 +615,11 @@
         if (i < lines.length) {
           const line = document.createElement('div');
           line.className = 'terminal-line';
-          line.innerText = lines[i];
+          line.innerHTML = lines[i];
           termContent.appendChild(line);
+          if (typeof applyTranslations === 'function') {
+            applyTranslations(localStorage.getItem('lang') || 'es');
+          }
           i++;
         } else {
           clearInterval(interval);

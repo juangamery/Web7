@@ -74,6 +74,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Doto:wght@400;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="assets/js/i18n.js"></script>
   <style>
     @font-face {
       font-family: 'Alpha Lyrae';
@@ -1212,12 +1213,17 @@
   <!-- NAV -->
   <nav>
     <div class="logo-outer"><a href="index.html" class="logo" aria-label="WEB7"><img src="assets/Logoweb7-verde.svg" alt="WEB7" style="height: 52px;"></a></div>
-    <ul class="nav-links">
-      <li><a href="diagnostico.html" class="nav-btn-diag" data-cursor-hover>Diagnóstico Gratuito</a></li>
-      <li><a href="#metodo" data-cursor-hover>Método</a></li>
-      <li><a href="#proyectos" data-cursor-hover>Proyectos</a></li>
+    <ul class="nav-links" style="align-items: center;">
+      <li><a href="diagnostico.html" class="nav-btn-diag" data-cursor-hover data-i18n="nav_diag">Diagnóstico Gratuito</a></li>
+      <li><a href="#metodo" data-cursor-hover data-i18n="nav_metodo">Método</a></li>
+      <li><a href="#proyectos" data-cursor-hover data-i18n="nav_proyectos">Proyectos</a></li>
       <li><a href="#lab7" data-cursor-hover>ON7</a></li>
-      <li><a href="contacto.html" data-cursor-hover>Contacto</a></li>
+      <li><a href="contacto.html" data-cursor-hover data-i18n="nav_contacto">Contacto</a></li>
+      <li class="lang-selector" style="display: flex; gap: 0.5rem; margin-left: 1rem; border-left: 1px solid rgba(255,255,255,0.2); padding-left: 1rem;">
+        <a href="#" onclick="changeLang('es'); return false;" style="font-size: 1.2rem; transition: opacity 0.3s;" title="Español">🇦🇷</a>
+        <a href="#" onclick="changeLang('pt'); return false;" style="font-size: 1.2rem; transition: opacity 0.3s;" title="Português">🇧🇷</a>
+        <a href="#" onclick="changeLang('en'); return false;" style="font-size: 1.2rem; transition: opacity 0.3s;" title="English">🇺🇸</a>
+      </li>
     </ul>
   </nav>
 
@@ -1231,14 +1237,14 @@
     
 
     <h1>
-      <div class="line" data-split-chars>Tenés un buen</div>
-      <div class="line" data-split-chars>negocio<span class="accent-dot">.</span></div>
+      <div class="line" data-split-chars data-i18n="hero_line1">Tenés un buen</div>
+      <div class="line" data-split-chars data-i18n="hero_line2">negocio<span class="accent-dot">.</span></div>
     </h1>
-    <p class="hero-sub" data-split-words>El problema es que nadie lo sabe, o tenés que explicarlo todo el tiempo.</p>
-    <div class="hero-reveal reveal-text" data-reveal-text data-accent="web seven Web clara en 7 días. Atención automatizada desde el día uno.">web seven construye tu presencia digital, la ordena y la hace funcionar sola. Web clara en 7 días. Atención automatizada desde el día uno.</div>
+    <p class="hero-sub" data-split-words data-i18n="hero_sub">El problema es que nadie lo sabe, o tenés que explicarlo todo el tiempo.</p>
+    <div class="hero-reveal reveal-text" data-reveal-text data-i18n="hero_reveal" data-accent="web seven Web clara en 7 días. Atención automatizada desde el día uno.">web seven construye tu presencia digital, la ordena y la hace funcionar sola. Web clara en 7 días. Atención automatizada desde el día uno.</div>
     <div class="hero-ctas" style="position: relative; z-index: 50; pointer-events: auto;">
-      <a href="contacto.html" class="btn btn-primary magnetic-btn" data-magnetic>Resolver esto <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" fill="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-left: 4px;"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"/><path d="M14 15V7h2v8zm-2 2V5h2v12z"/></svg></a>
-      <a href="#metodo" class="btn btn-secondary">Ver cómo trabajamos <span>↓</span></a>
+      <a href="contacto.html" class="btn btn-primary magnetic-btn" data-magnetic data-i18n="btn_resolver">Resolver esto <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" fill="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-left: 4px;"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"/><path d="M14 15V7h2v8zm-2 2V5h2v12z"/></svg></a>
+      <a href="#metodo" class="btn btn-secondary" data-i18n="btn_ver_como">Ver cómo trabajamos <span>↓</span></a>
     </div>
     <div class="scroll-indicator">
       <span>Scroll</span>
@@ -1248,11 +1254,11 @@
 
   <!-- BLOCK 02: DIFERENCIAL (scroll-reveal text) -->
   <section class="diferencial">
-    <span class="label">Por qué WEB7</span>
-    <h2 class="split-heading" data-split-chars>No arrancamos preguntando qué colores te gustan.</h2>
-    <div class="reveal-text" data-reveal-text>Arrancamos entendiendo: Cómo funciona tu negocio. Quién es tu cliente, qué necesita saber antes de comprarte, qué lo frena. Después de más de 30 proyectos reales con pymes, comercios y profesionales, aprendimos que el problema casi nunca es el diseño.</div>
-    <div class="reveal-text" data-reveal-text data-accent="El problema es la falta de claridad." style="margin-top: 2rem;">El problema es la falta de claridad. Cuando eso se resuelve, todo lo demás se construye rápido y dura.</div>
-    <div class="highlight-phrase">Primero claridad. Después ejecución.</div>
+    <span class="label" data-i18n="label_porque">Por qué WEB7</span>
+    <h2 class="split-heading" data-split-chars data-i18n="dif_h2">No arrancamos preguntando qué colores te gustan.</h2>
+    <div class="reveal-text" data-reveal-text data-i18n="dif_p1">Arrancamos entendiendo: Cómo funciona tu negocio. Quién es tu cliente, qué necesita saber antes de comprarte, qué lo frena. Después de más de 30 proyectos reales con pymes, comercios y profesionales, aprendimos que el problema casi nunca es el diseño.</div>
+    <div class="reveal-text" data-reveal-text data-i18n="dif_p2" data-accent="El problema es la falta de claridad." style="margin-top: 2rem;">El problema es la falta de claridad. Cuando eso se resuelve, todo lo demás se construye rápido y dura.</div>
+    <div class="highlight-phrase" data-i18n="dif_highlight">Primero claridad. Después ejecución.</div>
     <!-- Pixel decorations -->
     <div class="pixel-deco" style="top: 8%; right: 6%; width: 131px; opacity: 0;" data-pixel="section">
       <img src="assets/Group 1321314665.svg" alt="" loading="lazy">
@@ -1271,9 +1277,9 @@
     <!-- BLOCK 03: MÉTODO 7 -->
     <div class="metodo-intro slide-pin" id="metodo">
       <div class="content-wrapper"><div class="content">
-        <span class="label">Cómo trabajamos</span>
-        <h2 class="split-heading" data-split-chars>El Método 7. Tres etapas. Resultados concretos.</h2>
-        <p class="intro-text">Separamos las fases para que cada etapa tenga foco, entregable y tiempo definido. Sin procesos eternos. Sin mezclar todo al mismo tiempo.</p>
+        <span class="label" data-i18n="label_metodo">Cómo trabajamos</span>
+        <h2 class="split-heading" data-split-chars data-i18n="metodo_h2">El Método 7. Tres etapas. Resultados concretos.</h2>
+        <p class="intro-text" data-i18n="metodo_intro">Separamos las fases para que cada etapa tenga foco, entregable y tiempo definido. Sin procesos eternos. Sin mezclar todo al mismo tiempo.</p>
       </div></div>
       <!-- Pixel decorations -->
       <div class="pixel-deco" style="bottom: 12%; right: 8%; width: 67px; opacity: 0;" data-pixel="section">
@@ -1288,10 +1294,10 @@
       <div class="content-wrapper"><div class="content">
         <div class="sprint-number">01</div>
         <div class="sprint-card">
-          <h3>Contenido</h3>
-          <span class="duration">7 días</span>
-          <p>Entendemos tu negocio. Ordenamos tu propuesta. Definimos qué decir, cómo decirlo y para quién.</p>
-          <div class="entregable">→ Entregable: Tu negocio, claro en palabras.</div>
+          <h3 data-i18n="s1_title">Contenido</h3>
+          <span class="duration" data-i18n="s1_dur">7 días</span>
+          <p data-i18n="s1_p">Entendemos tu negocio. Ordenamos tu propuesta. Definimos qué decir, cómo decirlo y para quién.</p>
+          <div class="entregable" data-i18n="s1_del">→ Entregable: Tu negocio, claro en palabras.</div>
         </div>
         <!-- Pixel decos -->
         <div class="pixel-deco" style="bottom: 8%; right: 6%; width: 131px; opacity: 0;" data-pixel="section">
@@ -1310,10 +1316,10 @@
       <div class="content-wrapper"><div class="content">
         <div class="sprint-number">02</div>
         <div class="sprint-card">
-          <h3>Desarrollo</h3>
-          <span class="duration">7 días</span>
-          <p>Construimos la web con el contenido ya definido. Estructura clara, diseño funcional, online y operativa.</p>
-          <div class="entregable">→ Entregable: Tu web, online y funcionando.</div>
+          <h3 data-i18n="s2_title">Desarrollo</h3>
+          <span class="duration" data-i18n="s2_dur">7 días</span>
+          <p data-i18n="s2_p">Construimos la web con el contenido ya definido. Estructura clara, diseño funcional, online y operativa.</p>
+          <div class="entregable" data-i18n="s2_del">→ Entregable: Tu web, online y funcionando.</div>
         </div>
         <!-- Pixel decos -->
         <div class="pixel-deco" style="bottom: 10%; right: 8%; width: 98px; opacity: 0;" data-pixel="section">
@@ -1356,42 +1362,42 @@
     <!-- WebGL Dither Background -->
     <canvas id="dither-bg" style="position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: 0.22;"></canvas>
 
-    <span class="label">Qué construimos</span>
-    <h2 class="split-heading" data-split-chars>De landing pages a ecommerce. Lo que tu negocio necesita.</h2>
-    <p class="intro-text">Cada proyecto es distinto. Trabajamos con todo tipo de sitios y adaptamos el proceso según lo que necesitás construir.</p>
+    <span class="label" data-i18n="label_construimos">Qué construimos</span>
+    <h2 class="split-heading" data-split-chars data-i18n="const_h2">De landing pages a ecommerce. Lo que tu negocio necesita.</h2>
+    <p class="intro-text" data-i18n="const_intro">Cada proyecto es distinto. Trabajamos con todo tipo de sitios y adaptamos el proceso según lo que necesitás construir.</p>
 
     <div class="construimos-grid">
       <div class="construimos-card">
         <span class="type-tag type-tag--landing">Landing</span>
-        <h3>Landing page</h3>
-        <p>Presencia clara y directa para un producto, servicio o evento. El caso ideal del Método 7.</p>
-        <div class="ideal"><strong>Ideal para:</strong> lanzamientos, campañas, eventos, profesionales</div>
+        <h3 data-i18n="card1_title">Landing page</h3>
+        <p data-i18n="card1_p">Presencia clara y directa para un producto, servicio o evento. El caso ideal del Método 7.</p>
+        <div class="ideal" data-i18n="card1_ideal"><strong>Ideal para:</strong> lanzamientos, campañas, eventos, profesionales</div>
       </div>
       <div class="construimos-card">
         <span class="type-tag type-tag--profesional">Profesional</span>
-        <h3>Web de profesional</h3>
-        <p>Portfolio, servicios y contacto para profesionales independientes. Clara, personal y que comunica autoridad.</p>
-        <div class="ideal"><strong>Ideal para:</strong> consultores, médicos, abogados, arquitectos</div>
+        <h3 data-i18n="card2_title">Web de profesional</h3>
+        <p data-i18n="card2_p">Portfolio, servicios y contacto para profesionales independientes. Clara, personal y que comunica autoridad.</p>
+        <div class="ideal" data-i18n="card2_ideal"><strong>Ideal para:</strong> consultores, médicos, abogados, arquitectos</div>
       </div>
       <div class="construimos-card">
         <span class="type-tag type-tag--institucional">Institucional</span>
-        <h3>Web institucional</h3>
-        <p>Presencia completa para empresas y negocios establecidos. Múltiples secciones, identidad trabajada, contenido ordenado.</p>
-        <div class="ideal"><strong>Ideal para:</strong> pymes, comercios, distribuidoras, hoteles</div>
+        <h3 data-i18n="card3_title">Web institucional</h3>
+        <p data-i18n="card3_p">Presencia completa para empresas y negocios establecidos. Múltiples secciones, identidad trabajada, contenido ordenado.</p>
+        <div class="ideal" data-i18n="card3_ideal"><strong>Ideal para:</strong> pymes, comercios, distribuidoras, hoteles</div>
       </div>
       <div class="construimos-card">
         <span class="type-tag type-tag--ecommerce">Ecommerce</span>
-        <h3>Ecommerce</h3>
-        <p>Tienda online con catálogo, carrito y medios de pago. El proceso varía según volumen y complejidad.</p>
-        <div class="ideal"><strong>Ideal para:</strong> productos propios, marcas, distribución online</div>
+        <h3 data-i18n="card4_title">Ecommerce</h3>
+        <p data-i18n="card4_p">Tienda online con catálogo, carrito y medios de pago. El proceso varía según volumen y complejidad.</p>
+        <div class="ideal" data-i18n="card4_ideal"><strong>Ideal para:</strong> productos propios, marcas, distribución online</div>
       </div>
     </div>
 
     <p class="footer-phrase scramble-inline" id="construimosScramble" data-phrases='["El Método 7 define cómo trabajamos. El tipo de proyecto define cuánto lleva.","Primero claridad. Después ejecución. Siempre resultados."]'>El Método 7 define cómo trabajamos. El tipo de proyecto define cuánto lleva.</p>
     
     <div style="text-align: center; margin-top: 5rem;">
-      <h3 style="font-family: var(--font-display); font-size: clamp(1.2rem, 3vw, 1.8rem); margin-bottom: 1.5rem; font-weight: 700;">¿Listo para dar el primer paso?</h3>
-      <a href="diagnostico.html" class="btn btn-primary magnetic-btn" data-magnetic style="font-size: 1.1rem; padding: 1.2rem 3rem;">HACER DIAGNÓSTICO GRATUITO</a>
+      <h3 style="font-family: var(--font-display); font-size: clamp(1.2rem, 3vw, 1.8rem); margin-bottom: 1.5rem; font-weight: 700;" data-i18n="const_cta_title">¿Listo para dar el primer paso?</h3>
+      <a href="diagnostico.html" class="btn btn-primary magnetic-btn" data-magnetic style="font-size: 1.1rem; padding: 1.2rem 3rem;" data-i18n="const_cta_btn">HACER DIAGNÓSTICO GRATUITO</a>
     </div>
   </section>
 
@@ -1406,9 +1412,9 @@
     </div>
 
     <div class="section-header">
-      <span class="label">Proyectos</span>
-      <h2 class="split-heading" data-split-chars>+30 negocios. +10 sectores. Acá te mostramos algunos.</h2>
-      <p class="subtext">Vinotecas, hoteles, distribuidoras, productores, profesionales y eventos. Negocios reales que necesitaban presencia clara y la tienen.</p>
+      <span class="label" data-i18n="label_proyectos">Proyectos</span>
+      <h2 class="split-heading" data-split-chars data-i18n="proyectos_h2">+30 negocios. +10 sectores. Acá te mostramos algunos.</h2>
+      <p class="subtext" data-i18n="proyectos_sub">Vinotecas, hoteles, distribuidoras, productores, profesionales y eventos. Negocios reales que necesitaban presencia clara y la tienen.</p>
     </div>
     <div class="proyecto-grid">
       <a href="https://www.odaalvino.com.br/" target="_blank" rel="noopener" class="proyecto-card" data-cursor-portfolio data-tilt>
@@ -1420,7 +1426,7 @@
             <span class="type-tag type-tag--landing">Landing</span>
           </div>
           <div class="tags">Eventos · Vinos</div>
-          <p>El festival de vinos más importante de la Triple Frontera. Landing para la 10ª edición en Iguazú — entradas, bodegas y experiencias.</p>
+          <p data-i18n="proyectos_oda1_p">El festival de vinos más importante de la Triple Frontera. Landing para la 10ª edición en Iguazú — entradas, bodegas y experiencias.</p>
           <div class="card-credits">
             <div class="credit-item">• Diseño UI UX - Federico Gunther / Significa</div>
           </div>
@@ -1435,7 +1441,7 @@
             <span class="type-tag type-tag--institucional">Institucional</span>
           </div>
           <div class="tags">Gastronomía · Vinos</div>
-          <p>Una propuesta de alta gama que ahora se entiende antes de entrar al local.</p>
+          <p data-i18n="proyectos_oda2_p">Una propuesta de alta gama que ahora se entiende antes de entrar al local.</p>
           <div class="card-credits">
             <div class="credit-item">• Diseño UI UX - Federico Gunther / Significa</div>
           </div>
@@ -1450,7 +1456,7 @@
             <span class="type-tag type-tag--institucional">Institucional</span>
           </div>
           <div class="tags">Hotelería · Turismo</div>
-          <p>Un hotel de selva que se comunica como lo que es.</p>
+          <p data-i18n="proyectos_yvy_p">Un hotel de selva que se comunica como lo que es.</p>
           <div class="card-credits">
             <div class="credit-item">• Diseño UI UX - Federico Gunther / Satélite agencia</div>
           </div>
@@ -1465,7 +1471,7 @@
             <span class="type-tag type-tag--institucional">Institucional</span>
           </div>
           <div class="tags">Distribución · Alimentos</div>
-          <p>Una distribuidora de marcas líderes con presencia digital a su altura.</p>
+          <p data-i18n="proyectos_total_p">Una distribuidora de marcas líderes con presencia digital a su altura.</p>
           <div class="card-credits">
             <div class="credit-item">• Diseño UX - Federico Gunther / Satélite agencia</div>
             <div class="credit-item">• Diseño UI - Luciano Hermida / Satélite agencia</div>
@@ -1481,7 +1487,7 @@
             <span class="type-tag type-tag--ecommerce">Ecommerce</span>
           </div>
           <div class="tags">Producto · Yerba mate</div>
-          <p>Identidad y venta online para una yerba con origen e historia propios.</p>
+          <p data-i18n="proyectos_primicia_p">Identidad y venta online para una yerba con origen e historia propios.</p>
           <div class="card-credits">
             <div class="credit-item">• Diseño UI UX - Luciano Hermida / Federico Gunther / Satélite agencia</div>
           </div>
@@ -1496,7 +1502,7 @@
             <span class="type-tag type-tag--institucional">Institucional</span>
           </div>
           <div class="tags">Industria · Packaging</div>
-          <p>Soluciones industriales de packaging y envasado con catálogo técnico orientado al sector B2B.</p>
+          <p data-i18n="proyectos_enva_p">Soluciones industriales de packaging y envasado con catálogo técnico orientado al sector B2B.</p>
           <div class="card-credits">
             <div class="credit-item">• Diseño UI UX - Luciano Hermida / Satélite agencia</div>
           </div>
@@ -1511,14 +1517,14 @@
             <span class="type-tag type-tag--institucional">Institucional</span>
           </div>
           <div class="tags">Agro · Vinos</div>
-          <p>Una finca con producto propio que por fin tiene la web que se merece.</p>
+          <p data-i18n="proyectos_finca_p">Una finca con producto propio que por fin tiene la web que se merece.</p>
         </div>
       </a>
       <a href="proyectos.html" class="proyecto-card card-accent-info" data-cursor-portfolio data-tilt>
         <div class="reveal-overlay"></div>
         <div class="card-body">
-          <p>También trabajamos con: Don Basilio · Vipwork · Abelardo Cuffia · Los Lapachos · La Ruta del Té · Adolfo Sartori</p>
-          <div class="btn-black">Ver todos los proyectos <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" fill="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-left: 4px;"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"/><path d="M14 15V7h2v8zm-2 2V5h2v12z"/></svg></div>
+          <p data-i18n="proyectos_all_p">También trabajamos con: Don Basilio · Vipwork · Abelardo Cuffia · Los Lapachos · La Ruta del Té · Adolfo Sartori</p>
+          <div class="btn-black"><span data-i18n="btn_all_projects">Ver todos los proyectos</span> <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" fill="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-left: 4px;"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"/><path d="M14 15V7h2v8zm-2 2V5h2v12z"/></svg></div>
         </div>
       </a>
     </div>
@@ -1555,17 +1561,17 @@
       <img src="assets/Group 1321314648.svg" alt="" loading="lazy">
     </div>
 
-    <span class="label">Lab7 — Lo que sigue</span>
-    <h2 class="split-heading" data-split-chars>Tu web funciona. Ahora necesitás que trabaje sola.</h2>
+    <span class="label" data-i18n="label_lab7">Lab7 — Lo que sigue</span>
+    <h2 class="split-heading" data-split-chars data-i18n="lab7_h2">Tu web funciona. Ahora necesitás que trabaje sola.</h2>
     <div class="body-text">
-      <p>Tener presencia digital es el primer paso. El siguiente es que tu negocio responda, atienda y convierta sin depender de vos.</p>
-      <p>Lab7 es donde construimos eso: agentes inteligentes, automatizaciones reales y herramientas que resuelven lo que hoy hacés a mano.</p>
+      <p data-i18n="lab7_p1">Tener presencia digital es el primer paso. El siguiente es que tu negocio responda, atienda y convierta sin depender de vos.</p>
+      <p data-i18n="lab7_p2">Lab7 es donde construimos eso: agentes inteligentes, automatizaciones reales y herramientas que resuelven lo que hoy hacés a mano.</p>
     </div>
 
     <div class="on7-card" data-tilt>
-      <div class="sub-label"><span class="pulse-dot"></span> Primer producto</div>
-      <h3 style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;"><img src="assets/ON7logo.svg" alt="ON7" style="height: 1.2em; transform: translateY(-2px);"> — Tu negocio, siempre encendido.</h3>
-      <p>Cada mensaje sin respuesta es un cliente que se va. On7 atiende por WhatsApp, web y email cuando vos no podés. Responde, califica, agenda. Sin intervención manual.</p>
+      <div class="sub-label"><span class="pulse-dot"></span> <span data-i18n="lab7_sublabel">Primer producto</span></div>
+      <h3 style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;"><img src="assets/ON7logo.svg" alt="ON7" style="height: 1.2em; transform: translateY(-2px);"> <span data-i18n="lab7_on7_title">— Tu negocio, siempre encendido.</span></h3>
+      <p data-i18n="lab7_on7_p">Cada mensaje sin respuesta es un cliente que se va. On7 atiende por WhatsApp, web y email cuando vos no podés. Responde, califica, agenda. Sin intervención manual.</p>
       <div class="on7-tags">
         <span>WhatsApp</span>
         <span>Chat web</span>
@@ -1574,10 +1580,10 @@
         <span>Automatización</span>
       </div>
       <div class="on7-cta">
-        <a href="on7.html" class="btn btn-secondary">Conocer On7 <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" fill="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-left: 4px;"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"/><path d="M14 15V7h2v8zm-2 2V5h2v12z"/></svg></a>
+        <a href="on7.html" class="btn btn-secondary"><span data-i18n="btn_on7">Conocer On7</span> <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" fill="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-left: 4px;"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"/><path d="M14 15V7h2v8zm-2 2V5h2v12z"/></svg></a>
       </div>
     </div>
-    <p class="lab7-status">Lab7 está en construcción activa. On7 es el primer producto disponible.</p>
+    <p class="lab7-status" data-i18n="lab7_status">Lab7 está en construcción activa. On7 es el primer producto disponible.</p>
   </section>
 
   <!-- BLOCK 06: HERRAMIENTAS -->
@@ -1590,61 +1596,61 @@
       <img src="assets/Group 1321314664.svg" alt="" loading="lazy">
     </div>
 
-    <span class="label">Herramientas · Open source</span>
-    <h2 class="split-heading" data-split-chars>Lo que construimos, lo compartimos.</h2>
-    <p class="subtext">Utilidades propias. Código nuestro. Uso libre, sin registro.</p>
+    <span class="label" data-i18n="label_herramientas">Herramientas · Open source</span>
+    <h2 class="split-heading" data-split-chars data-i18n="herr_h2">Lo que construimos, lo compartimos.</h2>
+    <p class="subtext" data-i18n="herr_sub">Utilidades propias. Código nuestro. Uso libre, sin registro.</p>
     <div class="tools-grid">
       <div class="tool-card" data-tilt>
         <h3>Pixel Studio</h3>
-        <p>Editor de imágenes con efectos visuales únicos. Dithering, pixelado, glitch y más. Directo desde el navegador.</p>
-        <a href="https://pixelator.cf-gunther.workers.dev/" target="_blank" rel="noopener" class="tool-link">Abrir herramienta →</a>
+        <p data-i18n="herr_px_p">Editor de imágenes con efectos visuales únicos. Dithering, pixelado, glitch y más. Directo desde el navegador.</p>
+        <a href="https://pixelator.cf-gunther.workers.dev/" target="_blank" rel="noopener" class="tool-link" data-i18n="btn_abrir_herr">Abrir herramienta →</a>
       </div>
       <div class="tool-card" data-tilt>
         <h3>QR Generator</h3>
-        <p>Generá códigos QR para cualquier URL o texto en segundos. Descargá la imagen lista para usar.</p>
-        <a href="https://qr-web7.cf-gunther.workers.dev/" target="_blank" rel="noopener" class="tool-link">Abrir herramienta →</a>
+        <p data-i18n="herr_qr_p">Generá códigos QR para cualquier URL o texto en segundos. Descargá la imagen lista para usar.</p>
+        <a href="https://qr-web7.cf-gunther.workers.dev/" target="_blank" rel="noopener" class="tool-link" data-i18n="btn_abrir_herr">Abrir herramienta →</a>
       </div>
       <div class="tool-card" data-tilt>
         <h3>Sorteos</h3>
-        <p>Cargá tu lista de participantes y sorteá al instante. Ideal para concursos y dinámicas en vivo.</p>
-        <a href="https://sorteosweb7.cf-gunther.workers.dev/" target="_blank" rel="noopener" class="tool-link">Abrir herramienta →</a>
+        <p data-i18n="herr_sorteos_p">Cargá tu lista de participantes y sorteá al instante. Ideal para concursos y dinámicas en vivo.</p>
+        <a href="https://sorteosweb7.cf-gunther.workers.dev/" target="_blank" rel="noopener" class="tool-link" data-i18n="btn_abrir_herr">Abrir herramienta →</a>
       </div>
     </div>
   </section>
 
   <!-- BLOCK FAQ -->
   <section class="faq-section" id="faq">
-    <span class="label" style="text-align: center; color: var(--accent); display: block; margin-bottom: 1rem;">Dudas comunes</span>
-    <h2>Preguntas Frecuentes</h2>
+    <span class="label" style="text-align: center; color: var(--accent); display: block; margin-bottom: 1rem;" data-i18n="label_faq">Dudas comunes</span>
+    <h2 data-i18n="faq_h2">Preguntas Frecuentes</h2>
     <div class="faq-list">
       <div class="faq-item">
-        <div class="faq-question">¿Cuánto tiempo tardan en desarrollar un sitio web? <span class="faq-icon">+</span></div>
+        <div class="faq-question"><span data-i18n="faq_q1">¿Cuánto tiempo tardan en desarrollar un sitio web?</span> <span class="faq-icon">+</span></div>
         <div class="faq-answer">
-          <div class="faq-answer-inner">Nuestro Método 7 divide el trabajo en 7 sprints ágiles. Esto nos permite diseñar, programar y lanzar tu proyecto en tiempos récord sin sacrificar calidad ni rendimiento.</div>
+          <div class="faq-answer-inner" data-i18n="faq_a1">Nuestro Método 7 divide el trabajo en 7 sprints ágiles. Esto nos permite diseñar, programar y lanzar tu proyecto en tiempos récord sin sacrificar calidad ni rendimiento.</div>
         </div>
       </div>
       <div class="faq-item">
-        <div class="faq-question">¿Qué tipos de proyectos desarrollan? <span class="faq-icon">+</span></div>
+        <div class="faq-question"><span data-i18n="faq_q2">¿Qué tipos de proyectos desarrollan?</span> <span class="faq-icon">+</span></div>
         <div class="faq-answer">
-          <div class="faq-answer-inner">Construimos desde landings y sitios institucionales hasta plataformas de e-commerce complejas. Trabajamos con más de 10 sectores, incluyendo gastronomía, hotelería, salud y servicios profesionales.</div>
+          <div class="faq-answer-inner" data-i18n="faq_a2">Construimos desde landings y sitios institucionales hasta plataformas de e-commerce complejas. Trabajamos con más de 10 sectores, incluyendo gastronomía, hotelería, salud y servicios profesionales.</div>
         </div>
       </div>
       <div class="faq-item">
-        <div class="faq-question">¿Qué es On7 y cómo funciona? <span class="faq-icon">+</span></div>
+        <div class="faq-question"><span data-i18n="faq_q3">¿Qué es On7 y cómo funciona?</span> <span class="faq-icon">+</span></div>
         <div class="faq-answer">
-          <div class="faq-answer-inner">On7 es nuestro agente de Inteligencia Artificial diseñado para atender a tus clientes 24/7 por WhatsApp, web y email. Responde consultas, califica leads y agenda reuniones automáticamente.</div>
+          <div class="faq-answer-inner" data-i18n="faq_a3">On7 es nuestro agente de Inteligencia Artificial diseñado para atender a tus clientes 24/7 por WhatsApp, web y email. Responde consultas, califica leads y agenda reuniones automáticamente.</div>
         </div>
       </div>
       <div class="faq-item">
-        <div class="faq-question">¿Incluyen optimización SEO en los desarrollos? <span class="faq-icon">+</span></div>
+        <div class="faq-question"><span data-i18n="faq_q4">¿Incluyen optimización SEO en los desarrollos?</span> <span class="faq-icon">+</span></div>
         <div class="faq-answer">
-          <div class="faq-answer-inner">Sí, todos nuestros sitios nacen con una estructura técnica optimizada, SEO on-page básico, velocidad de carga extrema y preparativos GEO (para motores basados en IA).</div>
+          <div class="faq-answer-inner" data-i18n="faq_a4">Sí, todos nuestros sitios nacen con una estructura técnica optimizada, SEO on-page básico, velocidad de carga extrema y preparativos GEO (para motores basados en IA).</div>
         </div>
       </div>
       <div class="faq-item">
-        <div class="faq-question">¿Qué necesito para empezar a trabajar con ustedes? <span class="faq-icon">+</span></div>
+        <div class="faq-question"><span data-i18n="faq_q5">¿Qué necesito para empezar a trabajar con ustedes?</span> <span class="faq-icon">+</span></div>
         <div class="faq-answer">
-          <div class="faq-answer-inner">Solo necesitamos tener una charla para entender tu negocio. Completá el formulario de contacto o escribinos por WhatsApp y te respondemos en menos de 24 horas con los próximos pasos.</div>
+          <div class="faq-answer-inner" data-i18n="faq_a5">Solo necesitamos tener una charla para entender tu negocio. Completá el formulario de contacto o escribinos por WhatsApp y te respondemos en menos de 24 horas con los próximos pasos.</div>
         </div>
       </div>
     </div>
@@ -1666,20 +1672,20 @@
     <!-- Pixel trail interactive background -->
     <div class="pixel-trail-container gooey" id="pixelTrail"></div>
 
-    <h2>Cuando tu negocio se comunica solo, vos podés hacer otra cosa.</h2>
-    <p>El primer paso es simple: contanos tu proyecto. Nosotros nos encargamos del resto.</p>
+    <h2 data-i18n="cierre_h2">Cuando tu negocio se comunica solo, vos podés hacer otra cosa.</h2>
+    <p data-i18n="cierre_p">El primer paso es simple: contanos tu proyecto. Nosotros nos encargamos del resto.</p>
 
     <!-- TARJETA DIAGNÓSTICO FREE -->
     <div style="background: rgba(223, 254, 2, 0.05); border: 1px solid var(--accent); border-radius: 8px; padding: 2.5rem; margin: 3rem auto; max-width: 650px; text-align: left; display: flex; flex-direction: column; gap: 1rem; position: relative; overflow: hidden; z-index: 2;">
       <div style="position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--accent);"></div>
-      <h3 style="font-family: var(--font-display); font-size: 1.5rem; color: var(--accent); margin: 0; text-transform: uppercase;">Diagnóstico Gratuito 100% Online</h3>
-      <p style="font-size: 1.1rem; color: var(--text); font-weight: 300; margin: 0; line-height: 1.6;">¿No sabés exactamente por dónde arrancar o qué pedirnos? Completá nuestro diagnóstico y nosotros evaluamos tu web o marca sin costo.</p>
-      <a href="diagnostico.html" class="btn btn-primary" style="align-self: flex-start; margin-top: 1rem; padding: 1rem 2rem;">INICIAR DIAGNÓSTICO AHORA</a>
+      <h3 style="font-family: var(--font-display); font-size: 1.5rem; color: var(--accent); margin: 0; text-transform: uppercase;" data-i18n="cierre_diag_h3">Diagnóstico Gratuito 100% Online</h3>
+      <p style="font-size: 1.1rem; color: var(--text); font-weight: 300; margin: 0; line-height: 1.6;" data-i18n="cierre_diag_p">¿No sabés exactamente por dónde arrancar o qué pedirnos? Completá nuestro diagnóstico y nosotros evaluamos tu web o marca sin costo.</p>
+      <a href="diagnostico.html" class="btn btn-primary" style="align-self: flex-start; margin-top: 1rem; padding: 1rem 2rem;" data-i18n="btn_iniciar_diag">INICIAR DIAGNÓSTICO AHORA</a>
     </div>
 
     <div class="cta-group" style="margin-top: 3rem;">
-      <a href="contacto.html" class="btn btn-secondary magnetic-btn" data-magnetic>Formulario Tradicional <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" fill="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-left: 4px;"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"/><path d="M14 15V7h2v8zm-2 2V5h2v12z"/></svg></a>
-      <a href="contacto.html" class="btn btn-secondary">WhatsApp Directo <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" fill="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-left: 4px;"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"/><path d="M14 15V7h2v8zm-2 2V5h2v12z"/></svg></a>
+      <a href="contacto.html" class="btn btn-secondary magnetic-btn" data-magnetic><span data-i18n="btn_form_trad">Formulario Tradicional</span> <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" fill="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-left: 4px;"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"/><path d="M14 15V7h2v8zm-2 2V5h2v12z"/></svg></a>
+      <a href="contacto.html" class="btn btn-secondary"><span data-i18n="btn_wp_direct">WhatsApp Directo</span> <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" fill="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-left: 4px;"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"/><path d="M14 15V7h2v8zm-2 2V5h2v12z"/></svg></a>
     </div>
   </section>
 
@@ -1707,15 +1713,15 @@
 
     <div class="footer-top">
       <div class="footer-brand">
-        <p class="tagline">Desarrollo web · Automatizaciones · Lab7</p>
+        <p class="tagline" data-i18n="footer_tagline">Desarrollo web · Automatizaciones · Lab7</p>
       </div>
       <div class="footer-links">
-        <a href="#metodo">Método 7</a>
-        <a href="#lab7">Lab7</a>
+        <a href="#metodo" data-i18n="nav_metodo">Método 7</a>
+        <a href="#lab7" data-i18n="label_lab7">Lab7</a>
         <a href="on7.html">On7</a>
-        <a href="proyectos.html">Proyectos</a>
-        <a href="#herramientas">Herramientas</a>
-        <a href="contacto.html">Contacto</a>
+        <a href="proyectos.html" data-i18n="nav_proyectos">Proyectos</a>
+        <a href="#herramientas" data-i18n="label_herramientas">Herramientas</a>
+        <a href="contacto.html" data-i18n="nav_contacto">Contacto</a>
       </div>
     </div>
     <div class="footer-giant-logo">
@@ -1739,7 +1745,7 @@
       </svg>
     </div>
     <div class="footer-bottom">
-      <span class="philosophy">Construimos sistemas digitales que funcionan solos.</span>
+      <span class="philosophy" data-i18n="footer_philosophy">Construimos sistemas digitales que funcionan solos.</span>
       <span>© 2025 WEB7</span>
     </div>
   </footer>
@@ -1752,6 +1758,11 @@
   <script src="webgl-reveal.js?v=6"></script>
 
   <script>
+    // Aplicar idiomas antes de que GSAP divida los textos
+    if (typeof applyTranslations === 'function') {
+       applyTranslations(localStorage.getItem('lang') || 'es');
+    }
+
     gsap.registerPlugin(ScrollTrigger);
 
     // ═══════════════════════════════════════

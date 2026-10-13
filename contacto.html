@@ -471,7 +471,8 @@
 
     gtag('config', 'G-8J1BW6FFXV');
   </script>
-<script src="assets/js/tracker.js"></script>
+  <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/tracker.js"></script>
 </head>
 <body>
 
@@ -493,21 +494,26 @@
   <!-- NAV -->
   <nav>
     <div class="logo-outer"><a href="index.html" class="logo" aria-label="WEB7"><img src="assets/Logoweb7-verde.svg" alt="WEB7" style="height: 52px;"></a></div>
-    <ul class="nav-links">
-      <li><a href="index.html#metodo">Método</a></li>
-      <li><a href="proyectos.html">Proyectos</a></li>
+    <ul class="nav-links" style="align-items: center;">
+      <li><a href="index.html#metodo" data-i18n="nav_metodo">Método</a></li>
+      <li><a href="proyectos.html" data-i18n="nav_proyectos">Proyectos</a></li>
       <li><a href="on7.html">ON7</a></li>
-      <li><a href="index.html#lab7">Lab7</a></li>
-      <li><a href="index.html#herramientas">Herramientas</a></li>
-      <li><a href="contacto.html" style="color: var(--accent);">Contacto</a></li>
+      <li><a href="index.html#lab7" data-i18n="label_lab7">Lab7</a></li>
+      <li><a href="index.html#herramientas" data-i18n="label_herramientas">Herramientas</a></li>
+      <li><a href="contacto.html" style="color: var(--accent);" data-i18n="nav_contacto">Contacto</a></li>
+      <li class="lang-selector" style="display: flex; gap: 0.5rem; margin-left: 1rem; border-left: 1px solid rgba(255,255,255,0.2); padding-left: 1rem;">
+        <a href="#" onclick="changeLang('es'); return false;" style="font-size: 1.2rem; transition: opacity 0.3s;" title="Español">🇦🇷</a>
+        <a href="#" onclick="changeLang('pt'); return false;" style="font-size: 1.2rem; transition: opacity 0.3s;" title="Português">🇧🇷</a>
+        <a href="#" onclick="changeLang('en'); return false;" style="font-size: 1.2rem; transition: opacity 0.3s;" title="English">🇺🇸</a>
+      </li>
     </ul>
   </nav>
 
   <!-- HERO -->
   <section class="contact-hero">
-    <span class="label">Contacto</span>
-    <h1>Contanos que necesitas.<br>Te respondemos en 24 horas.</h1>
-    <p class="subtext">Sin vueltas. Completa el formulario y en menos de 24 horas te contamos como podemos ayudarte.</p>
+    <span class="label" data-i18n="contact_label">Contacto</span>
+    <h1 data-i18n="contact_h1">Contanos que necesitas.<br>Te respondemos en 24 horas.</h1>
+    <p class="subtext" data-i18n="contact_sub">Sin vueltas. Completa el formulario y en menos de 24 horas te contamos como podemos ayudarte.</p>
   </section>
 
   <!-- FORM + ALT CONTACT -->
@@ -515,46 +521,46 @@
     <div class="contact-form" id="contactForm">
       <form id="form" action="/api/send-contact" method="POST">
         <div class="form-group">
-          <label for="nombre">Como te llamas?</label>
-          <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+          <label for="nombre" data-i18n="contact_form_name_lbl">Como te llamas?</label>
+          <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" data-i18n-placeholder="contact_form_name_ph" required>
         </div>
         <div class="form-group">
-          <label for="negocio">Como se llama tu negocio?</label>
-          <input type="text" id="negocio" name="negocio" placeholder="Nombre de tu negocio o empresa" required>
+          <label for="negocio" data-i18n="contact_form_business_lbl">Como se llama tu negocio?</label>
+          <input type="text" id="negocio" name="negocio" placeholder="Nombre de tu negocio o empresa" data-i18n-placeholder="contact_form_business_ph" required>
         </div>
         <div class="form-group">
-          <label for="contacto">Tu email o WhatsApp?</label>
-          <input type="text" id="contacto" name="contacto" placeholder="email@ejemplo.com o +54 9..." required>
+          <label for="contacto" data-i18n="contact_form_contact_lbl">Tu email o WhatsApp?</label>
+          <input type="text" id="contacto" name="contacto" placeholder="email@ejemplo.com o +54 9..." data-i18n-placeholder="contact_form_contact_ph" required>
         </div>
         <div class="form-group">
-          <label for="sector">En que sector estas?</label>
+          <label for="sector" data-i18n="contact_form_sector_lbl">En que sector estas?</label>
           <select id="sector" name="sector" required>
-            <option value="" disabled selected>Selecciona tu sector</option>
-            <option value="gastronomia">Gastronomia</option>
-            <option value="hoteleria">Hoteleria</option>
-            <option value="comercio">Comercio</option>
-            <option value="servicios">Servicios profesionales</option>
-            <option value="salud">Salud</option>
-            <option value="turismo">Turismo</option>
-            <option value="industria">Industria</option>
-            <option value="otro">Otro</option>
+            <option value="" disabled selected data-i18n="contact_form_sector_op0">Selecciona tu sector</option>
+            <option value="gastronomia" data-i18n="contact_form_sector_op1">Gastronomia</option>
+            <option value="hoteleria" data-i18n="contact_form_sector_op2">Hoteleria</option>
+            <option value="comercio" data-i18n="contact_form_sector_op3">Comercio</option>
+            <option value="servicios" data-i18n="contact_form_sector_op4">Servicios profesionales</option>
+            <option value="salud" data-i18n="contact_form_sector_op5">Salud</option>
+            <option value="turismo" data-i18n="contact_form_sector_op6">Turismo</option>
+            <option value="industria" data-i18n="contact_form_sector_op7">Industria</option>
+            <option value="otro" data-i18n="contact_form_sector_op8">Otro</option>
           </select>
         </div>
         <div class="form-group">
-          <label for="necesidad">Que estas buscando?</label>
+          <label for="necesidad" data-i18n="contact_form_need_lbl">Que estas buscando?</label>
           <select id="necesidad" name="necesidad" required>
-            <option value="" disabled selected>Selecciona una opcion</option>
-            <option value="web-nueva">Web desde cero</option>
-            <option value="web-mejorar">Tengo web pero necesito mejorarla</option>
-            <option value="automatizaciones">Automatizaciones / On7</option>
-            <option value="hablar">No se bien, quiero hablar</option>
+            <option value="" disabled selected data-i18n="contact_form_need_op0">Selecciona una opcion</option>
+            <option value="web-nueva" data-i18n="contact_form_need_op1">Web desde cero</option>
+            <option value="web-mejorar" data-i18n="contact_form_need_op2">Tengo web pero necesito mejorarla</option>
+            <option value="automatizaciones" data-i18n="contact_form_need_op3">Automatizaciones / On7</option>
+            <option value="hablar" data-i18n="contact_form_need_op4">No se bien, quiero hablar</option>
           </select>
         </div>
         <div class="form-group">
-          <label for="mensaje">Algo mas que quieras contarnos? <span style="color: var(--text-muted); font-weight: 300;">(opcional)</span></label>
-          <textarea id="mensaje" name="mensaje" placeholder="Contanos un poco mas sobre tu proyecto..."></textarea>
+          <label for="mensaje" data-i18n="contact_form_msg_lbl">Algo mas que quieras contarnos? <span style="color: var(--text-muted); font-weight: 300;">(opcional)</span></label>
+          <textarea id="mensaje" name="mensaje" placeholder="Contanos un poco mas sobre tu proyecto..." data-i18n-placeholder="contact_form_msg_ph"></textarea>
         </div>
-        <button type="submit" class="btn-submit">Enviar <span>&#8594;</span></button>
+        <button type="submit" class="btn-submit" data-i18n="contact_form_btn">Enviar <span>&#8594;</span></button>
       </form>
 
       <!-- Success message (same page, no redirect) -->
@@ -564,10 +570,10 @@
             <polyline points="20 6 9 17 4 12"></polyline>
           </svg>
         </div>
-        <h3>Listo. Recibimos tu mensaje.</h3>
-        <p>En menos de 24 horas te respondemos.</p>
+        <h3 data-i18n="contact_success_h3">Listo. Recibimos tu mensaje.</h3>
+        <p data-i18n="contact_success_p">En menos de 24 horas te respondemos.</p>
         <div class="success-actions">
-          <a href="https://wa.me/5493754415676" target="_blank" rel="noopener" class="btn-whatsapp-success">
+          <a href="https://wa.me/5493754415676" target="_blank" rel="noopener" class="btn-whatsapp-success" data-i18n="contact_success_btn">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
             Escribinos por WhatsApp
           </a>
@@ -579,13 +585,13 @@
       <!-- TARJETA DIAGNÓSTICO FREE -->
       <div class="diagnostic-cta-card" style="background: linear-gradient(145deg, rgba(223, 254, 2, 0.08), rgba(223, 254, 2, 0.02)); border: 1px solid rgba(223, 254, 2, 0.3); border-radius: 12px; padding: 2.5rem 2rem; margin-bottom: 3rem; text-align: left; display: flex; flex-direction: column; gap: 1rem; position: relative; overflow: hidden; z-index: 2; transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 30px -10px rgba(223,254,2,0.2)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none';">
         <div style="position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--accent); box-shadow: 0 0 15px var(--accent);"></div>
-        <h3 style="font-family: var(--font-display); font-size: 1.4rem; color: var(--accent); margin: 0; text-transform: uppercase; letter-spacing: 0.05em;">Diagnóstico Web 100% Online</h3>
-        <p style="font-size: 1.05rem; color: var(--text); font-weight: 300; margin: 0; line-height: 1.6;">¿No sabés qué pedirnos? Completá nuestra auditoría gratuita guiada por Inteligencia Artificial y evaluamos tu proyecto al instante.</p>
-        <a href="diagnostico.html" class="btn-submit" style="align-self: flex-start; margin-top: 1rem; width: 100%; justify-content: center; text-decoration: none; display: flex; align-items: center; gap: 0.5rem;">INICIAR DIAGNÓSTICO <span style="font-size: 1.2rem;">&#8594;</span></a>
+        <h3 style="font-family: var(--font-display); font-size: 1.4rem; color: var(--accent); margin: 0; text-transform: uppercase; letter-spacing: 0.05em;" data-i18n="contact_alt_diag_h3">Diagnóstico Web 100% Online</h3>
+        <p style="font-size: 1.05rem; color: var(--text); font-weight: 300; margin: 0; line-height: 1.6;" data-i18n="contact_alt_diag_p">¿No sabés qué pedirnos? Completá nuestra auditoría gratuita guiada por Inteligencia Artificial y evaluamos tu proyecto al instante.</p>
+        <a href="diagnostico.html" class="btn-submit" style="align-self: flex-start; margin-top: 1rem; width: 100%; justify-content: center; text-decoration: none; display: flex; align-items: center; gap: 0.5rem;" data-i18n="contact_alt_diag_btn">INICIAR DIAGNÓSTICO <span style="font-size: 1.2rem;">&#8594;</span></a>
       </div>
 
-      <h3>Preferis hablar directo?</h3>
-      <p class="alt-sub">Tambien podes escribirnos por WhatsApp o mail. Respondemos en menos de 24 horas.</p>
+      <h3 data-i18n="contact_alt_direct_h3">Preferis hablar directo?</h3>
+      <p class="alt-sub" data-i18n="contact_alt_direct_p">Tambien podes escribirnos por WhatsApp o mail. Respondemos en menos de 24 horas.</p>
       <div class="alt-links">
         <a href="https://wa.me/5493754415676" target="_blank" rel="noopener" class="alt-link">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -599,21 +605,21 @@
     </div>
   </section>
 
-  <p class="footer-note">Sin compromiso. Si despues de la charla no es el momento, no pasa nada.</p>
+  <p class="footer-note" data-i18n="contact_alt_direct_note">Sin compromiso. Si despues de la charla no es el momento, no pasa nada.</p>
 
   <!-- FOOTER -->
   <footer>
     <div class="footer-top">
       <div class="footer-brand">
-        <p class="tagline">Desarrollo web · Automatizaciones · Lab7</p>
+        <p class="tagline" data-i18n="footer_tagline">Desarrollo web · Automatizaciones · Lab7</p>
       </div>
       <div class="footer-links">
-        <a href="index.html#metodo">Método 7</a>
-        <a href="index.html#lab7">Lab7</a>
+        <a href="index.html#metodo" data-i18n="nav_metodo">Método 7</a>
+        <a href="index.html#lab7" data-i18n="label_lab7">Lab7</a>
         <a href="on7.html">On7</a>
-        <a href="proyectos.html">Proyectos</a>
-        <a href="index.html#herramientas">Herramientas</a>
-        <a href="contacto.html">Contacto</a>
+        <a href="proyectos.html" data-i18n="nav_proyectos">Proyectos</a>
+        <a href="index.html#herramientas" data-i18n="label_herramientas">Herramientas</a>
+        <a href="contacto.html" data-i18n="nav_contacto">Contacto</a>
       </div>
     </div>
     <div class="footer-giant-logo">
@@ -637,7 +643,7 @@
       </svg>
     </div>
     <div class="footer-bottom">
-      <span>Construimos sistemas digitales que funcionan solos.</span>
+      <span data-i18n="footer_philosophy">Construimos sistemas digitales que funcionan solos.</span>
       <span>&copy; 2025 WEB7</span>
     </div>
   </footer>
@@ -645,6 +651,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="chat-widget.js"></script>
   <script>
+    if (typeof applyTranslations === 'function') {
+       applyTranslations(localStorage.getItem('lang') || 'es');
+    }
+
     // ═══════════════════════════════════════
     // QUERY PARAM PRE-FILL
     // ═══════════════════════════════════════

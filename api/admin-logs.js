@@ -33,14 +33,14 @@ export default async function handler(req, res) {
     if (req.method === 'GET') {
       const fileUrl = req.query.fileUrl;
       if (fileUrl) {
-        // Proxy file securely
-        const fetchOpts = { headers: {} };
-        if (process.env.BLOB_READ_WRITE_TOKEN) {
-          fetchOpts.headers['Authorization'] = `Bearer ${process.env.BLOB_READ_WRITE_TOKEN}`;
-        }
-        const proxyRes = await fetch(fileUrl, fetchOpts);
+        // Hacemos fetch a la b.url enviando el token de escritura
+        const bustUrl = fileUrl + (fileUrl.includes('?') ? '&' : '?') + '_t=' + Date.now();
+        const proxyRes = await fetch(bustUrl, {
+          cache: 'no-store',
+          headers: { 'Authorization': `Bearer ${process.env.BLOB_READ_WRITE_TOKEN}` }
+        });
         if (!proxyRes.ok) {
-           return res.status(proxyRes.status).json({ error: 'Failed to fetch blob' });
+           return res.status(proxyRes.status).json({ error: 'Failed to fetch blob: ' + proxyRes.status + ' ' + proxyRes.statusText });
         }
         const text = await proxyRes.text();
         return res.status(200).send(text);

@@ -651,6 +651,18 @@
       line-height: 1.4;
       opacity: 0.85;
     }
+    .credit-link {
+      color: inherit;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: rgba(223, 254, 2, 0.45);
+      cursor: pointer;
+      transition: color 0.2s, text-decoration-color 0.2s;
+    }
+    .credit-link:hover {
+      color: var(--accent);
+      text-decoration-color: var(--accent);
+    }
     .proyecto-card.card-accent-info {
       background: var(--accent);
       border: 1px solid var(--accent);
@@ -1428,7 +1440,7 @@
           <div class="tags">Eventos · Vinos</div>
           <p data-i18n="proyectos_oda1_p">El festival de vinos más importante de la Triple Frontera. Landing para la 10ª edición en Iguazú — entradas, bodegas y experiencias.</p>
           <div class="card-credits">
-            <div class="credit-item">• Diseño UI UX - Federico Gunther / Significa</div>
+            <div class="credit-item">• Diseño UI UX - <span class="credit-link" onclick="event.preventDefault(); event.stopPropagation(); window.open('https://federicogunther.com/', '_blank');">Federico Gunther</span> / Significa</div>
           </div>
         </div>
       </a>
@@ -1443,7 +1455,7 @@
           <div class="tags">Gastronomía · Vinos</div>
           <p data-i18n="proyectos_oda2_p">Una propuesta de alta gama que ahora se entiende antes de entrar al local.</p>
           <div class="card-credits">
-            <div class="credit-item">• Diseño UI UX - Federico Gunther / Significa</div>
+            <div class="credit-item">• Diseño UI UX - <span class="credit-link" onclick="event.preventDefault(); event.stopPropagation(); window.open('https://federicogunther.com/', '_blank');">Federico Gunther</span> / Significa</div>
           </div>
         </div>
       </a>
@@ -1458,7 +1470,7 @@
           <div class="tags">Hotelería · Turismo</div>
           <p data-i18n="proyectos_yvy_p">Un hotel de selva que se comunica como lo que es.</p>
           <div class="card-credits">
-            <div class="credit-item">• Diseño UI UX - Federico Gunther / Satélite agencia</div>
+            <div class="credit-item">• Diseño UI UX - <span class="credit-link" onclick="event.preventDefault(); event.stopPropagation(); window.open('https://federicogunther.com/', '_blank');">Federico Gunther</span> / Satélite agencia</div>
           </div>
         </div>
       </a>
@@ -1473,7 +1485,7 @@
           <div class="tags">Distribución · Alimentos</div>
           <p data-i18n="proyectos_total_p">Una distribuidora de marcas líderes con presencia digital a su altura.</p>
           <div class="card-credits">
-            <div class="credit-item">• Diseño UX - Federico Gunther / Satélite agencia</div>
+            <div class="credit-item">• Diseño UX - <span class="credit-link" onclick="event.preventDefault(); event.stopPropagation(); window.open('https://federicogunther.com/', '_blank');">Federico Gunther</span> / Satélite agencia</div>
             <div class="credit-item">• Diseño UI - Luciano Hermida / Satélite agencia</div>
           </div>
         </div>
@@ -1489,7 +1501,7 @@
           <div class="tags">Producto · Yerba mate</div>
           <p data-i18n="proyectos_primicia_p">Identidad y venta online para una yerba con origen e historia propios.</p>
           <div class="card-credits">
-            <div class="credit-item">• Diseño UI UX - Luciano Hermida / Federico Gunther / Satélite agencia</div>
+            <div class="credit-item">• Diseño UI UX - Luciano Hermida / <span class="credit-link" onclick="event.preventDefault(); event.stopPropagation(); window.open('https://federicogunther.com/', '_blank');">Federico Gunther</span> / Satélite agencia</div>
           </div>
         </div>
       </a>
@@ -1722,6 +1734,7 @@
         <a href="proyectos.html" data-i18n="nav_proyectos">Proyectos</a>
         <a href="#herramientas" data-i18n="label_herramientas">Herramientas</a>
         <a href="contacto.html" data-i18n="nav_contacto">Contacto</a>
+        <a href="https://federicogunther.com/" target="_blank" rel="noopener" data-i18n="footer_branding">Branding y estrategia ↗</a>
       </div>
     </div>
     <div class="footer-giant-logo">

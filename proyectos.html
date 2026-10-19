@@ -338,6 +338,18 @@
       line-height: 1.4;
       opacity: 0.85;
     }
+    .credit-link {
+      color: inherit;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: rgba(223, 254, 2, 0.45);
+      cursor: pointer;
+      transition: color 0.2s, text-decoration-color 0.2s;
+    }
+    .credit-link:hover {
+      color: var(--accent);
+      text-decoration-color: var(--accent);
+    }
 
     .project-card .ver-sitio {
       font-family: var(--font-alt);
@@ -596,7 +608,7 @@
         <p class="rubro" data-i18n="proj_card_0_rubro_10">Eventos · Vinos</p>
         <p class="desc" data-i18n="proj_card_0_desc_11">El festival de vinos más importante de la Triple Frontera. Landing para la 10ª edición en Iguazú — entradas, bodegas y experiencias.</p>
         <div class="card-credits">
-          <div class="credit-item" data-i18n="proj_card_0_cr_0_12">• Diseño UI UX - Federico Gunther / Significa</div>
+          <div class="credit-item" data-i18n="proj_card_0_cr_0_12">• Diseño UI UX - <span class="credit-link" onclick="event.preventDefault(); event.stopPropagation(); window.open('https://federicogunther.com/', '_blank');">Federico Gunther</span> / Significa</div>
         </div>
         <span class="ver-sitio" data-i18n="proj_card_0_btn_13">Ver sitio →</span>
       </div>
@@ -612,7 +624,7 @@
         <p class="rubro" data-i18n="proj_card_1_rubro_16">Gastronomia · Vinos</p>
         <p class="desc" data-i18n="proj_card_1_desc_17">Una propuesta de alta gama que ahora se entiende antes de entrar al local.</p>
         <div class="card-credits">
-          <div class="credit-item" data-i18n="proj_card_1_cr_0_18">• Diseño UI UX - Federico Gunther / Significa</div>
+          <div class="credit-item" data-i18n="proj_card_1_cr_0_18">• Diseño UI UX - <span class="credit-link" onclick="event.preventDefault(); event.stopPropagation(); window.open('https://federicogunther.com/', '_blank');">Federico Gunther</span> / Significa</div>
         </div>
         <span class="ver-sitio" data-i18n="proj_card_1_btn_19">Ver sitio →</span>
       </div>
@@ -628,7 +640,7 @@
         <p class="rubro" data-i18n="proj_card_2_rubro_22">Hoteleria · Turismo</p>
         <p class="desc" data-i18n="proj_card_2_desc_23">Un hotel de selva que se comunica como lo que es.</p>
         <div class="card-credits">
-          <div class="credit-item" data-i18n="proj_card_2_cr_0_24">• Diseño UI UX - Federico Gunther / Satélite agencia</div>
+          <div class="credit-item" data-i18n="proj_card_2_cr_0_24">• Diseño UI UX - <span class="credit-link" onclick="event.preventDefault(); event.stopPropagation(); window.open('https://federicogunther.com/', '_blank');">Federico Gunther</span> / Satélite agencia</div>
         </div>
         <span class="ver-sitio" data-i18n="proj_card_2_btn_25">Ver sitio →</span>
       </div>
@@ -644,7 +656,7 @@
         <p class="rubro" data-i18n="proj_card_3_rubro_28">Distribucion · Alimentos</p>
         <p class="desc" data-i18n="proj_card_3_desc_29">Una distribuidora de marcas líderes con presencia digital a su altura.</p>
         <div class="card-credits">
-          <div class="credit-item" data-i18n="proj_card_3_cr_0_30">• Diseño UX - Federico Gunther / Satélite agencia</div>
+          <div class="credit-item" data-i18n="proj_card_3_cr_0_30">• Diseño UX - <span class="credit-link" onclick="event.preventDefault(); event.stopPropagation(); window.open('https://federicogunther.com/', '_blank');">Federico Gunther</span> / Satélite agencia</div>
           <div class="credit-item" data-i18n="proj_card_3_cr_1_31">• Diseño UI - Luciano Hermida / Satélite agencia</div>
         </div>
         <span class="ver-sitio" data-i18n="proj_card_3_btn_32">Ver sitio →</span>
@@ -661,7 +673,7 @@
         <p class="rubro" data-i18n="proj_card_4_rubro_35">Producto · Yerba mate</p>
         <p class="desc" data-i18n="proj_card_4_desc_36">Identidad y venta online para una yerba con origen e historia propios.</p>
         <div class="card-credits">
-          <div class="credit-item" data-i18n="proj_card_4_cr_0_37">• Diseño UI UX - Luciano Hermida / Federico Gunther / Satélite agencia</div>
+          <div class="credit-item" data-i18n="proj_card_4_cr_0_37">• Diseño UI UX - Luciano Hermida / <span class="credit-link" onclick="event.preventDefault(); event.stopPropagation(); window.open('https://federicogunther.com/', '_blank');">Federico Gunther</span> / Satélite agencia</div>
         </div>
         <span class="ver-sitio" data-i18n="proj_card_4_btn_38">Ver sitio →</span>
       </div>
@@ -722,7 +734,7 @@
         <p class="rubro" data-i18n="proj_card_8_rubro_58">Servicios · Profesional</p>
         <p class="desc" data-i18n="proj_card_8_desc_59">Espacio de coworking premium. Diseño web que transmite confort, profesionalismo y networking.</p>
         <div class="card-credits">
-          <div class="credit-item" data-i18n="proj_card_8_cr_0_60">• Diseño UX - Federico Gunther / Satélite agencia</div>
+          <div class="credit-item" data-i18n="proj_card_8_cr_0_60">• Diseño UX - <span class="credit-link" onclick="event.preventDefault(); event.stopPropagation(); window.open('https://federicogunther.com/', '_blank');">Federico Gunther</span> / Satélite agencia</div>
         </div>
         <span class="ver-sitio" data-i18n="proj_card_8_btn_61">Ver sitio →</span>
       </div>
@@ -899,6 +911,7 @@
         <a href="proyectos.html">Proyectos</a>
         <a href="index.html#herramientas">Herramientas</a>
         <a href="contacto.html">Contacto</a>
+        <a href="https://federicogunther.com/" target="_blank" rel="noopener" data-i18n="footer_branding">Branding y estrategia ↗</a>
       </div>
     </div>
     <div class="footer-giant-logo">

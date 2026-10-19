@@ -195,32 +195,32 @@ const translations = {
     "proj_card_0_tag_9": "Landing",
     "proj_card_0_rubro_10": "Eventos · Vinos",
     "proj_card_0_desc_11": "El festival de vinos más importante de la Triple Frontera. Landing para la 10ª edición en Iguazú — entradas, bodegas y experiencias.",
-    "proj_card_0_cr_0_12": "• Diseño UI UX - <span class=\"credit-link\" onclick=\"event.preventDefault(); event.stopPropagation(); window.open('https://federicogunther.com/', '_blank');\">Federico Gunther</span> / Significa",
+    "proj_card_0_cr_0_12": "• Diseño UI UX - <span class=\"credit-link\">Federico Gunther</span> / Significa",
     "proj_card_0_btn_13": "Ver sitio →",
     "proj_card_1_title_14": "ODA Vinoteca",
     "proj_card_1_tag_15": "Institucional",
     "proj_card_1_rubro_16": "Gastronomia · Vinos",
     "proj_card_1_desc_17": "Una propuesta de alta gama que ahora se entiende antes de entrar al local.",
-    "proj_card_1_cr_0_18": "• Diseño UI UX - <span class=\"credit-link\" onclick=\"event.preventDefault(); event.stopPropagation(); window.open('https://federicogunther.com/', '_blank');\">Federico Gunther</span> / Significa",
+    "proj_card_1_cr_0_18": "• Diseño UI UX - <span class=\"credit-link\">Federico Gunther</span> / Significa",
     "proj_card_1_btn_19": "Ver sitio →",
     "proj_card_2_title_20": "YVY Hotel",
     "proj_card_2_tag_21": "Institucional",
     "proj_card_2_rubro_22": "Hoteleria · Turismo",
     "proj_card_2_desc_23": "Un hotel de selva que se comunica como lo que es.",
-    "proj_card_2_cr_0_24": "• Diseño UI UX - <span class=\"credit-link\" onclick=\"event.preventDefault(); event.stopPropagation(); window.open('https://federicogunther.com/', '_blank');\">Federico Gunther</span> / Satélite agencia",
+    "proj_card_2_cr_0_24": "• Diseño UI UX - <span class=\"credit-link\">Federico Gunther</span> / Satélite agencia",
     "proj_card_2_btn_25": "Ver sitio →",
     "proj_card_3_title_26": "Total",
     "proj_card_3_tag_27": "Institucional",
     "proj_card_3_rubro_28": "Distribucion · Alimentos",
     "proj_card_3_desc_29": "Una distribuidora de marcas líderes con presencia digital a su altura.",
-    "proj_card_3_cr_0_30": "• Diseño UX - <span class=\"credit-link\" onclick=\"event.preventDefault(); event.stopPropagation(); window.open('https://federicogunther.com/', '_blank');\">Federico Gunther</span> / Satélite agencia",
+    "proj_card_3_cr_0_30": "• Diseño UX - <span class=\"credit-link\">Federico Gunther</span> / Satélite agencia",
     "proj_card_3_cr_1_31": "• Diseño UI - Luciano Hermida / Satélite agencia",
     "proj_card_3_btn_32": "Ver sitio →",
     "proj_card_4_title_33": "Primicia",
     "proj_card_4_tag_34": "Ecommerce",
     "proj_card_4_rubro_35": "Producto · Yerba mate",
     "proj_card_4_desc_36": "Identidad y venta online para una yerba con origen e historia propios.",
-    "proj_card_4_cr_0_37": "• Diseño UI UX - Luciano Hermida / <span class=\"credit-link\" onclick=\"event.preventDefault(); event.stopPropagation(); window.open('https://federicogunther.com/', '_blank');\">Federico Gunther</span> / Satélite agencia",
+    "proj_card_4_cr_0_37": "• Diseño UI UX - Luciano Hermida / <span class=\"credit-link\">Federico Gunther</span> / Satélite agencia",
     "proj_card_4_btn_38": "Ver sitio →",
     "proj_card_5_title_39": "Finca Rumaroli",
     "proj_card_5_tag_40": "Institucional",
@@ -243,7 +243,7 @@ const translations = {
     "proj_card_8_tag_57": "Profesional",
     "proj_card_8_rubro_58": "Servicios · Profesional",
     "proj_card_8_desc_59": "Espacio de coworking premium. Diseño web que transmite confort, profesionalismo y networking.",
-    "proj_card_8_cr_0_60": "• Diseño UX - <span class=\"credit-link\" onclick=\"event.preventDefault(); event.stopPropagation(); window.open('https://federicogunther.com/', '_blank');\">Federico Gunther</span> / Satélite agencia",
+    "proj_card_8_cr_0_60": "• Diseño UX - <span class=\"credit-link\">Federico Gunther</span> / Satélite agencia",
     "proj_card_8_btn_61": "Ver sitio →",
     "proj_card_9_title_62": "Don Basilio",
     "proj_card_9_tag_63": "Institucional",
@@ -621,32 +621,32 @@ const translations = {
     "proj_card_0_tag_9": "Landing",
     "proj_card_0_rubro_10": "Events · Wine",
     "proj_card_0_desc_11": "The most important wine festival in the Triple Frontier. Landing page for the 10th edition in Iguazú — tickets, wineries, and experiences.",
-    "proj_card_0_cr_0_12": "• UI UX Design - <span class=\"credit-link\" onclick=\"event.preventDefault(); event.stopPropagation(); window.open('https://federicogunther.com/', '_blank');\">Federico Gunther</span> / Significa",
+    "proj_card_0_cr_0_12": "• UI UX Design - <span class=\"credit-link\">Federico Gunther</span> / Significa",
     "proj_card_0_btn_13": "View site →",
     "proj_card_1_title_14": "ODA Vinoteca",
     "proj_card_1_tag_15": "Corporate",
     "proj_card_1_rubro_16": "Gastronomy · Wine",
     "proj_card_1_desc_17": "A high-end proposal that is now understood before entering the store.",
-    "proj_card_1_cr_0_18": "• UI UX Design - <span class=\"credit-link\" onclick=\"event.preventDefault(); event.stopPropagation(); window.open('https://federicogunther.com/', '_blank');\">Federico Gunther</span> / Significa",
+    "proj_card_1_cr_0_18": "• UI UX Design - <span class=\"credit-link\">Federico Gunther</span> / Significa",
     "proj_card_1_btn_19": "View site →",
     "proj_card_2_title_20": "YVY Hotel",
     "proj_card_2_tag_21": "Corporate",
     "proj_card_2_rubro_22": "Hospitality · Tourism",
     "proj_card_2_desc_23": "A jungle hotel that communicates as what it truly is.",
-    "proj_card_2_cr_0_24": "• UI UX Design - <span class=\"credit-link\" onclick=\"event.preventDefault(); event.stopPropagation(); window.open('https://federicogunther.com/', '_blank');\">Federico Gunther</span> / Satélite agencia",
+    "proj_card_2_cr_0_24": "• UI UX Design - <span class=\"credit-link\">Federico Gunther</span> / Satélite agencia",
     "proj_card_2_btn_25": "View site →",
     "proj_card_3_title_26": "Total",
     "proj_card_3_tag_27": "Corporate",
     "proj_card_3_rubro_28": "Distribution · Food",
     "proj_card_3_desc_29": "A distributor of leading brands with a digital presence that matches their level.",
-    "proj_card_3_cr_0_30": "• UX Design - <span class=\"credit-link\" onclick=\"event.preventDefault(); event.stopPropagation(); window.open('https://federicogunther.com/', '_blank');\">Federico Gunther</span> / Satélite agencia",
+    "proj_card_3_cr_0_30": "• UX Design - <span class=\"credit-link\">Federico Gunther</span> / Satélite agencia",
     "proj_card_3_cr_1_31": "• UI Design - Luciano Hermida / Satélite agencia",
     "proj_card_3_btn_32": "View site →",
     "proj_card_4_title_33": "Primicia",
     "proj_card_4_tag_34": "Ecommerce",
     "proj_card_4_rubro_35": "Product · Yerba mate",
     "proj_card_4_desc_36": "Identity and online sales for a yerba mate with its own origin and history.",
-    "proj_card_4_cr_0_37": "• UI UX Design - Luciano Hermida / <span class=\"credit-link\" onclick=\"event.preventDefault(); event.stopPropagation(); window.open('https://federicogunther.com/', '_blank');\">Federico Gunther</span> / Satélite agencia",
+    "proj_card_4_cr_0_37": "• UI UX Design - Luciano Hermida / <span class=\"credit-link\">Federico Gunther</span> / Satélite agencia",
     "proj_card_4_btn_38": "View site →",
     "proj_card_5_title_39": "Finca Rumaroli",
     "proj_card_5_tag_40": "Corporate",
@@ -669,7 +669,7 @@ const translations = {
     "proj_card_8_tag_57": "Professional",
     "proj_card_8_rubro_58": "Services · Professional",
     "proj_card_8_desc_59": "Premium coworking space. Web design that conveys comfort, professionalism, and networking.",
-    "proj_card_8_cr_0_60": "• UX Design - <span class=\"credit-link\" onclick=\"event.preventDefault(); event.stopPropagation(); window.open('https://federicogunther.com/', '_blank');\">Federico Gunther</span> / Satélite agencia",
+    "proj_card_8_cr_0_60": "• UX Design - <span class=\"credit-link\">Federico Gunther</span> / Satélite agencia",
     "proj_card_8_btn_61": "View site →",
     "proj_card_9_title_62": "Don Basilio",
     "proj_card_9_tag_63": "Corporate",
@@ -1047,32 +1047,32 @@ const translations = {
     "proj_card_0_tag_9": "Landing",
     "proj_card_0_rubro_10": "Eventos · Vinhos",
     "proj_card_0_desc_11": "O festival de vinhos mais importante da Tríplice Fronteira. Landing page para a 10ª edição em Iguaçu — ingressos, vinícolas e experiências.",
-    "proj_card_0_cr_0_12": "• Design UI UX - <span class=\"credit-link\" onclick=\"event.preventDefault(); event.stopPropagation(); window.open('https://federicogunther.com/', '_blank');\">Federico Gunther</span> / Significa",
+    "proj_card_0_cr_0_12": "• Design UI UX - <span class=\"credit-link\">Federico Gunther</span> / Significa",
     "proj_card_0_btn_13": "Ver site →",
     "proj_card_1_title_14": "ODA Vinoteca",
     "proj_card_1_tag_15": "Institucional",
     "proj_card_1_rubro_16": "Gastronomia · Vinos",
     "proj_card_1_desc_17": "Uma proposta de alto padrão que agora é entendida antes de entrar na loja.",
-    "proj_card_1_cr_0_18": "• Design UI UX - <span class=\"credit-link\" onclick=\"event.preventDefault(); event.stopPropagation(); window.open('https://federicogunther.com/', '_blank');\">Federico Gunther</span> / Significa",
+    "proj_card_1_cr_0_18": "• Design UI UX - <span class=\"credit-link\">Federico Gunther</span> / Significa",
     "proj_card_1_btn_19": "Ver site →",
     "proj_card_2_title_20": "YVY Hotel",
     "proj_card_2_tag_21": "Institucional",
     "proj_card_2_rubro_22": "Hotelaria · Turismo",
     "proj_card_2_desc_23": "Um hotel de selva que se comunica como o que realmente é.",
-    "proj_card_2_cr_0_24": "• Design UI UX - <span class=\"credit-link\" onclick=\"event.preventDefault(); event.stopPropagation(); window.open('https://federicogunther.com/', '_blank');\">Federico Gunther</span> / Satélite agencia",
+    "proj_card_2_cr_0_24": "• Design UI UX - <span class=\"credit-link\">Federico Gunther</span> / Satélite agencia",
     "proj_card_2_btn_25": "Ver site →",
     "proj_card_3_title_26": "Total",
     "proj_card_3_tag_27": "Institucional",
     "proj_card_3_rubro_28": "Distribuição · Alimentos",
     "proj_card_3_desc_29": "Uma distribuidora de marcas líderes com presença digital à altura.",
-    "proj_card_3_cr_0_30": "• Design UX - <span class=\"credit-link\" onclick=\"event.preventDefault(); event.stopPropagation(); window.open('https://federicogunther.com/', '_blank');\">Federico Gunther</span> / Satélite agencia",
+    "proj_card_3_cr_0_30": "• Design UX - <span class=\"credit-link\">Federico Gunther</span> / Satélite agencia",
     "proj_card_3_cr_1_31": "• Design UI - Luciano Hermida / Satélite agencia",
     "proj_card_3_btn_32": "Ver site →",
     "proj_card_4_title_33": "Primicia",
     "proj_card_4_tag_34": "Ecommerce",
     "proj_card_4_rubro_35": "Produto · Erva-mate",
     "proj_card_4_desc_36": "Identidade e vendas online para uma erva com origem e história próprias.",
-    "proj_card_4_cr_0_37": "• Design UI UX - Luciano Hermida / <span class=\"credit-link\" onclick=\"event.preventDefault(); event.stopPropagation(); window.open('https://federicogunther.com/', '_blank');\">Federico Gunther</span> / Satélite agencia",
+    "proj_card_4_cr_0_37": "• Design UI UX - Luciano Hermida / <span class=\"credit-link\">Federico Gunther</span> / Satélite agencia",
     "proj_card_4_btn_38": "Ver site →",
     "proj_card_5_title_39": "Finca Rumaroli",
     "proj_card_5_tag_40": "Institucional",
@@ -1081,13 +1081,13 @@ const translations = {
     "proj_card_5_btn_43": "Ver site →",
     "proj_card_6_title_44": "ODA Duty Free",
     "proj_card_6_tag_45": "Ecommerce",
-    "proj_card_6_rubro_46": "Ecommerce · Vinhos",
+    "proj_card_6_rubro_46": "Ecommerce · Vinos",
     "proj_card_6_desc_47": "Loja online de vinhos com catálogo completo para o mercado brasileiro.",
     "proj_card_6_cr_0_48": "• Participação no desenvolvimento e manutenção web",
     "proj_card_6_btn_49": "Ver site →",
     "proj_card_7_title_50": "ODA Wine Shop",
     "proj_card_7_tag_51": "Ecommerce",
-    "proj_card_7_rubro_52": "Ecommerce · Vinhos",
+    "proj_card_7_rubro_52": "Ecommerce · Vinos",
     "proj_card_7_desc_53": "Plataforma de e-commerce especializada em vinhos para proporcionar uma experiência de compra fluida.",
     "proj_card_7_cr_0_54": "• Participação no desenvolvimento e manutenção web",
     "proj_card_7_btn_55": "Ver site →",
@@ -1095,7 +1095,7 @@ const translations = {
     "proj_card_8_tag_57": "Profissional",
     "proj_card_8_rubro_58": "Serviços · Profissional",
     "proj_card_8_desc_59": "Espaço de coworking premium. Design web que transmite conforto, profissionalismo e networking.",
-    "proj_card_8_cr_0_60": "• Design UX - <span class=\"credit-link\" onclick=\"event.preventDefault(); event.stopPropagation(); window.open('https://federicogunther.com/', '_blank');\">Federico Gunther</span> / Satélite agencia",
+    "proj_card_8_cr_0_60": "• Design UX - <span class=\"credit-link\">Federico Gunther</span> / Satélite agencia",
     "proj_card_8_btn_61": "Ver site →",
     "proj_card_9_title_62": "Don Basilio",
     "proj_card_9_tag_63": "Institucional",
@@ -1285,30 +1285,28 @@ function applyTranslations(lang) {
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
     if (translations[lang][key]) {
-      // Manejar casos especiales donde hay HTML anidado o animaciones
-      if (el.hasAttribute('data-split-chars') || el.hasAttribute('data-split-words')) {
+      // Si la traducción contiene HTML o elementos con animaciones, usar innerHTML
+      if (translations[lang][key].includes('<') || el.hasAttribute('data-split-chars') || el.hasAttribute('data-split-words')) {
         el.innerHTML = translations[lang][key];
-      } else {
-        // Si el elemento contiene un SVG o span.accent-dot, usamos una lógica más cuidadosa
-        if (el.querySelector('svg') || el.querySelector('span:not([data-i18n])')) {
-          let textNodeFound = false;
-          el.childNodes.forEach(node => {
-            if (node.nodeType === Node.TEXT_NODE && node.nodeValue.trim() !== '') {
-              if (!textNodeFound) {
-                node.nodeValue = translations[lang][key];
-                textNodeFound = true;
-              } else {
-                node.nodeValue = '';
-              }
+      } else if (el.querySelector('svg') || el.querySelector('span:not([data-i18n])')) {
+        // Si el elemento contiene un SVG o span.accent-dot y el texto es plano, preservar los nodos hijos
+        let textNodeFound = false;
+        el.childNodes.forEach(node => {
+          if (node.nodeType === Node.TEXT_NODE && node.nodeValue.trim() !== '') {
+            if (!textNodeFound) {
+              node.nodeValue = translations[lang][key];
+              textNodeFound = true;
+            } else {
+              node.nodeValue = '';
             }
-          });
-          if (!textNodeFound) {
-              el.prepend(document.createTextNode(translations[lang][key]));
           }
-        } else {
-          // Por defecto, permitir inyección de HTML (ej: <strong>)
-          el.innerHTML = translations[lang][key];
+        });
+        if (!textNodeFound) {
+            el.prepend(document.createTextNode(translations[lang][key]));
         }
+      } else {
+        // Por defecto, permitir inyección de HTML (ej: <strong>)
+        el.innerHTML = translations[lang][key];
       }
     }
   });
@@ -1328,6 +1326,17 @@ function applyTranslations(lang) {
     a.style.opacity = a.getAttribute('onclick').includes(`'${lang}'`) ? '1' : '0.5';
   });
 }
+
+// Handler global para links dentro de tarjetas de proyectos sin romper estructura <a>
+document.addEventListener('click', function(e) {
+  const creditLink = e.target.closest('.credit-link');
+  if (creditLink) {
+    e.preventDefault();
+    e.stopPropagation();
+    const url = creditLink.getAttribute('data-url') || 'https://federicogunther.com/';
+    window.open(url, '_blank', 'noopener');
+  }
+});
 
 function changeLang(lang) {
   applyTranslations(lang);

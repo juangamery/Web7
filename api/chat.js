@@ -503,18 +503,7 @@ export default async function handler(req) {
     });
   } catch (error) {
     console.error("Chat API error:", error);
-    let availableModels = [];
-    try {
-      const list = await groq.models.list();
-      availableModels = list.data.map((m) => m.id);
-    } catch (e) {}
-
-    return new Response(JSON.stringify({ 
-      error: "Ocurrió un error al procesar la solicitud.",
-      details: error?.message || String(error),
-      hasApiKey: Boolean(process.env.GROQ_API_KEY),
-      availableModels
-    }), {
+    return new Response(JSON.stringify({ error: "Ocurrió un error al procesar la solicitud." }), {
       status: 500,
       headers: { "Content-Type": "application/json" },
     });

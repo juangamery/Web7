@@ -443,11 +443,11 @@ export default async function handler(req) {
     ];
 
     const candidateModels = [
-      "llama-3.1-70b-versatile",
+      "openai/gpt-oss-120b",
+      "openai/gpt-oss-20b",
+      "qwen/qwen3.8-27b",
+      "llama-3.3-70b-versatile",
       "llama-3.1-8b-instant",
-      "llama3-70b-8192",
-      "llama3-8b-8192",
-      "mixtral-8x7b-32768",
     ];
 
     let stream = null;
@@ -465,10 +465,8 @@ export default async function handler(req) {
         if (stream) break;
       } catch (err) {
         lastError = err;
-        if (err?.code === "model_not_found" || err?.status === 404) {
-          continue;
-        }
-        throw err;
+        // Continue to next model if model is decommissioned, not found, or invalid
+        continue;
       }
     }
 

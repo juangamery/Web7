@@ -442,13 +442,39 @@ export default async function handler(req) {
       ...trimmed.map((m) => ({ role: m.role, content: m.content })),
     ];
 
-    const stream = await groq.chat.completions.create({
-      model: "llama-3.3-70b-versatile",
-      messages: groqMessages,
-      max_tokens: 512,
-      temperature: 0.7,
-      stream: true,
-    });
+    const candidateModels = [
+      "llama-3.1-70b-versatile",
+      "llama-3.1-8b-instant",
+      "llama3-70b-8192",
+      "llama3-8b-8192",
+      "mixtral-8x7b-32768",
+    ];
+
+    let stream = null;
+    let lastError = null;
+
+    for (const model of candidateModels) {
+      try {
+        stream = await groq.chat.completions.create({
+          model,
+          messages: groqMessages,
+          max_tokens: 512,
+          temperature: 0.7,
+          stream: true,
+        });
+        if (stream) break;
+      } catch (err) {
+        lastError = err;
+        if (err?.code === "model_not_found" || err?.status === 404) {
+          continue;
+        }
+        throw err;
+      }
+    }
+
+    if (!stream) {
+      throw lastError || new Error("No compatible Groq model available");
+    }
 
     const encoder = new TextEncoder();
     const readable = new ReadableStream({
@@ -479,10 +505,17 @@ export default async function handler(req) {
     });
   } catch (error) {
     console.error("Chat API error:", error);
+    let availableModels = [];
+    try {
+      const list = await groq.models.list();
+      availableModels = list.data.map((m) => m.id);
+    } catch (e) {}
+
     return new Response(JSON.stringify({ 
       error: "Ocurrió un error al procesar la solicitud.",
       details: error?.message || String(error),
-      hasApiKey: Boolean(process.env.GROQ_API_KEY)
+      hasApiKey: Boolean(process.env.GROQ_API_KEY),
+      availableModels
     }), {
       status: 500,
       headers: { "Content-Type": "application/json" },

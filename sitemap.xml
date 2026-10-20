@@ -1,27 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://web7.com.ar/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://web7.com.ar/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://web7.com.ar/?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://web7.com.ar/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://web7.com.ar/"/>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://web7.com.ar/proyectos.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://web7.com.ar/proyectos.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://web7.com.ar/proyectos.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://web7.com.ar/proyectos.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://web7.com.ar/proyectos.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://web7.com.ar/on7.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://web7.com.ar/on7.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://web7.com.ar/on7.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://web7.com.ar/on7.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://web7.com.ar/on7.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://web7.com.ar/diagnostico.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://web7.com.ar/diagnostico.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://web7.com.ar/diagnostico.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://web7.com.ar/diagnostico.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://web7.com.ar/diagnostico.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://web7.com.ar/contacto.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://web7.com.ar/contacto.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://web7.com.ar/contacto.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://web7.com.ar/contacto.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://web7.com.ar/contacto.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>

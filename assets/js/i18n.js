@@ -1342,12 +1342,69 @@ function applyTranslations(lang) {
     }
   });
 
+  // Actualizar metadatos de SEO por idioma y página
+  const path = window.location.pathname.toLowerCase();
+  let pageKey = 'index';
+  if (path.includes('proyectos')) pageKey = 'proyectos';
+  else if (path.includes('on7')) pageKey = 'on7';
+  else if (path.includes('diagnostico')) pageKey = 'diagnostico';
+  else if (path.includes('contacto')) pageKey = 'contacto';
+
+  const seoMeta = {
+    index: {
+      es: { title: "WEB7 — Desarrollo web · Automatizaciones · Lab7", desc: "Estudio de desarrollo web, automatizaciones y herramientas digitales. Diseño, código y resultados en 7 sprints." },
+      pt: { title: "WEB7 — Desenvolvimento Web · Automações · Lab7", desc: "Estúdio de desenvolvimento web, automações e ferramentas digitais. Design, código e resultados em 7 sprints." },
+      en: { title: "WEB7 — Web Development · Automations · Lab7", desc: "Web development studio, automations, and digital tools. Design, code, and results in 7 sprints." }
+    },
+    proyectos: {
+      es: { title: "Proyectos — WEB7", desc: "Portfolio de proyectos de desarrollo web, e-commerce, automatizaciones y branding en WEB7." },
+      pt: { title: "Projetos — WEB7", desc: "Portfólio de projetos de desenvolvimento web, e-commerce, automações e branding na WEB7." },
+      en: { title: "Projects — WEB7", desc: "Portfolio of web development, e-commerce, automations, and branding projects at WEB7." }
+    },
+    on7: {
+      es: { title: "On7 — Agentes IA para WhatsApp y Web · WEB7", desc: "Atención inteligente 24/7 para tu negocio con IA integrada a WhatsApp, Google Calendar y Sheets." },
+      pt: { title: "On7 — Agentes de IA para WhatsApp e Web · WEB7", desc: "Atendimento inteligente 24/7 para o seu negócio com IA integrada ao WhatsApp, Google Calendar e Planilhas." },
+      en: { title: "On7 — AI Agents for WhatsApp & Web · WEB7", desc: "24/7 intelligent customer care for your business powered by AI integrated with WhatsApp, Google Calendar and Sheets." }
+    },
+    diagnostico: {
+      es: { title: "Diagnóstico Digital Gratuito — WEB7", desc: "Evaluá el estado de tu web, marca y presencia digital en 3 minutos con nuestro diagnóstico interactivo." },
+      pt: { title: "Diagnóstico Digital Gratuito — WEB7", desc: "Avalie a presença digital, marca e web da sua empresa em 3 minutos com nosso diagnóstico interativo." },
+      en: { title: "Free Digital Diagnostic — WEB7", desc: "Evaluate your website, brand, and digital presence in 3 minutes with our interactive diagnostic tool." }
+    },
+    contacto: {
+      es: { title: "Contacto — WEB7", desc: "Escribinos para cotizar tu web, automatización o proyecto digital con WEB7." },
+      pt: { title: "Contato — WEB7", desc: "Fale conosco para orçar seu site, automação ou projeto digital com a WEB7." },
+      en: { title: "Contact — WEB7", desc: "Contact us to get a quote for your website, automation, or digital project with WEB7." }
+    }
+  };
+
+  if (seoMeta[pageKey] && seoMeta[pageKey][lang]) {
+    document.title = seoMeta[pageKey][lang].title;
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) metaDesc.setAttribute('content', seoMeta[pageKey][lang].desc);
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) ogTitle.setAttribute('content', seoMeta[pageKey][lang].title);
+    const ogDesc = document.querySelector('meta[property="og:description"]');
+    if (ogDesc) ogDesc.setAttribute('content', seoMeta[pageKey][lang].desc);
+  }
+
   document.documentElement.lang = lang;
   localStorage.setItem('lang', lang);
   
+  // Sincronizar URL limpia o con ?lang= para indexación de buscadores
+  try {
+    const currentUrl = new URL(window.location.href);
+    if (lang === 'es') {
+      currentUrl.searchParams.delete('lang');
+    } else {
+      currentUrl.searchParams.set('lang', lang);
+    }
+    window.history.replaceState({}, '', currentUrl.toString());
+  } catch (e) {}
+
   // Actualizar estado activo en el selector
   document.querySelectorAll('.lang-selector a').forEach(a => {
-    a.style.opacity = a.getAttribute('onclick').includes(`'${lang}'`) ? '1' : '0.5';
+    a.style.opacity = a.getAttribute('onclick')?.includes(`'${lang}'`) ? '1' : '0.5';
   });
 }
 
@@ -1366,16 +1423,23 @@ function changeLang(lang) {
   applyTranslations(lang);
   // Pequeño hack para forzar re-render de GSAP SplitText si ya había iniciado
   if (window.ScrollTrigger) {
-     location.reload(); // Para que el motor de GSAP re-calcule las posiciones y letras nuevas
+    location.reload(); // Para que el motor de GSAP re-calcule las posiciones y letras nuevas
   }
 }
 
+// Helper para obtener el idioma inicial (URL query param tiene prioridad sobre localStorage para indexación SEO)
+function getInitialLang() {
+  try {
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlLang = urlParams.get('lang');
+    if (urlLang && ['es', 'en', 'pt'].includes(urlLang)) {
+      return urlLang;
+    }
+  } catch (e) {}
+  return localStorage.getItem('lang') || 'es';
+}
+
 document.addEventListener("DOMContentLoaded", () => {
-  const savedLang = localStorage.getItem('lang') || 'es';
-  if (savedLang !== 'es') {
-    applyTranslations(savedLang);
-  } else {
-    // Solo actualizar opacidad
-    applyTranslations('es');
-  }
+  const initialLang = getInitialLang();
+  applyTranslations(initialLang);
 });

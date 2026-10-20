@@ -8,6 +8,10 @@
   <title>WEB7 — Desarrollo web · Automatizaciones · Lab7</title>
   <meta name="description" content="Estudio de desarrollo web, automatizaciones y herramientas digitales. Diseño, código y resultados en 7 sprints.">
   <link rel="canonical" href="https://web7.com.ar/">
+  <link rel="alternate" hreflang="es" href="https://web7.com.ar/">
+  <link rel="alternate" hreflang="pt" href="https://web7.com.ar/?lang=pt">
+  <link rel="alternate" hreflang="en" href="https://web7.com.ar/?lang=en">
+  <link rel="alternate" hreflang="x-default" href="https://web7.com.ar/">
   <meta name="theme-color" content="#0a0a0a">
   
   <!-- Open Graph / Facebook -->
@@ -39,7 +43,7 @@
       "@type": "ContactPoint",
       "telephone": "+54-9-3754-415676",
       "contactType": "customer service",
-      "availableLanguage": "Spanish"
+      "availableLanguage": ["Spanish", "English", "Portuguese"]
     },
     "address": {
       "@type": "PostalAddress",
@@ -1232,9 +1236,9 @@
       <li><a href="#lab7" data-cursor-hover>ON7</a></li>
       <li><a href="contacto.html" data-cursor-hover data-i18n="nav_contacto">Contacto</a></li>
       <li class="lang-selector" style="display: flex; gap: 0.5rem; margin-left: 1rem; border-left: 1px solid rgba(255,255,255,0.2); padding-left: 1rem;">
-        <a href="#" onclick="changeLang('es'); return false;" style="font-size: 1.2rem; transition: opacity 0.3s;" title="Español">🇦🇷</a>
-        <a href="#" onclick="changeLang('pt'); return false;" style="font-size: 1.2rem; transition: opacity 0.3s;" title="Português">🇧🇷</a>
-        <a href="#" onclick="changeLang('en'); return false;" style="font-size: 1.2rem; transition: opacity 0.3s;" title="English">🇺🇸</a>
+        <a href="?lang=es" onclick="changeLang('es'); return false;" style="font-size: 1.2rem; transition: opacity 0.3s;" title="Español">🇦🇷</a>
+        <a href="?lang=pt" onclick="changeLang('pt'); return false;" style="font-size: 1.2rem; transition: opacity 0.3s;" title="Português">🇧🇷</a>
+        <a href="?lang=en" onclick="changeLang('en'); return false;" style="font-size: 1.2rem; transition: opacity 0.3s;" title="English">🇺🇸</a>
       </li>
     </ul>
   </nav>

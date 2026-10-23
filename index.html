@@ -336,8 +336,8 @@
     /* Scroll-reveal text block (sirnik style) */
     .reveal-text {
       font-family: var(--font-body);
-      font-size: clamp(1.6rem, 3.5vw, 2.8rem);
-      font-weight: 600; line-height: 1.4;
+      font-size: clamp(1.4rem, 2.8vw, 2.2rem);
+      font-weight: 600; line-height: 1.5;
       max-width: 1100px;
     }
     .reveal-text .r-word {
@@ -2548,7 +2548,7 @@
     // ═══════════════════════════════════════
     (function() {
       const PIXEL_SIZE = window.innerWidth < 768 ? 24 : 32;
-      const DELAY = 500;
+      const DELAY = 550;
       const ACCENT = '#DFFE02';
 
       function initPixelTrail(container) {
@@ -2557,8 +2557,11 @@
         const cols = Math.ceil(rect.width / PIXEL_SIZE);
         const rows = Math.ceil(rect.height / PIXEL_SIZE);
 
-        container.style.display = 'flex';
-        container.style.flexWrap = 'wrap';
+        container.style.display = 'grid';
+        container.style.gridTemplateColumns = `repeat(${cols}, ${PIXEL_SIZE}px)`;
+        container.style.gridTemplateRows = `repeat(${rows}, ${PIXEL_SIZE}px)`;
+        container.style.gap = '0px';
+        container.style.overflow = 'hidden';
 
         const grid = document.createDocumentFragment();
         const pixels = [];
@@ -2566,7 +2569,7 @@
           for (let c = 0; c < cols; c++) {
             const px = document.createElement('div');
             px.className = 'px-dot';
-            px.style.cssText = `width:${PIXEL_SIZE}px;height:${PIXEL_SIZE}px;background:${ACCENT};opacity:0;border-radius:0;`;
+            px.style.cssText = `width:${PIXEL_SIZE}px;height:${PIXEL_SIZE}px;background:${ACCENT};opacity:0;border-radius:0;box-sizing:border-box;margin:0;padding:0;`;
             grid.appendChild(px);
             pixels.push(px);
           }
@@ -2587,25 +2590,76 @@
           timeouts.set(idx, t);
         }
 
+        function lightCell(c, r) {
+          if (c >= 0 && c < cols && r >= 0 && r < rows) {
+            lightPixel(r * cols + c);
+          }
+        }
+
+        let lastCol = null;
+        let lastRow = null;
+
+        function handlePointerMove(clientX, clientY) {
+          const r = container.getBoundingClientRect();
+          const col = Math.floor((clientX - r.left) / PIXEL_SIZE);
+          const row = Math.floor((clientY - r.top) / PIXEL_SIZE);
+
+          if (col >= 0 && col < cols && row >= 0 && row < rows) {
+            if (lastCol !== null && lastRow !== null) {
+              // Interpolación continua para que no deje espacios vacíos al mover el cursor rápido
+              let x0 = lastCol, y0 = lastRow;
+              let x1 = col, y1 = row;
+              const dx = Math.abs(x1 - x0);
+              const dy = Math.abs(y1 - y0);
+              const sx = x0 < x1 ? 1 : -1;
+              const sy = y0 < y1 ? 1 : -1;
+              let err = dx - dy;
+
+              while (true) {
+                lightCell(x0, y0);
+                if (x0 === x1 && y0 === y1) break;
+                const e2 = 2 * err;
+                if (e2 > -dy) {
+                  err -= dy;
+                  x0 += sx;
+                  // Si salta en diagonal, conectamos por su cara ortogonal
+                  if (e2 < dx) lightCell(x0, y0 - sy);
+                }
+                if (e2 < dx) {
+                  err += dx;
+                  y0 += sy;
+                }
+              }
+            } else {
+              lightCell(col, row);
+            }
+            lastCol = col;
+            lastRow = row;
+          } else {
+            lastCol = null;
+            lastRow = null;
+          }
+        }
+
         const trigger = container.closest('section') || document.body;
         trigger.addEventListener('mousemove', function(e) {
-          const r = container.getBoundingClientRect();
-          const col = Math.floor((e.clientX - r.left) / PIXEL_SIZE);
-          const row = Math.floor((e.clientY - r.top) / PIXEL_SIZE);
-          if (col >= 0 && col < cols && row >= 0 && row < rows) {
-            lightPixel(row * cols + col);
-          }
+          handlePointerMove(e.clientX, e.clientY);
+        });
+
+        trigger.addEventListener('mouseleave', function() {
+          lastCol = null;
+          lastRow = null;
         });
 
         container.addEventListener('touchmove', function(e) {
           const touch = e.touches[0];
-          const r = container.getBoundingClientRect();
-          const col = Math.floor((touch.clientX - r.left) / PIXEL_SIZE);
-          const row = Math.floor((touch.clientY - r.top) / PIXEL_SIZE);
-          if (col >= 0 && col < cols && row >= 0 && row < rows) {
-            lightPixel(row * cols + col);
-          }
+          handlePointerMove(touch.clientX, touch.clientY);
         }, { passive: true });
+
+        container.addEventListener('touchend', function() {
+          lastCol = null;
+          lastRow = null;
+        });
       }
 
       function initWebGL() {
@@ -2857,8 +2911,8 @@
       let width, height;
       let cols, rows;
       
-      const blockSize = 32; // Más grandes
-      const gap = 4; 
+      const blockSize = 32;
+      const gap = 0; // Pegados cara con cara sin espacio
       const cellSize = blockSize + gap;
       const color = '#DFFE02'; 
       const maxOpacity = 1.0; 
@@ -2909,7 +2963,7 @@
           ctx.clearRect(0, 0, width, height);
 
           if (Math.random() < 0.015) { 
-              // Solamente del lado derecho
+              // Nace sobre el cuadrante derecho
               let c = Math.floor(cols - Math.random() * (cols * 0.15)); 
               let r = Math.floor(Math.random() * rows);
 
@@ -2924,8 +2978,8 @@
               if (cell.state === 'hold' && !cell.hasSpawned && cell.generation < 6 && Math.random() < 0.03) {
                   cell.hasSpawned = true; 
                   
-                  // Priorizar el movimiento hacia la izquierda (centro)
-                  const dirs = [[-1, 0], [-1, 0], [-1, -1], [-1, 1], [0, 1], [0, -1]]; 
+                  // Conexión ortogonal cara con cara: izquierda, derecha, arriba, abajo (sin saltos diagonales)
+                  const dirs = [[-1, 0], [-1, 0], [0, 1], [0, -1], [1, 0]]; 
                   dirs.sort(() => Math.random() - 0.5); 
                   
                   const numSpawns = Math.random() > 0.8 ? 2 : 1;

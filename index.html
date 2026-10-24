@@ -74,10 +74,12 @@
     ]
   }
   </script>
-  <!-- Fonts -->
+  <!-- Fonts & Performance Preloads -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Doto:wght@400;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" href="assets/AlphaLyrae-Medium.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Doto:wght@400;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Doto:wght@400;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"></noscript>
   <script src="assets/js/i18n.js"></script>
   <style>
     @font-face {
@@ -1228,7 +1230,7 @@
 
   <!-- NAV -->
   <nav>
-    <div class="logo-outer"><a href="index.html" class="logo" aria-label="WEB7"><img src="assets/Logoweb7-verde.svg" alt="WEB7" style="height: 52px;"></a></div>
+    <div class="logo-outer"><a href="index.html" class="logo" aria-label="WEB7"><img src="assets/Logoweb7-verde.svg" alt="WEB7" width="142" height="52" style="height: 52px; width: auto;"></a></div>
     <ul class="nav-links" style="align-items: center;">
       <li><a href="diagnostico.html" class="nav-btn-diag" data-cursor-hover data-i18n="nav_diag">Diagnóstico Gratuito</a></li>
       <li><a href="#metodo" data-cursor-hover data-i18n="nav_metodo">Método</a></li>
@@ -1236,13 +1238,14 @@
       <li><a href="#lab7" data-cursor-hover>ON7</a></li>
       <li><a href="contacto.html" data-cursor-hover data-i18n="nav_contacto">Contacto</a></li>
       <li class="lang-selector" style="display: flex; gap: 0.5rem; margin-left: 1rem; border-left: 1px solid rgba(255,255,255,0.2); padding-left: 1rem;">
-        <a href="?lang=es" onclick="changeLang('es'); return false;" style="font-size: 1.2rem; transition: opacity 0.3s;" title="Español">🇦🇷</a>
-        <a href="?lang=pt" onclick="changeLang('pt'); return false;" style="font-size: 1.2rem; transition: opacity 0.3s;" title="Português">🇧🇷</a>
-        <a href="?lang=en" onclick="changeLang('en'); return false;" style="font-size: 1.2rem; transition: opacity 0.3s;" title="English">🇺🇸</a>
+        <a href="?lang=es" onclick="changeLang('es'); return false;" style="font-size: 1.2rem; transition: opacity 0.3s;" title="Español" aria-label="Cambiar a idioma Español">🇦🇷</a>
+        <a href="?lang=pt" onclick="changeLang('pt'); return false;" style="font-size: 1.2rem; transition: opacity 0.3s;" title="Português" aria-label="Mudar para o idioma Português">🇧🇷</a>
+        <a href="?lang=en" onclick="changeLang('en'); return false;" style="font-size: 1.2rem; transition: opacity 0.3s;" title="English" aria-label="Switch to English language">🇺🇸</a>
       </li>
     </ul>
   </nav>
 
+  <main id="main-content">
   <!-- BLOCK 01: HERO -->
   <section class="hero" id="heroSection">
     <!-- Canvas Pixel Animation Background -->
@@ -1435,7 +1438,7 @@
     <div class="proyecto-grid">
       <a href="https://www.odaalvino.com.br/" target="_blank" rel="noopener" class="proyecto-card" data-cursor-portfolio data-tilt>
         <div class="reveal-overlay"></div>
-        <img src="assets/oda-al-vino.jpg" alt="ODA Al Vino" class="card-img" loading="lazy">
+        <img src="assets/oda-al-vino.jpg" alt="ODA Al Vino" class="card-img" width="600" height="338" loading="lazy" decoding="async">
         <div class="card-body">
           <div class="card-header-row">
             <h3>ODA Al Vino</h3>
@@ -1450,7 +1453,7 @@
       </a>
       <a href="https://www.odavinoteca.com.ar/" target="_blank" rel="noopener" class="proyecto-card" data-cursor-portfolio data-tilt>
         <div class="reveal-overlay"></div>
-        <img src="assets/oda-vinoteca.jpg" alt="ODA Vinoteca" class="card-img" loading="lazy">
+        <img src="assets/oda-vinoteca.jpg" alt="ODA Vinoteca" class="card-img" width="600" height="338" loading="lazy" decoding="async">
         <div class="card-body">
           <div class="card-header-row">
             <h3>ODA Vinoteca</h3>
@@ -1465,7 +1468,7 @@
       </a>
       <a href="https://yvyhotel.com.ar/" target="_blank" rel="noopener" class="proyecto-card" data-cursor-portfolio data-tilt>
         <div class="reveal-overlay"></div>
-        <img src="assets/yvy-hotel.jpg" alt="YVY Hotel" class="card-img" loading="lazy">
+        <img src="assets/yvy-hotel.jpg" alt="YVY Hotel" class="card-img" width="600" height="338" loading="lazy" decoding="async">
         <div class="card-body">
           <div class="card-header-row">
             <h3>YVY Hotel</h3>
@@ -1480,7 +1483,7 @@
       </a>
       <a href="https://somostotal.com.ar/" target="_blank" rel="noopener" class="proyecto-card" data-cursor-portfolio data-tilt>
         <div class="reveal-overlay"></div>
-        <img src="assets/total.jpg" alt="Total" class="card-img" loading="lazy">
+        <img src="assets/total.jpg" alt="Total" class="card-img" width="600" height="338" loading="lazy" decoding="async">
         <div class="card-body">
           <div class="card-header-row">
             <h3>Total</h3>
@@ -1496,7 +1499,7 @@
       </a>
       <a href="https://yerbamateprimicia.com.ar/" target="_blank" rel="noopener" class="proyecto-card" data-cursor-portfolio data-tilt>
         <div class="reveal-overlay"></div>
-        <img src="assets/primicia.jpg" alt="Primicia" class="card-img" loading="lazy">
+        <img src="assets/primicia.jpg" alt="Primicia" class="card-img" width="600" height="338" loading="lazy" decoding="async">
         <div class="card-body">
           <div class="card-header-row">
             <h3>Primicia</h3>
@@ -1511,7 +1514,7 @@
       </a>
       <a href="https://envasando.com.ar/" target="_blank" rel="noopener" class="proyecto-card" data-cursor-portfolio data-tilt>
         <div class="reveal-overlay"></div>
-        <img src="assets/envasando.jpg" alt="Envasando" class="card-img" loading="lazy">
+        <img src="assets/envasando.jpg" alt="Envasando" class="card-img" width="600" height="338" loading="lazy" decoding="async">
         <div class="card-body">
           <div class="card-header-row">
             <h3>Envasando</h3>
@@ -1526,7 +1529,7 @@
       </a>
       <a href="https://fincarumaroli.com/" target="_blank" rel="noopener" class="proyecto-card" data-cursor-portfolio data-tilt>
         <div class="reveal-overlay"></div>
-        <img src="assets/finca-rumaroli.jpg" alt="Finca Rumaroli" class="card-img" loading="lazy">
+        <img src="assets/finca-rumaroli.jpg" alt="Finca Rumaroli" class="card-img" width="600" height="338" loading="lazy" decoding="async">
         <div class="card-body">
           <div class="card-header-row">
             <h3>Finca Rumaroli</h3>
@@ -1704,6 +1707,7 @@
       <a href="contacto.html" class="btn btn-secondary"><span data-i18n="btn_wp_direct">WhatsApp Directo</span> <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" fill="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-left: 4px;"><path d="M4 11v2h16v-2zm12 2v2h2v-2zm-2 2v2h2v-2zm-2 2v2h2v-2zm4-6V9h2v2z"/><path d="M14 15V7h2v8zm-2 2V5h2v12z"/></svg></a>
     </div>
   </section>
+  </main>
 
   <!-- FOOTER -->
   <footer>
@@ -1767,12 +1771,11 @@
     </div>
   </footer>
   <!-- LIBS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
   <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
-  <script src="chat-widget.js"></script>
-  <script src="webgl-reveal.js?v=6"></script>
+  <script src="chat-widget.js" defer></script>
+  <script src="webgl-reveal.js?v=6" defer></script>
 
   <script>
     // Aplicar idiomas antes de que GSAP divida los textos
@@ -1783,35 +1786,41 @@
     gsap.registerPlugin(ScrollTrigger);
 
     // ═══════════════════════════════════════
-    // 1. LENIS SMOOTH SCROLL
+    // 1. LENIS SMOOTH SCROLL (Optimizado: solo escritorio)
     // ═══════════════════════════════════════
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-    });
-    lenis.on('scroll', ScrollTrigger.update);
-    gsap.ticker.add((time) => lenis.raf(time * 1000));
-    gsap.ticker.lagSmoothing(0);
+    const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (window.innerWidth < 768);
+    let lenis = null;
+    if (!isTouchDevice && typeof Lenis !== 'undefined') {
+      lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true,
+      });
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add((time) => lenis.raf(time * 1000));
+      gsap.ticker.lagSmoothing(0);
+    }
 
     // ═══════════════════════════════════════
-    // 2. CUSTOM CURSOR
+    // 2. CUSTOM CURSOR (Solo escritorio)
     // ═══════════════════════════════════════
-    const cursor = document.querySelector('.cursor');
-    const cursorDot = document.querySelector('.cursor-dot');
-    const cursorLabel = document.querySelector('.cursor-label');
-    let mouseX = 0, mouseY = 0, cursorX = 0, cursorY = 0;
+    if (!isTouchDevice) {
+      const cursor = document.querySelector('.cursor');
+      const cursorDot = document.querySelector('.cursor-dot');
+      const cursorLabel = document.querySelector('.cursor-label');
+      let mouseX = 0, mouseY = 0, cursorX = 0, cursorY = 0;
 
-    document.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX; mouseY = e.clientY;
-      gsap.to(cursorDot, { x: mouseX, y: mouseY, duration: 0.1 });
-    });
-    gsap.ticker.add(() => {
-      cursorX += (mouseX - cursorX) * 0.15;
-      cursorY += (mouseY - cursorY) * 0.15;
-      gsap.set(cursor, { x: cursorX, y: cursorY });
-      gsap.set(cursorLabel, { x: mouseX, y: mouseY });
-    });
+      document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX; mouseY = e.clientY;
+        gsap.to(cursorDot, { x: mouseX, y: mouseY, duration: 0.1 });
+      });
+      gsap.ticker.add(() => {
+        cursorX += (mouseX - cursorX) * 0.15;
+        cursorY += (mouseY - cursorY) * 0.15;
+        gsap.set(cursor, { x: cursorX, y: cursorY });
+        gsap.set(cursorLabel, { x: mouseX, y: mouseY });
+      });
+    }
 
     // ═══════════════════════════════════════
     // 2b. LOGO 3D TILT (pointer-driven)
@@ -1832,16 +1841,22 @@
       });
     }
 
-    document.querySelectorAll('a, button, .proyecto-card, .btn, [data-cursor-portfolio], [data-cursor-hover]').forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        cursor.classList.add('active');
-        cursorLabel.classList.add('visible');
+    if (!isTouchDevice) {
+      document.querySelectorAll('a, button, .proyecto-card, .btn, [data-cursor-portfolio], [data-cursor-hover]').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          const c = document.querySelector('.cursor');
+          const cl = document.querySelector('.cursor-label');
+          if (c) c.classList.add('active');
+          if (cl) cl.classList.add('visible');
+        });
+        el.addEventListener('mouseleave', () => {
+          const c = document.querySelector('.cursor');
+          const cl = document.querySelector('.cursor-label');
+          if (c) c.classList.remove('active');
+          if (cl) cl.classList.remove('visible');
+        });
       });
-      el.addEventListener('mouseleave', () => {
-        cursor.classList.remove('active');
-        cursorLabel.classList.remove('visible');
-      });
-    });
+    }
 
     // ═══════════════════════════════════════
     // 3. SPLIT TEXT

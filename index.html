@@ -80,7 +80,6 @@
   <link rel="preload" href="assets/AlphaLyrae-Medium.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Doto:wght@400;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Doto:wght@400;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"></noscript>
-  <script src="assets/js/i18n.js"></script>
   <style>
     @font-face {
       font-family: 'Alpha Lyrae';
@@ -1209,7 +1208,7 @@
 
     gtag('config', 'G-8J1BW6FFXV');
   </script>
-<script src="assets/js/tracker.js?v=3.3"></script>
+<script src="assets/js/tracker.js?v=3.3" defer></script>
 </head>
 <body>
 
@@ -1771,6 +1770,7 @@
     </div>
   </footer>
   <!-- LIBS -->
+  <script src="assets/js/i18n.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
   <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
@@ -2860,10 +2860,9 @@
         requestAnimationFrame(render);
       }
 
-      initPixelTrail(document.getElementById('heroPixelTrail'));
-      initPixelTrail(document.getElementById('pixelTrail'));
-
-      if (window.innerWidth >= 768) {
+      if (!isTouchDevice) {
+        initPixelTrail(document.getElementById('heroPixelTrail'));
+        initPixelTrail(document.getElementById('pixelTrail'));
         initWebGL();
       }
     })();
@@ -3038,11 +3037,31 @@
               ctx.fillRect(drawX, drawY, blockSize, blockSize);
           }
           ctx.globalAlpha = 1.0;
-          requestAnimationFrame(animate);
+          if (isHeroVisible) {
+            requestAnimationFrame(animate);
+          } else {
+            isLoopRunning = false;
+          }
+      }
+
+      let isHeroVisible = true;
+      let isLoopRunning = false;
+      if ('IntersectionObserver' in window && heroSection) {
+        const heroObserver = new IntersectionObserver((entries) => {
+          isHeroVisible = entries[0].isIntersecting;
+          if (isHeroVisible && !isLoopRunning) {
+            isLoopRunning = true;
+            requestAnimationFrame(animate);
+          }
+        }, { threshold: 0.05 });
+        heroObserver.observe(heroSection);
       }
 
       // Initialize after a slight delay to ensure layout is done
-      setTimeout(init, 100);
+      setTimeout(() => {
+        isLoopRunning = true;
+        init();
+      }, 100);
     })();
   </script>
 </body>

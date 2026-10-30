@@ -23,7 +23,8 @@
       transition: opacity 0.3s ease, transform 0.4s cubic-bezier(0.23, 1, 0.32, 1) !important;
       transform-origin: center center;
     }
-    .card-img-wrapper .pixel-reveal-canvas {
+    .card-img-wrapper .pixel-reveal-canvas,
+    .socio-photo-frame .pixel-reveal-canvas {
       position: absolute;
       top: 0;
       left: 0;
@@ -37,8 +38,16 @@
     .proyecto-card:hover img.card-img,
     .project-card:hover img.card-img,
     .proyecto-card:hover .pixel-reveal-canvas,
-    .project-card:hover .pixel-reveal-canvas {
+    .project-card:hover .pixel-reveal-canvas,
+    .socio-card:hover .socio-photo-frame .pixel-reveal-canvas {
       transform: scale(1.03);
+    }
+    .socio-photo-frame .pixel-reveal-canvas {
+      filter: grayscale(15%) contrast(1.04);
+      transition: opacity 0.3s ease, transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), filter 0.5s ease !important;
+    }
+    .socio-card:hover .socio-photo-frame .pixel-reveal-canvas {
+      filter: grayscale(0%) contrast(1.06);
     }
   `;
   document.head.appendChild(style);
@@ -46,7 +55,8 @@
   class PixelReveal {
     constructor(img) {
       this.img = img;
-      this.parentCard = img.closest('.proyecto-card') || img.closest('.project-card');
+      this.socioFrame = img.closest('.socio-photo-frame');
+      this.parentCard = img.closest('.proyecto-card') || img.closest('.project-card') || img.closest('.socio-card');
       if (!this.parentCard) return;
 
       this.initWrapper();
@@ -55,6 +65,10 @@
     }
 
     initWrapper() {
+      if (this.socioFrame) {
+        this.wrapper = this.socioFrame;
+        return;
+      }
       this.wrapper = document.createElement('div');
       this.wrapper.className = 'card-img-wrapper';
 
@@ -75,6 +89,9 @@
       Object.assign(this.canvas.style, {
         opacity: '0' // Iniciar oculto hasta que se comience a dibujar
       });
+      if (this.socioFrame) {
+        this.img.style.opacity = '0.01';
+      }
       
       this.wrapper.appendChild(this.canvas);
       this.ctx = this.canvas.getContext('2d');
@@ -123,11 +140,11 @@
         sx = (this.img.naturalWidth - sw) / 2;
         sy = 0;
       } else {
-        // Imagen de origen es más alta (como oda-vinoteca.jpg): recortar verticalmente
+        // Imagen de origen es más alta: recortar verticalmente (para retratos socioFrame respetar center top)
         sw = this.img.naturalWidth;
         sh = sw / dAspect;
         sx = 0;
-        sy = (this.img.naturalHeight - sh) / 2;
+        sy = this.socioFrame ? 0 : (this.img.naturalHeight - sh) / 2;
       }
 
       // Generador pseudo-aleatorio determinista basado en coordenadas para ruido estable
@@ -176,10 +193,10 @@
         progress: 1,
         scrollTrigger: {
           trigger: this.wrapper,
-          start: 'top 92%',
+          start: this.socioFrame ? 'top 82%' : 'top 92%',
           once: true,
         },
-        duration: 1.2,
+        duration: this.socioFrame ? 1.35 : 1.2,
         ease: 'power1.inOut',
         onUpdate: () => this.draw(state.progress),
         onComplete: () => this.draw(1)
@@ -197,13 +214,14 @@
         });
       };
 
-      this.parentCard.addEventListener('mouseenter', this.hoverHandler);
+      const hoverTarget = this.socioFrame || this.parentCard;
+      hoverTarget.addEventListener('mouseenter', this.hoverHandler);
     }
   }
 
-  // Inicializar para todas las imágenes de proyectos del portfolio
+  // Inicializar para todas las imágenes de proyectos del portfolio y retratos de socios
   function initGallery() {
-    const images = document.querySelectorAll('.proyecto-card img.card-img, .project-card img.card-img');
+    const images = document.querySelectorAll('.proyecto-card img.card-img, .project-card img.card-img, .socio-photo-frame img');
     images.forEach(img => {
       if (img.complete && img.naturalWidth !== 0) {
         new PixelReveal(img);
